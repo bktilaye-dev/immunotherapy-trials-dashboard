@@ -276,17 +276,18 @@
 <!-- ============ SUMMARY ============ -->
 <section id="summary">
   <div class="sec-head"><h2>The landscape at a glance</h2>
-  <p>16 trials match the filters below: adult, IDH-wildtype glioblastoma, at least one US site, an immunotherapy or
-  EGFR-targeted mechanism, open to newly diagnosed disease, and <b>not gated on an MGMT-unmethylated requirement</b>
-  (6 trials that required it were removed from this list for this case).</p></div>
+  <p>12 trials are <b>currently recruiting</b> and match the filters below: adult, IDH-wildtype glioblastoma, at least
+  one US site, an immunotherapy or EGFR-targeted mechanism, open to newly diagnosed disease, and
+  <b>not gated on an MGMT-unmethylated requirement</b> (6 trials that required it were removed from this list for this
+  case). <b>4 more trials exist but are not currently recruiting</b> — moved to their own section below the matched
+  list so this page's primary list stays limited to what you could actually enrol in today.</p></div>
 
   <div class="tiles">
-    <div class="tile"><div class="n tnum">16</div><div class="l">Trials matched</div></div>
-    <div class="tile"><div class="n tnum">12</div><div class="l">Recruiting now, US</div></div>
-    <div class="tile"><div class="n tnum">3</div><div class="l">Opening soon (not yet recruiting)</div></div>
+    <div class="tile"><div class="n tnum">12</div><div class="l">Trials matched &amp; recruiting now</div></div>
+    <div class="tile"><div class="n tnum">4</div><div class="l">Not currently recruiting (see below)</div></div>
     <div class="tile"><div class="n tnum">6</div><div class="l">Require an EGFR biomarker</div></div>
-    <div class="tile"><div class="n tnum">5</div><div class="l">Enrol after surgery, before chemoradiation</div></div>
-    <div class="tile"><div class="n tnum">4</div><div class="l">Need fresh / viable / fresh-frozen tissue</div></div>
+    <div class="tile"><div class="n tnum">3</div><div class="l">Enrol after surgery, before chemoradiation</div></div>
+    <div class="tile"><div class="n tnum">1</div><div class="l">Need fresh / viable / fresh-frozen tissue</div></div>
     <div class="tile"><div class="n tnum">5</div><div class="l">Need an unscheduled resection — not open now</div></div>
     <div class="tile"><div class="n tnum">1</div><div class="l">Explicit 2&ndash;4 wk post-op window (see below)</div></div>
   </div>
@@ -367,8 +368,6 @@
       <select id="fMech"><option value="">All</option></select></div>
     <div class="ctl"><label for="fEntry">Enrolment window</label>
       <select id="fEntry"><option value="">All</option></select></div>
-    <div class="ctl"><label for="fStatus">Status</label>
-      <select id="fStatus"><option value="">All</option></select></div>
     <div class="ctl"><label for="fMolec">Biomarker needed</label>
       <select id="fMolec">
         <option value="">All</option>
@@ -400,6 +399,16 @@
 
   <div class="count-line" id="countLine"></div>
   <div id="trialList"></div>
+</section>
+
+<!-- ============ NOT CURRENTLY RECRUITING ============ -->
+<section id="not-recruiting">
+  <div class="sec-head"><h2>Not currently recruiting</h2>
+  <p>Same eligibility fit as the matched list above (adult, IDH-wildtype GBM, newly diagnosed, not gated on
+  MGMT-unmethylated status), but not open for enrolment right now &mdash; either &ldquo;not yet recruiting&rdquo;
+  (worth checking back on) or with US sites listed as closed. Moved here so the primary list above stays limited to
+  what you could actually enrol in today.</p></div>
+  <div id="notRecruitingList"></div>
 </section>
 
 <!-- ============ QUESTIONS ============ -->
@@ -1131,13 +1140,15 @@ function card(t){
   </article>`;
 }
 
+const RECRUITING_TRIALS = TRIALS.filter(t=>t.status==="Recruiting");
+const NOT_RECRUITING_TRIALS = TRIALS.filter(t=>t.status!=="Recruiting");
+
 function apply(){
-  const mech=$("#fMech").value, entry=$("#fEntry").value, status=$("#fStatus").value,
+  const mech=$("#fMech").value, entry=$("#fEntry").value,
         molec=$("#fMolec").value, tissue=$("#fTissue").value, q=$("#fSearch").value.trim().toLowerCase(), sort=$("#fSort").value;
-  let rows = TRIALS.filter(t=>
+  let rows = RECRUITING_TRIALS.filter(t=>
     (!mech || t.mech===mech) &&
     (!entry || t.entry===entry) &&
-    (!status || t.status===status) &&
     molecMatch(t,molec) &&
     (!tissue || t.tissueKey===tissue) &&
     (!q || JSON.stringify(t).toLowerCase().includes(q))
@@ -1152,12 +1163,12 @@ function apply(){
     return 0;
   });
   listEl.innerHTML = rows.map(card).join("") || `<p class="muted" style="padding:24px 0">No trials match these filters. <button class="reset" id="rb2" type="button">Reset</button></p>`;
-  $("#countLine").textContent = `Showing ${rows.length} of ${TRIALS.length} trials`;
-  bindToggles();
+  $("#countLine").textContent = `Showing ${rows.length} of ${RECRUITING_TRIALS.length} currently recruiting trials`;
+  bindToggles(listEl);
   const rb2=$("#rb2"); if(rb2) rb2.onclick=reset;
 }
-function bindToggles(){
-  listEl.querySelectorAll(".toggle").forEach(btn=>{
+function bindToggles(scopeEl){
+  scopeEl.querySelectorAll(".toggle").forEach(btn=>{
     btn.onclick=()=>{
       const t=btn.closest(".trial"); const open=t.classList.toggle("open");
       btn.setAttribute("aria-expanded", open?"true":"false");
@@ -1166,18 +1177,24 @@ function bindToggles(){
   });
 }
 function reset(){
-  ["#fMech","#fEntry","#fStatus","#fMolec","#fTissue"].forEach(s=>$(s).value="");
+  ["#fMech","#fEntry","#fMolec","#fTissue"].forEach(s=>$(s).value="");
   $("#fSearch").value=""; $("#fSort").value="fit"; apply();
 }
 
 /* filter option lists */
 (function fillSelects(){
-  const mechs=[...new Set(TRIALS.map(t=>t.mech))].sort();
+  const mechs=[...new Set(RECRUITING_TRIALS.map(t=>t.mech))].sort();
   const entries=["Before your surgery","After surgery, before chemoradiation","With or after chemoradiation","Procedure-based / flexible"];
-  const statuses=["Recruiting","Not yet recruiting","US enrolment closed"];
   mechs.forEach(m=>$("#fMech").add(new Option(m,m)));
   entries.forEach(m=>$("#fEntry").add(new Option(m,m)));
-  statuses.forEach(m=>$("#fStatus").add(new Option(m,m)));
+})();
+
+/* not-currently-recruiting section (static, no filters — only 4 trials) */
+(function buildNotRecruiting(){
+  const el = $("#notRecruitingList");
+  if(!el) return;
+  el.innerHTML = NOT_RECRUITING_TRIALS.map(card).join("");
+  bindToggles(el);
 })();
 
 /* charts */
@@ -1190,17 +1207,17 @@ function barChart(el, data){
       <span class="v tnum">${d[1]}</span></div>`;
   }).join("");
 }
-function counts(keyFn){
+function counts(keyFn, list){
   const m={};
-  TRIALS.forEach(t=>{const k=keyFn(t); m[k]=(m[k]||0)+1;});
+  (list||RECRUITING_TRIALS).forEach(t=>{const k=keyFn(t); m[k]=(m[k]||0)+1;});
   return Object.entries(m).sort((a,b)=>b[1]-a[1]);
 }
 barChart($("#chartMech"), counts(t=>t.mech));
 barChart($("#chartEntry"), [
-  ["Before your surgery", TRIALS.filter(t=>t.entry==="Before your surgery").length],
-  ["After surgery, pre-chemoRT", TRIALS.filter(t=>t.entry==="After surgery, before chemoradiation").length],
-  ["With / after chemoRT", TRIALS.filter(t=>t.entry==="With or after chemoradiation").length],
-  ["Procedure-based / flexible", TRIALS.filter(t=>t.entry==="Procedure-based / flexible").length]
+  ["Before your surgery", RECRUITING_TRIALS.filter(t=>t.entry==="Before your surgery").length],
+  ["After surgery, pre-chemoRT", RECRUITING_TRIALS.filter(t=>t.entry==="After surgery, before chemoradiation").length],
+  ["With / after chemoRT", RECRUITING_TRIALS.filter(t=>t.entry==="With or after chemoradiation").length],
+  ["Procedure-based / flexible", RECRUITING_TRIALS.filter(t=>t.entry==="Procedure-based / flexible").length]
 ]);
 const TISSUE_LABEL = {
   "archival-ffpe":"Standard archival tissue only", "fresh-viable":"Fresh / viable tissue",
@@ -1213,7 +1230,7 @@ barChart($("#chartTissue"), counts(t=>TISSUE_LABEL[t.tissueKey]||t.tissueKey));
 $("#recBody").innerHTML = REC.map(r=>`<tr><td><b>${r[0]}</b></td><td><a class="mono" href="https://clinicaltrials.gov/study/${r[1]}" target="_blank" rel="noopener">${r[1]}</a></td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join("");
 
 /* controls */
-["#fMech","#fEntry","#fStatus","#fMolec","#fTissue","#fSort"].forEach(s=>$(s).addEventListener("change",apply));
+["#fMech","#fEntry","#fMolec","#fTissue","#fSort"].forEach(s=>$(s).addEventListener("change",apply));
 $("#fSearch").addEventListener("input",apply);
 $("#resetBtn").addEventListener("click",reset);
 
