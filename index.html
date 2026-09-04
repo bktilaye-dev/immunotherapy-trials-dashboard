@@ -99,7 +99,8 @@
   .tile .n{font-family:"Spectral",serif; font-size:1.7rem; font-weight:600; line-height:1; color:var(--ink)}
   .tile .l{font-size:.8rem; color:var(--ink-muted); margin-top:6px}
 
-  .charts{display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:18px}
+  .charts{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:18px}
+  @media (max-width:980px){.charts{grid-template-columns:1fr 1fr}}
   @media (max-width:720px){.charts{grid-template-columns:1fr}}
   .chartcard{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:16px 17px}
   .chartcard h3{font-size:.95rem; margin-bottom:12px}
@@ -246,9 +247,20 @@
 
   <div class="snapshot">
     <span class="chip"><span class="dot"></span><b>Diagnosis</b>&nbsp;GBM, IDH-wildtype, methylation class RTK&nbsp;II</span>
-    <span class="chip"><b>Surgery</b>&nbsp;1.2&nbsp;cm lesion, gross-total resection</span>
+    <span class="chip"><b>Age</b>&nbsp;48</span>
+    <span class="chip"><b>Surgery</b>&nbsp;1.2&nbsp;cm lesion, gross-total resection &mdash; <b>2&nbsp;weeks ago</b></span>
     <span class="chip"><b>Status</b>&nbsp;Newly diagnosed, no radiation or chemo yet</span>
-    <span class="chip"><b>Patient</b>&nbsp;Adult (18+)</span>
+  </div>
+
+  <div class="disclaimer" style="border-left-color:var(--accent); margin-top:14px">
+    <b>Timing note:</b> surgery was 2 weeks ago. Standard chemoradiation (radiation + temozolomide) for glioblastoma
+    typically begins roughly <b>4&ndash;6 weeks post-op</b>, and every &ldquo;after surgery, before chemoradiation&rdquo;
+    trial below (DOC1021, AV-GBM-1, GBM&nbsp;AGILE, Bvax, ERAS-801-SARG Cohort&nbsp;C) has to be
+    screened and enrolled inside that same window. That leaves roughly <b>2&ndash;4 weeks</b> to confirm tissue banking,
+    contact a site, and complete screening before this window closes. One trial, <b>ERAS-801-SARG</b>, states an explicit
+    <b>2&ndash;4 week post-surgery</b> window &mdash; open right now &mdash; but its newly-diagnosed cohort is restricted to
+    age&nbsp;&ge;70, which rules it out at 48 regardless of timing. See each trial&rsquo;s <b>Time since surgery</b> fact
+    for the specific gate.
   </div>
 
   <div class="disclaimer">
@@ -264,16 +276,19 @@
 <!-- ============ SUMMARY ============ -->
 <section id="summary">
   <div class="sec-head"><h2>The landscape at a glance</h2>
-  <p>22 trials match the filters below: adult, IDH-wildtype glioblastoma, at least one US site, an immunotherapy or
-  EGFR-targeted mechanism, and open to newly diagnosed disease.</p></div>
+  <p>16 trials match the filters below: adult, IDH-wildtype glioblastoma, at least one US site, an immunotherapy or
+  EGFR-targeted mechanism, open to newly diagnosed disease, and <b>not gated on an MGMT-unmethylated requirement</b>
+  (6 trials that required it were removed from this list for this case).</p></div>
 
   <div class="tiles">
-    <div class="tile"><div class="n tnum">22</div><div class="l">Trials matched</div></div>
-    <div class="tile"><div class="n tnum">18</div><div class="l">Recruiting now, US</div></div>
+    <div class="tile"><div class="n tnum">16</div><div class="l">Trials matched</div></div>
+    <div class="tile"><div class="n tnum">12</div><div class="l">Recruiting now, US</div></div>
     <div class="tile"><div class="n tnum">3</div><div class="l">Opening soon (not yet recruiting)</div></div>
-    <div class="tile"><div class="n tnum">9</div><div class="l">Require an EGFR biomarker</div></div>
-    <div class="tile"><div class="n tnum">6</div><div class="l">Require MGMT unmethylated</div></div>
-    <div class="tile"><div class="n tnum">7</div><div class="l">Enrol after surgery, before chemoradiation</div></div>
+    <div class="tile"><div class="n tnum">6</div><div class="l">Require an EGFR biomarker</div></div>
+    <div class="tile"><div class="n tnum">5</div><div class="l">Enrol after surgery, before chemoradiation</div></div>
+    <div class="tile"><div class="n tnum">4</div><div class="l">Need fresh / viable / fresh-frozen tissue</div></div>
+    <div class="tile"><div class="n tnum">5</div><div class="l">Need an unscheduled resection — not open now</div></div>
+    <div class="tile"><div class="n tnum">1</div><div class="l">Explicit 2&ndash;4 wk post-op window (see below)</div></div>
   </div>
 
   <div class="charts">
@@ -288,6 +303,15 @@
         Because the 1.2&nbsp;cm tumour is already fully removed, trials that need tumour tissue still in the
         brain (a planned biopsy-then-resection, or a drug/wafer placed during surgery) are generally
         <b>not open to this patient now</b> unless disease recurs.
+      </p>
+    </div>
+    <div class="chartcard">
+      <h3>Trials by tissue / specimen requirement</h3>
+      <div id="chartTissue"></div>
+      <p class="muted" style="font-size:.78rem; margin:12px 0 0">
+        &ldquo;Standard archival tissue&rdquo; means the paraffin block any resection already produces is enough —
+        no special banking action was needed at surgery. The fresh / viable / fresh-frozen categories are the
+        ones worth confirming with the surgical/pathology team right away.
       </p>
     </div>
   </div>
@@ -305,15 +329,17 @@
     <ul>
       <li><strong>The exact EGFR finding.</strong> Trials differ sharply: some accept <em>amplification alone</em>
       (ABBV-637/ERAS-801, ERAS-801-SARG, intra-arterial cetuximab), some require <em>EGFRvIII</em> specifically
-      (BRiTE, CARv3-TEAM-E, the randomised silevertinib trial), and one requires a <em>pathogenic point mutation or
+      (BRiTE), and one requires a <em>pathogenic point mutation or
       EGFRvIII</em> and explicitly excludes amplification-only tumours (WSD0922-FU). Ask whether <strong>EGFRvIII was
       actually tested</strong> &mdash; it is not on every standard NGS panel.</li>
       <li><strong>MGMT promoter methylation status.</strong> RTK II tumours are frequently
-      <em>MGMT-unmethylated</em>. That opens several trials designed specifically for unmethylated disease, but it also
-      means temozolomide adds less benefit &mdash; a reason these trials exist.</li>
-      <li><strong>Tissue that was banked.</strong> The personalised-vaccine trials (DOC1021, AV-GBM-1, RNA-LP, Bvax,
+      <em>MGMT-unmethylated</em>, which opens several trials designed specifically for unmethylated disease. This list
+      has already <strong>removed the 6 trials that require MGMT-unmethylated status</strong> for this case &mdash; if
+      that changes, re-add them from the full dataset.</li>
+      <li><strong>Tissue that was banked.</strong> The personalised-vaccine trials (DOC1021, AV-GBM-1, Bvax,
       BreakVax) need tumour material from the resection &mdash; some need <em>viable cells or fresh-frozen tissue</em>,
-      not just a paraffin block. Confirm what was saved from the 1.2&nbsp;cm specimen.</li>
+      not just a paraffin block. Use the <b>Tissue / specimen needed</b> filter above to see exactly which, and confirm
+      what was saved from the 1.2&nbsp;cm specimen with the surgical/pathology team.</li>
     </ul>
     <p style="margin-top:12px"><strong>Reality check on the class:</strong> EGFR-targeted drugs have repeatedly failed
     in unselected glioblastoma (systemic cetuximab; the depatuxizumab-mafodotin antibody-drug conjugate in the
@@ -350,6 +376,15 @@
         <option value="mgmt">MGMT unmethylated</option>
         <option value="egfr">Any EGFR requirement</option>
       </select></div>
+    <div class="ctl"><label for="fTissue">Tissue / specimen needed</label>
+      <select id="fTissue">
+        <option value="">All</option>
+        <option value="archival-ffpe">Standard archival tissue only</option>
+        <option value="fresh-viable">Fresh / viable tissue required</option>
+        <option value="fresh-frozen">Fresh-frozen tissue required</option>
+        <option value="blood-only">Blood only — no tumour tissue</option>
+        <option value="surgical-placement">Needs an unscheduled resection</option>
+      </select></div>
     <div class="ctl" style="flex:1; min-width:190px"><label for="fSearch">Search</label>
       <input id="fSearch" type="search" placeholder="drug, sponsor, city, NCT&hellip;"></div>
     <div class="ctl"><label for="fSort">Sort</label>
@@ -373,7 +408,11 @@
   <p>These determine which trials are realistically open. Tick them off as they are answered.</p></div>
   <div class="checklist">
     <label><input type="checkbox">Was tumour tissue banked from the 1.2&nbsp;cm resection, and in what form &mdash;
-      paraffin block only, or fresh-frozen tissue / viable cells? (Gates DOC1021, AV-GBM-1, RNA-LP, Bvax, BreakVax.)</label>
+      paraffin block only, or fresh-frozen tissue / viable cells? Use the <b>Tissue / specimen needed</b> filter above
+      to see exactly which trials need which (5 of 22 need fresh, viable, or fresh-frozen tissue specifically).</label>
+    <label><input type="checkbox">Surgery was 2 weeks ago. Confirm with the surgical/pathology team <em>today</em>
+      whether fresh or fresh-frozen tissue was preserved &mdash; it generally can&rsquo;t be banked retroactively, and
+      the &ldquo;after surgery, before chemoradiation&rdquo; window likely closes within the next 2&ndash;4&nbsp;weeks.</label>
     <label><input type="checkbox">Does the post-operative MRI show any measurable or residual enhancing tumour, or was
       the resection radiologically complete? (Several trials need residual disease or a second surgery.)</label>
     <label><input type="checkbox">Full molecular report: IDH (confirmed wild-type), MGMT promoter methylation,
@@ -466,14 +505,16 @@
   Kept: adult (&ge;18), IDH-wildtype adult-type glioblastoma, &ge;1 US site, an immunotherapy or EGFR-targeted mechanism,
   and open to newly diagnosed disease. Recurrent-only trials were moved to the reference table. Effectiveness notes are
   taken from peer-reviewed papers, ASCO / SNO abstracts, and sponsor releases; trials with no efficacy data are marked
-  first-in-human. Judgements labelled &ldquo;fit&rdquo; are the compiler&rsquo;s, for triage only.</p>
+  first-in-human. Judgements labelled &ldquo;fit&rdquo; are the compiler&rsquo;s, for triage only. Case-specific for this
+  48-year-old, 2&nbsp;weeks post-op: the 6 trials requiring MGMT-unmethylated status have been removed from the list at
+  the requester&rsquo;s direction, and a tissue/specimen requirement and a surgery-timing note were added to every
+  remaining trial. <b>If MGMT methylation status is confirmed, add it to the case snapshot above</b> &mdash; it is the
+  reason these 6 were excluded and is worth stating explicitly rather than leaving implicit.</p>
   <p style="margin-top:12px"><b>Key sources.</b></p>
   <ul class="src">
     <li>ClinicalTrials.gov &mdash; each trial links to its own record (definitive for status, sites, eligibility).</li>
     <li>Diakonos Oncology, DOC1021 phase 1, ASCO 2025 &mdash; <a href="https://www.prnewswire.com/news-releases/diakonos-oncology-presents-promising-phase-i-results-of-dubodencel-doc1021-for-the-treatment-of-glioblastoma-at-the-asco-2025-annual-meeting-302469896.html" target="_blank" rel="noopener">press release</a>.</li>
     <li>AV-GBM-1 phase 2 &mdash; <a href="https://jeccr.biomedcentral.com/articles/10.1186/s13046-022-02552-6" target="_blank" rel="noopener">J Exp Clin Cancer Res 2022</a>; <a href="https://www.tandfonline.com/doi/full/10.1080/21645515.2025.2556591" target="_blank" rel="noopener">3-year follow-up 2025</a>.</li>
-    <li>Choi BD, Maus MV, et al. Intraventricular CARv3-TEAM-E T cells in recurrent glioblastoma &mdash; <a href="https://www.nejm.org/doi/full/10.1056/NEJMoa2314390" target="_blank" rel="noopener">NEJM 2024</a>.</li>
-    <li>Sayour EJ, et al. RNA-lipid particle vaccine, first-in-human &mdash; <a href="https://cancer.ufl.edu/2024/05/01/uf-developed-mrna-vaccine-triggers-fierce-immune-response-to-fight-malignant-brain-tumor/" target="_blank" rel="noopener">UF Health, 2024</a>.</li>
     <li>SurVaxM SURVIVE interim &mdash; <a href="https://www.cancernetwork.com/view/phase-2b-trial-for-cancer-vaccine-in-newly-diagnosed-glioblastoma-will-continue" target="_blank" rel="noopener">CancerNetwork</a>; phase 2a &mdash; <a href="https://ascopubs.org/doi/10.1200/JCO.22.00996" target="_blank" rel="noopener">JCO 2022</a>.</li>
     <li>CheckMate-498 / -548 (checkpoint inhibitors, newly diagnosed GBM) &mdash; <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11674442/" target="_blank" rel="noopener">systematic review</a>.</li>
     <li>GBM AGILE update &mdash; <a href="https://ascopubs.org/doi/10.1200/JCO.2025.43.16_suppl.TPS2100" target="_blank" rel="noopener">ASCO 2025</a>.</li>
@@ -492,6 +533,8 @@ const TRIALS = [
   design:"Randomised 1:1 vs standard care, open-label, ~180 patients. Double-loaded autologous dendritic cells (tumour mRNA + protein) by perinodal injection near deep cervical nodes, 3 doses, with poly-ICLC (pIFN) adjuvant, alongside resection + radiation + temozolomide.",
   sponsor:"Diakonos Oncology", n:"180",
   molec:"IDH-wildtype required; MGMT / EGFR not restricted", molecKey:["none"],
+  tissueKey:"fresh-viable", tissue:"Fresh (viable) tumour specimen required at surgery — not just a paraffin block. Confirm what was preserved from the 1.2 cm resection.",
+  postOp:"No explicit day-count stated; the general rule for this window is to enrol before chemoradiation starts (typically ~4–6 weeks post-op). At 2 weeks post-op, this window is open now but time-limited.",
   fit:"High", fitWhy:"Built for exactly this scenario — newly diagnosed, IDH-wildtype, near-complete resection, no prior therapy. Randomised, many US sites. Needs a fresh tumour specimen from the resection: confirm tissue was banked.",
   sites:"CA (City of Hope, HOAG, UCSF), FL (Baptist MD Anderson Jacksonville), MA (Dana-Farber), NJ (Cooper, Rutgers, Atlantic), NY (Lenox Hill), NC (UNC, Wake Forest), OH (Ohio State), PA (UPMC), TN (Vanderbilt), TX (UTHealth, Baylor, UT San Antonio)",
   timing:"Enrol after resection, before starting radiation/temozolomide (leukapheresis + tumour specimen needed).",
@@ -511,6 +554,8 @@ const TRIALS = [
   design:"Randomised 2:1, quadruple-blind, ~672 randomised (tumour collected from ~1120). Autologous dendritic cells loaded with lysate from the patient's own tumour-initiating cells + GM-CSF; control arm is autologous monocytes + GM-CSF. Given adjunct to surgery + radiation/temozolomide.",
   sponsor:"AIVITA Biomedical", n:"672",
   molec:"IDH and MGMT status documented (not restricted); EGFR not applicable", molecKey:["none"],
+  tissueKey:"fresh-viable", tissue:"Needs a viable tumour cell line established from fresh surgical tissue, not archival tissue.",
+  postOp:"Same before-chemoradiation window as DOC1021 (open now, closes once chemoradiation starts) — but this trial is currently Not yet recruiting, so timing also depends on when it opens.",
   fit:"High", fitWhy:"Blinded, placebo-controlled phase 3 in exactly this population, with encouraging phase 2 data. Requires a viable tumour cell line grown from surgical tissue — confirm fresh tissue availability. Not yet open; watch for activation.",
   sites:"US sites not yet listed on the registry.",
   timing:"Tumour harvested at initial surgery to establish a cell line; leukapheresis; randomise after recovery, before starting radiation/temozolomide.",
@@ -524,31 +569,14 @@ const TRIALS = [
   flags:["Not yet recruiting.","Needs a viable tumour cell line from surgery — verify fresh tissue was banked."]
  },
  {
-  id:"NCT04573140", name:"RNA-lipid-particle (mRNA) vaccine — PNOC020",
-  mech:"mRNA / RNA vaccine", entry:"After surgery, before chemoradiation",
-  phase:"Phase 1/2", phaseRank:1.5, status:"Recruiting", statusClass:"s-rec",
-  design:"Non-randomised, open-label, ~28 patients across an adult GBM stratum and a paediatric high-grade-glioma stratum. Autologous total tumour mRNA + pp65-LAMP mRNA in DOTAP liposomes, given intravenously. Dose finding by BOIN design.",
-  sponsor:"University of Florida (with PNOC, UCSF, FDA, CureSearch)", n:"28",
-  molec:"MGMT low-level / unmethylated REQUIRED (methylated excluded); newly diagnosed de novo GBM", molecKey:["mgmt"],
-  fit:"Medium", fitWhy:"Good conceptual fit if MGMT is unmethylated (common in RTK II) and tumour mRNA can be made from banked tissue. The gross-total resection satisfies the ≤3 cm residual limit. Adult stratum is age ≥21 and currently one site (UF Gainesville).",
-  sites:"FL — UF Health, Gainesville (adult stratum). Children's National, Washington DC (paediatric stratum).",
-  timing:"Tumour tissue from surgery used to make the mRNA; vaccinate around / after radiation. Must be willing to take an anti-epileptic (e.g. levetiracetam) during the vaccination series.",
-  incl:["Age ≥21; histologically proven newly diagnosed de novo GBM (WHO grade IV)","MGMT low-level or unmethylated","Supratentorial component; residual post-surgical disease ≤3 cm","KPS ≥60; ANC ≥1000, platelets ≥150k, Hb &gt;8"],
-  excl:["MGMT methylated tumours","Multifocal or recurrent disease; residual &gt;3 cm","Prior malignancy within 3 years","Immunosuppressive disease; steroids not weaned within 1 week of vaccination","Investigational agent within 30 days; prior Guillain-Barré / brachial neuritis"],
-  epPrimary:"Manufacturing feasibility; dose-limiting toxicity / safety; maximum tolerated dose (BOIN design).",
-  epSecondary:"Not detailed on the registry record.",
-  eff:"First-in-human (4 adults): the tumour microenvironment shifted from immune “cold” to “hot” within 48 hours with vigorous anti-tumour immune activation; survival data are immature. Mirrors results in pet dogs with spontaneous gliomas and in mouse models. (<a href='https://cancer.ufl.edu/2024/05/01/uf-developed-mrna-vaccine-triggers-fierce-immune-response-to-fight-malignant-brain-tumor/' target='_blank' rel='noopener'>UF Health, 2024</a>)",
-  contact:"Marcia Hodik · 352-273-5519 · wells-BTC@ufl.edu · study chair Elias Sayour.",
-  dates:"Started Dec 2021 · primary completion Jul 2027",
-  flags:["Requires MGMT unmethylated.","Adult stratum currently a single site (Gainesville, FL)."]
- },
- {
   id:"NCT03970447", name:"GBM AGILE adaptive platform trial",
   mech:"Adaptive platform", entry:"After surgery, before chemoradiation",
   phase:"Phase 2/3", phaseRank:2.5, status:"Recruiting", statusClass:"s-rec",
   design:"Bayesian response-adaptive randomisation platform, ~2250 patients. Multiple investigational arms rotate against a common control (radiation + temozolomide for newly diagnosed). Recent / current arms include regorafenib, paxalisib, VAL-083, VT1021, troriluzole, ADI-PEG 20, AZD1390 (ATM inhibitor + radiation), tinostamustine; the mix changes over time and has included immunotherapy arms.",
   sponsor:"Global Coalition for Adaptive Research (GCAR)", n:"2250",
   molec:"IDH-wildtype grade 4 GBM; MGMT status guides which arm you can be assigned to", molecKey:["none"],
+  tissueKey:"archival-ffpe", tissue:"No special tissue banking — the standard pathology block from any resection is enough; the assigned arm may add its own biomarker testing.",
+  postOp:"Open now — must enrol before starting chemoradiation, the same general window as the other pre-chemoradiation vaccine trials.",
   fit:"Medium", fitWhy:"The broadest single access route — one screening, randomisation to a novel agent plus a proper control, ~30+ US sites. But the arm you get is assigned, and may not be an immunotherapy or EGFR-targeted agent. Ask which arms are open at the nearby site.",
   sites:"~30+ US sites incl. UAB, UC San Diego, Cedars-Sinai, St Joseph (Orange, CA), U Colorado, Yale, Sylvester/Miami, MGH, Dana-Farber, Mount Sinai, Columbia, MSK, Cleveland Clinic, UPMC, MD Anderson, Huntsman, UVA.",
   timing:"Newly diagnosed: enrol before starting chemoradiation. Recurrent arms also open.",
@@ -568,6 +596,8 @@ const TRIALS = [
   design:"Single-arm, first-in-human, dose-escalation, ~25 patients. Autologous B-cell vaccine (Bvax) plus autologous CD8 T cells, added to standard chemoradiation.",
   sponsor:"Northwestern University (Catalina Lee-Chang; PI of record Roger Stupp)", n:"25",
   molec:"Histologically confirmed GBM; IDH / MGMT / EGFR not specified", molecKey:["none"],
+  tissueKey:"fresh-frozen", tissue:"Needs ≥ 1.5 g of fresh-frozen tumour tissue plus a paraffin block from the resection.",
+  postOp:"Appears to allow enrolment even after starting first-line chemoradiation, so this window is less tightly time-limited than the others — but not yet recruiting (opens ~Sep 2026).",
   fit:"Medium", fitWhy:"Mechanistically novel and open to newly diagnosed disease with standard chemoradiation. Two practical limits: a single site, and a requirement for ≥1.5 g of fresh-frozen tumour tissue — unlikely to be available retrospectively after a completed 1.2 cm resection unless it was specifically banked fresh-frozen.",
   sites:"IL — Northwestern University, Chicago.",
   timing:"Opens ~Sep 2026. Needs ≥1.5 g fresh-frozen tumour tissue + a paraffin block; no prior therapy except surgery ± first-line chemoradiation.",
@@ -587,6 +617,8 @@ const TRIALS = [
   design:"Single-arm, ~10 patients. BreakVax (per-patient peptide vaccine of tumour neoantigens + tumour-associated antigens) with low-dose subcutaneous ipilimumab, pembrolizumab (from cycle 2), temozolomide, losartan and aspirin. Mandatory on-treatment biopsy.",
   sponsor:"BreakBio Corp (with Miami Cancer Institute)", n:"10",
   molec:"Histologically confirmed GBM; IDH / MGMT / EGFR not specified; excludes dMMR/MSI-H and POLE-mutant", molecKey:["none"],
+  tissueKey:"fresh-frozen", tissue:"Needs ~200 mg of tumour tissue from the original resection, AND a new on-treatment biopsy during the trial.",
+  postOp:"Not tied to a specific post-op week; gated on the trial opening (~Sep 2026) and on-treatment biopsy logistics rather than a surgery-clock deadline.",
   fit:"Low", fitWhy:"Very small (n=10), single site, not yet open, and unusually steroid-restrictive (no systemic steroids within 6 weeks, cannot require steroids). Checkpoint-heavy regimen despite checkpoint monotherapy having failed in newly diagnosed GBM. Worth tracking as it opens.",
   sites:"FL — Miami (Herbert Wertheim Cancer Institute / Miami Cancer Institute).",
   timing:"Opens ~Sep 2026. Needs ~200 mg tumour tissue; on-treatment biopsy required.",
@@ -606,6 +638,8 @@ const TRIALS = [
   design:"Randomised 1:3 (nivolumab alone vs nivolumab + relatlimab), open-label, safety lead-in, ~92 patients. One neoadjuvant cycle before surgery → resection → adjuvant checkpoint blockade + radiation + temozolomide (temozolomide omitted if MGMT unmethylated) → maintenance.",
   sponsor:"Duke University (Mustafa Khasraw)", n:"92",
   molec:"Newly diagnosed IDH-wildtype; MGMT status determined (guides temozolomide); no EGFR requirement", molecKey:["none"],
+  tissueKey:"surgical-placement", tissue:"Requires an upcoming, not-yet-completed tumour resection — dosed before surgery. Not applicable after a completed resection unless disease recurs.",
+  postOp:"Not applicable — requires a resection that has not happened yet. The resection 2 weeks ago already closed this door unless disease recurs.",
   fit:"Low", fitWhy:"The design needs a planned biopsy → drug → definitive resection. This patient's 1.2 cm lesion has already had a gross-total resection, so there is likely no tumour left to enrol against. Relevant only if the MRI shows residual/measurable disease, or at recurrence.",
   sites:"NC — Duke; NY — Memorial Sloan Kettering. (Also Peter MacCallum, Australia.)",
   timing:"Requires an upcoming resection — enrol before the definitive tumour surgery.",
@@ -619,31 +653,14 @@ const TRIALS = [
   flags:["Needs tumour still in place for a planned resection — not applicable after a completed gross-total resection unless disease recurs."]
  },
  {
-  id:"NCT05864534", name:"Checkpoint blockade + SonoCloud-9 ultrasound BBB opening",
-  mech:"Immune checkpoint inhibitor", entry:"With or after chemoradiation",
-  phase:"Phase 2a", phaseRank:2, status:"Recruiting", statusClass:"s-rec",
-  design:"Single-arm, ~25 patients. Balstilimab (anti-PD-1) + botensilimab (Fc-enhanced anti-CTLA-4) + pegylated liposomal doxorubicin, delivered with the implanted SonoCloud-9 device that transiently opens the blood-brain barrier over the tumour bed.",
-  sponsor:"Northwestern University (Adam Sonabend; with Agenus, CarThera)", n:"25",
-  molec:"Newly diagnosed GBM, IDH-wildtype AND MGMT promoter unmethylated required; no prior immunotherapy", molecKey:["mgmt"],
-  fit:"Medium", fitWhy:"Reasonable fit if MGMT is unmethylated and there is a resection cavity or residual tumour that the ultrasound field can cover. Single site. Botensilimab (Fc-enhanced anti-CTLA-4) is active in other “cold” tumours, and the group has shown SonoCloud roughly doubles drug levels in the brain.",
-  sites:"IL — Northwestern University, Chicago.",
-  timing:"After standard radiotherapy ± temozolomide. The residual tumour / cavity must fit the sonication field.",
-  incl:["Newly diagnosed GBM, IDH-wildtype, MGMT promoter unmethylated","Completed standard radiotherapy ± temozolomide","Age ≥18; ECOG ≤2; FFPE tumour tissue available"],
-  excl:["Multifocal tumour (unless within a 50 mm field) or posterior-fossa tumour","Uncontrolled epilepsy","Autoimmune disease / any contraindication to checkpoint inhibitors","Other active malignancy within 12 months; investigational agent within 2 weeks"],
-  epPrimary:"Cycle-1 unacceptable-toxicity rate &lt;33%; OS and PFS at 12 and 18 months.",
-  epSecondary:"Baseline tumour phospho-ERK as a predictor of response; RANO response in patients with residual disease.",
-  eff:"No results for this combination yet. The same group showed SonoCloud-9 safely and repeatedly opens the blood-brain barrier and increases drug concentrations in glioma (Sonabend et al., Lancet Oncology 2023).",
-  contact:"Northwestern Neurosurgery · 312-695-8143 · braintumortrials@nm.org · PI Adam Sonabend.",
-  dates:"Started Jan 2024 · primary completion Jul 2031",
-  flags:["Requires MGMT unmethylated.","Single site; needs a cavity / residual tumour within the ultrasound field."]
- },
- {
   id:"NCT05083754", name:"Carmustine wafer + retifanlimab (anti-PD-1) + radiation ± temozolomide",
   mech:"Immune checkpoint inhibitor", entry:"Before your surgery",
   phase:"Phase 1", phaseRank:1, status:"Recruiting", statusClass:"s-rec",
   design:"Randomised 3-arm pilot, open-label, ~50 patients: retifanlimab + radiation / retifanlimab + radiation + temozolomide / radiation + temozolomide (control). Carmustine (Gliadel) wafers placed in the resection cavity at surgery.",
   sponsor:"Johns Hopkins (Sidney Kimmel; with Incyte)", n:"50",
   molec:"Newly diagnosed grade 4 GBM / gliosarcoma; MGMT / IDH / EGFR not specified", molecKey:["none"],
+  tissueKey:"surgical-placement", tissue:"Wafers are placed directly in the resection cavity at surgery — requires a not-yet-completed resection.",
+  postOp:"Not applicable — wafers had to be placed at the original surgery.",
   fit:"Low", fitWhy:"Entry requires carmustine wafers to be placed at the tumour resection. That resection is already done here (without wafers), so this would need a future surgery. Listed for completeness.",
   sites:"MD — Johns Hopkins, Baltimore.",
   timing:"Carmustine wafers placed at resection — must enrol before / at the tumour surgery; post-op imaging within 72 hours.",
@@ -657,31 +674,14 @@ const TRIALS = [
   flags:["Requires wafers placed at the resection — not compatible with a resection already completed without them."]
  },
  {
-  id:"NCT05660369", name:"CARv3-TEAM-E EGFRvIII CAR-T (INCIPIENT)",
-  mech:"CAR-T & T-cell engagers", entry:"With or after chemoradiation",
-  phase:"Phase 1", phaseRank:1, status:"Recruiting", statusClass:"s-rec",
-  design:"Non-randomised, open-label, ~21 patients across a safety run-in and 3 arms. CARv3-TEAM-E T cells (EGFRvIII CAR that also secretes a T-cell engager against wild-type EGFR) infused into the ventricles via an Ommaya reservoir, after rituximab + lymphodepletion; up to 5 retreatments.",
-  sponsor:"Massachusetts General Hospital (Marcela Maus; PI William Curry)", n:"21",
-  molec:"EGFRvIII mutation required. Arm 2 (newly diagnosed) also requires MGMT unmethylated; Arm 3 is EGFR-amplified / EGFRvIII-negative (recurrent).", molecKey:["egfr","mgmt"],
-  fit:"Medium", fitWhy:"Possible fit only if the tumour is EGFRvIII-positive and MGMT-unmethylated. The newly-diagnosed arm (Arm 2) opens only after safety is confirmed in the recurrent arms, uses radiation alone (no temozolomide), and the study's primary completion is Sep 2026 — it may close soon. Single site.",
-  sites:"MA — Massachusetts General Hospital, Boston.",
-  timing:"Arm 2 (newly diagnosed): after radiation alone; requires Ommaya placement and a measurable lesion ≥1 cm.",
-  incl:["Age ≥18; KPS ≥60; EGFRvIII-positive GBM","Measurable disease ≥10 mm on MRI","ANC ≥1000, platelets ≥80k; LVEF &gt;50%","Steroids ≤4 mg/day dexamethasone","Able / willing to have an Ommaya reservoir placed"],
-  excl:["Posterior-fossa or spine-only disease","Prior EGFRvIII-targeted therapy; prior bevacizumab; prior gene-modified cell therapy","VP shunt or imminent need for one","Cetuximab allergy; chronic immunosuppression"],
-  epPrimary:"Grade 3–4 adverse-event incidence (to 2 years); dose-limiting toxicities (to 6 months).",
-  epSecondary:"Feasibility (≥60% infused); overall response rate; overall and progression-free survival (RANO).",
-  eff:"First-in-human, 3 patients with recurrent GBM: dramatic, rapid radiographic tumour regression within days of a single intraventricular infusion; no adverse events above grade 3 and no dose-limiting toxicity. Responses were frequently transient. (<a href='https://www.nejm.org/doi/full/10.1056/NEJMoa2314390' target='_blank' rel='noopener'>Choi/Maus, NEJM 2024</a>)",
-  contact:"William Curry · 617-724-6226 · carteamingbm@mgb.org.",
-  dates:"Started Mar 2023 · primary completion Sep 2026",
-  flags:["Requires EGFRvIII-positive AND MGMT-unmethylated for the newly-diagnosed arm.","Newly-diagnosed arm is gated on safety data; study may be closing. Single site."]
- },
- {
   id:"NCT04903795", name:"BRiTE — EGFRvIII×CD3 bispecific T-cell engager",
   mech:"CAR-T & T-cell engagers", entry:"With or after chemoradiation",
   phase:"Phase 1", phaseRank:1, status:"Recruiting", statusClass:"s-rec",
   design:"Single-arm dose escalation, ~18 patients. hEGFRvIII-CD3 bispecific antibody (BRiTE) given as an IV infusion across 5 dose levels (0.91–91 mcg/kg/day).",
   sponsor:"Duke University (Mustafa Khasraw; with Adaptin Bio)", n:"18",
   molec:"EGFRvIII mutation required; supratentorial grade 4 GBM", molecKey:["egfr"],
+  tissueKey:"archival-ffpe", tissue:"Off-the-shelf antibody infusion — no cell manufacturing; EGFRvIII status uses the existing archival block.",
+  postOp:"Gated on radiation, not surgery directly — enrol ≥4 weeks after finishing radiation. Since radiation has not started yet, this trial is not reachable for roughly another 3–4 months from today.",
   fit:"Medium", fitWhy:"A fit only if EGFRvIII-positive. Single site, small early-phase study. Antigen escape (loss of EGFRvIII under pressure) has limited previous EGFRvIII-directed therapies — the secreted-engager design is meant to address that.",
   sites:"NC — Duke University, Durham.",
   timing:"After resection + standard radiation (± temozolomide by MGMT). MGMT-unmethylated: radiation alone, enrol ≥4 weeks after radiation. Enhancing disease ≤4 cm before resection.",
@@ -695,50 +695,14 @@ const TRIALS = [
   flags:["Requires EGFRvIII-positive. Single site; small phase 1."]
  },
  {
-  id:"NCT05734560", name:"D2C7 immunotoxin + anti-CD40 (2141-V11)",
-  mech:"EGFR-targeted immunotherapy", entry:"With or after chemoradiation",
-  phase:"Phase 1/2", phaseRank:1.5, status:"Recruiting", statusClass:"s-rec",
-  design:"Single-arm, ~50 patients. One intratumoral infusion of D2C7-IT (an immunotoxin targeting wild-type EGFR and EGFRvIII) by convection-enhanced delivery over 72 hours, then intratumoral 2141-V11 (an Fc-engineered anti-CD40 agonist), then cervical perilymphatic injections of 2141-V11 every ~3 weeks for up to a year.",
-  sponsor:"Duke University (Darell Bigner; PI Daniel Landi / site PI Annick Desjardins; with Rockefeller)", n:"50",
-  molec:"Newly diagnosed GBM, IDH-wildtype, MGMT unmethylated — all required", molecKey:["mgmt"],
-  fit:"Medium", fitWhy:"A fit if MGMT is unmethylated and some residual tumour remains — the protocol needs residual disease ≤3 cm that a catheter can reach, so a truly complete resection with no residual may not qualify. Single site.",
-  sites:"NC — Duke University, Durham.",
-  timing:"≥11 weeks after finishing chemoradiation plus 2 adjuvant temozolomide cycles.",
-  incl:["Newly diagnosed GBM, IDH-wildtype, MGMT unmethylated","Residual disease ≤3 cm amenable to catheter placement","KPS &gt;70; steroids &lt;4 mg/day dexamethasone within 2 weeks","Hb ≥9, platelets ≥125k, ANC ≥1000"],
-  excl:["Any prior GBM treatment beyond surgery + standard chemoradiation/temozolomide","Brainstem / cerebellar / spinal / multifocal / midline-crossing / leptomeningeal disease","Autoimmune disease within 3 months; hepatitis C positive","MRI contraindication"],
-  epPrimary:"Median overall survival from treatment start (3 years).",
-  epSecondary:"Safety; 6-month PFS; median PFS.",
-  eff:"In the related recurrent-glioma trial of D2C7-IT + 2141-V11 by convection-enhanced delivery, ~83% of treated patients were alive 3.3–14.8 months after infusion with no study-related grade 4–5 events; D2C7-IT alone has produced occasional durable responders in recurrent GBM. Newly diagnosed data pending. (<a href='https://academic.oup.com/neuro-oncology/article/24/Supplement_7/vii65/6826127' target='_blank' rel='noopener'>SNO 2022</a>)",
-  contact:"Daniel Landi · 919-684-5301 · dukebrain1@dm.duke.edu.",
-  dates:"Started Sep 2023 · primary completion Oct 2026",
-  flags:["Requires MGMT unmethylated and residual tumour to infuse — may not fit a no-residual gross-total resection.","Single site."]
- },
- {
-  id:"NCT07326566", name:"Silevertinib (BDTX-1535) + temozolomide, randomised",
-  mech:"EGFR-targeted small molecule / antibody", entry:"With or after chemoradiation",
-  phase:"Phase 2", phaseRank:2, status:"Recruiting", statusClass:"s-rec",
-  design:"Randomised, open-label, ~162 patients. Silevertinib (a fourth-generation brain-penetrant covalent EGFR inhibitor) daily + temozolomide (days 1–5, up to 6 cycles) vs temozolomide alone.",
-  sponsor:"Black Diamond Therapeutics", n:"162",
-  molec:"Newly diagnosed GBM, IDH-wildtype, UNMETHYLATED MGMT promoter, EGFRvIII (Part 2). Part 1 accepts any EGFR alteration.", molecKey:["egfr","mgmt"],
-  fit:"High", fitWhy:"If the tumour is EGFRvIII-positive and MGMT-unmethylated — a common RTK II profile — this is one of the strongest options: randomised, ~28 US sites, and it targets the RTK II driver directly at the point where temozolomide alone underperforms.",
-  sites:"AL, AR, CA (Cedars-Sinai, Stanford), CT (Yale), DC, FL (Miami CI, Moffitt), MD (Johns Hopkins), MA (MGH, BIDMC, Dana-Farber), MI (Henry Ford), MO (WashU), NE, NJ (Hackensack, Rutgers, Atlantic), NY (Northwell, Columbia, Montefiore), OH (Ohio State), PA (Jefferson, UPMC), SC, UT (Huntsman), VA (Inova, VCU).",
-  timing:"After surgery + standard chemoradiation (54–60 Gy + temozolomide); enrol ≥4 weeks after radiation with a non-progressive post-radiation MRI, before adjuvant temozolomide.",
-  incl:["Newly diagnosed GBM, IDH-wildtype","Unmethylated MGMT promoter (Part 2); EGFRvIII (Part 2) or any EGFR alteration (Part 1)","Resection required (biopsy-only excluded)","No prior GBM treatment except surgery + radiation + concurrent temozolomide"],
-  excl:["Recurrent / multifocal / metastatic / leptomeningeal disease or gliomatosis","Progression before randomisation","Prior EGFR agent, bevacizumab, chemotherapy, immunotherapy, or Gliadel","Intent to use Optune (TTFields)"],
-  epPrimary:"Progression-free survival by blinded independent central review (RANO 2.0), 12 months.",
-  epSecondary:"Overall survival (18 months).",
-  eff:"BDTX-1535 in phase 1 for recurrent high-grade glioma with EGFR alterations showed CNS penetration and early activity (partial responses / prolonged stable disease) at 200 mg. Randomised newly-diagnosed data are pending.",
-  contact:"Black Diamond Trial Navigation · 866-955-4397 · blackdiamondtx@careboxhealth.com.",
-  dates:"Started May 2026 · primary completion Nov 2028",
-  flags:["Requires EGFRvIII AND unmethylated MGMT for the randomised part.","Cannot combine with Optune."]
- },
- {
   id:"NCT07708961", name:"WSD0922-FU ± adjuvant temozolomide, randomised",
   mech:"EGFR-targeted small molecule / antibody", entry:"With or after chemoradiation",
   phase:"Phase 2", phaseRank:2, status:"Recruiting", statusClass:"s-rec",
   design:"Randomised, open-label, ~60 patients. WSD0922-FU (a brain-penetrant EGFR / EGFRvIII inhibitor) + adjuvant temozolomide vs temozolomide alone; the control arm may add WSD0922-FU at recurrence.",
   sponsor:"Mayo Clinic", n:"60",
   molec:"Newly diagnosed GBM, IDH-wildtype, PATHOGENIC EGFR MUTATION (± amplification) by CLIA NGS — includes EGFRvIII and point mutations. EGFR amplification ALONE does not qualify. MGMT status must be known.", molecKey:["egfr"],
+  tissueKey:"archival-ffpe", tissue:"Standard archival tissue for EGFR mutation/EGFRvIII testing — no special banking needed.",
+  postOp:"Gated on radiation — register ≥2 weeks after radiation and ≥3 weeks after surgery. The 3-weeks-post-surgery part will be satisfied soon; the real gate is finishing radiation first.",
   fit:"High", fitWhy:"A strong fit if the NGS report shows a pathogenic EGFR mutation or EGFRvIII. Important nuance for RTK II: many of these tumours are EGFR-amplified without a point mutation, and amplification-only tumours are explicitly excluded here — check the exact finding.",
   sites:"MN — Mayo Clinic, Rochester (recruiting). AZ (Scottsdale) and FL (Jacksonville) sites pending.",
   timing:"After standard 60 Gy + concurrent temozolomide, before adjuvant temozolomide; register ≥2 weeks after radiation and ≥3 weeks after surgery.",
@@ -758,6 +722,8 @@ const TRIALS = [
   design:"~60 patients (first 8 randomised, then not). Newly-diagnosed cohorts: ABBV-637 (an EGFR-targeted antibody-drug conjugate) or ABBV-155 (a Bcl-xL/Bcl-2 ADC) + radiation + temozolomide. Recurrent cohorts get the ADC before a planned resection, then add ERAS-801 (an EGFR inhibitor).",
   sponsor:"Memorial Sloan Kettering (Thomas Kaley)", n:"60",
   molec:"Grade 4 GBM / gliosarcoma, IDH-wildtype, EGFR GENE AMPLIFICATION required (CLIA assay)", molecKey:["egfr"],
+  tissueKey:"archival-ffpe", tissue:"Standard archival tissue for EGFR amplification testing — no special banking needed.",
+  postOp:"Starts alongside chemoradiation, so it becomes reachable once radiation begins (typically ~4–6 weeks post-op) — not immediately actionable at 2 weeks post-op.",
   fit:"Medium", fitWhy:"One of the few newly-diagnosed trials that enrols on EGFR amplification alone — the classic RTK II lesion — so potentially a High fit if the tumour is amplified. Caveats: early-phase (dose-finding, toxicity-focused), and the prior EGFR antibody-drug conjugate depatuxizumab-mafodotin failed to improve survival in this exact population.",
   sites:"NY (MSK Manhattan + Westchester + regional sites), NJ (MSK Basking Ridge / Monmouth / Bergen), CA (UCLA), FL (University of Miami), IN (Indiana University), VT (University of Vermont).",
   timing:"Newly-diagnosed cohorts C/D: drug given with radiation + temozolomide (standard timing).",
@@ -777,6 +743,8 @@ const TRIALS = [
   design:"Non-randomised, open-label, ~50 patients in 3 cohorts. ERAS-801 (a CNS-penetrant EGFR inhibitor). Cohorts A/B are recurrent (surgical window + continuous dosing); Cohort C is newly diagnosed.",
   sponsor:"UCLA Jonsson Comprehensive Cancer Center (with NCI)", n:"50",
   molec:"IDH-wildtype with EGFR amplification and/or mutation (excludes T790M, exon 20). Newly-diagnosed cohort C is restricted to age ≥70.", molecKey:["egfr"],
+  tissueKey:"archival-ffpe", tissue:"Standard archival tissue for EGFR-alteration testing — no special banking needed.",
+  postOp:"Cohort C’s stated window is 2–4 weeks after surgery — at exactly 2 weeks post-op today, this window is open now and closes soon. However, Cohort C is restricted to age ≥70, which rules it out for a 48-year-old regardless of timing.",
   fit:"Low", fitWhy:"The newly-diagnosed cohort is elderly-only (age ≥70). For a younger adult it is relevant only at recurrence, via the surgical-window cohorts.",
   sites:"CA — UCLA (recruiting). NY — Memorial Sloan Kettering (not yet).",
   timing:"Cohort C: enrol 2–4 weeks after surgery.",
@@ -796,7 +764,9 @@ const TRIALS = [
   design:"Early-phase, non-randomised, ~82 patients. BDTX-1535 dosed before a planned resection to measure the drug's concentration in tumour tissue, then continued (± radiation ± temozolomide in the newly-diagnosed arms C/D/E). A “trigger” design that reads target engagement directly.",
   sponsor:"Ivy Brain Tumor Center / St Joseph's Hospital, Phoenix (Barrow Neurological Institute)", n:"82",
   molec:"EGFR alterations — variants, fusions, mutations, ± amplification. Newly-diagnosed arms stratified by MGMT.", molecKey:["egfr"],
-  fit:"Low", fitWhy:"A surgical-window design that needs measurable enhancing tumour and a scheduled resection — not applicable after a completed gross-total resection unless disease recurs. Arizona only. The randomised newly-diagnosed silevertinib trial (NCT07326566) is the better fit for this patient.",
+  tissueKey:"surgical-placement", tissue:"Requires a scheduled resection to measure drug levels directly in tumour tissue — not applicable after a completed resection.",
+  postOp:"Not applicable — needs a still-scheduled resection to measure drug levels in the tumour.",
+  fit:"Low", fitWhy:"A surgical-window design that needs measurable enhancing tumour and a scheduled resection — not applicable after a completed gross-total resection unless disease recurs. Arizona only. (The randomised newly-diagnosed silevertinib trial, NCT07326566, would otherwise have been a better fit but required MGMT-unmethylated status and was removed from this list.)",
   sites:"AZ — Ivy Brain Tumor Center (Chandler and Phoenix).",
   timing:"Requires a scheduled resection with measurable enhancing disease ≥1 cm.",
   incl:["EGFR alteration (variant, fusion, mutation ± amplification)","Newly diagnosed grade 4 GBM (arms C–E) or recurrent high-grade glioma (arms A–B)","Candidate for clinical resection with measurable pre-operative disease","Age ≥18; ECOG ≤2; steroids stable / decreasing ≥5 days"],
@@ -815,6 +785,8 @@ const TRIALS = [
   design:"Single-arm, ~33 patients. Intra-arterial mannitol to transiently open the blood-brain barrier, then intra-arterial cetuximab (an anti-EGFR antibody) 250 mg/m², delivered by super-selective catheter, for 3 doses.",
   sponsor:"Northwell Health (John Boockvar)", n:"33",
   molec:"Pathology-confirmed EGFR overexpression required; IDH / MGMT not specified", molecKey:["egfr"],
+  tissueKey:"archival-ffpe", tissue:"Standard archival tissue for EGFR overexpression testing — no special banking needed.",
+  postOp:"Flexible — timed around standard care rather than a fixed post-op deadline (needs 2+ weeks clear of chemo and 8+ weeks clear of radiation around each procedure).",
   fit:"Medium", fitWhy:"Relevant if the tumour is EGFR-overexpressing / amplified. Single site; long-running with slow accrual (open since 2016). Systemic cetuximab has not worked in GBM, so intra-arterial delivery past the blood-brain barrier is the specific hypothesis.",
   sites:"NY — Lenox Hill Hospital / Brain Tumor Center, New York City.",
   timing:"No chemotherapy within 2 weeks and no external-beam radiation within 8 weeks of each procedure — fits around standard care.",
@@ -828,31 +800,14 @@ const TRIALS = [
   flags:["Requires EGFR overexpression. Single site; slow historical accrual."]
  },
  {
-  id:"NCT07343986", name:"EGFR bispecific-armed T cells (EGFR BATs) + focused-ultrasound BBB opening",
-  mech:"EGFR-targeted immunotherapy", entry:"After surgery, before chemoradiation",
-  phase:"Phase 1", phaseRank:1, status:"Recruiting", statusClass:"s-rec",
-  design:"Non-randomised, open-label, ~12 patients, 2 arms differing in ultrasound timing. Anti-CD3 × anti-EGFR bispecific-armed activated T cells (EGFR BATs) given as multiple infusions, with low-intensity focused ultrasound opening the blood-brain barrier after selected infusions. Cell trafficking tracked by 89Zr-PET.",
-  sponsor:"University of Virginia (with the Focused Ultrasound Foundation, NaviFUS)", n:"12",
-  molec:"Newly diagnosed GBM / gliosarcoma, IDH-wildtype, MGMT UNMETHYLATED, EGFR-expressing (IHC score ≥1)", molecKey:["egfr","mgmt"],
-  fit:"Medium", fitWhy:"A fit if MGMT is unmethylated and EGFR staining is at least 1+ (very likely in RTK II). The gross-total resection satisfies the ≤2 cm³ residual limit. First-in-human, single site, small (n=12).",
-  sites:"VA — University of Virginia, Charlottesville.",
-  timing:"After maximal debulking (residual enhancement ≤2 cm³); no prior GBM treatment beyond surgery.",
-  incl:["Newly diagnosed supratentorial GBM / gliosarcoma, IDH-wildtype, MGMT unmethylated","EGFR IHC score ≥1","Age 18–70; KPS ≥70","Residual contrast enhancement ≤2 cm³"],
-  excl:["Biopsy only (partial resection or more required)","Cerebellar / brainstem tumour; leptomeningeal or subependymal spread","Hypersensitivity to cetuximab or gadolinium / ultrasound contrast; abnormal alpha-gal IgE","MI / stroke within 1 year; LVEF &lt;45%; pacemaker","HIV or active hepatitis B/C; ongoing immunosuppression except corticosteroids"],
-  epPrimary:"Grade ≥3 dose-limiting toxicities (8 weeks); feasibility of reaching ≥75% of the target cell dose; brain uptake of labelled cells by PET ± ultrasound.",
-  epSecondary:"Peripheral immune markers (cytotoxicity, IFN-γ ELISpot, Th1/Th2 cytokines); circulating tumour DNA; anti-EGFR / anti-HER2 antibodies; PFS; OS; objective response (modified RANO).",
-  eff:"None yet — first-in-human for this combination. EGFR BATs have shown safety and immune activation in other solid tumours.",
-  contact:"Bettina Wagner · 434-243-7336 · WXQ9ET@uvahealth.org · PI Camilo Fadul.",
-  dates:"Started Mar 2026 · primary completion Dec 2027",
-  flags:["Requires MGMT unmethylated and EGFR IHC ≥1.","First-in-human; single site; n=12."]
- },
- {
   id:"NCT06504381", name:"DB107-RRV retroviral vector + 5-fluorocytosine + radiation",
   mech:"Viral / gene therapy", entry:"Before your surgery",
   phase:"Phase 1/2a", phaseRank:1.5, status:"Recruiting", statusClass:"s-rec",
   design:"Non-randomised, open-label, ~70 patients. DB107-RRV (a retroviral replicating vector carrying cytosine deaminase, formerly “Toca 511”) placed in the resection bed at surgery and given IV, then oral extended-release 5-fluorocytosine (DB107-FC) + radiation. Arm 1 (MGMT unmethylated): no temozolomide. Arm 2 (MGMT methylated): + temozolomide.",
   sponsor:"University of California San Francisco (with CIRM, Denovo Biopharma, Anova)", n:"70",
   molec:"Newly diagnosed adult-type diffuse glioma; IDH1 and MGMT testing required; tumour ≤5 cm; candidate for ≥80% resection of enhancing tumour", molecKey:["none"],
+  tissueKey:"surgical-placement", tissue:"Vector is placed in the resection cavity at surgery — requires a not-yet-completed resection.",
+  postOp:"Not applicable — vector had to be placed in the resection cavity at the original surgery.",
   fit:"Low", fitWhy:"The vector must be placed into the resection bed at surgery. That surgery is already done here, so enrolment would have needed to happen before the initial operation. Also note the predecessor agent failed its randomised phase 3.",
   sites:"CA (UCSF, USC, UC San Diego), FL (University of Miami), NY (Northwell).",
   timing:"Vector placed in the cavity at resection + IV within 8 hours — must enrol before the tumour resection.",
@@ -872,6 +827,8 @@ const TRIALS = [
   design:"Single-arm, ~62 patients. Adenoviral herpes-simplex thymidine-kinase (aglatimagene besadenovec) injected into the resection bed at surgery, then 14 days of valacyclovir, with standard radiation + temozolomide (Stupp); an optional second dose at 6 months. A gene-mediated cytotoxic-immunotherapy approach.",
   sponsor:"Houston Methodist Research Institute (David Baskin)", n:"62",
   molec:"Newly diagnosed anaplastic astrocytoma or GBM (biopsy-proven); IDH / MGMT / EGFR not specified", molecKey:["none"],
+  tissueKey:"surgical-placement", tissue:"Vector is injected into the resection bed during surgery — requires a not-yet-completed resection.",
+  postOp:"Not applicable — vector had to be injected into the resection bed during the original surgery.",
   fit:"Low", fitWhy:"The vector is injected during the tumour surgery and radiation must start within 9 days — enrolment must happen before the initial resection. Single site.",
   sites:"TX — Houston Methodist Neurological Institute, Houston.",
   timing:"Vector injected during surgery; radiation starts within 9 days — enrol before the resection.",
@@ -891,6 +848,8 @@ const TRIALS = [
   design:"Randomised 2:1, quadruple-blind, 741 patients. Optune (Tumour Treating Fields, 200 kHz) + maintenance temozolomide + pembrolizumab (anti-PD-1) vs Optune + maintenance temozolomide + placebo.",
   sponsor:"NovoCure (with Merck)", n:"741",
   molec:"Newly diagnosed GBM (WHO 2021); no IDH / MGMT / EGFR requirement", molecKey:["none"],
+  tissueKey:"archival-ffpe", tissue:"Standard archival tissue — no special banking needed; note US sites are not recruiting regardless.",
+  postOp:"Only reachable after finishing standard chemoradiation and starting maintenance — many months out. Also not recruiting at US sites regardless.",
   fit:"Low", fitWhy:"Every listed US site is “active, not recruiting” — US enrolment appears effectively closed, with recruiting sites in Canada, Japan and Europe. Track in case a US site reopens. Standard-of-care TTFields is available outside any trial.",
   sites:"US sites listed but NOT recruiting (Mayo, USC, Hoag, Stanford, UCSF, Georgetown, UF, Moffitt, Northwestern, Duke, MD Anderson and others). Recruiting sites are outside the US.",
   timing:"After completing standard chemoradiation (56–64 Gy + concurrent temozolomide), at the start of maintenance.",
@@ -910,23 +869,17 @@ const TRIALS = [
 const EVIDENCE = {
  "NCT06805305":{s:3,l:"Phase 1 survival signal",note:"Single-arm phase 1 (n=16 newly diagnosed): 1-year OS 88% vs 53% in age-matched controls (p&lt;0.002).",links:[["Diakonos / DOC1021 phase 1, ASCO 2025","https://www.prnewswire.com/news-releases/diakonos-oncology-presents-promising-phase-i-results-of-dubodencel-doc1021-for-the-treatment-of-glioblastoma-at-the-asco-2025-annual-meeting-302469896.html"]]},
  "NCT05100641":{s:3,l:"Phase 2 signal vs historical",note:"Phase 2 (n=57): median PFS 10.4 mo and median OS 16.0 mo vs ~6.9 / ~15 mo historical; 2-year OS 27%.",links:[["AV-GBM-1 phase 2, J Exp Clin Cancer Res 2022","https://jeccr.biomedcentral.com/articles/10.1186/s13046-022-02552-6"],["3-year follow-up, Hum Vaccin Immunother 2025","https://www.tandfonline.com/doi/full/10.1080/21645515.2025.2556591"]]},
- "NCT04573140":{s:2,l:"First-in-human immune activation",note:"4 adults: tumour microenvironment shifted from immune-cold to immune-hot within 48 h; survival data immature.",links:[["UF Health report, 2024","https://cancer.ufl.edu/2024/05/01/uf-developed-mrna-vaccine-triggers-fierce-immune-response-to-fight-malignant-brain-tumor/"]]},
  "NCT03970447":{s:null,l:"Varies by arm",note:"A platform: each arm has its own evidence. Some arms have read out negative (e.g. regorafenib). The design itself is validated as an efficient way to test agents against a shared control.",links:[["GBM AGILE design update, ASCO 2025","https://ascopubs.org/doi/10.1200/JCO.2025.43.16_suppl.TPS2100"],["Regorafenib arm (negative), JCO 2025","https://ascopubs.org/doi/10.1200/JCO-25-01137"]]},
  "NCT07422896":{s:1,l:"First-in-human — no outcomes yet",note:"No results posted. Safety-and-feasibility phase 1.",links:[]},
  "NCT07762716":{s:1,l:"First-in-human — no outcomes yet",note:"No results posted. n=10 phase 1/2.",links:[]},
  "NCT06816927":{s:1,l:"No trial data yet",note:"GIANT has not reported. Checkpoint-inhibitor monotherapy was negative in newly diagnosed GBM (CheckMate-498, CheckMate-548); neoadjuvant anti-PD-1 gave an immune and survival signal in a small recurrent-GBM randomised study. Dual PD-1/LAG-3 + the perioperative schedule are the untested elements.",links:[["Checkpoint inhibitors in GBM — systematic review","https://pmc.ncbi.nlm.nih.gov/articles/PMC11674442/"]]},
- "NCT05864534":{s:2,l:"Device validated; combo untested",note:"SonoCloud-9 has been shown to safely, repeatedly open the blood-brain barrier and raise intratumoral drug levels in glioma (Sonabend et al., Lancet Oncol 2023). This checkpoint + doxorubicin combination has no results yet.",links:[["Sonabend et al., Lancet Oncol 2023 (PubMed)","https://pubmed.ncbi.nlm.nih.gov/37541273/"]]},
  "NCT05083754":{s:1,l:"No outcomes yet",note:"No results posted. Randomised pilot; carmustine wafers + anti-PD-1.",links:[]},
- "NCT05660369":{s:2,l:"Dramatic but transient responses (n=3)",note:"3 patients with recurrent GBM had rapid radiographic tumour regression within days of one intraventricular infusion; no adverse events above grade 3. Responses were often not durable.",links:[["Choi, Maus et al. — NEJM 2024","https://www.nejm.org/doi/full/10.1056/NEJMoa2314390"]]},
  "NCT04903795":{s:1,l:"No outcomes yet",note:"No BRiTE efficacy data reported. Earlier EGFRvIII-directed therapies at this centre were limited by antigen escape — the design this trial tests.",links:[]},
- "NCT05734560":{s:2,l:"Recurrent-disease signal; ndGBM pending",note:"In the related recurrent-glioma trial of D2C7-IT + 2141-V11, ~83% of treated patients were alive 3.3–14.8 months after infusion with no study-related grade 4–5 events.",links:[["D2C7-IT + 2141-V11, SNO 2022 abstract","https://academic.oup.com/neuro-oncology/article/24/Supplement_7/vii65/6826127"]]},
- "NCT07326566":{s:2,l:"Phase 1 CNS activity; randomised data pending",note:"BDTX-1535 (silevertinib) phase 1 in recurrent EGFR-altered high-grade glioma showed CNS penetration and partial responses / prolonged stable disease at 200 mg.",links:[["Silevertinib (BDTX-1535) programme — Ivy Brain Tumor Center","https://www.ivybraintumorcenter.org/brain-tumor-clinical-trials/current-trials/silevertinib-bdtx-1535-for-high-grade-glioma-and-glioblastoma/"]]},
  "NCT07708961":{s:1,l:"Early-phase; no randomised data",note:"WSD0922-FU is in early testing as a CNS-penetrant EGFR inhibitor; no efficacy readout yet.",links:[]},
  "NCT06934889":{s:0,l:"Class caution",caution:true,note:"No results yet. The prior EGFR antibody-drug conjugate depatuxizumab-mafodotin did NOT improve overall survival in EGFR-amplified newly diagnosed GBM in the randomised phase 3 INTELLANCE-1.",links:[["Depatux-m INTELLANCE-1, Neuro-Oncology 2023","https://academic.oup.com/neuro-oncology/article/25/2/339/6645128"]]},
  "NCT07089641":{s:2,l:"Small recurrent-cohort signal",note:"ERAS-801 phase 1 (recurrent EGFR-altered GBM): PFS ≥6 months and one partial response among 6 patients, with favourable CNS exposure.",links:[["ERAS-801 recurrent GBM — trial background","https://www.pennmedicine.org/physicians-hub/clinical-briefing/clinical-trials-for-egfr-amplified-glioblastoma-idh-wildtype-and-recurrent-idh-mutant-glioma"]]},
  "NCT06072586":{s:2,l:"Phase 1 CNS penetration + early activity",note:"BDTX-1535 phase 1 showed brain-tumour drug exposure and early activity at 200 mg; this Phase 0/1 measures target engagement directly in resected tissue.",links:[["BDTX-1535 high-grade glioma programme — Ivy Brain Tumor Center","https://www.ivybraintumorcenter.org/brain-tumor-clinical-trials/current-trials/silevertinib-bdtx-1535-for-high-grade-glioma-and-glioblastoma/"]]},
  "NCT02861898":{s:2,l:"Feasibility + occasional response",note:"The Northwell group reports intra-arterial cetuximab with blood-brain-barrier disruption is feasible and generally safe, with occasional radiographic responses in EGFR-overexpressing GBM. No controlled efficacy data. Systemic cetuximab has not worked in GBM.",links:[["Super-selective intra-arterial cetuximab — trial record","https://clinicaltrials.gov/study/NCT02861898"]]},
- "NCT07343986":{s:1,l:"First-in-human for this combo",note:"No results yet. EGFR bispecific-armed T cells (EGFR BATs) have shown safety and immune activation in other solid tumours.",links:[]},
  "NCT06504381":{s:0,l:"Class caution",caution:true,note:"No DB107 results yet. The predecessor (Toca 511 + Toca FC) FAILED its randomised phase 3 (“Toca 5”) in recurrent high-grade glioma — no overall-survival benefit.",links:[["Toca 5 phase 3 (negative) — coverage","https://braintumor.org/news/new-brain-tumor-clinical-trials-july-2025-june-2026/"]]},
  "NCT03603405":{s:3,l:"Earlier controlled studies showed a survival signal",note:"The same agent (aglatimagene besadenovec + valacyclovir) added to standard chemoradiation showed a survival signal and acceptable safety in earlier controlled newly-diagnosed high-grade-glioma studies.",links:[["Gene-mediated cytotoxic immunotherapy in HGG — trial record","https://clinicaltrials.gov/study/NCT03603405"]]},
  "NCT06556563":{s:1,l:"No trial data yet",note:"EF-41 has not reported. It builds on the positive TTFields EF-14 trial (adds ~4.9 months median OS); the added value of pembrolizumab in newly diagnosed GBM is unproven and checkpoint monotherapy was negative here.",links:[["Checkpoint inhibitors in GBM — systematic review","https://pmc.ncbi.nlm.nih.gov/articles/PMC11674442/"]]}
@@ -1012,8 +965,10 @@ function card(t){
         <div class="facts">
           <div class="fact"><div class="k">Enrolment window</div><div class="val">${t.entry}</div></div>
           <div class="fact"><div class="k">Biomarker needed</div><div class="val">${t.molec}</div></div>
+          <div class="fact"><div class="k">Tissue / specimen needed</div><div class="val">${t.tissue}</div></div>
           <div class="fact"><div class="k">US sites</div><div class="val">${t.sites}</div></div>
           <div class="fact"><div class="k">Timing</div><div class="val">${t.timing}</div></div>
+          <div class="fact"><div class="k">Time since surgery (2 wks now)</div><div class="val">${t.postOp}</div></div>
         </div>
         <div class="fact" style="margin-top:10px"><div class="k">Why this fit rating</div><div class="val">${t.fitWhy}</div></div>
         ${flags}
@@ -1043,12 +998,13 @@ function card(t){
 
 function apply(){
   const mech=$("#fMech").value, entry=$("#fEntry").value, status=$("#fStatus").value,
-        molec=$("#fMolec").value, q=$("#fSearch").value.trim().toLowerCase(), sort=$("#fSort").value;
+        molec=$("#fMolec").value, tissue=$("#fTissue").value, q=$("#fSearch").value.trim().toLowerCase(), sort=$("#fSort").value;
   let rows = TRIALS.filter(t=>
     (!mech || t.mech===mech) &&
     (!entry || t.entry===entry) &&
     (!status || t.status===status) &&
     molecMatch(t,molec) &&
+    (!tissue || t.tissueKey===tissue) &&
     (!q || JSON.stringify(t).toLowerCase().includes(q))
   );
   const evOf = t => { const e=EVIDENCE[t.id]; if(!e||e.s===undefined||e.s===null) return -1; return e.s; };
@@ -1075,7 +1031,7 @@ function bindToggles(){
   });
 }
 function reset(){
-  ["#fMech","#fEntry","#fStatus","#fMolec"].forEach(s=>$(s).value="");
+  ["#fMech","#fEntry","#fStatus","#fMolec","#fTissue"].forEach(s=>$(s).value="");
   $("#fSearch").value=""; $("#fSort").value="fit"; apply();
 }
 
@@ -1111,12 +1067,18 @@ barChart($("#chartEntry"), [
   ["With / after chemoRT", TRIALS.filter(t=>t.entry==="With or after chemoradiation").length],
   ["Procedure-based / flexible", TRIALS.filter(t=>t.entry==="Procedure-based / flexible").length]
 ]);
+const TISSUE_LABEL = {
+  "archival-ffpe":"Standard archival tissue only", "fresh-viable":"Fresh / viable tissue",
+  "fresh-frozen":"Fresh-frozen tissue", "blood-only":"Blood only, no tumour tissue",
+  "surgical-placement":"Needs an unscheduled resection",
+};
+barChart($("#chartTissue"), counts(t=>TISSUE_LABEL[t.tissueKey]||t.tissueKey));
 
 /* recurrent table */
 $("#recBody").innerHTML = REC.map(r=>`<tr><td><b>${r[0]}</b></td><td><a class="mono" href="https://clinicaltrials.gov/study/${r[1]}" target="_blank" rel="noopener">${r[1]}</a></td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join("");
 
 /* controls */
-["#fMech","#fEntry","#fStatus","#fMolec","#fSort"].forEach(s=>$(s).addEventListener("change",apply));
+["#fMech","#fEntry","#fStatus","#fMolec","#fTissue","#fSort"].forEach(s=>$(s).addEventListener("change",apply));
 $("#fSearch").addEventListener("input",apply);
 $("#resetBtn").addEventListener("click",reset);
 
