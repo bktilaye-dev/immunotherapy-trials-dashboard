@@ -276,19 +276,21 @@
 <!-- ============ SUMMARY ============ -->
 <section id="summary">
   <div class="sec-head"><h2>The landscape at a glance</h2>
-  <p>12 trials are <b>currently recruiting</b> and match the filters below: adult, IDH-wildtype glioblastoma, at least
+  <p>13 trials are <b>currently recruiting</b> and match the filters below: adult, IDH-wildtype glioblastoma, at least
   one US site, an immunotherapy or EGFR-targeted mechanism, open to newly diagnosed disease, and
   <b>not gated on an MGMT-unmethylated requirement</b> (6 trials that required it were moved to their own section near
   the bottom of this page for this case). <b>4 more trials exist but are not currently recruiting</b> — moved to their own section below the matched
-  list so this page's primary list stays limited to what you could actually enrol in today.</p></div>
+  list so this page's primary list stays limited to what you could actually enrol in today. A re-scrub of the full
+  ClinicalTrials.gov registry on 5&nbsp;September 2026 found one trial the original search had missed
+  (<b>TGX-007, NCT07346144</b>) — added below.</p></div>
 
   <div class="tiles">
-    <div class="tile"><div class="n tnum">12</div><div class="l">Trials matched &amp; recruiting now</div></div>
+    <div class="tile"><div class="n tnum">13</div><div class="l">Trials matched &amp; recruiting now</div></div>
     <div class="tile"><div class="n tnum">4</div><div class="l">Not currently recruiting (see below)</div></div>
     <div class="tile"><div class="n tnum">6</div><div class="l">Require an EGFR biomarker</div></div>
     <div class="tile"><div class="n tnum">3</div><div class="l">Enrol after surgery, before chemoradiation</div></div>
     <div class="tile"><div class="n tnum">1</div><div class="l">Need fresh / viable / fresh-frozen tissue</div></div>
-    <div class="tile"><div class="n tnum">5</div><div class="l">Need an unscheduled resection — not open now</div></div>
+    <div class="tile"><div class="n tnum">6</div><div class="l">Need an unscheduled resection — not open now</div></div>
     <div class="tile"><div class="n tnum">1</div><div class="l">Explicit 2&ndash;4 wk post-op window (see below)</div></div>
   </div>
 
@@ -664,7 +666,12 @@
   section near the bottom of this page at the requester&rsquo;s direction, and a tissue/specimen requirement and a
   surgery-timing note were added to every
   remaining trial. <b>If MGMT methylation status is confirmed, add it to the case snapshot above</b> &mdash; it is the
-  reason these 6 were excluded and is worth stating explicitly rather than leaving implicit.</p>
+  reason these 6 were excluded and is worth stating explicitly rather than leaving implicit. A full re-scrub of the
+  ClinicalTrials.gov v2 API against the same case criteria on <b>5&nbsp;September 2026</b> checked all 195 US-site
+  glioblastoma trials with Recruiting/Not-yet-recruiting status, cross-referenced against every trial already tracked
+  on this page (matched, not-recruiting, MGMT-excluded, and recurrent-reference lists combined). One newly-diagnosed-
+  eligible trial had been missed by the original keyword-cluster search (TGX-007, NCT07346144 — added to the matched
+  list above) and six recurrent-disease trials were added to the reference table below.</p>
   <p style="margin-top:12px"><b>Key sources.</b></p>
   <ul class="src">
     <li>ClinicalTrials.gov &mdash; each trial links to its own record (definitive for status, sites, eligibility).</li>
@@ -1016,7 +1023,27 @@ const TRIALS = [
   contact:"NovoCure · 1-877-678-8611 · clinicaltrials@novocure.com.",
   dates:"Started Feb 2025 · primary completion Apr 2029",
   flags:["US sites are not recruiting — not an enrolment option for a US patient right now."]
- }
+ },
+  { id:"NCT07346144", name:"TGX-007 (AAV Dual-Payload Gene Therapy: HSV-tk + IL-12)",
+    mech:"Viral / gene therapy", entry:"Before your surgery",
+    phase:"Phase 1/2", phaseRank:1.5, status:"Recruiting", statusClass:"s-rec",
+    design:"Non-randomised, sequential dose-escalation then expansion, ~68 patients. A single intratumoural injection of TGX-007 (an AAV vector carrying both HSV-thymidine-kinase, which activates the prodrug valaciclovir to kill tumour cells, and IL-12, which activates a local anti-tumour immune response), followed by oral valaciclovir for 14–21 days, then standard debulking surgery.",
+    sponsor:"Trogenix Ltd", n:"68",
+    molec:"No MGMT or EGFR biomarker requirement stated; newly diagnosed unifocal, unilateral high-grade glioma suitable for the Stupp protocol, or first-progression recurrent GBM.", molecKey:["none"],
+    tissueKey:"surgical-placement", tissue:"TGX-007 is injected directly into the tumour before a subsequent debulking surgery — needs a tumour still physically present to inject into. Not applicable after a completed resection unless disease recurs and a new debulking surgery is planned.",
+    postOp:"Not applicable — requires an upcoming debulking surgery to inject into; the resection 2 weeks ago already closed this door unless disease recurs and repeat surgery is planned.",
+    fit:"Low", fitWhy:"Genuinely open, US-site, newly-diagnosed-eligible trial with no MGMT/EGFR gate — the best-fitting biomarker profile in this compilation. But it structurally requires an upcoming debulking surgery to inject into, which a completed gross-total resection forecloses unless the tumour recurs and repeat surgery is planned. Also has a separate recurrent-GBM arm. Only 2 sites worldwide.",
+    sites:"OH — Ohio State University Hospital, Columbus. Also Royal Infirmary of Edinburgh, UK.",
+    timing:"TGX-007 injected intratumourally, then oral valaciclovir for 14–21 days, then debulking surgery — the tumour must still be in place at enrolment.",
+    incl:["Age 18–70; Karnofsky performance status ≥70","Newly diagnosed: unifocal, unilateral high-grade glioma on MRI, suitable for 6 weeks chemoradiotherapy + 6 months adjuvant temozolomide (Stupp protocol)","Recurrent: first radiological progression of previously-treated GBM","Debulking surgery indicated for optimal patient care","Adequate organ function; able to swallow oral medication"],
+    excl:["Immunodeficiency or active autoimmune disease requiring systemic therapy","Live vaccine within 28 days; immunosuppressant/immune-modulatory medicine within 28 days","Prior gene therapy treatment","Major surgery within 28 days prior to Day 0 (stereotactic biopsy permitted)","Newly diagnosed only: any prior glioma therapy; intended use of Tumor Treating Fields"],
+    epPrimary:"Safety/tolerability and Optimal Biological Dose (dose-limiting toxicities to 28 days; HSV-tk expression in tissue).",
+    epSecondary:"Overall survival (18 mo newly diagnosed / 6 mo recurrent; median OS to 5 yr); progression-free survival; objective response rate (RANO 2.0); viral shedding in body fluids.",
+    eff:"First-in-human — no results posted yet. Combines direct HSV-tk/valaciclovir tumour-cell killing with local IL-12 immune activation via a single AAV vector, delivered by intratumoural injection.",
+    contact:"Hanna Smith · Hanna.Smith@osumc.edu · PI J. Bradley Elder, MD (Ohio State).",
+    dates:"Started Apr 2026 · primary completion Mar 2030",
+    flags:["Requires an upcoming debulking surgery to inject into — not applicable after a completed resection unless disease recurs.","Only 2 sites worldwide (1 US, 1 UK)."]
+  }
 ];
 
 /* Evidence backing each approach so far. s = 0..5 outcome-evidence score, or null (varies).
@@ -1043,7 +1070,8 @@ const EVIDENCE = {
  "NCT05660369":{s:2,l:"Dramatic but transient responses (n=3)",note:"3 patients with recurrent GBM had rapid radiographic tumour regression within days of one intraventricular infusion; no adverse events above grade 3. Responses were often not durable.",links:[["Choi, Maus et al. — NEJM 2024","https://www.nejm.org/doi/full/10.1056/NEJMoa2314390"]]},
  "NCT05734560":{s:2,l:"Recurrent-disease signal; ndGBM pending",note:"In the related recurrent-glioma trial of D2C7-IT + 2141-V11, ~83% of treated patients were alive 3.3–14.8 months after infusion with no study-related grade 4–5 events.",links:[["D2C7-IT + 2141-V11, SNO 2022 abstract","https://academic.oup.com/neuro-oncology/article/24/Supplement_7/vii65/6826127"]]},
  "NCT07326566":{s:2,l:"Phase 1 CNS activity; randomised data pending",note:"BDTX-1535 (silevertinib) phase 1 in recurrent EGFR-altered high-grade glioma showed CNS penetration and partial responses / prolonged stable disease at 200 mg.",links:[["Silevertinib (BDTX-1535) programme — Ivy Brain Tumor Center","https://www.ivybraintumorcenter.org/brain-tumor-clinical-trials/current-trials/silevertinib-bdtx-1535-for-high-grade-glioma-and-glioblastoma/"]]},
- "NCT07343986":{s:1,l:"First-in-human for this combo",note:"No results yet. EGFR bispecific-armed T cells (EGFR BATs) have shown safety and immune activation in other solid tumours.",links:[]}
+ "NCT07343986":{s:1,l:"First-in-human for this combo",note:"No results yet. EGFR bispecific-armed T cells (EGFR BATs) have shown safety and immune activation in other solid tumours.",links:[]},
+ "NCT07346144":{s:1,l:"First-in-human — no outcomes yet",note:"No results posted. Combines HSV-tk/valaciclovir tumour-cell killing with local IL-12 immune activation via a single AAV vector.",links:[]}
 };
 
 const REC = [
@@ -1073,7 +1101,13 @@ const REC = [
  ["GI-102 (CD80-IL-2v bispecific) ± pembrolizumab","NCT07301268","Immunocytokine ± anti-PD-1, pre-surgical window, recurrent GBM","Mayo Clinic, Rochester MN"],
  ["Focused ultrasound + pembrolizumab","NCT07385846","BBB opening + anti-PD-1, MMR-deficient recurrent GBM","Cincinnati, OH"],
  ["Optune GIO + laser ablation + pembrolizumab","NCT06558214","TTFields + LITT + anti-PD-1, recurrent GBM","University of Florida, Gainesville"],
- ["ANKTIVA + PD-L1 t-haNK (QUILT-3.078)","NCT06061809","IL-15 superagonist (nogapendekin alfa inbakicept) + off-the-shelf PD-L1-targeted NK cells + bevacizumab ± TTFields, recurrent GBM (≥90 days post-radiation; active, not currently recruiting)","US, multi-site (ImmunityBio)"]
+ ["ANKTIVA + PD-L1 t-haNK (QUILT-3.078)","NCT06061809","IL-15 superagonist (nogapendekin alfa inbakicept) + off-the-shelf PD-L1-targeted NK cells + bevacizumab ± TTFields, recurrent GBM (≥90 days post-radiation; active, not currently recruiting)","US, multi-site (ImmunityBio)"],
+ ["M3554 (Anti-GD2 ADC)","NCT06641908","GD2-targeted antibody-drug conjugate, recurrent GBM (IDH-wildtype) after 1 prior line","Dana-Farber, MSKCC, MD Anderson (+ international sites)"],
+ ["GSK5764227 (B7-H3 ADC)","NCT07268053","B7-H3-targeted antibody-drug conjugate, Phase 0/1, recurrent grade 4 glioma","Ivy Brain Tumor Center / St. Joseph's Hospital, Phoenix AZ"],
+ ["MT027 allogeneic CAR-T (GLIOMAX)","NCT07386002","Off-the-shelf allogeneic CAR-T, recurrent glioma, not yet recruiting","Johns Hopkins Sidney Kimmel Cancer Center, Baltimore MD"],
+ ["LiTT + cemiplimab","NCT07620548","Laser interstitial thermal therapy + anti-PD-1, recurrent glioblastoma, not yet recruiting","Mayo Clinic, Rochester MN; Washington University, St. Louis MO"],
+ ["MOAB Trial (atezolizumab biomarkers)","NCT06069726","Multicenter biomarker study of anti-PD-L1 atezolizumab, recurrent glioblastoma","UCSF, Duke, Huntsman Cancer Institute + others"],
+ ["Intra-arterial cetuximab + reirradiation","NCT02800486","Repeated super-selective intra-arterial cetuximab with reirradiation, relapsed/refractory GBM","Lenox Hill Brain Tumor Center, New York NY"]
 ];
 
 const MGMT_UNMETHYLATED_TRIALS = [
