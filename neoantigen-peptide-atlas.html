@@ -218,6 +218,8 @@
   .tag{font-size:.7rem; font-weight:600; padding:3px 8px; border-radius:999px; border:1px solid var(--border); color:var(--ink-2); background:var(--surface-2)}
   .tag.peptide{background:var(--accent-soft); color:var(--accent-ink); border-color:transparent}
   .tag.warn{background:var(--flag-bg); color:var(--flag); border-color:transparent}
+  .cost-badge{margin-top:10px; display:flex; flex-wrap:wrap; align-items:baseline; gap:8px; background:var(--surface-2); border:1px solid var(--border); border-left:3px solid var(--accent); border-radius:8px; padding:8px 12px; font-size:.9rem; font-weight:600; color:var(--ink)}
+  .cost-badge .cbl{font-size:.66rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-ink)}
   .prov-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:10px 20px; margin-top:12px}
   .prov-grid .k{font-size:.7rem; text-transform:uppercase; letter-spacing:.07em; color:var(--ink-muted)}
   .prov-grid .v{font-size:.85rem; color:var(--ink); margin-top:1px}
@@ -356,9 +358,11 @@
 <section id="summary">
   <div class="sec-head"><h2>At a glance</h2>
   <p>Six institutional programmes are open or about to open somewhere in the world and are at least plausibly relevant to
-  a newly-diagnosed, fully-resected, IDH-wildtype patient. Four more &mdash; the platforms this whole field is built on
-  &mdash; are between trials and listed for context. Private providers are concentrated in Germany, Japan and China; the
-  Montana and Mexico leads did not hold up (see Section&nbsp;2).</p></div>
+  a newly-diagnosed, fully-resected, IDH-wildtype patient &mdash; <b>US entries first</b>, then the rest.
+  <b>Section&nbsp;2 (private providers) now sits right below</b>, also US-first; the completed / landmark platforms this
+  whole field is built on are collected at the <a href="#landmark">end of the page</a>. Buyable private providers are
+  concentrated in Germany, Japan and China; the fresh US search found no clinic selling a tumour-sequenced neoantigen
+  vaccine outside a trial, and the Montana and Mexico leads did not hold up (see Section&nbsp;2).</p></div>
 
   <div class="tiles">
     <div class="tile"><div class="n tnum">6</div><div class="l">Institutional trials open / about to open</div></div>
@@ -380,11 +384,13 @@
   <div class="sec-head"><h2>Section 1 &mdash; Institutional trials the patient could qualify for</h2>
   <p>Hospital-, university- and cooperative-group trials of a personalized neoantigen vaccine (peptide, mRNA, DNA or
   dendritic-cell format), a personalized peptide selection, or &mdash; flagged as such &mdash; a closely related
-  shared-antigen peptide vaccine. Worldwide. Each entry carries a <b>fit</b> label (the compiler&rsquo;s triage guess,
-  not an eligibility ruling) and an <b>evidence score</b> using the <a href="index.html">main dashboard&rsquo;s</a> rubric:
-  5&nbsp;= positive randomised phase&nbsp;3 &middot; 4&nbsp;= positive randomised phase&nbsp;2 &middot; 3&nbsp;= single-arm
-  survival signal vs historical control &middot; 2&nbsp;= early biological/radiographic signal &middot; 1&nbsp;=
-  first-in-human &middot; &#9888;&nbsp;= a prior pivotal trial of this approach was negative.</p></div>
+  shared-antigen peptide vaccine. Worldwide, but <b>United States entries are listed first</b>. Each entry carries a
+  <b>fit</b> label (the compiler&rsquo;s triage guess, not an eligibility ruling) and an <b>evidence score</b> using the
+  <a href="index.html">main dashboard&rsquo;s</a> rubric: 5&nbsp;= positive randomised phase&nbsp;3 &middot; 4&nbsp;=
+  positive randomised phase&nbsp;2 &middot; 3&nbsp;= single-arm survival signal vs historical control &middot; 2&nbsp;=
+  early biological/radiographic signal &middot; 1&nbsp;= first-in-human &middot; &#9888;&nbsp;= a prior pivotal trial of
+  this approach was negative. <b>Completed / not-currently-enrolling trials &mdash; NeoVax, the Washington University DNA
+  vaccine, GAPVAC-101 and others &mdash; are collected at the <a href="#landmark">end of the page</a>.</b></p></div>
 
   <div class="controls" id="controls">
     <div class="ctl"><label for="fFmt">Vaccine format</label>
@@ -405,38 +411,6 @@
   </div>
   <div class="count-line" id="countLine"></div>
   <div id="trialList"></div>
-
-  <div class="sec-head" style="margin-top:34px"><h3>Landmark platforms &mdash; not currently enrolling</h3>
-  <p>The trials that established this approach in glioblastoma. All are closed or between studies; listed so the
-  field&rsquo;s actual evidence is visible, and as a watch-list for successor trials at Dana-Farber, Washington
-  University and the German groups.</p></div>
-  <div id="landmarkList"></div>
-</section>
-
-<!-- ============ APPENDIX: shared-antigen ============ -->
-<section id="shared">
-  <div class="sec-head"><h3>Appendix &mdash; shared / off-the-shelf tumour-antigen peptide vaccines</h3>
-  <p>Not personalized &mdash; one fixed antigen for every patient &mdash; but the nearest neighbours to this modality,
-  and some are open. Included for comparison only.</p></div>
-  <div class="tablewrap">
-    <table>
-      <thead><tr><th>Vaccine</th><th>Antigen</th><th>Registry</th><th>Status &amp; setting</th><th>Where</th><th>Reported so far</th><th>Relevance here</th></tr></thead>
-      <tbody id="sharedBody"></tbody>
-    </table>
-  </div>
-</section>
-
-<!-- ============ RECURRENT reference ============ -->
-<section id="recurrent">
-  <div class="sec-head"><h3>For later reference &mdash; recurrent-disease trials</h3>
-  <p>Personalized-vaccine trials that enrol only at progression/recurrence. Not options now; useful if the disease
-  returns.</p></div>
-  <div class="tablewrap">
-    <table>
-      <thead><tr><th>Trial</th><th>Registry</th><th>What it is</th><th>Where</th></tr></thead>
-      <tbody id="recBody"></tbody>
-    </table>
-  </div>
 </section>
 
 <!-- ============ SECTION 2: PRIVATE PROVIDERS ============ -->
@@ -444,9 +418,9 @@
   <div class="sec-head"><h2>Section 2 &mdash; Private providers using this technique, worldwide</h2>
   <p>Clinics and companies that sell a neoantigen or personalized peptide vaccine <b>as a paid service, outside a
   registered clinical trial</b>. This is a different category from Section&nbsp;1: <b>not FDA- or EMA-approved as
-  effective, not randomised, evidence is a case series or none, and it is paid out of pocket</b> (commonly tens of
-  thousands of USD/EUR, sometimes &gt;USD&nbsp;100,000). Included because they were asked for &mdash; not as a
-  recommendation.</p></div>
+  effective, not randomised, evidence is a case series or none, and it is paid out of pocket</b>. Grouped by region
+  with <b>United States first</b>; each card shows an <b>indicative cost</b> up front. Included because they were asked
+  for &mdash; not as a recommendation.</p></div>
 
   <div class="disclaimer" style="border-left-color:var(--flag)">
     <b>Legal-to-sell and proven-to-work are different questions.</b> Germany&rsquo;s named-patient / &ldquo;individual
@@ -478,6 +452,32 @@
   </div>
 </section>
 
+<!-- ============ APPENDIX: shared-antigen ============ -->
+<section id="shared">
+  <div class="sec-head"><h3>Appendix &mdash; shared / off-the-shelf tumour-antigen peptide vaccines</h3>
+  <p>Not personalized &mdash; one fixed antigen for every patient &mdash; but the nearest neighbours to this modality,
+  and some are open. Included for comparison only.</p></div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Vaccine</th><th>Antigen</th><th>Registry</th><th>Status &amp; setting</th><th>Where</th><th>Reported so far</th><th>Relevance here</th></tr></thead>
+      <tbody id="sharedBody"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ RECURRENT reference ============ -->
+<section id="recurrent">
+  <div class="sec-head"><h3>For later reference &mdash; recurrent-disease trials</h3>
+  <p>Personalized-vaccine trials that enrol only at progression/recurrence. Not options now; useful if the disease
+  returns.</p></div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Trial</th><th>Registry</th><th>What it is</th><th>Where</th></tr></thead>
+      <tbody id="recBody"></tbody>
+    </table>
+  </div>
+</section>
+
 <!-- ============ QUESTIONS ============ -->
 <section id="questions">
   <div class="sec-head"><h2>Questions to bring to the tumour board</h2></div>
@@ -489,7 +489,7 @@
     <label><input type="checkbox">What is my <b>HLA class I and II type</b>? (Needed for PPV and for good epitope
       prediction.)</label>
     <label><input type="checkbox">Have <b>EGFRvIII</b> and <b>MGMT promoter methylation</b> been tested? (They gate several
-      trials below.)</label>
+      of the trials in this atlas.)</label>
     <label><input type="checkbox">Can a neoantigen vaccine be given in the <b>post-chemoradiation adjuvant window</b>
       without delaying the Stupp protocol?</label>
     <label><input type="checkbox">What <b>steroid dose</b> am I likely to need, and can it be minimised around
@@ -519,6 +519,16 @@
     <div><dt>EGFRvIII</dt><dd>A tumour-specific EGFR rearrangement common in RTK II GBM. A shared neoantigen &mdash; but the rindopepimut vaccine against it failed a phase 3 by antigen escape.</dd></div>
     <div><dt>IDH-wildtype</dt><dd>No IDH1/IDH2 mutation; defines the most aggressive adult GBM group. Given here &mdash; and it makes the IDH1-R132H peptide vaccine (NOA-16) inapplicable.</dd></div>
   </dl>
+</section>
+
+<!-- ============ COMPLETED / LANDMARK TRIALS (moved to end) ============ -->
+<section id="landmark">
+  <div class="sec-head"><h2>Completed &amp; landmark trials &mdash; not currently enrolling</h2>
+  <p>The trials that established this approach in glioblastoma. All are completed or between studies &mdash; nothing here
+  is an option to enrol in today. Listed last, on purpose, so the field&rsquo;s actual published evidence is visible and
+  as a watch-list for successor trials at Dana-Farber, Washington University and the German groups. United States
+  entries first.</p></div>
+  <div id="landmarkList"></div>
 </section>
 
 <footer>
@@ -764,8 +774,8 @@ const LANDMARK = [
 const SHARED = [
  ["SurVaxM (SURVIVE)","Survivin","NCT05163080","Randomised phase 2b, newly diagnosed; data cut-off Jul 2026, readout pending","USA, ~11 sites","Phase 2a: 1-yr OS 93.7%, median OS 25.9 mo; phase 2b passed interim futility","Survivin is broadly expressed regardless of methylation subclass; the most advanced shared-antigen peptide vaccine in newly diagnosed GBM. Already covered on the main dashboard."],
  ["SurVaxM + temozolomide","Survivin","NCT02455557","Active, not recruiting; newly diagnosed","USA","Feeds the SURVIVE phase 2b","Same antigen/product as above, earlier cohort."],
- ["Rindopepimut (ACT IV)","EGFRvIII","NCT01480479","Completed — NEGATIVE phase 3","Multi-country","No overall-survival benefit; recurrences were EGFRvIII-negative (antigen escape)","Directly cautionary for RTK II: EGFRvIII is common here, but a single-antigen EGFRvIII peptide vaccine did not work. ⚠"],
  ["P30-EPS","EphA2 + CMV pp65 + survivin","NCT05283109","Active, not recruiting; newly diagnosed","USA (Duke)","Phase 1 immunogenicity; multi-antigen to reduce escape","A multi-peptide shared-antigen design that tries to avoid rindopepimut's single-antigen failure mode."],
+ ["Rindopepimut (ACT IV)","EGFRvIII","NCT01480479","Completed — NEGATIVE phase 3","Multi-country (US-led, Celldex)","No overall-survival benefit; recurrences were EGFRvIII-negative (antigen escape)","Directly cautionary for RTK II: EGFRvIII is common here, but a single-antigen EGFRvIII peptide vaccine did not work. ⚠"],
  ["PEP-CMV","CMV pp65 (tetanus-boost variants)","NCT06132438","Not yet recruiting; newly diagnosed","Australia","Prior small studies; mixed","Requires MGMT-unmethylated status; targets CMV antigens reported in GBM."],
  ["UCPVax ± pembrolizumab","Telomerase (hTERT)","NCT07347210","Not yet recruiting; newly diagnosed","France","Recurrent-GBM phase 2 (NCT04280848) completed; CD4 &ldquo;helper&rdquo; telomerase epitopes","Requires MGMT-unmethylated status. Related to the TERT arm of the open Paris trial in Section 1."],
  ["IDH1-R132H peptide (NOA-16)","Mutant IDH1","NCT02454634","Completed; IDH-mutant glioma only","Germany","87% immune response; favourable outcomes in IDH-mutant astrocytoma","<b>Not applicable</b> — this patient is IDH-wildtype. Listed so the distinction is explicit."]
@@ -773,18 +783,77 @@ const SHARED = [
 
 /* ---------------- Recurrent-disease reference ---------------- */
 const REC = [
+ ["RNA-LP (recurrent)","NCT06389591","RNA-lipid-particle vaccine (pp65 + tumour RNA) for recurrent adult GBM; recurrent-disease arm of the UF programme","University of Florida, USA — recruiting"],
  ["YS247 neoantigen dendritic-cell vaccine","NCT07678138","Neoantigen-pulsed autologous DC injection for recurrent/progressive glioblastoma","Huanhu Hospital, Tianjin, China — not yet recruiting"],
  ["ZSNeo-DC1.1 (recurrent)","NCT06253234","Personalized neoantigen dendritic-cell vaccine, recurrent/progressive high-grade glioma; sibling of the newly-diagnosed trial in Section 1","Beijing Tiantan Hospital, China — recruiting"],
- ["RNA-LP (recurrent)","NCT06389591","RNA-lipid-particle vaccine (pp65 + tumour RNA) for recurrent adult GBM; recurrent-disease arm of the UF programme","University of Florida, USA — recruiting"],
  ["Personalized vaccine, recurrent glioma","NCT04943718","Personalized (neoantigen) vaccine for recurrent glioma; limited public detail","Xuanwu Hospital, Beijing, China — status unknown"]
 ];
 
-/* ---------------- SECTION 2: private providers ---------------- */
+/* ---------------- SECTION 2: private providers (United States first) ---------------- */
 const ZONES = [
+ { region:"United States", note:"The user asked specifically about US clinics (Montana) that &ldquo;print peptides&rdquo; to make neoantigens. A fresh open-web, medical-board and news search on 9 Sep 2026 did NOT find a US clinic selling a tumour-sequenced neoantigen vaccine outside a trial. The US route to a genuine personalized neoantigen vaccine is a clinical trial (Section 1). What US-accessible private options do exist are cross-border or are a different technique — listed here so the distinction is clear.",
+   providers:[
+   {
+    name:"No verified US provider of a tumour-sequenced neoantigen vaccine sold outside a trial", loc:"Montana (Bozeman, Kalispell, Missoula, Billings) and nationwide — USA", tags:["warn","Unverified"],
+    costShort:"No such service is sold in the US",
+    offered:"Two kinds of clinic turn up and neither matches. (1) Montana &ldquo;peptide therapy&rdquo; clinics — Life Enhancement Clinics of Montana (Bozeman), Alpine Health &amp; Wellness (Kalispell), Elevate Health (Bozeman), Essential Health (Bozeman); a directory (peptidebase.io) lists ~12. (2) Integrative / alternative cancer centres elsewhere in the US that advertise &ldquo;personalized immunotherapy&rdquo; — e.g. An Oasis of Healing (Mesa, AZ).",
+    personalization:"None is a tumour-sequenced neoantigen vaccine. The Montana clinics sell catalogue research peptides — BPC-157, TB-500, sermorelin, ipamorelin, thymosin-α1 — for healing, weight loss and hormones. The integrative cancer centres offer stem-cell / immune-modulation / autologous approaches, not an exome-sequencing → neoepitope-prediction → GMP-peptide pipeline.",
+    synthesis:"No US clinic advertises, and no news report or medical-board record documents, on-site synthesis of a patient's tumour neoantigens into a therapeutic vaccine sold as an office treatment.",
+    combo:"n/a.",
+    evidence:"None — there is no neoantigen-vaccine service to have GBM evidence for.",
+    regulatory:"In the US a personalized neoantigen vaccine is an investigational biologic: it needs an FDA IND, so it is available essentially only inside a clinical trial. Selling one as a clinic service would fall outside that framework. (503A/503B compounding covers small-molecule and simple peptide compounding, not individualized therapeutic cancer vaccines.)",
+    logistics:"n/a.",
+    contact:"n/a.",
+    unver:"<b>The nearest real thing to &ldquo;printing peptides to make neoantigens&rdquo; is automated flow peptide synthesis</b> — academic (an MIT group's &ldquo;Automated Flow Synthesis of Tumor Neoantigen Peptides&rdquo;, 2020) and the GMP high-throughput synthesis used by trial sponsors such as Dana-Farber and CeGaT — not a US clinical service. Also checked: Moderna's mRNA-4157 / BioNTech's autogene cevumeran individualized neoantigen therapies have <b>no glioblastoma expanded-access pathway</b> (melanoma and other trials only). If the user has a specific Montana clinic name or URL, that entry can be researched directly."
+   },
+   {
+    name:"Immunocine Cancer Center", loc:"Intake / tumour-preservation: Arizona, USA · treatment: Cancún, Mexico", tags:["Dendritic-cell","warn"],
+    costShort:"≈ USD 50,000 (reported); treatment delivered in Cancún",
+    offered:"Autologous dendritic-cell immunotherapy for many cancers including glioblastoma: the patient's monocyte-derived dendritic cells are exposed to &ldquo;tumour-specific antigens&rdquo; and re-infused. A US (Arizona) site handles tumour preservation and intake; the cell product is manufactured and given in Cancún.",
+    personalization:"Personalized to the patient's own tumour material, but <b>not a defined-neoantigen vaccine</b> — it is a tumour-lysate / tumour-antigen-pulsed DC product. The company does not publish a per-patient neoepitope list.",
+    synthesis:"Cell product (cGMP lab, per the company); no per-patient peptide synthesis.",
+    combo:"Marketed as a stand-alone DC vaccine; details of any adjuvant/checkpoint pairing not published.",
+    evidence:"No peer-reviewed glioblastoma outcome data located; company press material and testimonials only.",
+    regulatory:"US site provides preservation/intake services only; the cellular treatment is delivered in Mexico, outside FDA oversight.",
+    cost:"Not itemised publicly; secondary sources put personalized DC immunotherapy of this kind at roughly USD 50,000. Request a full written quote including the US intake fees and the Cancún treatment.",
+    logistics:"US intake, Mexico treatment; self-pay; no insurance billing pathway.",
+    contact:"immunocine.com",
+    unver:"Whether the &ldquo;tumour-specific antigens&rdquo; are defined neoepitopes or whole-tumour lysate is not disclosed; no GBM survival data; treatment happens outside the US. Ask for the antigen-selection method and GBM-specific outcomes in writing."
+   },
+   {
+    name:"Williams Cancer Institute", loc:"Las Vegas, Nevada, USA (also Mexico)", tags:["warn","Not a peptide vaccine"],
+    costShort:"Self-pay; not publicly itemised — request a quote",
+    offered:"Intratumoral immunotherapy with pulsed-electric-field (PEF) ablation and cryoablation, marketed as &ldquo;turning the tumour into a personalized cancer vaccine&rdquo; (in-situ vaccination) plus intratumoral checkpoint and cytokine injections.",
+    personalization:"In-situ approach — it relies on antigens released by ablating the patient's own tumour. <b>It is not a tumour-sequenced neoantigen peptide/mRNA vaccine</b> and involves no ex-vivo peptide manufacturing.",
+    synthesis:"n/a — no peptide synthesis; the &ldquo;vaccine&rdquo; is the ablated tumour in situ.",
+    combo:"Intratumoral anti-PD-1/anti-CTLA-4, IL-2, and other agents; systemic low-dose combinations.",
+    evidence:"Case reports and conference material; no randomised or GBM-specific peer-reviewed outcome data located. Brain tumours are rarely the marketed indication (mostly accessible solid tumours).",
+    regulatory:"US site operates as practice-of-medicine with off-label intratumoral drug use; some protocols delivered at the Mexico site.",
+    cost:"Not publicly itemised; self-pay. Request an itemised quote per protocol.",
+    logistics:"Las Vegas or Mexico; self-pay; travel for repeated ablation sessions.",
+    contact:"williamscancerinstitute.com",
+    unver:"Included only to be explicit that this well-known US &ldquo;personalized cancer vaccine&rdquo; marketing is <i>in-situ ablation</i>, a different technique from the neoantigen peptide vaccine this atlas is about. No GBM efficacy data."
+   },
+   {
+    name:"United States academic route (context) — NeoVax / Washington University", loc:"Boston, MA and St Louis, MO, USA", tags:["Neoantigen","In-trial only"],
+    costShort:"Trial — no charge for the investigational product",
+    offered:"NeoVax (Dana-Farber / MGH — personalized neoantigen synthetic peptide) and the Washington University personalized neoantigen DNA vaccine (GNOS-PV01) are the genuine US personalized-neoantigen programmes. Both are detailed in the <a href='#landmark'>completed &amp; landmark trials</a> section; both are currently between trials.",
+    personalization:"Fully personalized neoantigen.",
+    synthesis:"GMP peptide / plasmid manufacturing within the academic programme.",
+    combo:"With pembrolizumab (NeoVax) or retifanlimab / IL-12 (WashU).",
+    evidence:"See the landmark cards — NeoVax (Keskin, Nature 2019) and the WashU DNA vaccine (Nature Cancer 2026).",
+    regulatory:"FDA IND; trial only.",
+    cost:"Trial — no charge for the investigational product.",
+    logistics:"Contact Dana-Farber and Washington University neuro-oncology to ask about successor trials and timing.",
+    contact:"See the landmark cards at the end of the page.",
+    unver:"Nothing to purchase; the point of this row is that the honest US route is a trial, and there is currently a gap between trials to watch."
+   }
+ ]},
  { region:"Europe", note:"The most developed private route — Germany's named-patient framework makes a genuinely personalized neoantigen peptide vaccine buyable, and one provider has published a large real-world series (with a published rebuttal).",
    providers:[
    {
     name:"CeGaT GmbH / cecava GmbH", loc:"Tübingen, Germany", tags:["peptide","Neoantigen","Named-patient"],
+    costShort:"≈ €52,000 total (€10k diagnostics + €39k vaccine + €3k monitoring)",
     offered:"A fully personalized neoantigen synthetic-peptide vaccine. CeGaT's CancerNeo® runs tumour-exome + HLA typing + neoantigen prediction; cecava manufactures and administers the peptide vaccine. Manufacturing ~12 weeks after diagnostics.",
     personalization:"Fully personalized — built from the patient's own tumour mutations.",
     synthesis:"GMP peptide synthesis (in-house / contracted); this is the &ldquo;printing&rdquo; step done properly, with release testing.",
@@ -798,6 +867,7 @@ const ZONES = [
    },
    {
     name:"Hallwang Private Oncology Clinic", loc:"Dornstetten, Germany", tags:["peptide","warn"],
+    costShort:"≈ USD 100,000–127,000 per 1–3-week programme; ~80% deposit upfront",
     offered:"Lists personalized peptide vaccines among a broad personalised-oncology menu (also dendritic-cell, NK, checkpoint, off-label combinations).",
     personalization:"Claimed personalized; methodology not independently documented.",
     synthesis:"Not disclosed; peptide source not specified.",
@@ -811,6 +881,7 @@ const ZONES = [
    },
    {
     name:"IOZK (Institut für Onkologische Immunologie)", loc:"Cologne, Germany", tags:["Dendritic-cell","Not peptide"],
+    costShort:"≈ €65,000 for the first two cycles + mandatory diagnostics",
     offered:"IO-Vac® autologous dendritic-cell vaccine matured with oncolytic Newcastle disease virus — <b>not a peptide/neoantigen vaccine</b>. Listed for cross-reference only.",
     personalization:"Personalized (autologous tumour lysate + own dendritic cells).",
     synthesis:"n/a — cell product, no peptide synthesis.",
@@ -827,6 +898,7 @@ const ZONES = [
    providers:[
    {
     name:"NEO CLINIC TOKYO", loc:"Shirokanedai, Minato-ku, Tokyo, Japan", tags:["peptide","Neoantigen","Self-pay"],
+    costShort:"Not published — self-pay; request a full itemised quote",
     offered:"A neoantigen peptide vaccine and, separately, an &ldquo;oncoantigen&rdquo; (shared tumour-antigen) peptide vaccine, marketed as part of a &ldquo;precision medicine&rdquo; package &ldquo;appropriately combined with other treatments&rdquo;.",
     personalization:"Claimed personalized — NGS-based mutation calling. Number of peptides, prediction method and manufacturer not published on the English site.",
     synthesis:"Not disclosed whether peptides are made in-house or contracted.",
@@ -840,6 +912,7 @@ const ZONES = [
    },
    {
     name:"Personalized Peptide Vaccination (PPV) — Kurume University lineage / Brightpath Biotherapeutics", loc:"Kurume &amp; Tokyo, Japan", tags:["peptide","Pooled selection"],
+    costShort:"≈ ¥44,000–66,000 per antigen; full-course price not itemised",
     offered:"PPV: a fixed pool of ~30 mostly shared tumour-antigen peptides, from which 2–4 are chosen per patient by HLA-A type and pre-existing peptide-specific IgG. Delivered historically through Kurume University's cancer-vaccine clinic and affiliated centres on a research / advanced-medical-care basis; Brightpath now runs the commercial and neoantigen-successor programmes (with the National Cancer Center Japan).",
     personalization:"Per-patient <b>selection</b> from a shared pool — not built from the patient's own mutations. A fully personalized neoantigen successor is in development.",
     synthesis:"Pool peptides pre-manufactured; no on-demand per-patient synthesis in the classic PPV method.",
@@ -853,6 +926,7 @@ const ZONES = [
    },
    {
     name:"Japanese dendritic-cell / peptide-pulsed-DC clinics", loc:"Tokyo, Osaka, Fukuoka, Nagoya, Kobe", tags:["Dendritic-cell","Cross-reference"],
+    costShort:"≈ USD 20,000–50,000 per package (per-antigen ¥44,000–66,000 for some)",
     offered:"Seren Clinic, Osaka ISEIKAI / meneki-clinic, Artisan Clinic Hibiya, Tokyo Cancer Clinic, Tokyo Relife and others offer peptide- or antigen-pulsed dendritic-cell vaccines and expanded NK/T cells.",
     personalization:"Varies; some use tumour tissue, some defined antigens.",
     synthesis:"Peptide-pulsed <b>onto dendritic cells</b> — not a free-peptide neoantigen vaccine.",
@@ -869,6 +943,7 @@ const ZONES = [
    providers:[
    {
     name:"Zhejiang University / iNeo programme", loc:"Hangzhou (Sir Run Run Shaw Hospital; Zhejiang Provincial People's Hospital)", tags:["peptide","Neoantigen"],
+    costShort:"Not publicly itemised for international patients",
     offered:"iNeo-Vac-P01, a personalized neoantigen peptide vaccine (and iNeo-Vac-T01, neoantigen-reactive T cells); studied alone and combined with radiofrequency ablation or checkpoint inhibitors.",
     personalization:"Fully personalized — tumour-sequencing-driven neoepitope selection.",
     synthesis:"GMP peptide synthesis within the academic programme.",
@@ -882,6 +957,7 @@ const ZONES = [
    },
    {
     name:"NeoCura Bio-Medical Technology", loc:"Beijing, China", tags:["Neoantigen","Company / trial-stage"],
+    costShort:"Not a direct-to-patient service — no patient pricing",
     offered:"An AI-enabled RNA/neoantigen platform (e.g. NEO_PLIN2101), developed with Innovent (sintilimab combinations).",
     personalization:"Fully personalized neoantigen design.",
     synthesis:"RNA-based platform, not a peptide-printing clinic.",
@@ -895,6 +971,7 @@ const ZONES = [
    },
    {
     name:"ZSky Biotech / Beijing Tiantan Hospital (ZSNeo-DC1.1)", loc:"China", tags:["Dendritic-cell","Neoantigen","See Section 1"],
+    costShort:"Trial context — no listed self-pay price",
     offered:"Personalized neoantigen-pulsed dendritic-cell vaccine — the same product as the newly-diagnosed randomised trial in Section 1 (NCT07365280) and a recruiting recurrent-glioma trial (NCT06253234).",
     personalization:"Fully personalized neoantigen selection.",
     synthesis:"Peptide-pulsed dendritic cells.",
@@ -908,6 +985,7 @@ const ZONES = [
    },
    {
     name:"Shenzhen Geno-Immune Medical Institute", loc:"Shenzhen, China", tags:["Dendritic-cell","Research institute"],
+    costShort:"Research institute — no patient pricing",
     offered:"An &ldquo;immunomodulatory dendritic-cell vaccine&rdquo; targeting DIPG and GBM (NCT03914768, not yet recruiting).",
     personalization:"Not clearly neoantigen-defined.",
     synthesis:"Cell product.",
@@ -924,6 +1002,7 @@ const ZONES = [
    providers:[
    {
     name:"No verified personalized neoantigen peptide-vaccine programme found", loc:"Baja California / nationwide, Mexico", tags:["warn","Unverified"],
+    costShort:"Integrative programmes ≈ USD 45,000–60,000 / 3 weeks; no peptide line item",
     offered:"Immunity Therapy Center (Tijuana), Hope4Cancer (Rosarito / Cancún), CHIPSA (Tijuana) and Issels (Tijuana) advertise &ldquo;cancer vaccines&rdquo;, dendritic-cell therapy, autologous &ldquo;autohemotherapy&rdquo; and broad alternative-medicine protocols for many cancers including glioblastoma.",
     personalization:"None publishes a tumour-exome-sequencing → neoepitope-prediction → GMP peptide-synthesis pipeline.",
     synthesis:"Not documented at any Mexican clinic located.",
@@ -934,35 +1013,6 @@ const ZONES = [
     logistics:"Border-adjacent, English-speaking, no insurance billing pathway.",
     contact:"See each clinic's site; Issels and Hope4Cancer details are on the main dashboard.",
     unver:"<b>Any &ldquo;neoantigen vaccine&rdquo; marketing from a Mexican integrative clinic should be treated as unverified</b> until they provide the sequencing report, the ranked neoepitope list, peptide Certificates of Analysis, GMP documentation, and GBM-specific (not all-comers) outcomes in writing. None of that was found in public materials."
-   }
- ]},
- { region:"Montana / United States", note:"The user asked specifically about Montana clinics that &ldquo;print peptides&rdquo; to make neoantigens for a particular cancer. An open-web, medical-board and news search did not find one.",
-   providers:[
-   {
-    name:"No verified Montana provider of tumour-neoantigen vaccines", loc:"Bozeman, Kalispell, Missoula, Billings — Montana", tags:["warn","Unverified"],
-    offered:"Montana has integrative / functional-medicine / anti-aging clinics that advertise &ldquo;peptide therapy&rdquo; — for example Life Enhancement Clinics of Montana (Bozeman), Alpine Health &amp; Wellness (Kalispell), Elevate Health (Bozeman), Essential Health (Bozeman); a directory (peptidebase.io) lists ~12 Montana &ldquo;peptide&rdquo; clinics.",
-    personalization:"None. These clinics sell catalogue research peptides — BPC-157, TB-500, sermorelin, ipamorelin, thymosin-α1 and similar — for healing, weight loss, and hormones. That is a different product class from a tumour-specific neoantigen cancer vaccine.",
-    synthesis:"No Montana clinic advertises, and no news report or medical-board record documents, on-site synthesis of a patient's tumour neoantigens into a therapeutic vaccine.",
-    combo:"n/a.",
-    evidence:"None — there is no cancer-vaccine service to have evidence for.",
-    regulatory:"In the United States, a personalized neoantigen vaccine is currently available essentially only inside an FDA-regulated clinical trial (NeoVax at Dana-Farber; the Washington University DNA-vaccine programme). Selling one as an office treatment would fall outside the IND framework.",
-    cost:"n/a.",
-    logistics:"n/a.",
-    contact:"n/a.",
-    unver:"<b>The nearest real thing to &ldquo;printing peptides to make neoantigens&rdquo; is automated flow peptide synthesis</b> — developed academically (e.g. an MIT group's &ldquo;Automated Flow Synthesis of Tumor Neoantigen Peptides&rdquo;, 2020) and GMP high-throughput synthesis used by trial sponsors such as Dana-Farber and CeGaT — not a Montana clinical service. If the user has a specific Montana clinic name or URL, that entry can be researched directly; the open-web search did not surface one."
-   },
-   {
-    name:"United States academic route (context)", loc:"Boston, MA; St Louis, MO", tags:["Neoantigen","In-trial only"],
-    offered:"NeoVax (Dana-Farber / MGH — personalized neoantigen peptide) and the Washington University personalized neoantigen DNA vaccine are the domestic options. Both are detailed in Section 1's &ldquo;landmark platforms&rdquo; list; both are currently between trials.",
-    personalization:"Fully personalized neoantigen.",
-    synthesis:"GMP peptide / plasmid manufacturing within the academic programme.",
-    combo:"With pembrolizumab (NeoVax) or retifanlimab / IL-12 (WashU).",
-    evidence:"See the landmark-platforms cards in Section 1.",
-    regulatory:"FDA IND; trial only.",
-    cost:"Trial — no charge for the investigational product.",
-    logistics:"Contact Dana-Farber and Washington University neuro-oncology to ask about successor trials and timing.",
-    contact:"See the Section 1 landmark cards.",
-    unver:"Nothing to purchase; the point of this row is that the US route is a trial, and there is currently a gap between trials to watch."
    }
  ]}
 ];
@@ -1045,7 +1095,9 @@ function apply(){
     (!fmt||t.fmt===fmt) && (!region||t.region===region) && (!fit||t.fit===fit) &&
     (!q||JSON.stringify(t).toLowerCase().includes(q))
   );
+  const usFirst = t => (t.country==="United States"||t.region==="United States") ? 0 : 1;
   rows.sort((a,b)=>{
+    const u = usFirst(a)-usFirst(b); if(u) return u;
     if(sort==="evidence") return (b.ev?.s??-1)-(a.ev?.s??-1) || fitRank[a.fit]-fitRank[b.fit];
     if(sort==="name") return a.name.localeCompare(b.name);
     return fitRank[a.fit]-fitRank[b.fit] || (b.ev?.s??-1)-(a.ev?.s??-1);
@@ -1063,7 +1115,8 @@ $("#fSearch").addEventListener("input",apply);
 $("#resetBtn").addEventListener("click",()=>{["#fFmt","#fRegion","#fFit"].forEach(s=>$(s).value="");$("#fSearch").value="";$("#fSort").value="fit";apply();});
 
 const landEl=$("#landmarkList");
-landEl.innerHTML=LANDMARK.map(card).join(""); bindToggles(landEl);
+const landmarkSorted=[...LANDMARK].sort((a,b)=>((a.country==="United States"||a.region==="United States")?0:1)-((b.country==="United States"||b.region==="United States")?0:1));
+landEl.innerHTML=landmarkSorted.map(card).join(""); bindToggles(landEl);
 
 /* shared-antigen appendix */
 $("#sharedBody").innerHTML=SHARED.map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td><a class="mono" href="https://clinicaltrials.gov/study/${r[2]}" target="_blank" rel="noopener">${r[2]}</a></td><td>${r[3]}</td><td>${r[4]}</td><td>${r[5]}</td><td>${r[6]}</td></tr>`).join("");
@@ -1079,11 +1132,12 @@ $("#providerZones").innerHTML=ZONES.map(z=>{
       const label = t==="warn"?"&#9888; scrutinise" : t==="peptide"?"Peptide vaccine" : t;
       return `<span class="${cls}">${label}</span>`;
     }).join("");
-    return `<div class="prov ${/(No verified|No verified Montana)/.test(p.name)?'none':''}">
+    return `<div class="prov ${/No verified/.test(p.name)?'none':''}">
       <div class="prov-top">
         <div><h4>${p.name}</h4><div class="loc">${p.loc}</div></div>
         <div class="tags">${tags}</div>
       </div>
+      <div class="cost-badge"><span class="cbl">Indicative cost</span> ${p.costShort||p.cost}</div>
       <div class="prov-grid">
         <div><div class="k">What is offered</div><div class="v">${p.offered}</div></div>
         <div><div class="k">Personalized?</div><div class="v">${p.personalization}</div></div>

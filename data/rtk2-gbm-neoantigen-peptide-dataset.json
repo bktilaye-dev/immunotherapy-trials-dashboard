@@ -327,16 +327,6 @@
       "registry_url": "https://clinicaltrials.gov/study/NCT02455557"
     },
     {
-      "vaccine": "Rindopepimut (ACT IV)",
-      "antigen": "EGFRvIII",
-      "nct": "NCT01480479",
-      "status_setting": "Completed — NEGATIVE phase 3",
-      "where": "Multi-country",
-      "reported": "No overall-survival benefit; recurrences were EGFRvIII-negative (antigen escape)",
-      "relevance": "Directly cautionary for RTK II: EGFRvIII is common here, but a single-antigen EGFRvIII peptide vaccine did not work. ⚠",
-      "registry_url": "https://clinicaltrials.gov/study/NCT01480479"
-    },
-    {
       "vaccine": "P30-EPS",
       "antigen": "EphA2 + CMV pp65 + survivin",
       "nct": "NCT05283109",
@@ -345,6 +335,16 @@
       "reported": "Phase 1 immunogenicity; multi-antigen to reduce escape",
       "relevance": "A multi-peptide shared-antigen design that tries to avoid rindopepimut's single-antigen failure mode.",
       "registry_url": "https://clinicaltrials.gov/study/NCT05283109"
+    },
+    {
+      "vaccine": "Rindopepimut (ACT IV)",
+      "antigen": "EGFRvIII",
+      "nct": "NCT01480479",
+      "status_setting": "Completed — NEGATIVE phase 3",
+      "where": "Multi-country (US-led, Celldex)",
+      "reported": "No overall-survival benefit; recurrences were EGFRvIII-negative (antigen escape)",
+      "relevance": "Directly cautionary for RTK II: EGFRvIII is common here, but a single-antigen EGFRvIII peptide vaccine did not work. ⚠",
+      "registry_url": "https://clinicaltrials.gov/study/NCT01480479"
     },
     {
       "vaccine": "PEP-CMV",
@@ -379,6 +379,13 @@
   ],
   "recurrent_reference": [
     {
+      "name": "RNA-LP (recurrent)",
+      "nct": "NCT06389591",
+      "description": "RNA-lipid-particle vaccine (pp65 + tumour RNA) for recurrent adult GBM; recurrent-disease arm of the UF programme",
+      "where": "University of Florida, USA — recruiting",
+      "registry_url": "https://clinicaltrials.gov/study/NCT06389591"
+    },
+    {
       "name": "YS247 neoantigen dendritic-cell vaccine",
       "nct": "NCT07678138",
       "description": "Neoantigen-pulsed autologous DC injection for recurrent/progressive glioblastoma",
@@ -393,13 +400,6 @@
       "registry_url": "https://clinicaltrials.gov/study/NCT06253234"
     },
     {
-      "name": "RNA-LP (recurrent)",
-      "nct": "NCT06389591",
-      "description": "RNA-lipid-particle vaccine (pp65 + tumour RNA) for recurrent adult GBM; recurrent-disease arm of the UF programme",
-      "where": "University of Florida, USA — recruiting",
-      "registry_url": "https://clinicaltrials.gov/study/NCT06389591"
-    },
-    {
       "name": "Personalized vaccine, recurrent glioma",
       "nct": "NCT04943718",
       "description": "Personalized (neoantigen) vaccine for recurrent glioma; limited public detail",
@@ -408,6 +408,70 @@
     }
   ],
   "section2_private_providers": [
+    {
+      "region": "United States",
+      "name": "No verified US provider of a tumour-sequenced neoantigen vaccine sold outside a trial",
+      "location": "Montana (Bozeman, Kalispell, Missoula, Billings) and nationwide — USA",
+      "what_is_offered": "Two kinds of clinic turn up and neither matches. (1) Montana \"peptide therapy\" clinics — Life Enhancement Clinics of Montana (Bozeman), Alpine Health & Wellness (Kalispell), Elevate Health (Bozeman), Essential Health (Bozeman); a directory (peptidebase.io) lists ~12. (2) Integrative / alternative cancer centres elsewhere in the US that advertise \"personalized immunotherapy\" — e.g. An Oasis of Healing (Mesa, AZ).",
+      "personalized": "None is a tumour-sequenced neoantigen vaccine. The Montana clinics sell catalogue research peptides — BPC-157, TB-500, sermorelin, ipamorelin, thymosin-α1 — for healing, weight loss and hormones. The integrative cancer centres offer stem-cell / immune-modulation / autologous approaches, not an exome-sequencing → neoepitope-prediction → GMP-peptide pipeline.",
+      "peptide_synthesis": "No US clinic advertises, and no news report or medical-board record documents, on-site synthesis of a patient's tumour neoantigens into a therapeutic vaccine sold as an office treatment.",
+      "combination": "n/a.",
+      "published_evidence": "None — there is no neoantigen-vaccine service to have GBM evidence for.",
+      "regulatory_status": "In the US a personalized neoantigen vaccine is an investigational biologic: it needs an FDA IND, so it is available essentially only inside a clinical trial. Selling one as a clinic service would fall outside that framework. (503A/503B compounding covers small-molecule and simple peptide compounding, not individualized therapeutic cancer vaccines.)",
+      "cost_headline": "No such service is sold in the US",
+      "indicative_cost": "",
+      "logistics": "n/a.",
+      "contact": "n/a.",
+      "what_is_unverified": "The nearest real thing to \"printing peptides to make neoantigens\" is automated flow peptide synthesis — academic (an MIT group's \"Automated Flow Synthesis of Tumor Neoantigen Peptides\", 2020) and the GMP high-throughput synthesis used by trial sponsors such as Dana-Farber and CeGaT — not a US clinical service. Also checked: Moderna's mRNA-4157 / BioNTech's autogene cevumeran individualized neoantigen therapies have no glioblastoma expanded-access pathway (melanoma and other trials only). If the user has a specific Montana clinic name or URL, that entry can be researched directly."
+    },
+    {
+      "region": "United States",
+      "name": "Immunocine Cancer Center",
+      "location": "Intake / tumour-preservation: Arizona, USA · treatment: Cancún, Mexico",
+      "what_is_offered": "Autologous dendritic-cell immunotherapy for many cancers including glioblastoma: the patient's monocyte-derived dendritic cells are exposed to \"tumour-specific antigens\" and re-infused. A US (Arizona) site handles tumour preservation and intake; the cell product is manufactured and given in Cancún.",
+      "personalized": "Personalized to the patient's own tumour material, but not a defined-neoantigen vaccine — it is a tumour-lysate / tumour-antigen-pulsed DC product. The company does not publish a per-patient neoepitope list.",
+      "peptide_synthesis": "Cell product (cGMP lab, per the company); no per-patient peptide synthesis.",
+      "combination": "Marketed as a stand-alone DC vaccine; details of any adjuvant/checkpoint pairing not published.",
+      "published_evidence": "No peer-reviewed glioblastoma outcome data located; company press material and testimonials only.",
+      "regulatory_status": "US site provides preservation/intake services only; the cellular treatment is delivered in Mexico, outside FDA oversight.",
+      "cost_headline": "≈ USD 50,000 (reported); treatment delivered in Cancún",
+      "indicative_cost": "Not itemised publicly; secondary sources put personalized DC immunotherapy of this kind at roughly USD 50,000. Request a full written quote including the US intake fees and the Cancún treatment.",
+      "logistics": "US intake, Mexico treatment; self-pay; no insurance billing pathway.",
+      "contact": "immunocine.com",
+      "what_is_unverified": "Whether the \"tumour-specific antigens\" are defined neoepitopes or whole-tumour lysate is not disclosed; no GBM survival data; treatment happens outside the US. Ask for the antigen-selection method and GBM-specific outcomes in writing."
+    },
+    {
+      "region": "United States",
+      "name": "Williams Cancer Institute",
+      "location": "Las Vegas, Nevada, USA (also Mexico)",
+      "what_is_offered": "Intratumoral immunotherapy with pulsed-electric-field (PEF) ablation and cryoablation, marketed as \"turning the tumour into a personalized cancer vaccine\" (in-situ vaccination) plus intratumoral checkpoint and cytokine injections.",
+      "personalized": "In-situ approach — it relies on antigens released by ablating the patient's own tumour. It is not a tumour-sequenced neoantigen peptide/mRNA vaccine and involves no ex-vivo peptide manufacturing.",
+      "peptide_synthesis": "n/a — no peptide synthesis; the \"vaccine\" is the ablated tumour in situ.",
+      "combination": "Intratumoral anti-PD-1/anti-CTLA-4, IL-2, and other agents; systemic low-dose combinations.",
+      "published_evidence": "Case reports and conference material; no randomised or GBM-specific peer-reviewed outcome data located. Brain tumours are rarely the marketed indication (mostly accessible solid tumours).",
+      "regulatory_status": "US site operates as practice-of-medicine with off-label intratumoral drug use; some protocols delivered at the Mexico site.",
+      "cost_headline": "Self-pay; not publicly itemised — request a quote",
+      "indicative_cost": "Not publicly itemised; self-pay. Request an itemised quote per protocol.",
+      "logistics": "Las Vegas or Mexico; self-pay; travel for repeated ablation sessions.",
+      "contact": "williamscancerinstitute.com",
+      "what_is_unverified": "Included only to be explicit that this well-known US \"personalized cancer vaccine\" marketing is in-situ ablation, a different technique from the neoantigen peptide vaccine this atlas is about. No GBM efficacy data."
+    },
+    {
+      "region": "United States",
+      "name": "United States academic route (context) — NeoVax / Washington University",
+      "location": "Boston, MA and St Louis, MO, USA",
+      "what_is_offered": "NeoVax (Dana-Farber / MGH — personalized neoantigen synthetic peptide) and the Washington University personalized neoantigen DNA vaccine (GNOS-PV01) are the genuine US personalized-neoantigen programmes. Both are detailed in the completed & landmark trials section; both are currently between trials.",
+      "personalized": "Fully personalized neoantigen.",
+      "peptide_synthesis": "GMP peptide / plasmid manufacturing within the academic programme.",
+      "combination": "With pembrolizumab (NeoVax) or retifanlimab / IL-12 (WashU).",
+      "published_evidence": "See the landmark cards — NeoVax (Keskin, Nature 2019) and the WashU DNA vaccine (Nature Cancer 2026).",
+      "regulatory_status": "FDA IND; trial only.",
+      "cost_headline": "Trial — no charge for the investigational product",
+      "indicative_cost": "Trial — no charge for the investigational product.",
+      "logistics": "Contact Dana-Farber and Washington University neuro-oncology to ask about successor trials and timing.",
+      "contact": "See the landmark cards at the end of the page.",
+      "what_is_unverified": "Nothing to purchase; the point of this row is that the honest US route is a trial, and there is currently a gap between trials to watch."
+    },
     {
       "region": "Europe",
       "name": "CeGaT GmbH / cecava GmbH",
@@ -418,6 +482,7 @@
       "combination": "Given with adjuvant; some patients also receive checkpoint inhibitors and immune monitoring, arranged case by case.",
       "published_evidence": "173-patient real-world series (Nature Communications 2024): median OS 31.9 months from diagnosis across all vaccinees (70 vaccinated before progression, 103 after); patients with multiple vaccine-induced T-cell responses 53 months vs 27 months for none/low (P=0.03); vaccine-induced immune response in 87/97 (90%) monitored; adverse events mostly grade 1–2.",
       "regulatory_status": "Legal in Germany as an individual named-patient treatment (individueller Heilversuch). Not an EMA marketing authorisation and not an efficacy approval. NCT05356312 is CeGaT's own expanded-access registry listing.",
+      "cost_headline": "≈ €52,000 total (€10k diagnostics + €39k vaccine + €3k monitoring)",
       "indicative_cost": "Reported in case accounts: ~€10,000 neoantigen diagnostics; ~€39,000 vaccine; ~€3,000 immune monitoring (one family cited ~£30,000 for the peptides). Totals vary; get an itemised quote.",
       "logistics": "Self-pay, single centre, repeated travel to Tübingen. Easier if your oncologist co-manages; CeGaT will also work with patients directly.",
       "contact": "cegat.com · cecava.com · expanded-access contact Dr Saskia Biskup (Saskia.Biskup@humangenetik-tuebingen.de)",
@@ -433,6 +498,7 @@
       "combination": "Bundled into 1–3-week multimodal programmes.",
       "published_evidence": "No peer-reviewed glioblastoma outcome data; the clinic does not publish survival data.",
       "regulatory_status": "German individual healing attempt. No insurance contracts of any kind (clinic states this explicitly).",
+      "cost_headline": "≈ USD 100,000–127,000 per 1–3-week programme; ~80% deposit upfront",
       "indicative_cost": "Documented cases ~USD 100,000–127,000 for a 1–3-week programme; ~80% deposit required upfront.",
       "logistics": "Self-pay only.",
       "contact": "hallwang-clinic.com · +49 7443 9642 40",
@@ -448,6 +514,7 @@
       "combination": "Immunogenic-cell-death add-on; modified oncolytic virus.",
       "published_evidence": "Single-institution case series in IDH-wildtype GBM reporting improved OS vs historical published data (PMC 2023); not randomised.",
       "regulatory_status": "German individual healing attempt / hospital exemption.",
+      "cost_headline": "≈ €65,000 for the first two cycles + mandatory diagnostics",
       "indicative_cost": "~€23,000–26,000 per vaccination cycle; ~€65,000 for the first two cycles plus mandatory diagnostics.",
       "logistics": "Self-pay; repeated travel to Cologne.",
       "contact": "iozk.de · +49 221 4203 9925",
@@ -463,6 +530,7 @@
       "combination": "Combined with unspecified other therapies at the clinic's discretion.",
       "published_evidence": "None published. No patient numbers, no GBM-specific data, no outcome data of any kind on the public site.",
       "regulatory_status": "Japan free-market medicine (jiyū shinryō) under the Act on the Safety of Regenerative Medicine — a safety notification framework, not an efficacy review.",
+      "cost_headline": "Not published — self-pay; request a full itemised quote",
       "indicative_cost": "Not published — request a full itemised quote. Japanese neoantigen/DC peptide services are typically fully out of pocket and not covered by Japanese or foreign insurance.",
       "logistics": "Self-pay; repeated travel to Tokyo; confirm whether GBM is accepted at all.",
       "contact": "neoclinic-en.jp · +81 3-6450-4796",
@@ -478,6 +546,7 @@
       "combination": "Often with low-dose chemotherapy or checkpoint inhibitors in trials.",
       "published_evidence": "Two decades of Japanese phase 1/2 work across many cancers, including limited glioma. Multiple randomised phase 2/3 trials in other tumours (e.g. castration-resistant prostate, biliary tract) were negative for overall survival. No positive randomised GBM data.",
       "regulatory_status": "Advanced Medical Care / research framework in Japan; not funded by national insurance for general use.",
+      "cost_headline": "≈ ¥44,000–66,000 per antigen; full-course price not itemised",
       "indicative_cost": "Historically ~¥44,000–66,000 per antigen in the advanced-medical-care setting; total course cost not publicly itemised.",
       "logistics": "Access is mostly through Japanese academic centres; ask Brightpath about current routes.",
       "contact": "Brightpath Biotherapeutics (Tokyo); Kurume University Hospital cancer-vaccine outpatient clinic.",
@@ -493,6 +562,7 @@
       "combination": "Often multimodal immune-cell packages.",
       "published_evidence": "Compassionate-use case reporting only; no randomised GBM data. An independent study of patient experience at this class of clinic exists (not a survival study).",
       "regulatory_status": "Act on the Safety of Regenerative Medicine (safety notification).",
+      "cost_headline": "≈ USD 20,000–50,000 per package (per-antigen ¥44,000–66,000 for some)",
       "indicative_cost": "Reported packages ~USD 20,000–50,000; per-antigen ¥44,000–66,000 published for some.",
       "logistics": "Self-pay; not covered by any insurance.",
       "contact": "Covered in detail on the main dashboard's private-provider section.",
@@ -508,6 +578,7 @@
       "combination": "RFA + vaccine; anti-PD-1 combinations.",
       "published_evidence": "Published safety and immunogenicity across a range of advanced solid tumours; case reports of responses. Glioma-specific outcome data are limited.",
       "regulatory_status": "Delivered within registered trials and, reportedly, as hospital-based individualized treatment under China's evolving cell/immunotherapy rules.",
+      "cost_headline": "Not publicly itemised for international patients",
       "indicative_cost": "Not publicly itemised for international patients.",
       "logistics": "Contact the Hangzhou centres directly; language and cross-border tissue logistics are the practical barriers.",
       "contact": "Sir Run Run Shaw Hospital / Zhejiang Provincial People's Hospital, Hangzhou.",
@@ -523,6 +594,7 @@
       "combination": "Checkpoint inhibitor combinations in company-sponsored trials.",
       "published_evidence": "Company/trial-stage; no glioblastoma outcome data located.",
       "regulatory_status": "NMPA clinical-trial framework.",
+      "cost_headline": "Not a direct-to-patient service — no patient pricing",
       "indicative_cost": "n/a — not a direct-to-patient service.",
       "logistics": "Not a walk-in provider; access is via sponsored trials.",
       "contact": "NeoCura (corporate).",
@@ -538,6 +610,7 @@
       "combination": "With temozolomide (newly diagnosed trial).",
       "published_evidence": "Early-stage; no survival data yet.",
       "regulatory_status": "Chinese trial framework; a commercial sponsor behind the trials.",
+      "cost_headline": "Trial context — no listed self-pay price",
       "indicative_cost": "Trial context — not a listed self-pay price.",
       "logistics": "Best pursued as the Section 1 trial rather than a private purchase.",
       "contact": "xiaomin.ma@zskybio.com",
@@ -553,6 +626,7 @@
       "combination": "n/a.",
       "published_evidence": "None located for GBM.",
       "regulatory_status": "Chinese trial framework.",
+      "cost_headline": "Research institute — no patient pricing",
       "indicative_cost": "n/a.",
       "logistics": "Research institute, not a clinic.",
       "contact": "Shenzhen Geno-Immune Medical Institute.",
@@ -568,40 +642,11 @@
       "combination": "Bundled into 3-week multimodal \"integrative\" programmes (hyperthermia, high-dose vitamin C, ozone, etc.).",
       "published_evidence": "No peer-reviewed glioblastoma outcome data; marketing material and testimonials only. Issels and Hope4Cancer are catalogued on the main dashboard for DC/NK products.",
       "regulatory_status": "Operate outside FDA oversight; Mexican COFEPRIS registration status varies and is rarely detailed publicly.",
+      "cost_headline": "Integrative programmes ≈ USD 45,000–60,000 / 3 weeks; no peptide line item",
       "indicative_cost": "~USD 45,000–60,000 for a standard 3-week programme (Hope4Cancer, Issels published ranges); a peptide/neoantigen line item is not itemised.",
       "logistics": "Border-adjacent, English-speaking, no insurance billing pathway.",
       "contact": "See each clinic's site; Issels and Hope4Cancer details are on the main dashboard.",
       "what_is_unverified": "Any \"neoantigen vaccine\" marketing from a Mexican integrative clinic should be treated as unverified until they provide the sequencing report, the ranked neoepitope list, peptide Certificates of Analysis, GMP documentation, and GBM-specific (not all-comers) outcomes in writing. None of that was found in public materials."
-    },
-    {
-      "region": "Montana / United States",
-      "name": "No verified Montana provider of tumour-neoantigen vaccines",
-      "location": "Bozeman, Kalispell, Missoula, Billings — Montana",
-      "what_is_offered": "Montana has integrative / functional-medicine / anti-aging clinics that advertise \"peptide therapy\" — for example Life Enhancement Clinics of Montana (Bozeman), Alpine Health & Wellness (Kalispell), Elevate Health (Bozeman), Essential Health (Bozeman); a directory (peptidebase.io) lists ~12 Montana \"peptide\" clinics.",
-      "personalized": "None. These clinics sell catalogue research peptides — BPC-157, TB-500, sermorelin, ipamorelin, thymosin-α1 and similar — for healing, weight loss, and hormones. That is a different product class from a tumour-specific neoantigen cancer vaccine.",
-      "peptide_synthesis": "No Montana clinic advertises, and no news report or medical-board record documents, on-site synthesis of a patient's tumour neoantigens into a therapeutic vaccine.",
-      "combination": "n/a.",
-      "published_evidence": "None — there is no cancer-vaccine service to have evidence for.",
-      "regulatory_status": "In the United States, a personalized neoantigen vaccine is currently available essentially only inside an FDA-regulated clinical trial (NeoVax at Dana-Farber; the Washington University DNA-vaccine programme). Selling one as an office treatment would fall outside the IND framework.",
-      "indicative_cost": "n/a.",
-      "logistics": "n/a.",
-      "contact": "n/a.",
-      "what_is_unverified": "The nearest real thing to \"printing peptides to make neoantigens\" is automated flow peptide synthesis — developed academically (e.g. an MIT group's \"Automated Flow Synthesis of Tumor Neoantigen Peptides\", 2020) and GMP high-throughput synthesis used by trial sponsors such as Dana-Farber and CeGaT — not a Montana clinical service. If the user has a specific Montana clinic name or URL, that entry can be researched directly; the open-web search did not surface one."
-    },
-    {
-      "region": "Montana / United States",
-      "name": "United States academic route (context)",
-      "location": "Boston, MA; St Louis, MO",
-      "what_is_offered": "NeoVax (Dana-Farber / MGH — personalized neoantigen peptide) and the Washington University personalized neoantigen DNA vaccine are the domestic options. Both are detailed in Section 1's \"landmark platforms\" list; both are currently between trials.",
-      "personalized": "Fully personalized neoantigen.",
-      "peptide_synthesis": "GMP peptide / plasmid manufacturing within the academic programme.",
-      "combination": "With pembrolizumab (NeoVax) or retifanlimab / IL-12 (WashU).",
-      "published_evidence": "See the landmark-platforms cards in Section 1.",
-      "regulatory_status": "FDA IND; trial only.",
-      "indicative_cost": "Trial — no charge for the investigational product.",
-      "logistics": "Contact Dana-Farber and Washington University neuro-oncology to ask about successor trials and timing.",
-      "contact": "See the Section 1 landmark cards.",
-      "what_is_unverified": "Nothing to purchase; the point of this row is that the US route is a trial, and there is currently a gap between trials to watch."
     }
   ]
 }

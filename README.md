@@ -18,22 +18,33 @@ class RTK II, 1.2 cm gross-totally resected, treatment-naïve), narrowed to one 
 built from the tumour's own mutations (neoantigens), or from a per-patient selection of tumour-antigen peptides
 (PPV), in any delivery format (synthetic peptide, mRNA, DNA, dendritic-cell).
 
+Page order (revised): the how-it's-made and RTK II primers, then **Section 1 (open institutional trials)**, then
+**Section 2 (private providers)** in the middle, then the reference tables, questions and glossary, and finally the
+**completed / landmark trials** collected at the very end. Every list is **US-first**.
+
 Two sections, as requested:
 
 1. **Institutional trials the patient could qualify for — worldwide** (not US-only, because the field is heavily
-   European and Asian). Six trials open or about to open (ZSNeo-DC1.1 neoantigen-DC + TMZ, which explicitly
-   requires IDH-wildtype; UF RNA-LP autologous-mRNA; a Paris PTPRZ1/TERT peptide trial; an Italian DC +
-   tumour-homogenate trial; a Brazilian placebo-controlled Phase 3; the Greek Tamavaq trial, weak fit) plus four
-   landmark platforms between trials (NeoVax / Dana-Farber, the Washington University neoantigen DNA vaccine,
-   GAPVAC-101, XS15 / Tübingen). Appendices: shared-antigen peptide vaccines (SurVaxM, rindopepimut ⚠, etc.) and
-   recurrent-disease trials.
-2. **Private providers around the world** that sell this outside a trial, grouped by region — Europe (CeGaT /
-   cecava, Tübingen — the main documented route, with the 173-patient real-world series *and* the *Neuro-Oncology*
-   rebuttal; Hallwang ⚠; IOZK), Japan (NEO Clinic Tokyo; the Kurume/Brightpath PPV lineage), China (Zhejiang
-   University / iNeo, Hangzhou; NeoCura; ZSky; Shenzhen Geno-Immune), Mexico (no verified neoantigen-peptide
-   programme found — the Baja integrative clinics market "cancer vaccines" without a published pipeline), and
-   **Montana / USA (no verified provider found** — Montana's "peptide" clinics sell catalogue research peptides
-   like BPC-157, not tumour-neoantigen vaccines; the US route is a clinical trial).
+   European and Asian), US entries sorted to the top. Six trials open or about to open (ZSNeo-DC1.1 neoantigen-DC
+   + TMZ, which explicitly requires IDH-wildtype; UF RNA-LP autologous-mRNA; a Paris PTPRZ1/TERT peptide trial; an
+   Italian DC + tumour-homogenate trial; a Brazilian placebo-controlled Phase 3; the Greek Tamavaq trial, weak fit).
+   The four landmark platforms between trials (NeoVax / Dana-Farber, the Washington University neoantigen DNA
+   vaccine, GAPVAC-101, XS15 / Tübingen) are now in a **"Completed & landmark trials"** section at the end of the
+   page. Appendices: shared-antigen peptide vaccines (SurVaxM, rindopepimut ⚠, etc.) and recurrent-disease trials.
+2. **Private providers around the world** that sell this outside a trial, grouped by region with **United States
+   first** and an **indicative-cost badge on every card**:
+   - **United States** — a fresh 9 Sep 2026 search found **no clinic selling a tumour-sequenced neoantigen vaccine
+     outside a trial**. Montana's "peptide" clinics sell catalogue research peptides (BPC-157, TB-500), not
+     tumour-neoantigen vaccines; US-accessible private options are cross-border or a different technique —
+     Immunocine Cancer Center (AZ intake → Cancún treatment, lysate-DC, ≈ USD 50k) and Williams Cancer Institute
+     (Las Vegas — intratumoral ablation "in-situ vaccination", not a peptide vaccine). Moderna/BioNTech
+     individualized neoantigen therapies have no GBM expanded-access pathway. The real US route is a trial.
+   - **Europe** — CeGaT / cecava, Tübingen (the main documented route; 173-patient real-world series *and* the
+     *Neuro-Oncology* rebuttal; ≈ €52k); Hallwang ⚠ (≈ USD 100–127k); IOZK (DC, cross-ref).
+   - **Japan** — NEO Clinic Tokyo; the Kurume/Brightpath PPV lineage; peptide-pulsed-DC clinics.
+   - **China** — Zhejiang University / iNeo, Hangzhou; NeoCura; ZSky; Shenzhen Geno-Immune.
+   - **Mexico** — no verified neoantigen-peptide programme; the Baja integrative clinics market "cancer vaccines"
+     without a published pipeline (≈ USD 45–60k / 3 weeks).
 
 - **Data:** `data/rtk2-gbm-neoantigen-peptide-dataset.csv` and `data/rtk2-gbm-neoantigen-peptide-dataset.json`.
 - Built from the ClinicalTrials.gov API v2 (queried 9 September 2026, worldwide), EU/Japan/China registry
