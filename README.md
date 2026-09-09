@@ -32,7 +32,9 @@ Two sections, as requested:
    vaccine, GAPVAC-101, XS15 / Tübingen) are now in a **"Completed & landmark trials"** section at the end of the
    page. Appendices: shared-antigen peptide vaccines (SurVaxM, rindopepimut ⚠, etc.) and recurrent-disease trials.
 2. **Private providers around the world** that sell this outside a trial, grouped by region with **United States
-   first** and an **indicative-cost badge on every card**:
+   first**. Every card now carries the **same field set as this dashboard's own private-provider list** — contact /
+   website, what is manufactured, starting material, regulatory framework, est. cost (also a badge), insurance,
+   evidence, patient story — plus a plain "what is unverified" statement:
    - **United States** — a fresh 9 Sep 2026 search found **no clinic selling a tumour-sequenced neoantigen vaccine
      outside a trial**. Montana's "peptide" clinics sell catalogue research peptides (BPC-157, TB-500), not
      tumour-neoantigen vaccines; US-accessible private options are cross-border or a different technique —
