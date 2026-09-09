@@ -1,0 +1,1120 @@
+<title>Neoantigen &amp; Personalized Peptide Vaccine Atlas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --ground:#f6f5f2; --surface:#ffffff; --surface-2:#f1efe9;
+    --ink:#1c2126; --ink-2:#4a525b; --ink-muted:#7a828c;
+    --border:#e4e0d6; --border-strong:#cfc8b8;
+    --accent:#0e6b6b; --accent-ink:#0a4f4f; --accent-soft:#e3efee;
+    --fit-high:#1f7a4d; --fit-high-bg:#e6f2ea;
+    --fit-med:#8f6300; --fit-med-bg:#f7edd7;
+    --fit-low:#5f6771; --fit-low-bg:#ecebe6;
+    --flag:#a5412b; --flag-bg:#f6e5df;
+    --ok:#1f7a4d; --soon:#8f6300; --closed:#868b93;
+    --shadow:0 1px 2px rgba(20,24,28,.05), 0 6px 18px rgba(20,24,28,.06);
+    --radius:10px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#14171a; --surface:#1b1f23; --surface-2:#22272c;
+      --ink:#e7e9ea; --ink-2:#aeb6bd; --ink-muted:#828a92;
+      --border:#2c3237; --border-strong:#3c444b;
+      --accent:#4fb3b0; --accent-ink:#82cfcc; --accent-soft:#123433;
+      --fit-high:#5cc98c; --fit-high-bg:#12301f;
+      --fit-med:#d6a44a; --fit-med-bg:#2e2611;
+      --fit-low:#9aa2ab; --fit-low-bg:#24282c;
+      --flag:#e28a70; --flag-bg:#2f1b15;
+      --ok:#5cc98c; --soon:#d6a44a; --closed:#8a9099;
+      --shadow:0 1px 2px rgba(0,0,0,.25), 0 6px 20px rgba(0,0,0,.28);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#14171a; --surface:#1b1f23; --surface-2:#22272c;
+    --ink:#e7e9ea; --ink-2:#aeb6bd; --ink-muted:#828a92;
+    --border:#2c3237; --border-strong:#3c444b;
+    --accent:#4fb3b0; --accent-ink:#82cfcc; --accent-soft:#123433;
+    --fit-high:#5cc98c; --fit-high-bg:#12301f;
+    --fit-med:#d6a44a; --fit-med-bg:#2e2611;
+    --fit-low:#9aa2ab; --fit-low-bg:#24282c;
+    --flag:#e28a70; --flag-bg:#2f1b15;
+    --ok:#5cc98c; --soon:#d6a44a; --closed:#8a9099;
+    --shadow:0 1px 2px rgba(0,0,0,.25), 0 6px 20px rgba(0,0,0,.28);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--ground); color:var(--ink);
+    font-family:"Public Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size:15px; line-height:1.55; margin:0;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1120px; margin:0 auto; padding:0 20px 96px}
+  a{color:var(--accent-ink); text-underline-offset:2px}
+  h1,h2,h3{font-family:"Spectral", Georgia, "Times New Roman", serif; font-weight:600; text-wrap:balance; margin:0}
+  h1{font-size:1.9rem; line-height:1.15; letter-spacing:-.01em}
+  h2{font-size:1.3rem; margin:0 0 4px}
+  h3{font-size:1.05rem}
+  .eyebrow{font-size:.72rem; font-weight:600; letter-spacing:.13em; text-transform:uppercase; color:var(--accent-ink)}
+  .mono{font-family:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace}
+  .tnum{font-variant-numeric:tabular-nums}
+  .muted{color:var(--ink-muted)}
+  button{font-family:inherit}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:4px}
+
+  header.top{padding:34px 0 20px}
+  .topline{display:flex; justify-content:space-between; align-items:flex-start; gap:18px; flex-wrap:wrap}
+  .lede{max-width:64ch; color:var(--ink-2); margin:12px 0 0}
+  .stamp{font-size:.8rem; color:var(--ink-muted); white-space:nowrap}
+  .theme-btn{
+    background:var(--surface); border:1px solid var(--border); color:var(--ink-2);
+    border-radius:999px; padding:5px 12px; font-size:.8rem; cursor:pointer;
+  }
+  .theme-btn:hover{border-color:var(--border-strong)}
+  .backlink{font-size:.82rem}
+
+  .snapshot{display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 0}
+  .chip{
+    display:inline-flex; align-items:center; gap:7px; background:var(--surface); border:1px solid var(--border);
+    border-radius:999px; padding:5px 12px; font-size:.82rem; color:var(--ink-2);
+  }
+  .chip b{color:var(--ink); font-weight:600}
+  .chip .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+
+  .disclaimer{
+    margin:22px 0 0; border:1px solid var(--border-strong); border-left:3px solid var(--flag);
+    background:var(--surface); border-radius:var(--radius); padding:14px 16px; font-size:.9rem; color:var(--ink-2);
+  }
+  .disclaimer b{color:var(--ink)}
+
+  section{margin-top:46px}
+  .sec-head{margin-bottom:16px}
+  .sec-head p{margin:6px 0 0; color:var(--ink-2); max-width:72ch}
+
+  .tiles{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px}
+  .tile{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:14px 15px}
+  .tile .n{font-family:"Spectral",serif; font-size:1.7rem; font-weight:600; line-height:1; color:var(--ink)}
+  .tile .l{font-size:.8rem; color:var(--ink-muted); margin-top:6px}
+
+  .charts{display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:18px}
+  @media (max-width:720px){.charts{grid-template-columns:1fr}}
+  .chartcard{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:16px 17px}
+  .chartcard h3{font-size:.95rem; margin-bottom:12px}
+  .barrow{display:grid; grid-template-columns:190px 1fr 26px; align-items:center; gap:10px; margin:7px 0; font-size:.82rem}
+  .barrow .cat{color:var(--ink-2); text-align:right; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .bartrack{background:var(--surface-2); border-radius:4px; height:16px; overflow:hidden}
+  .barfill{height:100%; background:var(--accent); border-radius:4px 2px 2px 4px; min-width:3px}
+  .barrow .v{text-align:left; color:var(--ink-muted); font-variant-numeric:tabular-nums}
+
+  .explainer{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:20px 22px}
+  .explainer p{margin:0 0 10px; color:var(--ink-2); max-width:74ch}
+  .explainer ul{margin:8px 0 0; padding-left:20px; color:var(--ink-2)}
+  .explainer li{margin:6px 0; max-width:72ch}
+  .explainer strong{color:var(--ink)}
+
+  /* make-flow */
+  .flow{display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 4px}
+  .step{flex:1 1 150px; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:10px 12px}
+  .step .sn{font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-ink); font-weight:700}
+  .step .st{font-size:.84rem; color:var(--ink); margin-top:3px; font-weight:600}
+  .step .sd{font-size:.8rem; color:var(--ink-2); margin-top:3px}
+
+  .controls{
+    position:sticky; top:0; z-index:20; background:var(--ground);
+    padding:12px 0; border-bottom:1px solid var(--border);
+    display:flex; flex-wrap:wrap; gap:10px; align-items:flex-end;
+  }
+  .controls select, .controls input{
+    font-family:inherit; font-size:.84rem; color:var(--ink);
+    background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:7px 10px;
+  }
+  .controls input[type=search]{min-width:190px; flex:1}
+  .controls label{font-size:.72rem; color:var(--ink-muted); display:block; margin-bottom:3px; letter-spacing:.04em}
+  .ctl{display:flex; flex-direction:column}
+  .reset{
+    background:var(--surface-2); border:1px solid var(--border); color:var(--ink-2);
+    border-radius:8px; padding:7px 12px; font-size:.82rem; cursor:pointer;
+  }
+  .reset:hover{border-color:var(--border-strong)}
+  .count-line{font-size:.85rem; color:var(--ink-muted); margin:14px 0 4px}
+
+  .trial{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    margin-top:12px; box-shadow:var(--shadow); overflow:hidden;
+  }
+  .trial-main{display:flex; gap:14px; padding:16px 18px; align-items:flex-start}
+  .fitstripe{width:4px; align-self:stretch; border-radius:4px; flex:none; margin:2px 0}
+  .fit-High .fitstripe{background:var(--fit-high)}
+  .fit-Medium .fitstripe{background:var(--fit-med)}
+  .fit-Low .fitstripe{background:var(--fit-low)}
+  .fit-Closed .fitstripe{background:var(--closed)}
+  .trial-body{flex:1; min-width:0}
+  .trial-title-row{display:flex; justify-content:space-between; gap:12px 16px; align-items:flex-start; flex-wrap:wrap}
+  .trial h3{font-size:1.06rem; line-height:1.25}
+  .pills{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+  .pill{font-size:.71rem; font-weight:600; padding:3px 9px; border-radius:999px; letter-spacing:.02em; white-space:nowrap; border:1px solid transparent}
+  .pill.fit-High{background:var(--fit-high-bg); color:var(--fit-high)}
+  .pill.fit-Medium{background:var(--fit-med-bg); color:var(--fit-med)}
+  .pill.fit-Low{background:var(--fit-low-bg); color:var(--fit-low)}
+  .pill.fit-Closed{background:var(--fit-low-bg); color:var(--fit-low)}
+  .pill.phase{background:var(--surface-2); color:var(--ink-2); border-color:var(--border)}
+  .pill.region{background:var(--accent-soft); color:var(--accent-ink)}
+  .pill.status{display:inline-flex; align-items:center; gap:5px; background:var(--surface-2); color:var(--ink-2); border-color:var(--border)}
+  .pill.status .sd2{width:6px;height:6px;border-radius:50%}
+  .s-rec .sd2{background:var(--ok)} .s-soon .sd2{background:var(--soon)} .s-closed .sd2{background:var(--closed)}
+  .pill.ev{border-color:var(--border)}
+  .pill.ev-s4,.pill.ev-s5{background:var(--fit-high-bg); color:var(--fit-high)}
+  .pill.ev-s2,.pill.ev-s3{background:var(--fit-med-bg); color:var(--fit-med)}
+  .pill.ev-s0,.pill.ev-s1{background:var(--fit-low-bg); color:var(--fit-low)}
+  .pill.ev-caution{background:var(--flag-bg); color:var(--flag)}
+  .meter{display:inline-flex; gap:3px; vertical-align:middle; margin-left:2px}
+  .meter i{width:8px; height:8px; border-radius:50%; background:var(--border-strong); display:inline-block}
+  .meter i.on{background:currentColor}
+  .sub{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:7px 0 0; font-size:.83rem; color:var(--ink-muted)}
+  .mech-tag{background:var(--accent-soft); color:var(--accent-ink); font-weight:600; padding:2px 8px; border-radius:6px; font-size:.76rem}
+  .facts{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:10px 20px; margin:13px 0 0}
+  .fact .k{font-size:.7rem; text-transform:uppercase; letter-spacing:.07em; color:var(--ink-muted)}
+  .fact .val{font-size:.86rem; color:var(--ink); margin-top:1px}
+  .flagline{margin:11px 0 0; font-size:.83rem; color:var(--flag); display:flex; gap:7px; align-items:flex-start}
+  .flagline svg{flex:none; margin-top:2px}
+  .toggle{
+    margin:13px 0 0; background:none; border:1px solid var(--border); color:var(--ink-2);
+    border-radius:8px; padding:6px 12px; font-size:.8rem; cursor:pointer; display:inline-flex; align-items:center; gap:6px;
+  }
+  .toggle:hover{border-color:var(--border-strong); color:var(--ink)}
+  .toggle .caret{transition:transform .15s ease}
+  .trial.open .toggle .caret{transform:rotate(90deg)}
+  .detail{display:none; border-top:1px solid var(--border); padding:18px; background:var(--surface-2)}
+  .trial.open .detail{display:block}
+  .detail h4{margin:0 0 6px; font-size:.74rem; text-transform:uppercase; letter-spacing:.08em; color:var(--accent-ink); font-weight:700}
+  .detail .block{margin:0 0 16px}
+  .detail .block:last-child{margin-bottom:0}
+  .detail ul{margin:0; padding-left:19px}
+  .detail li{margin:4px 0; color:var(--ink-2)}
+  .detail p{margin:0; color:var(--ink-2)}
+  .dgrid{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+  @media (max-width:640px){.dgrid{grid-template-columns:1fr}}
+  .kv{font-size:.86rem; color:var(--ink-2)}
+  .kv b{color:var(--ink); font-weight:600}
+
+  .tablewrap{overflow-x:auto; border:1px solid var(--border); border-radius:var(--radius); background:var(--surface)}
+  table{border-collapse:collapse; width:100%; font-size:.84rem; min-width:640px}
+  th,td{text-align:left; padding:9px 12px; border-bottom:1px solid var(--border); vertical-align:top}
+  th{font-size:.72rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-muted); font-weight:600}
+  tr:last-child td{border-bottom:none}
+  td .mono{font-size:.8rem}
+
+  /* provider cards */
+  .region-head{margin:26px 0 4px; display:flex; align-items:baseline; gap:10px; flex-wrap:wrap}
+  .region-head h3{font-size:1.12rem}
+  .region-head .rc{font-size:.8rem; color:var(--ink-muted)}
+  .prov{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:16px 18px; margin-top:12px}
+  .prov.none{border-style:dashed; box-shadow:none; background:var(--surface-2)}
+  .prov-top{display:flex; justify-content:space-between; gap:12px; align-items:flex-start; flex-wrap:wrap}
+  .prov h4{margin:0; font-family:"Spectral",serif; font-size:1.04rem; font-weight:600}
+  .prov .loc{font-size:.82rem; color:var(--ink-muted); margin-top:2px}
+  .prov .tags{display:flex; gap:6px; flex-wrap:wrap}
+  .tag{font-size:.7rem; font-weight:600; padding:3px 8px; border-radius:999px; border:1px solid var(--border); color:var(--ink-2); background:var(--surface-2)}
+  .tag.peptide{background:var(--accent-soft); color:var(--accent-ink); border-color:transparent}
+  .tag.warn{background:var(--flag-bg); color:var(--flag); border-color:transparent}
+  .prov-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:10px 20px; margin-top:12px}
+  .prov-grid .k{font-size:.7rem; text-transform:uppercase; letter-spacing:.07em; color:var(--ink-muted)}
+  .prov-grid .v{font-size:.85rem; color:var(--ink); margin-top:1px}
+  .prov .unver{margin-top:12px; font-size:.83rem; color:var(--ink-2); border-left:3px solid var(--flag); padding:6px 0 6px 12px}
+  .prov .unver b{color:var(--ink)}
+
+  .checklist{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:8px 8px 8px 4px}
+  .checklist label{display:flex; gap:11px; padding:9px 12px; align-items:flex-start; font-size:.9rem; color:var(--ink-2); cursor:pointer; border-radius:8px}
+  .checklist label:hover{background:var(--surface-2)}
+  .checklist input{margin-top:3px; accent-color:var(--accent); flex:none}
+
+  .glossary{columns:2; column-gap:32px}
+  @media (max-width:640px){.glossary{columns:1}}
+  .glossary div{break-inside:avoid; margin:0 0 12px}
+  .glossary dt{font-weight:600; color:var(--ink); font-size:.87rem}
+  .glossary dd{margin:2px 0 0; color:var(--ink-2); font-size:.85rem}
+
+  footer{margin-top:56px; padding-top:20px; border-top:1px solid var(--border); font-size:.83rem; color:var(--ink-muted)}
+  footer a{color:var(--accent-ink)}
+  .src{font-size:.82rem; color:var(--ink-2)}
+  .src li{margin:4px 0}
+
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="topline">
+    <div>
+      <div class="eyebrow">Companion atlas &middot; one modality, in depth</div>
+      <h1>Neoantigen &amp; personalized peptide<br>vaccine atlas &mdash; RTK II glioblastoma</h1>
+    </div>
+    <div style="text-align:right; display:flex; flex-direction:column; gap:8px; align-items:flex-end">
+      <button class="theme-btn" id="themeBtn" type="button">Theme</button>
+      <div class="stamp">Data pulled <b>9&nbsp;Sep&nbsp;2026</b><br>Re-verify every entry before acting</div>
+    </div>
+  </div>
+
+  <p class="lede">
+    A focused companion to the <a href="index.html">RTK II Glioblastoma Trial Finder</a>, covering a single approach:
+    a therapeutic vaccine built from the patient&rsquo;s <b>own tumour mutations</b> (neoantigens), or from a
+    per-patient selection of tumour-antigen peptides. Same patient as the main dashboard &mdash; a treatment-na&iuml;ve
+    48-year-old whose 1.2&nbsp;cm <b>IDH-wildtype, methylation-class RTK&nbsp;II</b> glioblastoma was gross-totally
+    resected. <b>Section&nbsp;1</b> is trials run by hospitals and institutions the patient could plausibly qualify for,
+    worldwide. <b>Section&nbsp;2</b> is private providers around the world that sell this as a paid service outside a
+    registered trial.
+  </p>
+
+  <div class="snapshot">
+    <span class="chip"><span class="dot"></span><b>Diagnosis</b>&nbsp;GBM, IDH-wildtype, methylation class RTK&nbsp;II</span>
+    <span class="chip"><b>Age</b>&nbsp;48</span>
+    <span class="chip"><b>Surgery</b>&nbsp;1.2&nbsp;cm lesion, gross-total resection</span>
+    <span class="chip"><b>Status</b>&nbsp;Newly diagnosed, treatment-na&iuml;ve</span>
+    <span class="chip"><b>MGMT</b>&nbsp;status not stated &mdash; gates several entries below</span>
+  </div>
+
+  <div class="disclaimer" style="border-left-color:var(--accent); margin-top:14px">
+    <b>Does this delay standard care?</b> Usually no. Designing and GMP-synthesising a personalized vaccine takes
+    roughly <b>6&ndash;12 weeks</b>. Standard chemoradiation (the Stupp protocol) starts ~4&ndash;6 weeks post-op and
+    runs ~6 weeks, then a break, then adjuvant temozolomide. Almost every programme here vaccinates <b>during the
+    adjuvant window, after chemoradiation</b> (NeoVax: first dose within 12 weeks of surgery, after radiotherapy;
+    ZSNeo-DC: after concurrent chemoradiation is complete). So the vaccine is generally additive, not a substitute or a
+    delay &mdash; but the tumour tissue needed to build it had to be preserved <b>at surgery</b>. For an
+    already-resected patient the first question is what was banked (see &ldquo;How it is made&rdquo; below).
+  </div>
+
+  <div class="disclaimer">
+    <b>This is an information aid, not medical advice.</b> It is assembled from public registry records, published
+    literature, and clinic marketing, and may contain errors or be out of date. It does not replace the treating
+    neuro-oncology team or a molecular tumour board, and it cannot tell you whether a specific person is eligible &mdash;
+    only a trial&rsquo;s investigators can. Nothing here is an endorsement, and nothing here predicts an outcome for any
+    individual. Verify every trial on <a href="https://clinicaltrials.gov" target="_blank" rel="noopener">ClinicalTrials.gov</a>
+    and with the study team. Nothing here should delay standard care that the treating team recommends.
+  </div>
+</header>
+
+<!-- ============ HOW IT IS MADE ============ -->
+<section id="howmade">
+  <div class="sec-head"><h2>How a personalized neoantigen peptide vaccine is made</h2>
+  <p>The core idea: a glioblastoma carries somatic mutations found in no normal cell. Some mutated protein fragments
+  bind the patient&rsquo;s HLA molecules and can be seen by T&nbsp;cells &mdash; these are <b>neoantigens</b>. Sequence
+  the tumour, predict which mutated fragments will be presented, synthesise those peptides, and inject them with an
+  immune adjuvant to raise a tumour-specific T-cell response.</p></div>
+
+  <div class="explainer">
+    <div class="flow">
+      <div class="step"><div class="sn">1 &mdash; Tissue</div><div class="st">Tumour + blood</div><div class="sd">Fresh-frozen tumour (or FFPE with high tumour content) from the resection, plus a blood sample for the patient&rsquo;s normal genome and HLA type.</div></div>
+      <div class="step"><div class="sn">2 &mdash; Sequence</div><div class="st">Exome / RNA</div><div class="sd">Whole-exome (&plusmn; RNA) sequencing of tumour vs normal to call the tumour&rsquo;s somatic mutations and check they are expressed.</div></div>
+      <div class="step"><div class="sn">3 &mdash; Predict</div><div class="st">Neoepitopes</div><div class="sd">Algorithms rank mutated peptides by predicted HLA class&nbsp;I/II binding. A shortlist (often 10&ndash;20, up to ~40 for DNA constructs) is chosen.</div></div>
+      <div class="step"><div class="sn">4 &mdash; Manufacture</div><div class="st">GMP peptides</div><div class="sd">Synthetic long peptides made and released under GMP &mdash; the &ldquo;printing&rdquo; step &mdash; then formulated with an adjuvant (poly-ICLC, Montanide, or similar). ~6&ndash;12 weeks total.</div></div>
+      <div class="step"><div class="sn">5 &mdash; Vaccinate</div><div class="st">Prime + boost</div><div class="sd">A priming series then periodic boosts, usually in the post-chemoradiation adjuvant window, frequently paired with a checkpoint inhibitor.</div></div>
+    </div>
+    <ul>
+      <li><strong>Delivery format varies.</strong> The same neoantigen shortlist can be given as free synthetic peptides, as
+      an mRNA or DNA construct encoding them, or pulsed onto the patient&rsquo;s dendritic cells. This atlas covers all
+      four, tagged by format; classic &ldquo;peptide vaccines&rdquo; are the free-peptide version.</li>
+      <li><strong>Personalized peptide vaccination (PPV)</strong> is a related but different Japanese method: a fixed
+      pool of ~30 mostly <em>shared</em> tumour-antigen peptides, from which 2&ndash;4 are chosen per patient by HLA-A
+      type and pre-existing antibody reactivity. It is not built from the patient&rsquo;s own mutations.</li>
+      <li><strong>Shared-antigen peptide vaccines</strong> (survivin/SurVaxM, EGFRvIII/rindopepimut, telomerase) target
+      one fixed antigen for everyone. Listed in an appendix for comparison, not as personalized entries.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ RTK II CONTEXT ============ -->
+<section id="rtk2">
+  <div class="sec-head"><h2>How RTK II / IDH-wildtype changes the picture</h2></div>
+  <div class="explainer">
+    <ul>
+      <li><strong>Glioblastoma is a low-mutation tumour.</strong> Typically ~1&ndash;2 mutations/Mb and only ~30&ndash;50
+      coding mutations &mdash; few candidate neoantigens. Some patients simply cannot get a &ge;10-peptide vaccine
+      (the NeoVax feasibility bar). Exceptions with many more targets: constitutional mismatch-repair deficiency, a POLE
+      mutation, or (later) temozolomide-induced hypermutation at recurrence. Being treatment-na&iuml;ve now means no
+      TMZ-driven hypermutation &mdash; both a missing boost and a cleaner baseline.</li>
+      <li><strong>RTK II is the EGFR family.</strong> EGFR amplification and often EGFRvIII &mdash; and EGFRvIII is a
+      genuine <em>shared</em> tumour-specific antigen. But the EGFRvIII peptide vaccine <b>rindopepimut failed a phase&nbsp;3</b>
+      (ACT&nbsp;IV): the tumour recurred EGFRvIII-negative. Worth testing EGFRvIII status; EGFRvIII CAR-T / bispecifics
+      are in the <a href="index.html">main dashboard</a>, not here.</li>
+      <li><strong>Steroids blunt the response.</strong> In both NeoVax and the Washington University neoantigen DNA-vaccine
+      trial, the patients on dexamethasone were the poor immune responders. Minimising steroids around vaccination
+      matters.</li>
+      <li><strong>Chemoradiation causes lymphopenia.</strong> Radiation + temozolomide drop CD4 counts; timing vaccination
+      to lymphocyte recovery is part of most designs.</li>
+      <li><strong>Checkpoint monotherapy has failed in newly-diagnosed GBM</strong> (CheckMate-498/-548). Vaccines are
+      usually combined with a checkpoint inhibitor anyway, to counter the immunosuppressive microenvironment &mdash; the
+      combination is unproven for survival but mechanistically motivated.</li>
+      <li><strong>Methylation subclass &ldquo;RTK II&rdquo; is almost never an eligibility criterion.</strong> Matching keys
+      on IDH-wildtype status, MGMT promoter methylation, EGFR/EGFRvIII, HLA type, mutational burden, and whether usable
+      tumour tissue was banked.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ SUMMARY ============ -->
+<section id="summary">
+  <div class="sec-head"><h2>At a glance</h2>
+  <p>Six institutional programmes are open or about to open somewhere in the world and are at least plausibly relevant to
+  a newly-diagnosed, fully-resected, IDH-wildtype patient. Four more &mdash; the platforms this whole field is built on
+  &mdash; are between trials and listed for context. Private providers are concentrated in Germany, Japan and China; the
+  Montana and Mexico leads did not hold up (see Section&nbsp;2).</p></div>
+
+  <div class="tiles">
+    <div class="tile"><div class="n tnum">6</div><div class="l">Institutional trials open / about to open</div></div>
+    <div class="tile"><div class="n tnum">4</div><div class="l">Landmark platforms, between trials</div></div>
+    <div class="tile"><div class="n tnum">1</div><div class="l">Trial that explicitly requires IDH-wildtype (matches)</div></div>
+    <div class="tile"><div class="n tnum">2</div><div class="l">Gated on MGMT-unmethylated status</div></div>
+    <div class="tile"><div class="n tnum">5</div><div class="l">Would require international travel</div></div>
+    <div class="tile"><div class="n tnum">3</div><div class="l">Private providers with any published GBM data</div></div>
+  </div>
+
+  <div class="charts">
+    <div class="chartcard"><h3>Section 1 entries by vaccine format</h3><div id="chartFmt"></div></div>
+    <div class="chartcard"><h3>Section 1 entries by region</h3><div id="chartRegion"></div></div>
+  </div>
+</section>
+
+<!-- ============ SECTION 1: INSTITUTIONAL TRIALS ============ -->
+<section id="trials">
+  <div class="sec-head"><h2>Section 1 &mdash; Institutional trials the patient could qualify for</h2>
+  <p>Hospital-, university- and cooperative-group trials of a personalized neoantigen vaccine (peptide, mRNA, DNA or
+  dendritic-cell format), a personalized peptide selection, or &mdash; flagged as such &mdash; a closely related
+  shared-antigen peptide vaccine. Worldwide. Each entry carries a <b>fit</b> label (the compiler&rsquo;s triage guess,
+  not an eligibility ruling) and an <b>evidence score</b> using the <a href="index.html">main dashboard&rsquo;s</a> rubric:
+  5&nbsp;= positive randomised phase&nbsp;3 &middot; 4&nbsp;= positive randomised phase&nbsp;2 &middot; 3&nbsp;= single-arm
+  survival signal vs historical control &middot; 2&nbsp;= early biological/radiographic signal &middot; 1&nbsp;=
+  first-in-human &middot; &#9888;&nbsp;= a prior pivotal trial of this approach was negative.</p></div>
+
+  <div class="controls" id="controls">
+    <div class="ctl"><label for="fFmt">Vaccine format</label>
+      <select id="fFmt"><option value="">All</option></select></div>
+    <div class="ctl"><label for="fRegion">Region</label>
+      <select id="fRegion"><option value="">All</option></select></div>
+    <div class="ctl"><label for="fFit">Fit</label>
+      <select id="fFit"><option value="">All</option><option>High</option><option>Medium</option><option>Low</option></select></div>
+    <div class="ctl" style="flex:1; min-width:190px"><label for="fSearch">Search</label>
+      <input id="fSearch" type="search" placeholder="drug, sponsor, city, NCT&hellip;"></div>
+    <div class="ctl"><label for="fSort">Sort</label>
+      <select id="fSort">
+        <option value="fit">Fit, then evidence</option>
+        <option value="evidence">Evidence score</option>
+        <option value="name">Name</option>
+      </select></div>
+    <button class="reset" id="resetBtn" type="button">Reset</button>
+  </div>
+  <div class="count-line" id="countLine"></div>
+  <div id="trialList"></div>
+
+  <div class="sec-head" style="margin-top:34px"><h3>Landmark platforms &mdash; not currently enrolling</h3>
+  <p>The trials that established this approach in glioblastoma. All are closed or between studies; listed so the
+  field&rsquo;s actual evidence is visible, and as a watch-list for successor trials at Dana-Farber, Washington
+  University and the German groups.</p></div>
+  <div id="landmarkList"></div>
+</section>
+
+<!-- ============ APPENDIX: shared-antigen ============ -->
+<section id="shared">
+  <div class="sec-head"><h3>Appendix &mdash; shared / off-the-shelf tumour-antigen peptide vaccines</h3>
+  <p>Not personalized &mdash; one fixed antigen for every patient &mdash; but the nearest neighbours to this modality,
+  and some are open. Included for comparison only.</p></div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Vaccine</th><th>Antigen</th><th>Registry</th><th>Status &amp; setting</th><th>Where</th><th>Reported so far</th><th>Relevance here</th></tr></thead>
+      <tbody id="sharedBody"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ RECURRENT reference ============ -->
+<section id="recurrent">
+  <div class="sec-head"><h3>For later reference &mdash; recurrent-disease trials</h3>
+  <p>Personalized-vaccine trials that enrol only at progression/recurrence. Not options now; useful if the disease
+  returns.</p></div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Trial</th><th>Registry</th><th>What it is</th><th>Where</th></tr></thead>
+      <tbody id="recBody"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ SECTION 2: PRIVATE PROVIDERS ============ -->
+<section id="private">
+  <div class="sec-head"><h2>Section 2 &mdash; Private providers using this technique, worldwide</h2>
+  <p>Clinics and companies that sell a neoantigen or personalized peptide vaccine <b>as a paid service, outside a
+  registered clinical trial</b>. This is a different category from Section&nbsp;1: <b>not FDA- or EMA-approved as
+  effective, not randomised, evidence is a case series or none, and it is paid out of pocket</b> (commonly tens of
+  thousands of USD/EUR, sometimes &gt;USD&nbsp;100,000). Included because they were asked for &mdash; not as a
+  recommendation.</p></div>
+
+  <div class="disclaimer" style="border-left-color:var(--flag)">
+    <b>Legal-to-sell and proven-to-work are different questions.</b> Germany&rsquo;s named-patient / &ldquo;individual
+    healing attempt&rdquo; rules and Japan&rsquo;s regenerative-medicine safety framework permit these treatments; they
+    do <b>not</b> establish efficacy. None of the providers below has published randomised outcome data for
+    glioblastoma. Independent reviewers have specifically criticised delivering personalized vaccines to GBM patients
+    outside trials (selection bias, no controls, cost, conflicts of interest &mdash; see the <i>Neuro-Oncology</i> 2025
+    commentary in Sources). Discuss any of this with the treating team before travel that could conflict with
+    standard-of-care timing.
+  </div>
+
+  <div id="providerZones"></div>
+
+  <div class="sec-head" style="margin-top:26px"><h3>Before contacting or paying any provider</h3></div>
+  <div class="checklist">
+    <label><input type="checkbox">Ask for the actual deliverables: the tumour/normal sequencing report, the ranked
+      neoepitope list, the number of peptides, and a Certificate of Analysis (identity, purity, sterility, endotoxin)
+      for each synthesised peptide.</label>
+    <label><input type="checkbox">Ask for GBM-specific outcome data &mdash; not all-comers, not testimonials &mdash; ideally
+      with an independent (non-provider) analysis, and ask how many patients were sequenced but never vaccinated.</label>
+    <label><input type="checkbox">Get a complete, itemised, all-inclusive written quote before travelling: diagnostics,
+      manufacturing, each vaccination, immune monitoring, adjuvant/checkpoint drugs, and any mandatory add-ons.</label>
+    <label><input type="checkbox">Confirm which country&rsquo;s framework applies, what it actually reviews (safety vs
+      efficacy), how adverse events are handled, and what recourse exists.</label>
+    <label><input type="checkbox">Call your own insurer&rsquo;s international / out-of-network line first &mdash; do not rely
+      on the provider&rsquo;s claim that reimbursement is possible; get it in writing and pre-verified.</label>
+    <label><input type="checkbox">Bring it to the treating neuro-oncology team and molecular tumour board before paying,
+      and confirm it will not delay or conflict with standard care or a trial you could otherwise join.</label>
+  </div>
+</section>
+
+<!-- ============ QUESTIONS ============ -->
+<section id="questions">
+  <div class="sec-head"><h2>Questions to bring to the tumour board</h2></div>
+  <div class="checklist">
+    <label><input type="checkbox">Was <b>fresh-frozen tumour</b> banked at my resection? Is the FFPE block&rsquo;s tumour
+      content high enough (&gt;~20&ndash;30%) for reliable exome sequencing and neoantigen calling?</label>
+    <label><input type="checkbox">What is my <b>tumour mutational burden</b> and predicted neoantigen count? Any
+      mismatch-repair deficiency or hypermutator signature?</label>
+    <label><input type="checkbox">What is my <b>HLA class I and II type</b>? (Needed for PPV and for good epitope
+      prediction.)</label>
+    <label><input type="checkbox">Have <b>EGFRvIII</b> and <b>MGMT promoter methylation</b> been tested? (They gate several
+      trials below.)</label>
+    <label><input type="checkbox">Can a neoantigen vaccine be given in the <b>post-chemoradiation adjuvant window</b>
+      without delaying the Stupp protocol?</label>
+    <label><input type="checkbox">What <b>steroid dose</b> am I likely to need, and can it be minimised around
+      vaccination?</label>
+    <label><input type="checkbox">Is a <b>domestic successor trial</b> (a NeoVax or Washington University follow-on) about
+      to open that would be preferable to travelling?</label>
+    <label><input type="checkbox">How would enrolling in a vaccine trial now affect my <b>eligibility for other options at
+      recurrence</b>?</label>
+  </div>
+</section>
+
+<!-- ============ GLOSSARY ============ -->
+<section id="glossary">
+  <div class="sec-head"><h2>Glossary</h2></div>
+  <dl class="glossary">
+    <div><dt>Neoantigen</dt><dd>A protein fragment from a tumour&rsquo;s own somatic mutation, absent from normal cells &mdash; the target of a personalized vaccine.</dd></div>
+    <div><dt>Neoepitope</dt><dd>The specific short piece of a neoantigen predicted to bind the patient&rsquo;s HLA and be seen by a T cell.</dd></div>
+    <div><dt>TMB (tumour mutational burden)</dt><dd>Mutations per megabase. GBM is usually low (~1&ndash;2/Mb), which limits how many neoantigens are available.</dd></div>
+    <div><dt>HLA type</dt><dd>The individual set of molecules that present peptides to T cells. Determines which neoepitopes can work and is required for PPV.</dd></div>
+    <div><dt>Synthetic long peptide (SLP)</dt><dd>A ~20&ndash;30-amino-acid synthetic peptide spanning a neoepitope; the usual building block of a peptide vaccine.</dd></div>
+    <div><dt>Poly-ICLC / Montanide</dt><dd>Immune adjuvants mixed with the peptides to provoke a stronger, more durable T-cell response.</dd></div>
+    <div><dt>Personalized peptide vaccination (PPV)</dt><dd>Japanese method: 2&ndash;4 peptides chosen per patient from a fixed pool of ~30 shared tumour antigens, by HLA-A type and pre-existing IgG. Not neoantigen-based.</dd></div>
+    <div><dt>NeoVax</dt><dd>The Dana-Farber personalized neoantigen synthetic-long-peptide vaccine (up to ~20 peptides + poly-ICLC); the reference platform.</dd></div>
+    <div><dt>APVAC (GAPVAC-101)</dt><dd>A two-part personalized vaccine (APVAC1 = pre-manufactured warehouse peptides; APVAC2 = truly patient-specific) tested by the German glioma group.</dd></div>
+    <div><dt>Named-patient / individueller Heilversuch</dt><dd>German legal route to give an unlicensed, individually-made treatment to one patient at their own cost &mdash; a safety/consent framework, not an efficacy approval.</dd></div>
+    <div><dt>Regenerative Medicine Act (Japan)</dt><dd>Requires clinics offering cell/immunotherapy to notify and meet safety standards; reviews safety, not whether the treatment works.</dd></div>
+    <div><dt>EGFRvIII</dt><dd>A tumour-specific EGFR rearrangement common in RTK II GBM. A shared neoantigen &mdash; but the rindopepimut vaccine against it failed a phase 3 by antigen escape.</dd></div>
+    <div><dt>IDH-wildtype</dt><dd>No IDH1/IDH2 mutation; defines the most aggressive adult GBM group. Given here &mdash; and it makes the IDH1-R132H peptide vaccine (NOA-16) inapplicable.</dd></div>
+  </dl>
+</section>
+
+<footer>
+  <p><b>How this was built.</b> Trials: ClinicalTrials.gov API v2, queried <b>9&nbsp;September&nbsp;2026</b>, condition
+  &ldquo;glioblastoma&rdquo;/&ldquo;glioma&rdquo;, intervention terms <span class="mono">neoantigen</span>,
+  <span class="mono">peptide vaccine</span>, <span class="mono">personalized peptide</span>,
+  <span class="mono">mRNA/DNA vaccine</span>, cross-checked against EU/Japan/China registry mentions in the literature.
+  No geography filter (the main dashboard is US-only; this companion is worldwide because the field is heavily European
+  and Asian). Effectiveness notes are from peer-reviewed papers and society abstracts; first-in-human entries are marked
+  as having no efficacy data. &ldquo;Fit&rdquo; and &ldquo;evidence score&rdquo; are the compiler&rsquo;s, for triage
+  only. Private-provider entries are compiled from clinic websites, company registries, news and regulator databases;
+  every effectiveness claim is attributed and each card states what is unverified.</p>
+  <p style="margin-top:12px"><b>Key sources.</b></p>
+  <ul class="src">
+    <li>NeoVax GBM phase I &mdash; Keskin et al., <a href="https://pubmed.ncbi.nlm.nih.gov/30568305/" target="_blank" rel="noopener">Nature 2019</a> (neoantigen-specific intratumoural T cells; dexamethasone abrogated responses; no survival claim).</li>
+    <li>Personalized neoantigen DNA vaccine (GNOS-PV01), MGMT-unmethylated GBM, phase 1 (GT-20) &mdash; <a href="https://www.nature.com/articles/s43018-026-01163-w" target="_blank" rel="noopener">Nature Cancer 2026</a>; <a href="https://siteman.wustl.edu/personalized-vaccine-shows-promise-against-aggressive-brain-cancer/" target="_blank" rel="noopener">Siteman summary</a>.</li>
+    <li>GAPVAC-101 (APVAC1+APVAC2) &mdash; Hilf et al., Nature 2019; summarised on the <a href="index.html#context">main dashboard</a>.</li>
+    <li>Real-world personalized peptide vaccine series, 173 GBM patients (CeGaT / cecava, T&uuml;bingen) &mdash; <a href="https://www.nature.com/articles/s41467-024-51315-8" target="_blank" rel="noopener">Nature Communications 2024</a>.</li>
+    <li>Critical commentary on vaccinating GBM patients outside trials &mdash; <a href="https://academic.oup.com/neuro-oncology/article/27/1/302/7904860" target="_blank" rel="noopener">Neuro-Oncology 2025, &ldquo;Lessons ignored?&rdquo;</a> (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11726247/" target="_blank" rel="noopener">PMC</a>).</li>
+    <li>CeGaT CancerNeo diagnostic + vaccine pathway &mdash; <a href="https://cegat.com/diagnostics/tumor-diseases/cancerneo/" target="_blank" rel="noopener">cegat.com</a>; expanded-access listing <a href="https://clinicaltrials.gov/study/NCT05356312" target="_blank" rel="noopener">NCT05356312</a>.</li>
+    <li>Personalized peptide vaccination (PPV) method &mdash; <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11029009/" target="_blank" rel="noopener">Noguchi/Itoh review, PMC</a>; Brightpath / National Cancer Center Japan <a href="https://www.ncc.go.jp/en/information/press_release/2017/1027/index.html" target="_blank" rel="noopener">neoantigen collaboration</a>.</li>
+    <li>NEO Clinic Tokyo neoantigen peptide vaccine service &mdash; <a href="https://neoclinic-en.jp/treatment/neoantigen/" target="_blank" rel="noopener">neoclinic-en.jp</a>.</li>
+    <li>iNeo-Vac-P01 personalized neoantigen peptide vaccine (Zhejiang University, Hangzhou) &mdash; safety/immunogenicity across solid tumours, and RFA + vaccine combination, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9559398/" target="_blank" rel="noopener">PMC</a>.</li>
+    <li>&ldquo;Automated Flow Synthesis of Tumor Neoantigen Peptides&rdquo; (the peptide-&ldquo;printing&rdquo; technology, academic) &mdash; <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6971261/" target="_blank" rel="noopener">PMC 2020</a>.</li>
+    <li>Each trial links to its own ClinicalTrials.gov record &mdash; definitive for status, sites, and eligibility.</li>
+  </ul>
+  <p style="margin-top:14px">Generated with Claude Code. Companion to the RTK II Glioblastoma Trial Finder. Not
+  affiliated with any sponsor, clinic, or institution named.</p>
+</footer>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+
+/* ---------------- SECTION 1: open / upcoming trials ---------------- */
+const TRIALS = [
+ {
+  id:"NCT07365280", name:"ZSNeo-DC1.1 — neoantigen-pulsed dendritic-cell vaccine + temozolomide",
+  fmt:"Dendritic-cell (neoantigen)", region:"China", country:"China",
+  phase:"Phase 2", status:"Not yet recruiting", statusClass:"s-soon",
+  sponsor:"ZSky Biotech Inc", n:"78", manuf:"Neoantigen identification from tumour + blood before randomisation; manufacturing time not stated (DC products typically 3–6 weeks after apheresis).",
+  design:"Multicentre, open-label, randomised 1:1 to ZSNeo-DC1.1 (1×10⁷ cells/dose, 6 subcutaneous injections during adjuvant temozolomide) + standard temozolomide, vs standard adjuvant temozolomide alone. Neoantigens identified per patient; autologous dendritic cells pulsed with them.",
+  molec:"<b>IDH1/IDH2 wild-type explicitly required</b> — the one trial here whose molecular criterion directly matches this case. MGMT not restricted. Needs sufficient tumour + blood for neoantigen identification and adequate venous access for PBMC collection.",
+  tissue:"Adequate banked tumour tissue for sequencing/neoantigen identification required. Confirm what was preserved from the 1.2 cm resection.",
+  window:"Enrol after surgery <b>and</b> after completing standard concurrent chemoradiation — a more forgiving timeline than the pre-chemoradiation vaccine trials, because the vaccine is given during adjuvant temozolomide.",
+  fit:"Medium", fitWhy:"Best molecular match on paper (IDH-wildtype required), randomised with a proper control, vaccinates in the adjuvant window so it does not compete with the Stupp protocol. Against it: not yet open (planned start Jan 2026), sponsor and contact are China-based so likely China-only sites — international enrolment and tissue logistics would be the hard part.",
+  ev:{s:2,l:"Early-stage platform; a sibling ZSNeo-DC1.1 trial in recurrent high-grade glioma (NCT06253234) is recruiting, but no glioblastoma survival data are published yet.",links:[["Sibling recurrent-glioma trial NCT06253234","https://clinicaltrials.gov/study/NCT06253234"]]},
+  incl:["Age 18–75; histologically confirmed newly diagnosed glioblastoma (WHO grade 4)","IDH1/IDH2 wild-type","Post-surgery and standard concurrent chemoradiation completed","KPS 50–100; life expectancy >3 months","Sufficient tumour/blood for neoantigen identification; adequate venous access for PBMC collection"],
+  excl:["Unsuitable for standard temozolomide chemoradiation","Prior interventional trial within 4 weeks; carmustine wafers within 6 months","Active autoimmune disease or systemic immunosuppression within 30 days","Active HIV / hepatitis B / hepatitis C / syphilis","Uncontrolled cardiovascular, metabolic or systemic disease"],
+  epPrimary:"Progression-free survival (RANO 2.0, independent review).",
+  epSecondary:"Overall survival; survival rates; disease control / best overall response / clinical benefit rate; investigator-assessed PFS; safety.",
+  contact:"Xiaomin Ma · +86 518-82342973 · xiaomin.ma@zskybio.com",
+  dates:"Planned start Jan 2026 · primary completion Dec 2028",
+  flags:["Not yet recruiting; sites not posted — likely China-only. Contact the sponsor to ask about international patients and whether tissue can be shipped."]
+ },
+ {
+  id:"NCT04573140", name:"RNA-LP — autologous total-tumour mRNA lipid-particle vaccine",
+  fmt:"mRNA (autologous tumour)", region:"United States", country:"United States",
+  phase:"Phase 1", status:"Recruiting", statusClass:"s-rec",
+  sponsor:"University of Florida (Sayour / Mitchell lab)", n:"28 (adult stratum)",
+  manuf:"Total tumour mRNA amplified from the patient's tumour + pp65-LAMP mRNA, packaged in DOTAP liposomes. Needs viable/fresh tumour to amplify RNA.",
+  design:"Non-randomised, open-label, two strata (adult GBM; paediatric HGG). Three IV vaccines every 2 weeks, then up to 12 monthly adjuvant doses (15 total). Personalized to the individual tumour's transcriptome rather than to a defined neoepitope list.",
+  molec:"<b>Requires MGMT &ldquo;low-level or unmethylated&rdquo;; MGMT-methylated tumours are excluded.</b> Newly diagnosed de novo GBM (WHO grade 4). Residual post-surgical disease &le;3 cm allowed. Age &ge;21.",
+  tissue:"Fresh / viable tumour needed to amplify tumour mRNA — archival FFPE alone is not enough. Confirm viable tissue or an RNA-grade fresh-frozen sample was banked.",
+  window:"After surgery; the design integrates with standard radiation + temozolomide. Adult stratum enrolment target is small (n=28).",
+  fit:"Low–Medium", fitWhy:"A real domestic (US) option and the leading autologous-mRNA programme — but conditional on MGMT status: if the tumour is MGMT-methylated this trial is closed to the patient. Also needs viable tumour tissue and is a single-centre-heavy phase 1.",
+  ev:{s:2,l:"A 2024 report described rapid, marked immune activation within days of the first dose in a small first-in-human GBM cohort; survival data immature.",links:[["UF RNA-LP program overview","https://clinicaltrials.gov/study/NCT04573140"]]},
+  incl:["Age ≥21; histologically confirmed newly diagnosed de novo GBM (WHO grade 4)","MGMT low-level or unmethylated","Residual post-surgical disease burden ≤3 cm","KPS ≥60"],
+  excl:["MGMT-methylated tumour","Recurrent, multifocal or metastatic glioma; gliomatosis cerebri","Autoimmune disease requiring immunosuppression","HIV / hepatitis B or C seropositive","Prior invasive malignancy unless disease-free ≥3 years"],
+  epPrimary:"Manufacturing feasibility; safety; maximum tolerated dose.",
+  epSecondary:"Immunological and radiographic response; survival (exploratory).",
+  contact:"Marcia Hodik · 352-273-5519 · wells-BTC@ufl.edu",
+  dates:"Started Dec 2021 · primary completion Jul 2027",
+  flags:["MGMT-methylated tumours are excluded — confirm MGMT status before pursuing this.","Needs viable/fresh tumour tissue for RNA amplification."]
+ },
+ {
+  id:"NCT06622434", name:"PTPRZ1 / TERT peptide vaccine, adjuvant to chemoradiation",
+  fmt:"Shared-antigen peptide (HLA-selected)", region:"France", country:"France",
+  phase:"Phase 1/2a", status:"Recruiting", statusClass:"s-rec",
+  sponsor:"Assistance Publique – Hôpitaux de Paris (PI A. Carpentier)", n:"35",
+  manuf:"Off-the-shelf peptides against two glioma-associated antigens (PTPRZ1, TERT) — no per-patient synthesis; &ldquo;personalisation&rdquo; is by HLA type and antigen expression.",
+  design:"Single-arm, open-label. Priming at day 0, weeks 2/4/6; boost every 2 months until progression, toxicity, or 12 months. Immunisations begin 4 weeks after radiotherapy, during the 6-month adjuvant temozolomide phase.",
+  molec:"Histologically confirmed glioblastoma; IDH-mutant grade 4 astrocytoma excluded (so IDH-wildtype fits). <b>Phase 1 requires HLA-A2 positive and PTPRZ1 expression in the tumour.</b> Retrospective TERT-promoter and MGMT testing on archival tissue. Steroids must be &le;10 mg/day prednisone-equivalent.",
+  tissue:"Standard archival tissue is sufficient for the required biomarker testing.",
+  window:"Starts 28–45 days after chemoradiation completion — adjuvant window, no conflict with the Stupp protocol.",
+  fit:"Medium", fitWhy:"Open now, adjuvant-window, and standard archival tissue is enough — practically the easiest European entry to screen for. Two gates: HLA-A2 positivity and PTPRZ1 tumour expression (Phase 1 cohort), and travel to Paris or Marseille. It targets shared antigens, not the patient's own mutations.",
+  ev:{s:2,l:"TERT is the target of the UCPVax telomerase-vaccine programme, which has phase 1/2 immunogenicity and some efficacy signal in other settings; this specific PTPRZ1/TERT construct is first-in-human in GBM.",links:[["UCPVax telomerase vaccine (recurrent GBM, completed) NCT04280848","https://clinicaltrials.gov/study/NCT04280848"]]},
+  incl:["Age 18–75; histologically confirmed glioblastoma","Concurrent radiotherapy (≥45 Gy) + temozolomide completed 28–45 days earlier","KPS ≥60%","Phase 1 only: HLA-A2 positive and PTPRZ1 tumour expression","Archival tumour available for TERT-promoter and MGMT testing"],
+  excl:["IDH-mutant grade 4 astrocytoma","Extracranial metastatic or leptomeningeal disease","Steroids >10 mg/day prednisone-equivalent","Autoimmune disease (lupus, RA, IBD); systemic immunosuppression","Prior bevacizumab or VEGF antagonist; carmustine wafers"],
+  epPrimary:"Phase 1: maximum tolerated dose / recommended phase 2a dose. Phase 2a: anti-TERT-specific T-cell response at 2 months.",
+  epSecondary:"Immunological safety; anti-PTPRZ1/anti-TERT T-cell evolution; PFS (RANO 2.0); overall survival; quality of life; cardiac safety.",
+  contact:"Pr Antoine Carpentier · +33 1 71 20 74 66 · antoine.carpentier@aphp.fr",
+  dates:"Started Nov 2024 · primary completion Mar 2028",
+  flags:["Phase 1 cohort needs HLA-A2 positivity and PTPRZ1 expression — confirm both before travelling.","Shared-antigen vaccine, not built from the patient's own neoantigens."]
+ },
+ {
+  id:"NCT04523688", name:"Autologous dendritic cells loaded with autologous tumour homogenate",
+  fmt:"Dendritic-cell (whole-tumour)", region:"Italy", country:"Italy",
+  phase:"Phase 2", status:"Recruiting (verify — primary completion listed Jul 2025)", statusClass:"s-soon",
+  sponsor:"IRST Dino Amadori IRCCS, Meldola", n:"28",
+  manuf:"Dendritic cells (10×10⁶/dose) loaded with a homogenate of the patient's own tumour — whole-tumour antigens, not a defined neoepitope list. Needs fresh tumour + leukapheresis.",
+  design:"Single-arm, open-label, single-centre. Intradermal DC vaccine + adjuvant temozolomide (150 then 200 mg/m², q28).",
+  molec:"Histologically confirmed monofocal glioblastoma. <b>Near-complete resection (&le;5 mL residual tumour) required</b> — matches a gross-total resection. IDH/MGMT not restricted. Steroids must be &le;10 mg prednisone-equivalent.",
+  tissue:"Fresh viable tumour for homogenate preparation, plus leukapheresis. Confirm fresh tissue was banked.",
+  window:"After surgery, alongside adjuvant temozolomide.",
+  fit:"Medium", fitWhy:"Its resection and steroid criteria fit this patient well, and it is open to any IDH/MGMT status. Against it: a single Italian centre, small, and the registry primary-completion date has passed — confirm it is still enrolling before counting on it. Whole-tumour DC vaccine, not neoantigen-defined.",
+  ev:{s:2,l:"DC + tumour-lysate/homogenate vaccines have a long phase 1/2 track record in GBM with occasional survival signals but no positive randomised trial (DCVax-L remains contested).",links:[["Context: DCVax-L discussion on the main dashboard","index.html#context"]]},
+  incl:["Age ≥18; histologically confirmed monofocal glioblastoma","Near-complete resection (≤5 mL residual tumour volume)","KPS ≥70% or ECOG 0–1; life expectancy >12 weeks","Suitable for leukapheresis (negative HIV/HBV/HCV/syphilis)"],
+  excl:["Systemic steroids >10 mg prednisone-equivalent; immunodeficiency","Active autoimmune disease treated within 2 years","Prior cancer vaccine","Other malignancy within 5 years (minor skin/cervical in situ exceptions)"],
+  epPrimary:"Clinical activity; treatment-emergent adverse events.",
+  epSecondary:"In vivo immune response; overall survival; HLA class I/II characterisation.",
+  contact:"Dr Oriana Nanni · +39 0543 739266 · oriana.nanni@irst.emr.it",
+  dates:"Started Mar 2025 · primary completion listed Jul 2025 (verify current status)",
+  flags:["Registry primary-completion date has passed — confirm the trial is still open before contacting.","Single centre, Italy; needs fresh tumour tissue."]
+ },
+ {
+  id:"NCT06749925", name:"Hybrid allogeneic-DC × autologous tumour-cell fusion vaccine ± pembrolizumab",
+  fmt:"Dendritic-cell (tumour fusion)", region:"Brazil", country:"Brazil",
+  phase:"Phase 3", status:"Not yet recruiting", statusClass:"s-soon",
+  sponsor:"University of São Paulo General Hospital (PI J.A.M. Barbuto)", n:"186",
+  manuf:"Allogeneic dendritic cells from healthy donors fused with the patient's own tumour cells — needs a viable tumour cell culture. Personalized by the autologous tumour half.",
+  design:"Multicentre, placebo-controlled, triple-blind, three arms (placebo; hybrid-DC vaccine; hybrid-DC vaccine + pembrolizumab added after the 5th dose). Sequential randomisation.",
+  molec:"Histological glioblastoma with confirmed IDH status; undergoing or completed standard of care; tumour cells must be expandable in culture. No upper age limit; performance score >50.",
+  tissue:"Needs viable tumour cells that can be culture-expanded — fresh tissue from the resection. Confirm availability.",
+  window:"During / after standard of care.",
+  fit:"Medium", fitWhy:"A properly controlled, blinded phase 3 — the most rigorous design in this atlas — and open to any IDH/MGMT status with no age cap. Against it: not yet open, Brazil-based, and it needs a living tumour cell culture, which is often not available after a small completed resection unless specifically set up.",
+  ev:{s:2,l:"The São Paulo group has prior phase 1/2 experience with DC-tumour fusion vaccines; this is the first phase 3 of the approach.",links:[]},
+  incl:["Adult (≥18, no upper limit); histological glioblastoma, IDH status confirmed","Undergoing or completed standard surgery + chemoradiotherapy","Performance score >50; able to attend follow-up every 2 months","Tumour cells capable of culture expansion"],
+  excl:["Concomitant malignancy (except basal cell carcinoma)","HIV-positive, immunosuppressed, or post-transplant","Experimental treatment within 6 months","Inability to consent (e.g. aphasia)"],
+  epPrimary:"Overall survival.",
+  epSecondary:"Progression / survival metrics; quality of life; immunological response; safety.",
+  contact:"Prof. José Alexandre Marzãgão Barbuto · +55 11 3091-7375 · jbarbuto@icb.usp.br",
+  dates:"Planned start Jan 2026 · primary completion Jan 2028",
+  flags:["Not yet recruiting; Brazil.","Needs a viable tumour cell culture — usually must be arranged at surgery."]
+ },
+ {
+  id:"NCT07077616", name:"Tamavaq™ — AI-designed personalized neoantigen + tumour-antigen peptide vaccine",
+  fmt:"Personalized neoantigen peptide", region:"Greece", country:"Greece",
+  phase:"Early Phase 1", status:"Recruiting", statusClass:"s-rec",
+  sponsor:"Biogenea Pharmaceuticals Ltd., Thessaloniki", n:"29",
+  manuf:"1–35 synthetic neoantigen peptides selected by a proprietary &ldquo;AI-QMMM&rdquo; pipeline, plus a large fixed panel of GBM-associated antigens (MAGE-1, HER-2, gp100, survivin, EphA2, IL13Rα2, others), with a rotating menu of adjuvants (poly-ICLC, cGAMP, GM-CSF, imiquimod, CpG, MPLA, saponins).",
+  design:"Single-arm, open-label, single-site. Seven vaccinations starting ~14 days before the first maintenance temozolomide cycle.",
+  molec:"Registry inclusion text describes <b>recurrent malignant glioma with prior surgery, radiotherapy and chemotherapy</b>, a measurable lesion (RECIST), <b>high mutation load (>10 TMB) and &ge;10 neoantigens</b>, &ge;3 months post-op, no prior immunotherapy — despite the study title saying &ldquo;newly diagnosed&rdquo;.",
+  tissue:"Tumour tissue for sequencing and neoantigen identification.",
+  window:"Tied to a maintenance-temozolomide cycle; not a fixed post-op window.",
+  fit:"Low", fitWhy:"Serious mismatches for this case: the eligibility text is written for recurrent, measurable disease and demands a high mutational burden (>10 TMB, ≥10 neoantigens) that a treatment-naïve, fully-resected RTK II tumour is unlikely to meet; the title and criteria contradict each other; it is a single small-company site with a pharmacist PI and an unusually broad multi-adjuvant design. Worth noting, not pursuing without direct clarification.",
+  ev:{s:1,l:"First-in-human; no efficacy data. Sponsor has limited clinical track record.",links:[]},
+  incl:["Age ≥18; histologically confirmed glioma","Recurrent malignant glioma; prior surgery / radiotherapy / chemotherapy","High mutation load (>10 TMB); genetically unstable; ≥10 neoantigens","Measurable lesion per RECIST; KPS >60; estimated survival >3 months","No prior immunotherapy"],
+  excl:["Prior immune checkpoint inhibitor or experimental immunotherapy","Active autoimmune disease requiring systemic treatment","Other malignancy within 5 years (minor exceptions)","Uncontrolled cardiovascular/metabolic disease; HIV; active hepatitis B/C","Organ transplant requiring immunosuppression"],
+  epPrimary:"Safety; adverse / serious adverse event incidence; MRI monitoring.",
+  epSecondary:"RANO / Macdonald response; advanced MRI and PET; circulating tumour DNA; T-cell immune analysis; survival.",
+  contact:"Ioannis G. Grigoriadis · +30 6936 592686 · biogeneadrug@gmail.com",
+  dates:"Started Jul 2025 · primary completion Dec 2027",
+  flags:["Eligibility text is recurrent-disease and high-TMB oriented — contradicts the &ldquo;newly diagnosed&rdquo; title. Clarify directly before considering.","Single small-company site; first-in-human; broad unproven multi-adjuvant design."]
+ }
+];
+
+/* ---------------- SECTION 1: landmark platforms, not enrolling ---------------- */
+const LANDMARK = [
+ {
+  id:"NCT02287428", name:"NeoVax — personalized neoantigen peptide vaccine + radiotherapy + pembrolizumab",
+  fmt:"Personalized neoantigen peptide", region:"United States", country:"United States",
+  phase:"Phase 1", status:"Active, not recruiting", statusClass:"s-closed",
+  sponsor:"Dana-Farber Cancer Institute / Massachusetts General Hospital", n:"56",
+  manuf:"Up to ~20 personal neoantigen synthetic long peptides + poly-ICLC; feasibility endpoint is generating ≥10 actionable peptides and giving the first dose within 12 weeks of surgery.",
+  design:"Open-label, newly diagnosed GBM; vaccine after radiotherapy, combined with pembrolizumab and temozolomide.",
+  molec:"Newly diagnosed GBM; MGMT status determined; excludes prior anti-PD-1.",
+  tissue:"Adequate tumour tissue for exome sequencing and neoantigen calling.",
+  window:"First dose within 12 weeks of surgery, after radiotherapy.",
+  fit:"Closed", fitWhy:"Not enrolling. This is the reference platform — the version every peptide entry in this atlas is measured against — so it is here for its data and as the group most likely to open a successor. Ask Dana-Farber neuro-oncology what is next.",
+  ev:{s:2,l:"Keskin et al., Nature 2019 (n=8): 6/8 dexamethasone-free patients generated polyfunctional neoantigen-specific CD4+ and CD8+ T cells that trafficked into the tumour; dexamethasone abrogated responses; no serious treatment-related toxicity; no survival benefit demonstrated in this tiny cohort.",links:[["Keskin et al., Nature 2019","https://pubmed.ncbi.nlm.nih.gov/30568305/"]]},
+  incl:["Newly diagnosed glioblastoma","MGMT methylation status determined","No prior anti-PD-1/PD-L1 therapy"],
+  excl:["Inability to generate ≥10 peptides (feasibility failure)","Systemic immunosuppression / active autoimmune disease","Dexamethasone dependence (blunts response)"],
+  epPrimary:"Safety; feasibility (≥10 actionable peptides; dose within 12 weeks of surgery).",
+  epSecondary:"Immunogenicity; progression-free and overall survival (exploratory).",
+  contact:"Dana-Farber neuro-oncology / see ClinicalTrials.gov record.",
+  dates:"Started Nov 2014 · primary completion Feb 2027",
+  flags:["Not enrolling — listed for its data and as a successor watch-list."]
+ },
+ {
+  id:"NCT04015700", name:"GNOS-PV01 — personalized neoantigen DNA vaccine (± IL-12 / retifanlimab)",
+  fmt:"DNA (neoantigen)", region:"United States", country:"United States",
+  phase:"Phase 1", status:"Active, not recruiting", statusClass:"s-closed",
+  sponsor:"Washington University School of Medicine, St Louis", n:"9 (GT-20)",
+  manuf:"Up to 40 neoantigens per patient (range 17–40) encoded in a plasmid DNA vaccine, delivered by electroporation, with plasmid-encoded IL-12; a follow-on trial (NCT05743595) adds the PD-1 blocker retifanlimab.",
+  design:"Open-label, single-arm, adjuvant after resection + radiotherapy.",
+  molec:"<b>Newly diagnosed MGMT-unmethylated GBM</b> — the poor-prognosis subgroup, and a gate this case may or may not meet. Requires adequate tumour tissue for sequencing.",
+  tissue:"Adequate tumour tissue for exome sequencing.",
+  window:"Vaccine generated and first dose given within ~4 weeks of finishing radiotherapy.",
+  fit:"Closed", fitWhy:"Not enrolling, and restricted to MGMT-unmethylated disease. Included because its 2026 readout is one of the most encouraging in the field and Washington University is an active successor site to watch.",
+  ev:{s:2,l:"Nature Cancer 2026 (GT-20, n=9): up to 40 neoantigens/patient, no serious adverse events or dose-limiting toxicities; 8/9 evaluable patients developed measurable immune responses (the non-responder received dexamethasone); reported as generating &ldquo;robust immune responses and encouraging survival outcomes&rdquo; — uncontrolled.",links:[["Nature Cancer 2026","https://www.nature.com/articles/s43018-026-01163-w"],["Follow-on with retifanlimab NCT05743595","https://clinicaltrials.gov/study/NCT05743595"]]},
+  incl:["Newly diagnosed GBM; MGMT promoter unmethylated","KPS ≥60%","Adequate tumour tissue for sequencing"],
+  excl:["MGMT-methylated tumour","Systemic immunosuppression","Inability to generate the vaccine"],
+  epPrimary:"Safety / tolerability; feasibility of generating and giving the vaccine within ~4 weeks of radiotherapy.",
+  epSecondary:"Immunogenicity; preliminary clinical activity.",
+  contact:"Washington University neuro-oncology / see ClinicalTrials.gov record.",
+  dates:"Started Jul 2020 · primary completion May 2022 (results published 2026)",
+  flags:["Not enrolling; MGMT-unmethylated only. Watch Washington University for successor trials."]
+ },
+ {
+  id:"NCT02149225", name:"GAPVAC-101 — APVAC1 + APVAC2 fully personalized peptide vaccine",
+  fmt:"Personalized neoantigen peptide", region:"Germany", country:"Germany",
+  phase:"Phase 1", status:"Completed", statusClass:"s-closed",
+  sponsor:"DKFZ / DKTK, Heidelberg &amp; Tübingen (led by W. Wick)",  n:"16",
+  manuf:"Two-part: APVAC1 from a pre-manufactured &ldquo;warehouse&rdquo; of tumour-associated peptides matched to the patient's HLA and tumour expression; APVAC2 truly patient-specific, from exome + HLA-ligandome analysis. Integrated into standard chemoradiation.",
+  design:"Single-arm feasibility, newly diagnosed GBM.",
+  molec:"Newly diagnosed GBM; HLA-typed; sufficient tumour for exome + immunopeptidome analysis.",
+  tissue:"Substantial fresh tumour required for HLA-ligandome (immunopeptidome) analysis.",
+  window:"Vaccination integrated with, and after, standard chemoradiation.",
+  fit:"Closed", fitWhy:"Completed after a 16-patient feasibility cohort with no confirmatory trial to follow. The same Heidelberg group defined the RTK II methylation class this whole dashboard is built around, so this is the most directly relevant lineage — but there is nothing to enrol in. It also feeds the German private route (see CeGaT in Section 2).",
+  ev:{s:2,l:"Hilf et al., Nature 2019 (n=15 vaccinated): median PFS 14.2 months and median OS 29 months from diagnosis; APVAC1 drove sustained central-memory CD8 responses, APVAC2 predominantly CD4. Proof of concept for fully personalized vaccination; not powered for efficacy.",links:[["Summary on the main dashboard","index.html#context"]]},
+  incl:["Newly diagnosed GBM","HLA-A*02:01 or A*24:02 (warehouse design)","Sufficient fresh tumour for immunopeptidome analysis"],
+  excl:["Insufficient tumour material","Rapid early progression"],
+  epPrimary:"Feasibility and safety of the APVAC production and vaccination process.",
+  epSecondary:"Immunogenicity (APVAC1 and APVAC2); PFS; OS.",
+  contact:"NCT Heidelberg neuro-oncology (for current trials).",
+  dates:"Completed — no successor trial opened.",
+  flags:["Completed; no follow-on trial. Contact NCT Heidelberg to ask what is currently recruiting."]
+ },
+ {
+  id:"NCT04842513", name:"XS15-adjuvanted multipeptide vaccination + standard chemoradiation",
+  fmt:"Shared-antigen peptide (immunopeptidome-guided)", region:"Germany", country:"Germany",
+  phase:"Phase 1", status:"Completed", statusClass:"s-closed",
+  sponsor:"University Hospital Tübingen", n:"15",
+  manuf:"A defined set of HLA-presented tumour peptides (immunopeptidome-guided, Rammensee/Walz lineage — the science behind the iVAC personalized programmes) plus the potent TLR1/2 adjuvant XS15; three monthly subcutaneous vaccinations.",
+  design:"Single-arm, newly diagnosed GBM, added to standard radiotherapy + temozolomide.",
+  molec:"Newly diagnosed, <b>IDH-wildtype</b>, <b>MGMT-methylated</b>, <b>HLA-A*02:01 positive</b>, KPS ≥70%.",
+  tissue:"Standard tissue for HLA typing and antigen confirmation.",
+  window:"During and after standard chemoradiation.",
+  fit:"Closed", fitWhy:"Completed in 2024. Restricted to MGMT-methylated, HLA-A2-positive patients. Listed because it is the academic backbone of the Tübingen peptide-vaccine ecosystem that also runs the CeGaT private route in Section 2.",
+  ev:{s:1,l:"Completed phase 1; immunogenicity read-out with XS15 as a strong T-cell adjuvant. No efficacy claim.",links:[]},
+  incl:["Newly diagnosed IDH-wildtype GBM","MGMT promoter methylated","HLA-A*02:01 positive; KPS ≥70%"],
+  excl:["MGMT-unmethylated; HLA-A2 negative","Autoimmune disease / immunosuppression"],
+  epPrimary:"Adverse events; immunogenicity.",
+  epSecondary:"Exploratory PFS / OS.",
+  contact:"University Hospital Tübingen (for current trials).",
+  dates:"Started May 2021 · completed Jul 2024",
+  flags:["Completed; MGMT-methylated + HLA-A2 only."]
+ }
+];
+
+/* ---------------- Appendix: shared-antigen peptide vaccines ---------------- */
+const SHARED = [
+ ["SurVaxM (SURVIVE)","Survivin","NCT05163080","Randomised phase 2b, newly diagnosed; data cut-off Jul 2026, readout pending","USA, ~11 sites","Phase 2a: 1-yr OS 93.7%, median OS 25.9 mo; phase 2b passed interim futility","Survivin is broadly expressed regardless of methylation subclass; the most advanced shared-antigen peptide vaccine in newly diagnosed GBM. Already covered on the main dashboard."],
+ ["SurVaxM + temozolomide","Survivin","NCT02455557","Active, not recruiting; newly diagnosed","USA","Feeds the SURVIVE phase 2b","Same antigen/product as above, earlier cohort."],
+ ["Rindopepimut (ACT IV)","EGFRvIII","NCT01480479","Completed — NEGATIVE phase 3","Multi-country","No overall-survival benefit; recurrences were EGFRvIII-negative (antigen escape)","Directly cautionary for RTK II: EGFRvIII is common here, but a single-antigen EGFRvIII peptide vaccine did not work. ⚠"],
+ ["P30-EPS","EphA2 + CMV pp65 + survivin","NCT05283109","Active, not recruiting; newly diagnosed","USA (Duke)","Phase 1 immunogenicity; multi-antigen to reduce escape","A multi-peptide shared-antigen design that tries to avoid rindopepimut's single-antigen failure mode."],
+ ["PEP-CMV","CMV pp65 (tetanus-boost variants)","NCT06132438","Not yet recruiting; newly diagnosed","Australia","Prior small studies; mixed","Requires MGMT-unmethylated status; targets CMV antigens reported in GBM."],
+ ["UCPVax ± pembrolizumab","Telomerase (hTERT)","NCT07347210","Not yet recruiting; newly diagnosed","France","Recurrent-GBM phase 2 (NCT04280848) completed; CD4 &ldquo;helper&rdquo; telomerase epitopes","Requires MGMT-unmethylated status. Related to the TERT arm of the open Paris trial in Section 1."],
+ ["IDH1-R132H peptide (NOA-16)","Mutant IDH1","NCT02454634","Completed; IDH-mutant glioma only","Germany","87% immune response; favourable outcomes in IDH-mutant astrocytoma","<b>Not applicable</b> — this patient is IDH-wildtype. Listed so the distinction is explicit."]
+];
+
+/* ---------------- Recurrent-disease reference ---------------- */
+const REC = [
+ ["YS247 neoantigen dendritic-cell vaccine","NCT07678138","Neoantigen-pulsed autologous DC injection for recurrent/progressive glioblastoma","Huanhu Hospital, Tianjin, China — not yet recruiting"],
+ ["ZSNeo-DC1.1 (recurrent)","NCT06253234","Personalized neoantigen dendritic-cell vaccine, recurrent/progressive high-grade glioma; sibling of the newly-diagnosed trial in Section 1","Beijing Tiantan Hospital, China — recruiting"],
+ ["RNA-LP (recurrent)","NCT06389591","RNA-lipid-particle vaccine (pp65 + tumour RNA) for recurrent adult GBM; recurrent-disease arm of the UF programme","University of Florida, USA — recruiting"],
+ ["Personalized vaccine, recurrent glioma","NCT04943718","Personalized (neoantigen) vaccine for recurrent glioma; limited public detail","Xuanwu Hospital, Beijing, China — status unknown"]
+];
+
+/* ---------------- SECTION 2: private providers ---------------- */
+const ZONES = [
+ { region:"Europe", note:"The most developed private route — Germany's named-patient framework makes a genuinely personalized neoantigen peptide vaccine buyable, and one provider has published a large real-world series (with a published rebuttal).",
+   providers:[
+   {
+    name:"CeGaT GmbH / cecava GmbH", loc:"Tübingen, Germany", tags:["peptide","Neoantigen","Named-patient"],
+    offered:"A fully personalized neoantigen synthetic-peptide vaccine. CeGaT's CancerNeo® runs tumour-exome + HLA typing + neoantigen prediction; cecava manufactures and administers the peptide vaccine. Manufacturing ~12 weeks after diagnostics.",
+    personalization:"Fully personalized — built from the patient's own tumour mutations.",
+    synthesis:"GMP peptide synthesis (in-house / contracted); this is the &ldquo;printing&rdquo; step done properly, with release testing.",
+    combo:"Given with adjuvant; some patients also receive checkpoint inhibitors and immune monitoring, arranged case by case.",
+    evidence:"173-patient real-world series (Nature Communications 2024): median OS 31.9 months from diagnosis across all vaccinees (70 vaccinated before progression, 103 after); patients with multiple vaccine-induced T-cell responses 53 months vs 27 months for none/low (P=0.03); vaccine-induced immune response in 87/97 (90%) monitored; adverse events mostly grade 1–2.",
+    regulatory:"Legal in Germany as an individual named-patient treatment (individueller Heilversuch). Not an EMA marketing authorisation and not an efficacy approval. NCT05356312 is CeGaT's own expanded-access registry listing.",
+    cost:"Reported in case accounts: ~€10,000 neoantigen diagnostics; ~€39,000 vaccine; ~€3,000 immune monitoring (one family cited ~£30,000 for the peptides). Totals vary; get an itemised quote.",
+    logistics:"Self-pay, single centre, repeated travel to Tübingen. Easier if your oncologist co-manages; CeGaT will also work with patients directly.",
+    contact:"cegat.com · cecava.com · expanded-access contact Dr Saskia Biskup (Saskia.Biskup@humangenetik-tuebingen.de)",
+    unver:"An independent <i>Neuro-Oncology</i> 2025 commentary (&ldquo;Lessons ignored?&rdquo;) argues the survival figures are inflated by selection bias (65% of patients KPS 90–100; international travel required; median 10.4 months from diagnosis to vaccination → lead-time bias; median follow-up only 21.3 months), uncontrolled external comparators, non-prespecified immune-response criteria, incomplete adverse-event reporting, and that 19 of 50 authors are affiliated with the provider. The number of patients sequenced but never vaccinated is not reported. No randomised data."
+   },
+   {
+    name:"Hallwang Private Oncology Clinic", loc:"Dornstetten, Germany", tags:["peptide","warn"],
+    offered:"Lists personalized peptide vaccines among a broad personalised-oncology menu (also dendritic-cell, NK, checkpoint, off-label combinations).",
+    personalization:"Claimed personalized; methodology not independently documented.",
+    synthesis:"Not disclosed; peptide source not specified.",
+    combo:"Bundled into 1–3-week multimodal programmes.",
+    evidence:"No peer-reviewed glioblastoma outcome data; the clinic does not publish survival data.",
+    regulatory:"German individual healing attempt. No insurance contracts of any kind (clinic states this explicitly).",
+    cost:"Documented cases ~USD 100,000–127,000 for a 1–3-week programme; ~80% deposit required upfront.",
+    logistics:"Self-pay only.",
+    contact:"hallwang-clinic.com · +49 7443 9642 40",
+    unver:"<b>Independent reporting (Science-Based Medicine and others) has specifically named this clinic for selling unproven, ineffective therapies alongside legitimate-sounding ones</b>; GoFundMe banned Hallwang fundraisers in 2019. Also catalogued on the main dashboard's private-provider list. Scrutinise closely."
+   },
+   {
+    name:"IOZK (Institut für Onkologische Immunologie)", loc:"Cologne, Germany", tags:["Dendritic-cell","Not peptide"],
+    offered:"IO-Vac® autologous dendritic-cell vaccine matured with oncolytic Newcastle disease virus — <b>not a peptide/neoantigen vaccine</b>. Listed for cross-reference only.",
+    personalization:"Personalized (autologous tumour lysate + own dendritic cells).",
+    synthesis:"n/a — cell product, no peptide synthesis.",
+    combo:"Immunogenic-cell-death add-on; modified oncolytic virus.",
+    evidence:"Single-institution case series in IDH-wildtype GBM reporting improved OS vs historical published data (PMC 2023); not randomised.",
+    regulatory:"German individual healing attempt / hospital exemption.",
+    cost:"~€23,000–26,000 per vaccination cycle; ~€65,000 for the first two cycles plus mandatory diagnostics.",
+    logistics:"Self-pay; repeated travel to Cologne.",
+    contact:"iozk.de · +49 221 4203 9925",
+    unver:"Covered in full on the main dashboard. Included here only to be clear it is a DC vaccine, not the peptide/neoantigen modality this atlas is about."
+   }
+ ]},
+ { region:"Japan", note:"Two distinct things: private clinics selling a neoantigen peptide vaccine under the Regenerative Medicine Act, and the older &ldquo;personalized peptide vaccination&rdquo; (PPV) academic lineage now carried by Brightpath.",
+   providers:[
+   {
+    name:"NEO CLINIC TOKYO", loc:"Shirokanedai, Minato-ku, Tokyo, Japan", tags:["peptide","Neoantigen","Self-pay"],
+    offered:"A neoantigen peptide vaccine and, separately, an &ldquo;oncoantigen&rdquo; (shared tumour-antigen) peptide vaccine, marketed as part of a &ldquo;precision medicine&rdquo; package &ldquo;appropriately combined with other treatments&rdquo;.",
+    personalization:"Claimed personalized — NGS-based mutation calling. Number of peptides, prediction method and manufacturer not published on the English site.",
+    synthesis:"Not disclosed whether peptides are made in-house or contracted.",
+    combo:"Combined with unspecified other therapies at the clinic's discretion.",
+    evidence:"None published. No patient numbers, no GBM-specific data, no outcome data of any kind on the public site.",
+    regulatory:"Japan free-market medicine (jiyū shinryō) under the Act on the Safety of Regenerative Medicine — a safety notification framework, not an efficacy review.",
+    cost:"Not published — request a full itemised quote. Japanese neoantigen/DC peptide services are typically fully out of pocket and not covered by Japanese or foreign insurance.",
+    logistics:"Self-pay; repeated travel to Tokyo; confirm whether GBM is accepted at all.",
+    contact:"neoclinic-en.jp · +81 3-6450-4796",
+    unver:"Essentially everything about effectiveness. No methodology, no denominator, no GBM experience is disclosed. Treat as unverified and ask for the sequencing report, neoepitope list, peptide Certificates of Analysis and any GBM outcomes in writing."
+   },
+   {
+    name:"Personalized Peptide Vaccination (PPV) — Kurume University lineage / Brightpath Biotherapeutics", loc:"Kurume &amp; Tokyo, Japan", tags:["peptide","Pooled selection"],
+    offered:"PPV: a fixed pool of ~30 mostly shared tumour-antigen peptides, from which 2–4 are chosen per patient by HLA-A type and pre-existing peptide-specific IgG. Delivered historically through Kurume University's cancer-vaccine clinic and affiliated centres on a research / advanced-medical-care basis; Brightpath now runs the commercial and neoantigen-successor programmes (with the National Cancer Center Japan).",
+    personalization:"Per-patient <b>selection</b> from a shared pool — not built from the patient's own mutations. A fully personalized neoantigen successor is in development.",
+    synthesis:"Pool peptides pre-manufactured; no on-demand per-patient synthesis in the classic PPV method.",
+    combo:"Often with low-dose chemotherapy or checkpoint inhibitors in trials.",
+    evidence:"Two decades of Japanese phase 1/2 work across many cancers, including limited glioma. Multiple <b>randomised</b> phase 2/3 trials in other tumours (e.g. castration-resistant prostate, biliary tract) were <b>negative for overall survival</b>. No positive randomised GBM data.",
+    regulatory:"Advanced Medical Care / research framework in Japan; not funded by national insurance for general use.",
+    cost:"Historically ~¥44,000–66,000 per antigen in the advanced-medical-care setting; total course cost not publicly itemised.",
+    logistics:"Access is mostly through Japanese academic centres; ask Brightpath about current routes.",
+    contact:"Brightpath Biotherapeutics (Tokyo); Kurume University Hospital cancer-vaccine outpatient clinic.",
+    unver:"The classic PPV method has largely <i>failed</i> its controlled trials elsewhere; applicability to newly-diagnosed IDH-wildtype GBM is unproven. The neoantigen successor has no GBM data yet."
+   },
+   {
+    name:"Japanese dendritic-cell / peptide-pulsed-DC clinics", loc:"Tokyo, Osaka, Fukuoka, Nagoya, Kobe", tags:["Dendritic-cell","Cross-reference"],
+    offered:"Seren Clinic, Osaka ISEIKAI / meneki-clinic, Artisan Clinic Hibiya, Tokyo Cancer Clinic, Tokyo Relife and others offer peptide- or antigen-pulsed dendritic-cell vaccines and expanded NK/T cells.",
+    personalization:"Varies; some use tumour tissue, some defined antigens.",
+    synthesis:"Peptide-pulsed <b>onto dendritic cells</b> — not a free-peptide neoantigen vaccine.",
+    combo:"Often multimodal immune-cell packages.",
+    evidence:"Compassionate-use case reporting only; no randomised GBM data. An independent study of patient experience at this class of clinic exists (not a survival study).",
+    regulatory:"Act on the Safety of Regenerative Medicine (safety notification).",
+    cost:"Reported packages ~USD 20,000–50,000; per-antigen ¥44,000–66,000 published for some.",
+    logistics:"Self-pay; not covered by any insurance.",
+    contact:"Covered in detail on the main dashboard's private-provider section.",
+    unver:"Included only to distinguish peptide-<i>pulsed-DC</i> from the free-peptide neoantigen vaccine this atlas is about. No GBM efficacy data."
+   }
+ ]},
+ { region:"China", note:"An active neoantigen-vaccine research base (the US and China run ~two-thirds of all neoantigen-vaccine trials between them). Delivery is mostly trial- or company-based rather than walk-in; oversight of hospital immune-cell therapy tightened after the 2016 Wei Zexi case.",
+   providers:[
+   {
+    name:"Zhejiang University / iNeo programme", loc:"Hangzhou (Sir Run Run Shaw Hospital; Zhejiang Provincial People's Hospital)", tags:["peptide","Neoantigen"],
+    offered:"iNeo-Vac-P01, a personalized neoantigen peptide vaccine (and iNeo-Vac-T01, neoantigen-reactive T cells); studied alone and combined with radiofrequency ablation or checkpoint inhibitors.",
+    personalization:"Fully personalized — tumour-sequencing-driven neoepitope selection.",
+    synthesis:"GMP peptide synthesis within the academic programme.",
+    combo:"RFA + vaccine; anti-PD-1 combinations.",
+    evidence:"Published safety and immunogenicity across a range of advanced solid tumours; case reports of responses. Glioma-specific outcome data are limited.",
+    regulatory:"Delivered within registered trials and, reportedly, as hospital-based individualized treatment under China's evolving cell/immunotherapy rules.",
+    cost:"Not publicly itemised for international patients.",
+    logistics:"Contact the Hangzhou centres directly; language and cross-border tissue logistics are the practical barriers.",
+    contact:"Sir Run Run Shaw Hospital / Zhejiang Provincial People's Hospital, Hangzhou.",
+    unver:"Whether a newly-diagnosed IDH-wildtype GBM patient can access this outside a trial, and on what terms, is not documented. No randomised GBM data."
+   },
+   {
+    name:"NeoCura Bio-Medical Technology", loc:"Beijing, China", tags:["Neoantigen","Company / trial-stage"],
+    offered:"An AI-enabled RNA/neoantigen platform (e.g. NEO_PLIN2101), developed with Innovent (sintilimab combinations).",
+    personalization:"Fully personalized neoantigen design.",
+    synthesis:"RNA-based platform, not a peptide-printing clinic.",
+    combo:"Checkpoint inhibitor combinations in company-sponsored trials.",
+    evidence:"Company/trial-stage; no glioblastoma outcome data located.",
+    regulatory:"NMPA clinical-trial framework.",
+    cost:"n/a — not a direct-to-patient service.",
+    logistics:"Not a walk-in provider; access is via sponsored trials.",
+    contact:"NeoCura (corporate).",
+    unver:"No GBM program or data identified; listed for completeness of the Chinese landscape."
+   },
+   {
+    name:"ZSky Biotech / Beijing Tiantan Hospital (ZSNeo-DC1.1)", loc:"China", tags:["Dendritic-cell","Neoantigen","See Section 1"],
+    offered:"Personalized neoantigen-pulsed dendritic-cell vaccine — the same product as the newly-diagnosed randomised trial in Section 1 (NCT07365280) and a recruiting recurrent-glioma trial (NCT06253234).",
+    personalization:"Fully personalized neoantigen selection.",
+    synthesis:"Peptide-pulsed dendritic cells.",
+    combo:"With temozolomide (newly diagnosed trial).",
+    evidence:"Early-stage; no survival data yet.",
+    regulatory:"Chinese trial framework; a commercial sponsor behind the trials.",
+    cost:"Trial context — not a listed self-pay price.",
+    logistics:"Best pursued as the Section 1 trial rather than a private purchase.",
+    contact:"xiaomin.ma@zskybio.com",
+    unver:"Primary listing is in Section 1. Whether it is sold privately outside the trials is unclear."
+   },
+   {
+    name:"Shenzhen Geno-Immune Medical Institute", loc:"Shenzhen, China", tags:["Dendritic-cell","Research institute"],
+    offered:"An &ldquo;immunomodulatory dendritic-cell vaccine&rdquo; targeting DIPG and GBM (NCT03914768, not yet recruiting).",
+    personalization:"Not clearly neoantigen-defined.",
+    synthesis:"Cell product.",
+    combo:"n/a.",
+    evidence:"None located for GBM.",
+    regulatory:"Chinese trial framework.",
+    cost:"n/a.",
+    logistics:"Research institute, not a clinic.",
+    contact:"Shenzhen Geno-Immune Medical Institute.",
+    unver:"Minimal public information; included only to map the landscape."
+   }
+ ]},
+ { region:"Mexico", note:"The user asked specifically about Mexico. The well-known Baja California integrative-oncology hospitals market &ldquo;cancer vaccines&rdquo;, but the specific neoantigen-peptide pipeline was not found.",
+   providers:[
+   {
+    name:"No verified personalized neoantigen peptide-vaccine programme found", loc:"Baja California / nationwide, Mexico", tags:["warn","Unverified"],
+    offered:"Immunity Therapy Center (Tijuana), Hope4Cancer (Rosarito / Cancún), CHIPSA (Tijuana) and Issels (Tijuana) advertise &ldquo;cancer vaccines&rdquo;, dendritic-cell therapy, autologous &ldquo;autohemotherapy&rdquo; and broad alternative-medicine protocols for many cancers including glioblastoma.",
+    personalization:"None publishes a tumour-exome-sequencing → neoepitope-prediction → GMP peptide-synthesis pipeline.",
+    synthesis:"Not documented at any Mexican clinic located.",
+    combo:"Bundled into 3-week multimodal &ldquo;integrative&rdquo; programmes (hyperthermia, high-dose vitamin C, ozone, etc.).",
+    evidence:"No peer-reviewed glioblastoma outcome data; marketing material and testimonials only. Issels and Hope4Cancer are catalogued on the main dashboard for DC/NK products.",
+    regulatory:"Operate outside FDA oversight; Mexican COFEPRIS registration status varies and is rarely detailed publicly.",
+    cost:"~USD 45,000–60,000 for a standard 3-week programme (Hope4Cancer, Issels published ranges); a peptide/neoantigen line item is not itemised.",
+    logistics:"Border-adjacent, English-speaking, no insurance billing pathway.",
+    contact:"See each clinic's site; Issels and Hope4Cancer details are on the main dashboard.",
+    unver:"<b>Any &ldquo;neoantigen vaccine&rdquo; marketing from a Mexican integrative clinic should be treated as unverified</b> until they provide the sequencing report, the ranked neoepitope list, peptide Certificates of Analysis, GMP documentation, and GBM-specific (not all-comers) outcomes in writing. None of that was found in public materials."
+   }
+ ]},
+ { region:"Montana / United States", note:"The user asked specifically about Montana clinics that &ldquo;print peptides&rdquo; to make neoantigens for a particular cancer. An open-web, medical-board and news search did not find one.",
+   providers:[
+   {
+    name:"No verified Montana provider of tumour-neoantigen vaccines", loc:"Bozeman, Kalispell, Missoula, Billings — Montana", tags:["warn","Unverified"],
+    offered:"Montana has integrative / functional-medicine / anti-aging clinics that advertise &ldquo;peptide therapy&rdquo; — for example Life Enhancement Clinics of Montana (Bozeman), Alpine Health &amp; Wellness (Kalispell), Elevate Health (Bozeman), Essential Health (Bozeman); a directory (peptidebase.io) lists ~12 Montana &ldquo;peptide&rdquo; clinics.",
+    personalization:"None. These clinics sell catalogue research peptides — BPC-157, TB-500, sermorelin, ipamorelin, thymosin-α1 and similar — for healing, weight loss, and hormones. That is a different product class from a tumour-specific neoantigen cancer vaccine.",
+    synthesis:"No Montana clinic advertises, and no news report or medical-board record documents, on-site synthesis of a patient's tumour neoantigens into a therapeutic vaccine.",
+    combo:"n/a.",
+    evidence:"None — there is no cancer-vaccine service to have evidence for.",
+    regulatory:"In the United States, a personalized neoantigen vaccine is currently available essentially only inside an FDA-regulated clinical trial (NeoVax at Dana-Farber; the Washington University DNA-vaccine programme). Selling one as an office treatment would fall outside the IND framework.",
+    cost:"n/a.",
+    logistics:"n/a.",
+    contact:"n/a.",
+    unver:"<b>The nearest real thing to &ldquo;printing peptides to make neoantigens&rdquo; is automated flow peptide synthesis</b> — developed academically (e.g. an MIT group's &ldquo;Automated Flow Synthesis of Tumor Neoantigen Peptides&rdquo;, 2020) and GMP high-throughput synthesis used by trial sponsors such as Dana-Farber and CeGaT — not a Montana clinical service. If the user has a specific Montana clinic name or URL, that entry can be researched directly; the open-web search did not surface one."
+   },
+   {
+    name:"United States academic route (context)", loc:"Boston, MA; St Louis, MO", tags:["Neoantigen","In-trial only"],
+    offered:"NeoVax (Dana-Farber / MGH — personalized neoantigen peptide) and the Washington University personalized neoantigen DNA vaccine are the domestic options. Both are detailed in Section 1's &ldquo;landmark platforms&rdquo; list; both are currently between trials.",
+    personalization:"Fully personalized neoantigen.",
+    synthesis:"GMP peptide / plasmid manufacturing within the academic programme.",
+    combo:"With pembrolizumab (NeoVax) or retifanlimab / IL-12 (WashU).",
+    evidence:"See the landmark-platforms cards in Section 1.",
+    regulatory:"FDA IND; trial only.",
+    cost:"Trial — no charge for the investigational product.",
+    logistics:"Contact Dana-Farber and Washington University neuro-oncology to ask about successor trials and timing.",
+    contact:"See the Section 1 landmark cards.",
+    unver:"Nothing to purchase; the point of this row is that the US route is a trial, and there is currently a gap between trials to watch."
+   }
+ ]}
+];
+
+/* ---------------- rendering ---------------- */
+const fitRank = {High:0, Medium:1, Low:2, Closed:3};
+function evMeter(s){ if(s==null) return ""; let d=""; for(let i=1;i<=5;i++) d+=`<i class="${i<=s?'on':''}"></i>`; return `<span class="meter" aria-hidden="true">${d}</span>`; }
+function evPill(ev){ if(!ev||ev.s==null) return `<span class="pill ev ev-s1">Evidence &mdash;</span>`;
+  if(ev.caution) return `<span class="pill ev ev-caution">&#9888; Evidence: caution</span>`;
+  return `<span class="pill ev ev-s${ev.s}">Evidence ${ev.s}/5</span>`; }
+
+function card(t){
+  const flags=(t.flags||[]).map(f=>`<div class="flagline"><svg width="14" height="15" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M7.13 1.63a1 1 0 0 1 1.74 0l6.86 12A1 1 0 0 1 14.86 15H1.14A1 1 0 0 1 .27 13.63l6.86-12Z"/><rect x="7.1" y="5.6" width="1.8" height="4.8" rx="0.9" fill="var(--surface)"/><circle cx="8" cy="12.1" r="1" fill="var(--surface)"/></svg><span>${f}</span></div>`).join("");
+  const links=[...(t.ev&&t.ev.links?t.ev.links:[]).map(l=>`<li><a href="${l[1]}" target="_blank" rel="noopener">${l[0]}</a></li>`),
+    `<li><a href="https://clinicaltrials.gov/study/${t.id}" target="_blank" rel="noopener">ClinicalTrials.gov record &mdash; ${t.id}</a></li>`].join("");
+  return `<article class="trial fit-${t.fit}" id="c-${t.id}">
+    <div class="trial-main">
+      <div class="fitstripe" aria-hidden="true"></div>
+      <div class="trial-body">
+        <div class="trial-title-row">
+          <h3>${t.name}</h3>
+          <div class="pills">
+            <span class="pill fit-${t.fit}">${t.fit==="Closed"?"Not enrolling":t.fit+" fit"}</span>
+            ${evPill(t.ev)}
+            <span class="pill phase">${t.phase}</span>
+            <span class="pill status ${t.statusClass}"><span class="sd2"></span>${t.status}</span>
+          </div>
+        </div>
+        <div class="sub">
+          <span class="mech-tag">${t.fmt}</span>
+          <span class="pill region">${t.region}</span>
+          <a class="mono" href="https://clinicaltrials.gov/study/${t.id}" target="_blank" rel="noopener">${t.id}</a>
+          <span>&middot;</span><span>${t.sponsor}</span>
+        </div>
+        <div class="facts">
+          <div class="fact"><div class="k">Molecular / HLA fit</div><div class="val">${t.molec}</div></div>
+          <div class="fact"><div class="k">Tissue needed</div><div class="val">${t.tissue}</div></div>
+          <div class="fact"><div class="k">Timing window</div><div class="val">${t.window}</div></div>
+          <div class="fact"><div class="k">Manufacturing</div><div class="val">${t.manuf}</div></div>
+        </div>
+        <div class="fact" style="margin-top:10px"><div class="k">Why this fit rating</div><div class="val">${t.fitWhy}</div></div>
+        ${flags}
+        <button class="toggle" type="button" aria-expanded="false"><span class="caret">&rsaquo;</span> Full detail</button>
+      </div>
+    </div>
+    <div class="detail">
+      <div class="dgrid">
+        <div class="block"><h4>How it is run</h4><p>${t.design}</p><p class="kv" style="margin-top:8px"><b>Enrolment target:</b> ${t.n} &nbsp;&middot;&nbsp; <b>Timeline:</b> ${t.dates}</p></div>
+        <div class="block"><h4>Evidence &amp; outcomes so far</h4>
+          <p class="kv"><b>Score ${t.ev&&t.ev.s!=null?t.ev.s+"/5":"&mdash;"}</b> ${evMeter(t.ev?t.ev.s:null)}</p>
+          <p style="margin-top:6px">${t.ev?t.ev.l:""}</p>
+          <ul style="margin-top:8px">${links}</ul>
+        </div>
+      </div>
+      <div class="dgrid">
+        <div class="block"><h4>Key inclusion</h4><ul>${t.incl.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+        <div class="block"><h4>Key exclusion</h4><ul>${t.excl.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+      </div>
+      <div class="dgrid">
+        <div class="block"><h4>Endpoints</h4><p class="kv"><b>Primary:</b> ${t.epPrimary}</p><p class="kv" style="margin-top:6px"><b>Secondary:</b> ${t.epSecondary}</p></div>
+        <div class="block"><h4>Contact</h4><p>${t.contact}</p><p style="margin-top:8px"><a href="https://clinicaltrials.gov/study/${t.id}" target="_blank" rel="noopener">Full record on ClinicalTrials.gov &rarr;</a></p></div>
+      </div>
+    </div>
+  </article>`;
+}
+
+function bindToggles(scope){
+  scope.querySelectorAll(".toggle").forEach(btn=>{
+    btn.onclick=()=>{ const t=btn.closest(".trial"); const open=t.classList.toggle("open");
+      btn.setAttribute("aria-expanded",open?"true":"false");
+      btn.innerHTML=(open?'<span class="caret">&rsaquo;</span> Hide detail':'<span class="caret">&rsaquo;</span> Full detail'); };
+  });
+}
+
+const listEl=$("#trialList");
+function apply(){
+  const fmt=$("#fFmt").value, region=$("#fRegion").value, fit=$("#fFit").value,
+        q=$("#fSearch").value.trim().toLowerCase(), sort=$("#fSort").value;
+  let rows=TRIALS.filter(t=>
+    (!fmt||t.fmt===fmt) && (!region||t.region===region) && (!fit||t.fit===fit) &&
+    (!q||JSON.stringify(t).toLowerCase().includes(q))
+  );
+  rows.sort((a,b)=>{
+    if(sort==="evidence") return (b.ev?.s??-1)-(a.ev?.s??-1) || fitRank[a.fit]-fitRank[b.fit];
+    if(sort==="name") return a.name.localeCompare(b.name);
+    return fitRank[a.fit]-fitRank[b.fit] || (b.ev?.s??-1)-(a.ev?.s??-1);
+  });
+  listEl.innerHTML=rows.map(card).join("") || `<p class="muted" style="padding:24px 0">No entries match these filters.</p>`;
+  $("#countLine").textContent=`Showing ${rows.length} of ${TRIALS.length} open / upcoming institutional entries`;
+  bindToggles(listEl);
+}
+(function fill(){
+  [...new Set(TRIALS.concat(LANDMARK).map(t=>t.fmt))].sort().forEach(m=>$("#fFmt").add(new Option(m,m)));
+  [...new Set(TRIALS.concat(LANDMARK).map(t=>t.region))].sort().forEach(m=>$("#fRegion").add(new Option(m,m)));
+})();
+["#fFmt","#fRegion","#fFit","#fSort"].forEach(s=>$(s).addEventListener("change",apply));
+$("#fSearch").addEventListener("input",apply);
+$("#resetBtn").addEventListener("click",()=>{["#fFmt","#fRegion","#fFit"].forEach(s=>$(s).value="");$("#fSearch").value="";$("#fSort").value="fit";apply();});
+
+const landEl=$("#landmarkList");
+landEl.innerHTML=LANDMARK.map(card).join(""); bindToggles(landEl);
+
+/* shared-antigen appendix */
+$("#sharedBody").innerHTML=SHARED.map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td><a class="mono" href="https://clinicaltrials.gov/study/${r[2]}" target="_blank" rel="noopener">${r[2]}</a></td><td>${r[3]}</td><td>${r[4]}</td><td>${r[5]}</td><td>${r[6]}</td></tr>`).join("");
+
+/* recurrent */
+$("#recBody").innerHTML=REC.map(r=>`<tr><td><b>${r[0]}</b></td><td><a class="mono" href="https://clinicaltrials.gov/study/${r[1]}" target="_blank" rel="noopener">${r[1]}</a></td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join("");
+
+/* providers */
+$("#providerZones").innerHTML=ZONES.map(z=>{
+  const cards=z.providers.map(p=>{
+    const tags=(p.tags||[]).map(t=>{
+      const cls = t==="warn"?"tag warn" : t==="peptide"?"tag peptide" : "tag";
+      const label = t==="warn"?"&#9888; scrutinise" : t==="peptide"?"Peptide vaccine" : t;
+      return `<span class="${cls}">${label}</span>`;
+    }).join("");
+    return `<div class="prov ${/(No verified|No verified Montana)/.test(p.name)?'none':''}">
+      <div class="prov-top">
+        <div><h4>${p.name}</h4><div class="loc">${p.loc}</div></div>
+        <div class="tags">${tags}</div>
+      </div>
+      <div class="prov-grid">
+        <div><div class="k">What is offered</div><div class="v">${p.offered}</div></div>
+        <div><div class="k">Personalized?</div><div class="v">${p.personalization}</div></div>
+        <div><div class="k">Peptide synthesis</div><div class="v">${p.synthesis}</div></div>
+        <div><div class="k">Combination</div><div class="v">${p.combo}</div></div>
+        <div><div class="k">Published evidence</div><div class="v">${p.evidence}</div></div>
+        <div><div class="k">Regulatory status</div><div class="v">${p.regulatory}</div></div>
+        <div><div class="k">Indicative cost</div><div class="v">${p.cost}</div></div>
+        <div><div class="k">Logistics for an overseas patient</div><div class="v">${p.logistics}</div></div>
+        <div><div class="k">Contact</div><div class="v">${p.contact}</div></div>
+      </div>
+      <div class="unver"><b>What is unverified / the catch:</b> ${p.unver}</div>
+    </div>`;
+  }).join("");
+  return `<div class="region-head"><h3>${z.region}</h3><span class="rc">${z.note}</span></div>${cards}`;
+}).join("");
+
+/* charts */
+function barChart(el,data){ const max=Math.max(...data.map(d=>d[1]),1);
+  el.innerHTML=data.map(d=>`<div class="barrow"><span class="cat" title="${d[0]}">${d[0]}</span><span class="bartrack"><span class="barfill" style="width:${(d[1]/max*100).toFixed(1)}%"></span></span><span class="v tnum">${d[1]}</span></div>`).join(""); }
+function counts(fn,list){ const m={}; list.forEach(t=>{const k=fn(t); m[k]=(m[k]||0)+1;}); return Object.entries(m).sort((a,b)=>b[1]-a[1]); }
+barChart($("#chartFmt"),counts(t=>t.fmt,TRIALS.concat(LANDMARK)));
+barChart($("#chartRegion"),counts(t=>t.region,TRIALS.concat(LANDMARK)));
+
+/* theme */
+const tb=$("#themeBtn");
+tb.addEventListener("click",()=>{ const cur=document.documentElement.getAttribute("data-theme");
+  const next=cur==="dark"?"light":cur==="light"?"dark":(matchMedia("(prefers-color-scheme: dark)").matches?"light":"dark");
+  document.documentElement.setAttribute("data-theme",next);
+  try{localStorage.setItem("rtk2-theme",next);}catch(e){} });
+try{const sv=localStorage.getItem("rtk2-theme"); if(sv) document.documentElement.setAttribute("data-theme",sv);}catch(e){}
+
+apply();
+</script>
