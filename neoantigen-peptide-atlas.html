@@ -375,7 +375,7 @@
 
   <div class="tiles">
     <div class="tile"><div class="n tnum">6</div><div class="l">Institutional trials open / about to open</div></div>
-    <div class="tile"><div class="n tnum">4</div><div class="l">Landmark platforms, between trials</div></div>
+    <div class="tile"><div class="n tnum">5</div><div class="l">Landmark platforms, between trials</div></div>
     <div class="tile"><div class="n tnum">1</div><div class="l">Trial that explicitly requires IDH-wildtype (matches)</div></div>
     <div class="tile"><div class="n tnum">2</div><div class="l">Gated on MGMT-unmethylated status</div></div>
     <div class="tile"><div class="n tnum">5</div><div class="l">Would require international travel</div></div>
@@ -551,12 +551,20 @@
   and Asian). Effectiveness notes are from peer-reviewed papers and society abstracts; first-in-human entries are marked
   as having no efficacy data. &ldquo;Fit&rdquo; and &ldquo;evidence score&rdquo; are the compiler&rsquo;s, for triage
   only. Private-provider entries are compiled from clinic websites, company registries, news and regulator databases;
-  every effectiveness claim is attributed and each card states what is unverified.</p>
+  every effectiveness claim is attributed and each card states what is unverified. <b>US and South America scrub
+  (10&nbsp;September&nbsp;2026):</b> re-checked ClinicalTrials.gov, company pipelines (Geneos, Moderna, BioNTech,
+  Transgene, Evaxion), patient-advocacy sites, medical blogs, Reddit / brain-tumour forums, YouTube, and the
+  neuro-oncology literature. No US walk-in clinic and no South American provider sells a tumour-sequenced neoantigen
+  vaccine; the one US self-pay route is the Jaime Leandro Foundation&rsquo;s FDA expanded-access programme. Additional
+  US academic GBM neoantigen programmes noted (all trial-only, between studies): Albert Einstein / Mount Sinai
+  (Hormigo, genomic vaccine + TTFields, NCT03223103), Washington University with Geneos Therapeutics, Fred Hutchinson
+  (peptide platform, non-GBM so far).</p>
   <p style="margin-top:12px"><b>Key sources.</b></p>
   <ul class="src">
     <li>NeoVax GBM phase I &mdash; Keskin et al., <a href="https://pubmed.ncbi.nlm.nih.gov/30568305/" target="_blank" rel="noopener">Nature 2019</a> (neoantigen-specific intratumoural T cells; dexamethasone abrogated responses; no survival claim); updated <a href="https://ascopubs.org/doi/10.1200/JCO.2026.44.16_suppl.2006" target="_blank" rel="noopener">ASCO 2026</a> (Reardon et al. &mdash; immune activity at 1&nbsp;year; survival extended vs historical, uncontrolled). Trial NCT02287428, sites Dana-Farber + Massachusetts General.</li>
     <li>US expanded-access neoantigen synthetic long peptide vaccine &mdash; Jaime Leandro Foundation, <span class="mono">NCT06963697</span> (protocol JLF-100; basket trial JLF-200 = <span class="mono">NCT05741242</span>); cost (~USD&nbsp;83,000, WideTrial cost recovery) per <a href="https://www.statnews.com/2023/03/06/foundation-charges-cancer-patients-83000-for-unproven-but-promising-experimental-drug/" target="_blank" rel="noopener">STAT News 2023</a>.</li>
-    <li>Personalized neoantigen DNA vaccine (GNOS-PV01), MGMT-unmethylated GBM, phase 1 (GT-20) &mdash; <a href="https://www.nature.com/articles/s43018-026-01163-w" target="_blank" rel="noopener">Nature Cancer 2026</a>; <a href="https://siteman.wustl.edu/personalized-vaccine-shows-promise-against-aggressive-brain-cancer/" target="_blank" rel="noopener">Siteman summary</a>.</li>
+    <li>Personalized neoantigen DNA vaccine (GNOS-PV01, Geneos Therapeutics), MGMT-unmethylated GBM, phase 1 (GT-20) &mdash; <a href="https://www.nature.com/articles/s43018-026-01163-w" target="_blank" rel="noopener">Nature Cancer 2026</a>; <a href="https://siteman.wustl.edu/personalized-vaccine-shows-promise-against-aggressive-brain-cancer/" target="_blank" rel="noopener">Siteman / WashU summary</a>.</li>
+    <li>Personalized genomic (neoantigen) vaccine + Tumour Treating Fields, newly diagnosed GBM &mdash; <span class="mono">NCT03223103</span> (Hormigo, Albert Einstein / Mount Sinai; n=13; SNO CTIM abstracts).</li>
     <li>GAPVAC-101 (APVAC1+APVAC2) &mdash; Hilf et al., Nature 2019; summarised on the <a href="index.html#context">main dashboard</a>.</li>
     <li>Real-world personalized peptide vaccine series, 173 GBM patients (CeGaT / cecava, T&uuml;bingen) &mdash; <a href="https://www.nature.com/articles/s41467-024-51315-8" target="_blank" rel="noopener">Nature Communications 2024</a>.</li>
     <li>Critical commentary on vaccinating GBM patients outside trials &mdash; <a href="https://academic.oup.com/neuro-oncology/article/27/1/302/7904860" target="_blank" rel="noopener">Neuro-Oncology 2025, &ldquo;Lessons ignored?&rdquo;</a> (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11726247/" target="_blank" rel="noopener">PMC</a>).</li>
@@ -779,6 +787,26 @@ const LANDMARK = [
   contact:"University Hospital Tübingen (for current trials).",
   dates:"Started May 2021 · completed Jul 2024",
   flags:["Completed; MGMT-methylated + HLA-A2 only."]
+ },
+ {
+  id:"NCT03223103", name:"Personalized genomic (neoantigen) vaccine + Tumour Treating Fields",
+  fmt:"Personalized neoantigen peptide", region:"United States", country:"United States",
+  phase:"Phase 1a/1b", status:"Active, not recruiting", statusClass:"s-closed",
+  sponsor:"Adilia Hormigo (Albert Einstein College of Medicine, Bronx NY; now also Mount Sinai)", n:"13",
+  manuf:"Personalized synthetic long peptides derived from each patient's tumour mutations (OpenVax neoepitope pipeline) + poly-ICLC, given during maintenance temozolomide alongside continuous Tumour Treating Fields (Optune).",
+  design:"Sponsor-investigator phase 1a/1b, single centre. Vaccine begins 4–8 weeks after concurrent chemoradiation; integrated with radiation + temozolomide + TTFields.",
+  molec:"Newly diagnosed GBM (WHO grade 4); no explicit IDH or MGMT restriction; ECOG 0–2.",
+  tissue:"Adequate tumour tissue for exome sequencing and neoepitope calling.",
+  window:"Vaccine in the post-chemoradiation maintenance window.",
+  fit:"Closed", fitWhy:"Not enrolling (enrolment ran Dec 2017–Jul 2020, n=13). Included because it is a distinct US personalized-neoantigen GBM programme, notable for pairing the vaccine with Tumour Treating Fields, and because the investigator (Hormigo) is active at Albert Einstein / Mount Sinai — a group to watch for a successor.",
+  ev:{s:1,l:"SNO abstracts (CTIM-17, CTIM-10): treatment well tolerated with induction of robust epitope-specific T-cell responses; formal survival read-out not yet published.",links:[["SNO CTIM-10 abstract (Neuro-Oncology)","https://doi.org/10.1093/neuonc/noae165.0343"]]},
+  incl:["Newly diagnosed glioblastoma, WHO grade 4","Maximal safe resection + concurrent radiotherapy (45–70 Gy) with temozolomide completed","ECOG 0–2; life expectancy >16 weeks"],
+  excl:["Unable to generate the personalized peptide set","Systemic immunosuppression / active autoimmune disease","Contraindication to TTFields"],
+  epPrimary:"Dose-limiting toxicities; feasibility (≥1 vaccine dose given).",
+  epSecondary:"Progression-free survival at 6 months; overall survival at 1/2/5/10 years; immunogenicity; tumour-microenvironment analysis.",
+  contact:"Adilia Hormigo (PI) — see ClinicalTrials.gov record; Albert Einstein College of Medicine / Montefiore, Bronx NY.",
+  dates:"Started Mar 2018 · estimated completion May 2029",
+  flags:["Not enrolling; single centre, n=13. Watch the Hormigo group (Einstein / Mount Sinai) for a successor."]
  }
 ];
 
@@ -803,25 +831,8 @@ const REC = [
 
 /* ---------------- SECTION 2: private providers (United States first) ---------------- */
 const ZONES = [
- { region:"United States", note:"The user asked about US clinics (Montana) that &ldquo;print peptides&rdquo; to make neoantigens, and about Boston centres (Dana-Farber, Mass General, Brigham &amp; Women&rsquo;s). Findings, updated 10&nbsp;Sep&nbsp;2026: <b>no walk-in US clinic</b> sells a tumour-sequenced neoantigen vaccine. There is <b>one US self-pay route outside a standard trial</b> &mdash; the Jaime Leandro Foundation&rsquo;s FDA expanded-access programme (below). The Boston academic centres run genuine personalized-neoantigen programmes but <b>only as clinical trials</b> (NeoVax, currently not enrolling) &mdash; see the &ldquo;US academic route&rdquo; card and the landmark section.",
+ { region:"United States", note:"Scrubbed again on 10&nbsp;Sep&nbsp;2026 &mdash; ClinicalTrials.gov, company pipelines, patient-advocacy sites, medical blogs, Reddit / brain-tumour forums, YouTube and the neuro-oncology literature. <b>No US walk-in clinic sells a tumour-sequenced neoantigen vaccine.</b> One US self-pay route exists outside a standard trial: the <b>Jaime Leandro Foundation</b>&rsquo;s FDA expanded-access programme (below). Several US academic centres run genuine personalized-neoantigen GBM programmes &mdash; Dana-Farber / Mass General (NeoVax), Washington University with Geneos Therapeutics (GNOS-PV01), Albert Einstein / Mount Sinai (Hormigo, genomic vaccine + TTFields), Fred Hutchinson (peptide platform, non-GBM so far) &mdash; but <b>only as clinical trials, and the GBM ones are between studies</b>. Nothing new surfaced from social media, forums, YouTube or blogs beyond these.",
    providers:[
-   {
-    name:"No walk-in US clinic sells this — the Montana / integrative-clinic check", loc:"Montana (Bozeman, Kalispell, Missoula, Billings) and nationwide — USA", tags:["warn","Unverified"],
-    costShort:"No storefront service &mdash; but see the Jaime Leandro Foundation entry below",
-    manufactured:"Nothing in this category. Montana clinics compound / resell catalogue research peptides (BPC-157, TB-500, sermorelin, ipamorelin, thymosin-&alpha;1); US integrative cancer centres offer autologous immune-cell or stem-cell products &mdash; none is a tumour-sequenced neoantigen vaccine.",
-    startingMaterial:"n/a &mdash; no tumour is sequenced and no patient-specific vaccine is made at these clinics.",
-    insurance:"n/a.",
-    patientStory:"n/a.",
-    offered:"Two kinds of clinic turn up and neither matches. (1) Montana &ldquo;peptide therapy&rdquo; clinics — Life Enhancement Clinics of Montana (Bozeman), Alpine Health &amp; Wellness (Kalispell), Elevate Health (Bozeman), Essential Health (Bozeman); a directory (peptidebase.io) lists ~12. (2) Integrative / alternative cancer centres elsewhere in the US that advertise &ldquo;personalized immunotherapy&rdquo; — e.g. An Oasis of Healing (Mesa, AZ).",
-    personalization:"None is a tumour-sequenced neoantigen vaccine. The Montana clinics sell catalogue research peptides — BPC-157, TB-500, sermorelin, ipamorelin, thymosin-α1 — for healing, weight loss and hormones. The integrative cancer centres offer stem-cell / immune-modulation / autologous approaches, not an exome-sequencing → neoepitope-prediction → GMP-peptide pipeline.",
-    synthesis:"No US clinic advertises, and no news report or medical-board record documents, on-site synthesis of a patient's tumour neoantigens into a therapeutic vaccine sold as an office treatment.",
-    combo:"n/a.",
-    evidence:"None — there is no walk-in neoantigen-vaccine service to have GBM evidence for. For the real US routes see the Jaime Leandro Foundation entry (next) and the US academic route entry.",
-    regulatory:"In the US a personalized neoantigen vaccine is an investigational biologic: it needs an FDA IND. It can be given either inside a clinical trial or under an FDA <b>expanded-access</b> IND (which is the Jaime Leandro Foundation route). Selling one as an ordinary clinic service, with no IND, would fall outside that framework. (503A/503B compounding covers small-molecule / simple peptide compounding, not individualized therapeutic cancer vaccines.)",
-    logistics:"n/a.",
-    contact:"No walk-in provider to contact. Directory of Montana &ldquo;peptide&rdquo; clinics: peptidebase.io/directory/state/montana-us (wellness/anti-aging peptides, not cancer vaccines).",
-    unver:"<b>The nearest thing to &ldquo;printing peptides to make neoantigens&rdquo; is automated flow peptide synthesis</b> — academic (an MIT group's &ldquo;Automated Flow Synthesis of Tumor Neoantigen Peptides&rdquo;, 2020) and the GMP synthesis used by trial sponsors — not a Montana clinical service. Also checked: Moderna's mRNA-4157 / BioNTech's autogene cevumeran individualized neoantigen therapies have <b>no glioblastoma expanded-access pathway</b> (resected melanoma / NSCLC trials only). If the user has a specific Montana clinic name or URL, that entry can be researched directly."
-   },
    {
     name:"Jaime Leandro Foundation (JLF) — expanded-access neoantigen synthetic long peptide vaccine", loc:"Texas Oncology, Austin, TX, USA (listed site; US 501(c)(3) non-profit sponsor)", tags:["peptide","Neoantigen","Expanded access"],
     costShort:"≈ USD 83,000 for the vaccine series (self-pay cost recovery, reported)",
@@ -877,22 +888,22 @@ const ZONES = [
     unver:"Included only to be explicit that this well-known US &ldquo;personalized cancer vaccine&rdquo; marketing is <i>in-situ ablation</i>, a different technique from the neoantigen peptide vaccine this atlas is about. No GBM efficacy data."
    },
    {
-    name:"United States academic route — Dana-Farber, Mass General, Brigham &amp; Women&rsquo;s, Washington University", loc:"Boston, MA (Dana-Farber / Mass General Brigham) and St Louis, MO (WashU) — USA", tags:["Neoantigen","In-trial only"],
+    name:"United States academic route — Dana-Farber / Mass General, Washington University + Geneos, Albert Einstein / Mount Sinai, Fred Hutchinson", loc:"Boston MA · St Louis MO · Bronx / New York NY · Seattle WA — USA", tags:["Neoantigen","In-trial only"],
     costShort:"Trial — no charge for the investigational product",
-    manufactured:"NeoVax: up to ~20 GMP synthetic long peptides spanning personal neoepitopes, + poly-ICLC (Catherine Wu / David Reardon, Dana-Farber). Washington University: a plasmid DNA construct encoding up to ~40 neoantigens (+ an IL-12 plasmid), by electroporation.",
+    manufactured:"NeoVax: up to ~20 GMP synthetic long peptides + poly-ICLC (Catherine Wu / David Reardon, Dana-Farber). WashU / Geneos Therapeutics: GNOS-PV01, a plasmid DNA construct encoding up to ~40 neoantigens (+ IL-12 plasmid), by electroporation. Albert Einstein / Mount Sinai (Adilia Hormigo): personalized synthetic long peptides + poly-ICLC, given with Tumour Treating Fields (OpenVax neoepitope pipeline). Fred Hutchinson: a personalized neoantigen synthetic long peptide platform (currently melanoma / breast / lung, not GBM).",
     startingMaterial:"Tumour + matched normal (blood) for whole-exome / RNA sequencing and HLA typing; requires adequate banked tumour tissue.",
     insurance:"Trial &mdash; the investigational product is provided at no cost; standard-of-care items are billed as usual.",
-    patientStory:"No clinic testimonials; see the published / presented trial reports (Keskin, Nature 2019; Reardon, ASCO 2026; WashU, Nature Cancer 2026).",
-    offered:"<b>This is the answer to &ldquo;why isn&rsquo;t Dana-Farber / Mass General / Brigham &amp; Women&rsquo;s listed as a provider?&rdquo;</b> &mdash; they run a real personalized-neoantigen programme, but <b>only as a clinical trial</b>, never as a purchasable service. The GBM trial is <b>NeoVax</b> (NCT02287428): sites are <b>Dana-Farber Cancer Institute</b> and <b>Massachusetts General Hospital</b> (Brigham &amp; Women&rsquo;s is a site for the separate melanoma NeoVax study, not this one). It also covers residual / progressive low-grade glioma. Status: <b>active, not recruiting</b>. Washington University&rsquo;s neoantigen DNA vaccine is likewise between trials. See the <a href='#landmark'>landmark section</a>.",
+    patientStory:"No clinic testimonials; see the published / presented trial reports (Keskin, Nature 2019; Reardon, ASCO 2026; WashU/Geneos, Nature Cancer 2026; Hormigo, SNO CTIM abstracts).",
+    offered:"<b>This is the answer to &ldquo;why isn&rsquo;t Dana-Farber / Mass General / Brigham &amp; Women&rsquo;s (or Mount Sinai) listed as a provider?&rdquo;</b> &mdash; these centres run real personalized-neoantigen GBM programmes, but <b>only as clinical trials</b>, never as a purchasable service. The Boston GBM trial is <b>NeoVax</b> (NCT02287428, sites = Dana-Farber Cancer Institute and Massachusetts General Hospital; Brigham &amp; Women&rsquo;s is a site for the separate melanoma NeoVax, not this one; it also covers residual / progressive low-grade glioma). <b>Albert Einstein / Mount Sinai</b> (Hormigo) ran a personalized genomic vaccine + TTFields phase 1 (NCT03223103, n=13). All are <b>active, not recruiting</b>. See the <a href='#landmark'>landmark section</a>.",
     personalization:"Fully personalized neoantigen.",
-    synthesis:"GMP peptide / plasmid manufacturing within the academic programme.",
-    combo:"With pembrolizumab (NeoVax) or retifanlimab / IL-12 (WashU).",
-    evidence:"NeoVax GBM: Keskin et al., Nature 2019 (neoantigen-specific intratumoural T cells; no survival claim); updated at ASCO 2026 (Reardon &mdash; vaccine-stimulated anti-tumour activity still evident in some patients at 1 year, survival extended vs historical controls; uncontrolled). WashU DNA vaccine: Nature Cancer 2026, n=9, 8/9 immune responders.",
+    synthesis:"GMP peptide / plasmid manufacturing within each academic programme (WashU&rsquo;s DNA construct is made by Geneos Therapeutics).",
+    combo:"Pembrolizumab (NeoVax); retifanlimab / IL-12 (WashU); Tumour Treating Fields + temozolomide (Einstein / Mount Sinai).",
+    evidence:"NeoVax GBM: Keskin et al., Nature 2019 (neoantigen-specific intratumoural T cells; no survival claim); ASCO 2026 update (Reardon &mdash; activity still evident at 1 year, survival extended vs historical, uncontrolled). WashU / Geneos GNOS-PV01: Nature Cancer 2026, n=9, 8/9 immune responders. Einstein / Mount Sinai: SNO abstracts &mdash; well tolerated, robust epitope-specific T-cell responses; survival data immature.",
     regulatory:"FDA IND; clinical trial only. No named-patient / expanded-access neoantigen vaccine is offered at these centres &mdash; for the US expanded-access route see the Jaime Leandro Foundation entry above.",
     cost:"Trial — no charge for the investigational product.",
-    logistics:"Contact Dana-Farber Center for Neuro-Oncology and Washington University / Siteman neuro-oncology to ask about NeoVax successor trials, the low-grade-glioma arm, and timing.",
-    contact:"Dana-Farber Center for Neuro-Oncology &mdash; dana-farber.org (trial 14-362 / NCT02287428) &middot; Massachusetts General Hospital Cancer Center &mdash; massgeneral.org &middot; Washington University / Siteman &mdash; siteman.wustl.edu &middot; full trial records in the landmark section.",
-    unver:"Nothing to purchase here. The point of this row is that the Boston centres&rsquo; neoantigen work is trial-only and currently between studies &mdash; watch for a NeoVax successor."
+    logistics:"Contact each centre&rsquo;s neuro-oncology programme about NeoVax / genomic-vaccine successor trials and timing.",
+    contact:"Dana-Farber Center for Neuro-Oncology &mdash; dana-farber.org (trial 14-362 / NCT02287428) &middot; Massachusetts General Hospital Cancer Center &mdash; massgeneral.org &middot; Washington University / Siteman &mdash; siteman.wustl.edu (partner: Geneos Therapeutics, Plymouth Meeting PA) &middot; Mount Sinai / Albert Einstein &mdash; NCT03223103 (PI Adilia Hormigo) &middot; Fred Hutchinson Cancer Center &mdash; fredhutch.org (NCT05098210, non-GBM).",
+    unver:"Nothing to purchase here. The point of this row is that the US centres&rsquo; neoantigen GBM work is trial-only and currently between studies &mdash; watch for a NeoVax or genomic-vaccine successor."
    }
  ]},
  { region:"Europe", note:"The most developed private route — Germany's named-patient framework makes a genuinely personalized neoantigen peptide vaccine buyable, and one provider has published a large real-world series (with a published rebuttal).",
@@ -1103,6 +1114,27 @@ const ZONES = [
     logistics:"Border-adjacent, English-speaking, no insurance billing pathway.",
     contact:"immunitytherapycenter.com &middot; hope4cancer.com &middot; chipsahospital.org &middot; issels.com &mdash; Issels and Hope4Cancer are also on the main dashboard.",
     unver:"<b>Any &ldquo;neoantigen vaccine&rdquo; marketing from a Mexican integrative clinic should be treated as unverified</b> until they provide the sequencing report, the ranked neoepitope list, peptide Certificates of Analysis, GMP documentation, and GBM-specific (not all-comers) outcomes in writing. None of that was found in public materials."
+   }
+ ]},
+ { region:"South America", note:"Added at the user&rsquo;s request &mdash; searched ClinicalTrials.gov, the regional literature, Spanish/Portuguese press, and hospital sites (Albert Einstein, Sírio-Libanês, A.C. Camargo in Brazil; institutes in Argentina, Chile, Colombia). <b>No private provider and no expanded-access programme was found.</b> The only clinical activity is one Brazilian trial (in Section 1); everything else is preclinical or a different tumour type.",
+   providers:[
+   {
+    name:"No South American private provider or expanded-access route found", loc:"Brazil, Argentina, Chile, Colombia", tags:["warn","Unverified"],
+    costShort:"No purchasable programme in the region",
+    manufactured:"Nothing sold. The nearest activity: Brazil &mdash; University of São Paulo runs a placebo-controlled Phase 3 of a hybrid allogeneic-DC &times; autologous-tumour fusion vaccine for GBM (NCT06749925), listed in Section 1, not yet recruiting. Argentina &mdash; the Universidad Nacional de Quilmes molecular-oncology centre is developing glioblastoma immunotherapies at the <b>preclinical</b> stage. Colombia &mdash; a personalized peptide + dendritic-cell vaccine programme exists but for <b>triple-negative breast cancer</b>, not glioblastoma.",
+    startingMaterial:"n/a &mdash; no patient-facing neoantigen-vaccine service.",
+    insurance:"n/a.",
+    patientStory:"None located.",
+    offered:"No clinic or foundation in South America was found offering a tumour-sequenced neoantigen or personalized peptide vaccine for glioblastoma, inside or outside a trial, on a self-pay or named-patient basis.",
+    personalization:"n/a.",
+    synthesis:"No GMP neoantigen-peptide service identified in the region.",
+    combo:"n/a.",
+    evidence:"None for a South American GBM neoantigen-vaccine service. The Brazilian Phase 3 (NCT06749925) has no results yet.",
+    regulatory:"Brazil&rsquo;s ANVISA and other regional regulators would treat a personalized neoantigen vaccine as an investigational biologic; no approved product or advertised expanded-access pathway was found.",
+    cost:"n/a.",
+    logistics:"n/a. If pursuing the Brazilian trial once it opens, contact the University of São Paulo General Hospital neuro-oncology programme (see the Section 1 card for NCT06749925).",
+    contact:"University of São Paulo General Hospital / ICB-USP &mdash; PI José Alexandre Marzagão Barbuto (Section 1 entry NCT06749925). Universidad Nacional de Quilmes, Centro de Oncología Molecular y Traslacional (research only).",
+    unver:"Regional clinical-trial registries are less complete than ClinicalTrials.gov; a small hospital-based programme could exist without an English-language footprint. Nothing verifiable surfaced. If the user has a specific centre in mind, name it and it can be checked directly."
    }
  ]}
 ];
