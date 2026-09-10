@@ -46,47 +46,6 @@
       "registry_url": "https://clinicaltrials.gov/study/NCT07365280"
     },
     {
-      "nct": "NCT04573140",
-      "name": "RNA-LP — autologous total-tumour mRNA lipid-particle vaccine",
-      "format": "mRNA (autologous tumour)",
-      "region": "United States",
-      "country": "United States",
-      "phase": "Phase 1",
-      "status": "Recruiting",
-      "sponsor": "University of Florida (Sayour / Mitchell lab)",
-      "enrollment_target": "28 (adult stratum)",
-      "molecular_hla_fit": "Requires MGMT \"low-level or unmethylated\"; MGMT-methylated tumours are excluded. Newly diagnosed de novo GBM (WHO grade 4). Residual post-surgical disease <=3 cm allowed. Age >=21.",
-      "tissue_needed": "Fresh / viable tumour needed to amplify tumour mRNA — archival FFPE alone is not enough. Confirm viable tissue or an RNA-grade fresh-frozen sample was banked.",
-      "timing_window": "After surgery; the design integrates with standard radiation + temozolomide. Adult stratum enrolment target is small (n=28).",
-      "manufacturing": "Total tumour mRNA amplified from the patient's tumour + pp65-LAMP mRNA, packaged in DOTAP liposomes. Needs viable/fresh tumour to amplify RNA.",
-      "fit": "Low–Medium",
-      "fit_rationale": "A real domestic (US) option and the leading autologous-mRNA programme — but conditional on MGMT status: if the tumour is MGMT-methylated this trial is closed to the patient. Also needs viable tumour tissue and is a single-centre-heavy phase 1.",
-      "evidence_score": 2,
-      "evidence_note": "A 2024 report described rapid, marked immune activation within days of the first dose in a small first-in-human GBM cohort; survival data immature.",
-      "key_inclusion": [
-        "Age ≥21; histologically confirmed newly diagnosed de novo GBM (WHO grade 4)",
-        "MGMT low-level or unmethylated",
-        "Residual post-surgical disease burden ≤3 cm",
-        "KPS ≥60"
-      ],
-      "key_exclusion": [
-        "MGMT-methylated tumour",
-        "Recurrent, multifocal or metastatic glioma; gliomatosis cerebri",
-        "Autoimmune disease requiring immunosuppression",
-        "HIV / hepatitis B or C seropositive",
-        "Prior invasive malignancy unless disease-free ≥3 years"
-      ],
-      "primary_endpoint": "Manufacturing feasibility; safety; maximum tolerated dose.",
-      "secondary_endpoints": "Immunological and radiographic response; survival (exploratory).",
-      "contact": "Marcia Hodik · 352-273-5519 · wells-BTC@ufl.edu",
-      "dates": "Started Dec 2021 · primary completion Jul 2027",
-      "flags": [
-        "MGMT-methylated tumours are excluded — confirm MGMT status before pursuing this.",
-        "Needs viable/fresh tumour tissue for RNA amplification."
-      ],
-      "registry_url": "https://clinicaltrials.gov/study/NCT04573140"
-    },
-    {
       "nct": "NCT06622434",
       "name": "PTPRZ1 / TERT peptide vaccine, adjuvant to chemoradiation",
       "format": "Shared-antigen peptide (HLA-selected)",
@@ -266,19 +225,6 @@
       "registry_url": "https://clinicaltrials.gov/study/NCT02287428"
     },
     {
-      "nct": "NCT04015700",
-      "name": "GNOS-PV01 — personalized neoantigen DNA vaccine (± IL-12 / retifanlimab)",
-      "format": "DNA (neoantigen)",
-      "region": "United States",
-      "phase": "Phase 1",
-      "status": "Active, not recruiting",
-      "sponsor": "Washington University School of Medicine, St Louis",
-      "evidence_score": 2,
-      "evidence_note": "Nature Cancer 2026 (GT-20, n=9): up to 40 neoantigens/patient, no serious adverse events or dose-limiting toxicities; 8/9 evaluable patients developed measurable immune responses (the non-responder received dexamethasone); reported as generating \"robust immune responses and encouraging survival outcomes\" — uncontrolled.",
-      "why_listed": "Not enrolling, and restricted to MGMT-unmethylated disease. Included because its 2026 readout is one of the most encouraging in the field and Washington University is an active successor site to watch.",
-      "registry_url": "https://clinicaltrials.gov/study/NCT04015700"
-    },
-    {
       "nct": "NCT02149225",
       "name": "GAPVAC-101 — APVAC1 + APVAC2 fully personalized peptide vaccine",
       "format": "Personalized neoantigen peptide",
@@ -358,26 +304,6 @@
       "reported": "No overall-survival benefit; recurrences were EGFRvIII-negative (antigen escape)",
       "relevance": "Directly cautionary for RTK II: EGFRvIII is common here, but a single-antigen EGFRvIII peptide vaccine did not work. ⚠",
       "registry_url": "https://clinicaltrials.gov/study/NCT01480479"
-    },
-    {
-      "vaccine": "PEP-CMV",
-      "antigen": "CMV pp65 (tetanus-boost variants)",
-      "nct": "NCT06132438",
-      "status_setting": "Not yet recruiting; newly diagnosed",
-      "where": "Australia",
-      "reported": "Prior small studies; mixed",
-      "relevance": "Requires MGMT-unmethylated status; targets CMV antigens reported in GBM.",
-      "registry_url": "https://clinicaltrials.gov/study/NCT06132438"
-    },
-    {
-      "vaccine": "UCPVax ± pembrolizumab",
-      "antigen": "Telomerase (hTERT)",
-      "nct": "NCT07347210",
-      "status_setting": "Not yet recruiting; newly diagnosed",
-      "where": "France",
-      "reported": "Recurrent-GBM phase 2 (NCT04280848) completed; CD4 \"helper\" telomerase epitopes",
-      "relevance": "Requires MGMT-unmethylated status. Related to the TERT arm of the open Paris trial in Section 1.",
-      "registry_url": "https://clinicaltrials.gov/study/NCT07347210"
     },
     {
       "vaccine": "IDH1-R132H peptide (NOA-16)",
@@ -483,21 +409,21 @@
     },
     {
       "region": "United States",
-      "name": "United States academic route — Dana-Farber / Mass General, Washington University + Geneos, Albert Einstein / Mount Sinai, Fred Hutchinson",
-      "location": "Boston MA · St Louis MO · Bronx / New York NY · Seattle WA — USA",
-      "contact_website": "Dana-Farber Center for Neuro-Oncology - dana-farber.org (trial 14-362 / NCT02287428) &middot; Massachusetts General Hospital Cancer Center - massgeneral.org &middot; Washington University / Siteman - siteman.wustl.edu (partner: Geneos Therapeutics, Plymouth Meeting PA) &middot; Mount Sinai / Albert Einstein - NCT03223103 (PI Adilia Hormigo) &middot; Fred Hutchinson Cancer Center - fredhutch.org (NCT05098210, non-GBM).",
-      "what_is_manufactured": "NeoVax: up to ~20 GMP synthetic long peptides + poly-ICLC (Catherine Wu / David Reardon, Dana-Farber). WashU / Geneos Therapeutics: GNOS-PV01, a plasmid DNA construct encoding up to ~40 neoantigens (+ IL-12 plasmid), by electroporation. Albert Einstein / Mount Sinai (Adilia Hormigo): personalized synthetic long peptides + poly-ICLC, given with Tumour Treating Fields (OpenVax neoepitope pipeline). Fred Hutchinson: a personalized neoantigen synthetic long peptide platform (currently melanoma / breast / lung, not GBM).",
+      "name": "United States academic route — Dana-Farber / Mass General, Albert Einstein / Mount Sinai, Fred Hutchinson",
+      "location": "Boston MA · Bronx / New York NY · Seattle WA — USA",
+      "contact_website": "Dana-Farber Center for Neuro-Oncology - dana-farber.org (trial 14-362 / NCT02287428) &middot; Massachusetts General Hospital Cancer Center - massgeneral.org &middot; Mount Sinai / Albert Einstein - NCT03223103 (PI Adilia Hormigo) &middot; Fred Hutchinson Cancer Center - fredhutch.org (NCT05098210, non-GBM).",
+      "what_is_manufactured": "NeoVax: up to ~20 GMP synthetic long peptides + poly-ICLC (Catherine Wu / David Reardon, Dana-Farber). Albert Einstein / Mount Sinai (Adilia Hormigo): personalized synthetic long peptides + poly-ICLC, given with Tumour Treating Fields (OpenVax neoepitope pipeline). Fred Hutchinson: a personalized neoantigen synthetic long peptide platform (currently melanoma / breast / lung, not GBM).",
       "starting_material": "Tumour + matched normal (blood) for whole-exome / RNA sequencing and HLA typing; requires adequate banked tumour tissue.",
-      "what_is_offered": "This is the answer to \"why isn't Dana-Farber / Mass General / Brigham & Women's (or Mount Sinai) listed as a provider?\" - these centres run real personalized-neoantigen GBM programmes, but only as clinical trials, never as a purchasable service. The Boston GBM trial is NeoVax (NCT02287428, sites = Dana-Farber Cancer Institute and Massachusetts General Hospital; Brigham & Women's is a site for the separate melanoma NeoVax, not this one; it also covers residual / progressive low-grade glioma). Albert Einstein / Mount Sinai (Hormigo) ran a personalized genomic vaccine + TTFields phase 1 (NCT03223103, n=13). All are active, not recruiting. See the landmark section.",
+      "what_is_offered": "This is the answer to \"why isn't Dana-Farber / Mass General / Brigham & Women's (or Mount Sinai) listed as a provider?\" - these centres run real personalized-neoantigen GBM programmes, but only as clinical trials, never as a purchasable service. The Boston GBM trial is NeoVax (NCT02287428, sites = Dana-Farber Cancer Institute and Massachusetts General Hospital; Brigham & Women's is a site for the separate melanoma NeoVax, not this one; it also covers residual / progressive low-grade glioma). Albert Einstein / Mount Sinai (Hormigo) ran a personalized genomic vaccine + TTFields phase 1 (NCT03223103, n=13). All are active, not recruiting. The Washington University / Geneos Therapeutics GNOS-PV01 DNA-vaccine programme enrols MGMT-unmethylated GBM only, so it has been removed from this atlas per case direction. See the landmark section.",
       "personalized": "Fully personalized neoantigen.",
-      "peptide_synthesis": "GMP peptide / plasmid manufacturing within each academic programme (WashU's DNA construct is made by Geneos Therapeutics).",
-      "combination": "Pembrolizumab (NeoVax); retifanlimab / IL-12 (WashU); Tumour Treating Fields + temozolomide (Einstein / Mount Sinai).",
+      "peptide_synthesis": "GMP peptide manufacturing within each academic programme.",
+      "combination": "Pembrolizumab (NeoVax); Tumour Treating Fields + temozolomide (Einstein / Mount Sinai).",
       "regulatory_framework": "FDA IND; clinical trial only. No named-patient / expanded-access neoantigen vaccine is offered at these centres - for the US expanded-access route see the Jaime Leandro Foundation entry above.",
       "cost_headline": "Trial — no charge for the investigational product",
       "est_cost": "Trial — no charge for the investigational product.",
       "insurance": "Trial - the investigational product is provided at no cost; standard-of-care items are billed as usual.",
-      "evidence": "NeoVax GBM: Keskin et al., Nature 2019 (neoantigen-specific intratumoural T cells; no survival claim); ASCO 2026 update (Reardon - activity still evident at 1 year, survival extended vs historical, uncontrolled). WashU / Geneos GNOS-PV01: Nature Cancer 2026, n=9, 8/9 immune responders. Einstein / Mount Sinai: SNO abstracts - well tolerated, robust epitope-specific T-cell responses; survival data immature.",
-      "patient_story": "No clinic testimonials; see the published / presented trial reports (Keskin, Nature 2019; Reardon, ASCO 2026; WashU/Geneos, Nature Cancer 2026; Hormigo, SNO CTIM abstracts).",
+      "evidence": "NeoVax GBM: Keskin et al., Nature 2019 (neoantigen-specific intratumoural T cells; no survival claim); ASCO 2026 update (Reardon - activity still evident at 1 year, survival extended vs historical, uncontrolled). Einstein / Mount Sinai: SNO abstracts - well tolerated, robust epitope-specific T-cell responses; survival data immature.",
+      "patient_story": "No clinic testimonials; see the published / presented trial reports (Keskin, Nature 2019; Reardon, ASCO 2026; Hormigo, SNO CTIM abstracts).",
       "logistics": "Contact each centre's neuro-oncology programme about NeoVax / genomic-vaccine successor trials and timing.",
       "what_is_unverified": "Nothing to purchase here. The point of this row is that the US centres' neoantigen GBM work is trial-only and currently between studies - watch for a NeoVax or genomic-vaccine successor."
     },
