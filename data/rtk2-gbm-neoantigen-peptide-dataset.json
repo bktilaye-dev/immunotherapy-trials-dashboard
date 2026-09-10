@@ -21,7 +21,7 @@
       "fit": "Medium",
       "fit_rationale": "Best molecular match on paper (IDH-wildtype required), randomised with a proper control, vaccinates in the adjuvant window so it does not compete with the Stupp protocol. Against it: not yet open (planned start Jan 2026), sponsor and contact are China-based so likely China-only sites — international enrolment and tissue logistics would be the hard part.",
       "evidence_score": 2,
-      "evidence_note": "Early-stage platform; a sibling ZSNeo-DC1.1 trial in recurrent high-grade glioma (NCT06253234) is recruiting, but no glioblastoma survival data are published yet.",
+      "evidence_note": "Early-stage platform: a phase 1b of ZSNeo-DC in newly diagnosed GBM (NCT04968366) and a recurrent-glioma trial (NCT06253234, recruiting) precede this randomised phase 2; no glioblastoma survival data are published yet.",
       "key_inclusion": [
         "Age 18–75; histologically confirmed newly diagnosed glioblastoma (WHO grade 4)",
         "IDH1/IDH2 wild-type",
@@ -306,6 +306,16 @@
       "registry_url": "https://clinicaltrials.gov/study/NCT01480479"
     },
     {
+      "vaccine": "EO2401 (ROSALIE)",
+      "antigen": "Bacterial \"OncoMimic\" peptides of IL13R&alpha;2, survivin/BIRC5, FOXM1",
+      "nct": "NCT04116658",
+      "status_setting": "Phase 1b/2a completed; recurrent / first-progression GBM; MGMT-methylated patients eligible",
+      "where": "US (incl. Dana-Farber), France, Germany, Spain — Enterome",
+      "reported": "n=100; EO2401 + nivolumab +/- bevacizumab; SNO 2025 cohort-3 survival signal; sponsor says a randomised trial is warranted",
+      "relevance": "A shared-antigen peptide vaccine that is open to MGMT-methylated disease. Recurrent-only and completed - a \"for later\" option, not a first-line one; watch for the randomised follow-up.",
+      "registry_url": "https://clinicaltrials.gov/study/NCT04116658"
+    },
+    {
       "vaccine": "IDH1-R132H peptide (NOA-16)",
       "antigen": "Mutant IDH1",
       "nct": "NCT02454634",
@@ -412,7 +422,7 @@
       "name": "United States academic route — Dana-Farber / Mass General, Albert Einstein / Mount Sinai, Fred Hutchinson",
       "location": "Boston MA · Bronx / New York NY · Seattle WA — USA",
       "contact_website": "Dana-Farber Center for Neuro-Oncology - dana-farber.org (trial 14-362 / NCT02287428) &middot; Massachusetts General Hospital Cancer Center - massgeneral.org &middot; Mount Sinai / Albert Einstein - NCT03223103 (PI Adilia Hormigo) &middot; Fred Hutchinson Cancer Center - fredhutch.org (NCT05098210, non-GBM).",
-      "what_is_manufactured": "NeoVax: up to ~20 GMP synthetic long peptides + poly-ICLC (Catherine Wu / David Reardon, Dana-Farber). Albert Einstein / Mount Sinai (Adilia Hormigo): personalized synthetic long peptides + poly-ICLC, given with Tumour Treating Fields (OpenVax neoepitope pipeline). Fred Hutchinson: a personalized neoantigen synthetic long peptide platform (currently melanoma / breast / lung, not GBM).",
+      "what_is_manufactured": "NeoVax: up to ~20 GMP synthetic long peptides + poly-ICLC (Catherine Wu / David Reardon, Dana-Farber). Albert Einstein / Mount Sinai (Adilia Hormigo): personalized synthetic long peptides + poly-ICLC, given with Tumour Treating Fields (OpenVax neoepitope pipeline). Mount Sinai also has the PGV-001 multi-peptide neoantigen platform (Nina Bhardwaj) - after a 13-patient phase 1 across other cancers, a newly-diagnosed-GBM PGV-001 trial is planned (no registry number yet; watch Mount Sinai Tisch). Fred Hutchinson: a personalized neoantigen synthetic long peptide platform (currently melanoma / breast / lung, not GBM).",
       "starting_material": "Tumour + matched normal (blood) for whole-exome / RNA sequencing and HLA typing; requires adequate banked tumour tissue.",
       "what_is_offered": "This is the answer to \"why isn't Dana-Farber / Mass General / Brigham & Women's (or Mount Sinai) listed as a provider?\" - these centres run real personalized-neoantigen GBM programmes, but only as clinical trials, never as a purchasable service. The Boston GBM trial is NeoVax (NCT02287428, sites = Dana-Farber Cancer Institute and Massachusetts General Hospital; Brigham & Women's is a site for the separate melanoma NeoVax, not this one; it also covers residual / progressive low-grade glioma). Albert Einstein / Mount Sinai (Hormigo) ran a personalized genomic vaccine + TTFields phase 1 (NCT03223103, n=13). All are active, not recruiting. The Washington University / Geneos Therapeutics GNOS-PV01 DNA-vaccine programme enrols MGMT-unmethylated GBM only, so it has been removed from this atlas per case direction. See the landmark section.",
       "personalized": "Fully personalized neoantigen.",
