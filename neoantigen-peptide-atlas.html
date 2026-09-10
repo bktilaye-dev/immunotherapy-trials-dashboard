@@ -219,7 +219,10 @@
   .tag.peptide{background:var(--accent-soft); color:var(--accent-ink); border-color:transparent}
   .tag.warn{background:var(--flag-bg); color:var(--flag); border-color:transparent}
   .cost-badge{margin-top:10px; display:flex; flex-wrap:wrap; align-items:baseline; gap:8px; background:var(--surface-2); border:1px solid var(--border); border-left:3px solid var(--accent); border-radius:8px; padding:8px 12px; font-size:.9rem; font-weight:600; color:var(--ink)}
-  .cost-badge .cbl{font-size:.66rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-ink)}
+  .cost-badge .cbl{font-size:.66rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-ink); flex:none}
+  .contact-badge{margin-top:8px; background:var(--surface-2); border:1px solid var(--border); border-left:3px solid var(--ink-2); border-radius:8px; padding:8px 12px; font-size:.85rem; color:var(--ink-2); line-height:1.5}
+  .contact-badge .cbl{display:inline-block; margin-right:8px; font-size:.66rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-ink)}
+  .contact-badge a{color:var(--accent-ink)}
   .prov-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:10px 20px; margin-top:12px}
   .prov-grid .k{font-size:.7rem; text-transform:uppercase; letter-spacing:.07em; color:var(--ink-muted)}
   .prov-grid .v{font-size:.85rem; color:var(--ink); margin-top:1px}
@@ -816,11 +819,11 @@ const ZONES = [
     evidence:"No published glioblastoma outcomes. The foundation reported treating its first patient (2023) and runs the parallel JLF-200 basket trial; efficacy data for the peptide platform in GBM specifically were not located. First-in-class for most indications.",
     patientStory:"The foundation&rsquo;s site (jaimeleandrofoundation.org) carries news of its first treated patient; no independently verified GBM outcome accounts.",
     logistics:"US-based (Austin, TX listed); self-pay; requires a treating physician willing to hold/participate in the expanded-access IND and to certify 21 CFR 312.305 eligibility.",
-    contact:"Jaime Leandro Foundation for Therapeutic Cancer Vaccines &mdash; jaimeleandrofoundation.org &middot; William Hoos, info@jaimeleandrofoundation.org &middot; listed site: Texas Oncology, Austin (PI Brian Vaillant, MD) &middot; registry: NCT06963697.",
+    contact:"<b>Jaime Leandro Foundation for Therapeutic Cancer Vaccines</b> (501(c)(3), USA). Web: jaimeleandrofoundation.org &middot; Email: info@jaimeleandrofoundation.org (William Hoos) &middot; Enrolment infrastructure: WideTrial (widetrial.com). Listed treating site: <b>Texas Oncology &ndash; Central Austin</b>, 6204 Balcones Dr, Austin, TX 78731, USA &middot; Tel: +1 512-451-4411 &middot; PI: Brian Vaillant, MD (neuro-oncology). Registry: <a href=\"https://clinicaltrials.gov/study/NCT06963697\" target=\"_blank\" rel=\"noopener\">NCT06963697</a>.",
     unver:"Independent scrutiny exists: STAT News framed the ~USD&nbsp;83,000 charge for an <i>unproven</i> vaccine critically. This is a legitimate FDA pathway, but it is still an investigational product with <b>no efficacy proof</b>, and GBM eligibility is not spelled out on the record &mdash; verify scope, current cost, the manufacturing/QC package, and how many patients have been treated before committing."
    },
    {
-    name:"Immunocine Cancer Center", loc:"Intake / tumour-preservation: Arizona, USA · treatment: Cancún, Mexico", tags:["Dendritic-cell","warn"],
+    name:"Immunocine Cancer Center", loc:"US administrative office: Houston, TX · treatment: Cancún &amp; Cabo San Lucas, Mexico (an Arizona tumour-preservation service was announced in 2026)", tags:["Dendritic-cell","warn"],
     costShort:"≈ USD 50,000 (reported); treatment delivered in Cancún",
     manufactured:"Autologous monocyte-derived dendritic cells exposed ex vivo to &ldquo;tumour-specific antigens&rdquo; and re-infused, made in a cGMP lab (per the company). <b>Not a defined-neoepitope product</b> &mdash; no ranked neoantigen list is published.",
     startingMaterial:"The patient&rsquo;s own tumour tissue (preserved at the Arizona intake site) plus blood / leukapheresis for monocytes.",
@@ -834,11 +837,11 @@ const ZONES = [
     regulatory:"US site provides preservation/intake services only; the cellular treatment is delivered in Mexico, outside FDA oversight.",
     cost:"Not itemised publicly; secondary sources put personalized DC immunotherapy of this kind at roughly USD 50,000. Request a full written quote including the US intake fees and the Cancún treatment.",
     logistics:"US intake, Mexico treatment; self-pay; no insurance billing pathway.",
-    contact:"Website: immunocine.com &middot; Arizona tumour-preservation / intake office; treatment clinic in Cancún, Mexico &middot; enquiry form on the site.",
+    contact:"<b>Immunocine Cancer Center</b>. Web: immunocine.com (enquiry form at immunocine.com/contact) &middot; Tel: +1 346-214-9142 &middot; Email: Amcfarlane@immunocine.com (Amy McFarlane, communications) &middot; US administrative base: Houston, TX &middot; Treatment clinics: Cancún and Cabo San Lucas, Mexico &middot; Facebook: facebook.com/Immunocine.",
     unver:"Whether the &ldquo;tumour-specific antigens&rdquo; are defined neoepitopes or whole-tumour lysate is not disclosed; no GBM survival data; treatment happens outside the US. Ask for the antigen-selection method and GBM-specific outcomes in writing."
    },
    {
-    name:"Williams Cancer Institute", loc:"Las Vegas, Nevada, USA (also Mexico)", tags:["warn","Not a peptide vaccine"],
+    name:"Williams Cancer Institute", loc:"Beverly Hills, CA &amp; Miami, FL, USA (also a site in Mexico) — Dr Jason R. Williams", tags:["warn","Not a peptide vaccine"],
     costShort:"Self-pay; not publicly itemised — request a quote",
     manufactured:"No ex-vivo product. The &ldquo;vaccine&rdquo; is the patient&rsquo;s own tumour ablated <b>in situ</b> (pulsed electric field / cryoablation) plus intratumoral checkpoint and cytokine injections &mdash; a different technique from a peptide/mRNA neoantigen vaccine.",
     startingMaterial:"The tumour in situ; no tissue is harvested for manufacturing and no sequencing-based neoepitope selection is done.",
@@ -852,7 +855,7 @@ const ZONES = [
     regulatory:"US site operates as practice-of-medicine with off-label intratumoral drug use; some protocols delivered at the Mexico site.",
     cost:"Not publicly itemised; self-pay. Request an itemised quote per protocol.",
     logistics:"Las Vegas or Mexico; self-pay; travel for repeated ablation sessions.",
-    contact:"Website: williamscancerinstitute.com &middot; Las Vegas, Nevada (plus a Mexico site) &middot; consultation request on the site.",
+    contact:"<b>Williams Cancer Institute</b> (Dr Jason R. Williams). Web: williamscancerinstitute.com (consultation request on the site) &middot; Tel: +1 863-451-9755 &middot; Email: info@williamscancerinstitute.com &middot; Beverly Hills: 9777 Wilshire Blvd, Suite 1004, Beverly Hills, CA 90212 &middot; Miami: 150 SE 2nd Ave, Unit 1002, Miami, FL 33131 &middot; also a site in Mexico &middot; hours Mon&ndash;Fri 8a&ndash;5p CT.",
     unver:"Included only to be explicit that this well-known US &ldquo;personalized cancer vaccine&rdquo; marketing is <i>in-situ ablation</i>, a different technique from the neoantigen peptide vaccine this atlas is about. No GBM efficacy data."
    },
    {
@@ -870,7 +873,7 @@ const ZONES = [
     regulatory:"FDA IND; clinical trial only. No named-patient / expanded-access neoantigen vaccine is offered at these centres &mdash; for the US expanded-access route see the Jaime Leandro Foundation entry above.",
     cost:"Trial — no charge for the investigational product.",
     logistics:"Contact each centre&rsquo;s neuro-oncology programme about NeoVax / genomic-vaccine successor trials and timing.",
-    contact:"Dana-Farber Center for Neuro-Oncology &mdash; dana-farber.org (trial 14-362 / NCT02287428) &middot; Massachusetts General Hospital Cancer Center &mdash; massgeneral.org &middot; Mount Sinai / Albert Einstein &mdash; NCT03223103 (PI Adilia Hormigo) &middot; Fred Hutchinson Cancer Center &mdash; fredhutch.org (NCT05098210, non-GBM).",
+    contact:"<b>Dana-Farber Center for Neuro-Oncology</b>, 450 Brookline Ave, Boston, MA 02215 &mdash; new patients +1 877-442-3324, referring physicians +1 617-632-3703, dana-farber.org/neuro-oncology (trial 14-362 / <a href=\"https://clinicaltrials.gov/study/NCT02287428\" target=\"_blank\" rel=\"noopener\">NCT02287428</a>). <b>Mass General Cancer Center</b>, 55 Fruit St, Boston, MA 02114 &mdash; appointments +1 617-724-4000, massgeneral.org/cancer-center. <b>Mount Sinai / Tisch Cancer Center</b> (Hormigo &ndash; NCT03223103; Bhardwaj &ndash; PGV-001), New York, NY &mdash; +1 844-632-2623 (1-844-MD-CANCER), mountsinai.org. <b>Fred Hutchinson Cancer Center</b>, Seattle, WA &mdash; new patients +1 855-557-0555, fredhutch.org (<a href=\"https://clinicaltrials.gov/study/NCT05098210\" target=\"_blank\" rel=\"noopener\">NCT05098210</a>, non-GBM).",
     unver:"Nothing to purchase here. The point of this row is that the US centres&rsquo; neoantigen GBM work is trial-only and currently between studies &mdash; watch for a NeoVax or genomic-vaccine successor."
    }
  ]},
@@ -891,7 +894,7 @@ const ZONES = [
     regulatory:"Legal in Germany as an individual named-patient treatment (individueller Heilversuch). Not an EMA marketing authorisation and not an efficacy approval. NCT05356312 is CeGaT's own expanded-access registry listing.",
     cost:"Reported in case accounts: ~€10,000 neoantigen diagnostics; ~€39,000 vaccine; ~€3,000 immune monitoring (one family cited ~£30,000 for the peptides). Totals vary; get an itemised quote.",
     logistics:"Self-pay, single centre, repeated travel to Tübingen. Easier if your oncologist co-manages; CeGaT will also work with patients directly.",
-    contact:"cegat.com · cecava.com · expanded-access contact Dr Saskia Biskup (Saskia.Biskup@humangenetik-tuebingen.de)",
+    contact:"<b>CeGaT GmbH</b> / <b>CeCaVa GmbH &amp; Co. KG</b> (Center for Cancer Vaccines; JV with B. Braun), Paul-Ehrlich-Straße 23, 72076 Tübingen, Germany. Web: cegat.com &middot; cecava.com &middot; Tel: +49 7071 565 44 55 &middot; Email: info@cegat.de &middot; Vaccine / expanded-access enquiries: Dr Saskia Biskup, Saskia.Biskup@humangenetik-tuebingen.de &middot; registry <a href=\"https://clinicaltrials.gov/study/NCT05356312\" target=\"_blank\" rel=\"noopener\">NCT05356312</a>.",
     unver:"An independent <i>Neuro-Oncology</i> 2025 commentary (&ldquo;Lessons ignored?&rdquo;) argues the survival figures are inflated by selection bias (65% of patients KPS 90–100; international travel required; median 10.4 months from diagnosis to vaccination → lead-time bias; median follow-up only 21.3 months), uncontrolled external comparators, non-prespecified immune-response criteria, incomplete adverse-event reporting, and that 19 of 50 authors are affiliated with the provider. The number of patients sequenced but never vaccinated is not reported. No randomised data."
    },
    {
@@ -909,7 +912,7 @@ const ZONES = [
     regulatory:"German individual healing attempt. No insurance contracts of any kind (clinic states this explicitly).",
     cost:"Documented cases ~USD 100,000–127,000 for a 1–3-week programme; ~80% deposit required upfront.",
     logistics:"Self-pay only.",
-    contact:"hallwang-clinic.com · +49 7443 9642 40",
+    contact:"<b>Hallwang Private Oncology Clinic</b>, In den Kirschbäumen, 72280 Dornstetten, Germany. Web: hallwang-clinic.com &middot; Tel: +49 7443 9642 40 &middot; Email: info@hallwang-clinic.com &middot; testimonials at hallwang-clinic.com/en/experiences.",
     unver:"<b>Independent reporting (Science-Based Medicine and others) has specifically named this clinic for selling unproven, ineffective therapies alongside legitimate-sounding ones</b>; GoFundMe banned Hallwang fundraisers in 2019. Also catalogued on the main dashboard's private-provider list. Scrutinise closely."
    },
    {
@@ -927,7 +930,7 @@ const ZONES = [
     regulatory:"German individual healing attempt / hospital exemption.",
     cost:"~€23,000–26,000 per vaccination cycle; ~€65,000 for the first two cycles plus mandatory diagnostics.",
     logistics:"Self-pay; repeated travel to Cologne.",
-    contact:"iozk.de · +49 221 4203 9925",
+    contact:"<b>IOZK &ndash; Institut für Onkologische Immunologie</b>, Hohenstaufenring 30&ndash;32, 50674 Köln (Cologne), Germany. Web: iozk.de &middot; Tel: +49 221 4203 9925 &middot; Email: info@iozk.de.",
     unver:"Covered in full on the main dashboard. Included here only to be clear it is a DC vaccine, not the peptide/neoantigen modality this atlas is about."
    }
  ]},
@@ -948,7 +951,7 @@ const ZONES = [
     regulatory:"Japan free-market medicine (jiyū shinryō) under the Act on the Safety of Regenerative Medicine — a safety notification framework, not an efficacy review.",
     cost:"Not published — request a full itemised quote. Japanese neoantigen/DC peptide services are typically fully out of pocket and not covered by Japanese or foreign insurance.",
     logistics:"Self-pay; repeated travel to Tokyo; confirm whether GBM is accepted at all.",
-    contact:"neoclinic-en.jp · +81 3-6450-4796",
+    contact:"<b>NEO CLINIC TOKYO</b>, 6F LB Building, 3-14-4 Shirokanedai, Minato-ku, Tokyo 108-0071, Japan. Web: neoclinic-en.jp (English) &middot; Tel: +81 3-6450-4796 &middot; contact form on the site.",
     unver:"Essentially everything about effectiveness. No methodology, no denominator, no GBM experience is disclosed. Treat as unverified and ask for the sequencing report, neoepitope list, peptide Certificates of Analysis and any GBM outcomes in writing."
    },
    {
@@ -966,7 +969,7 @@ const ZONES = [
     regulatory:"Advanced Medical Care / research framework in Japan; not funded by national insurance for general use.",
     cost:"Historically ~¥44,000–66,000 per antigen in the advanced-medical-care setting; total course cost not publicly itemised.",
     logistics:"Access is mostly through Japanese academic centres; ask Brightpath about current routes.",
-    contact:"Brightpath Biotherapeutics, Tokyo &mdash; brightpathbio.com &middot; Kurume University Hospital cancer-vaccine outpatient clinic.",
+    contact:"<b>BrightPath Biotherapeutics Co., Ltd.</b> (formerly GreenPeptide), Kojimachi Central Building 7F, 2-2-4 Kojimachi, Chiyoda-ku, Tokyo 102-0083, Japan (R&amp;D at Kawasaki King Skyfront). Web: brightpathbio.com/english &middot; contact form on the site. Historical PPV delivery: <b>Kurume University Hospital</b>, 67 Asahi-machi, Kurume, Fukuoka 830-0011 &middot; Tel: +81 942-35-3311 (main). Also Yamaguchi University Hospital (Ube, Yamaguchi).",
     unver:"The classic PPV method has largely <i>failed</i> its controlled trials elsewhere; applicability to newly-diagnosed IDH-wildtype GBM is unproven. The neoantigen successor has no GBM data yet."
    },
    {
@@ -984,7 +987,7 @@ const ZONES = [
     regulatory:"Act on the Safety of Regenerative Medicine (safety notification).",
     cost:"Reported packages ~USD 20,000–50,000; per-antigen ¥44,000–66,000 published for some.",
     logistics:"Self-pay; not covered by any insurance.",
-    contact:"serenclinic.jp &middot; meneki-clinic.jp (Osaka ISEIKAI) &middot; artisanclinichibiya.jp &middot; tokyocancerclinic.jp &middot; tokyo-relife.com &mdash; also covered in detail on the main dashboard.",
+    contact:"<b>Seren Clinic</b> (Tokyo / Fukuoka / Nagoya) &mdash; serenclinic.jp, Tel 0120-784-788 &middot; <b>Osaka ISEIKAI Clinic</b> &mdash; meneki-clinic.jp/en/contact (contact form) &middot; <b>Artisan Clinic Hibiya</b>, Tokyo &mdash; artisanclinichibiya.jp, Tel 03-6205-8472 &middot; <b>Tokyo Cancer Clinic</b> &mdash; tokyocancerclinic.jp, Tel +81 3-6380-8031 &middot; <b>Tokyo Relife Clinic</b> &mdash; tokyo-relife.com/en, Tel 0120-660-329. Also covered in detail on the main dashboard.",
     unver:"Included only to distinguish peptide-<i>pulsed-DC</i> from the free-peptide neoantigen vaccine this atlas is about. No GBM efficacy data."
    }
  ]},
@@ -1005,7 +1008,7 @@ const ZONES = [
     regulatory:"Delivered within registered trials and, reportedly, as hospital-based individualized treatment under China's evolving cell/immunotherapy rules.",
     cost:"Not publicly itemised for international patients.",
     logistics:"Contact the Hangzhou centres directly; language and cross-border tissue logistics are the practical barriers.",
-    contact:"Sir Run Run Shaw Hospital (srrsh.com) and Zhejiang Provincial People&rsquo;s Hospital, Hangzhou &mdash; international-patient offices; iNeo programme via Zhejiang University.",
+    contact:"<b>Sir Run Run Shaw Hospital</b> (Zhejiang University School of Medicine), 3 East Qingchun Road, Hangzhou 310016, Zhejiang, China &mdash; International Healthcare Center Tel: +86 571-86006118, Email: isc@srrsh.com, web srrsh-english.com. <b>Zhejiang Provincial People&rsquo;s Hospital</b>, 158 Shangtang Road, Hangzhou &mdash; Tel: +86 571-85893001. iNeo-Vac programme via Zhejiang University; ask the international office to route to the neoantigen-vaccine group.",
     unver:"Whether a newly-diagnosed IDH-wildtype GBM patient can access this outside a trial, and on what terms, is not documented. No randomised GBM data."
    },
    {
@@ -1023,7 +1026,7 @@ const ZONES = [
     regulatory:"NMPA clinical-trial framework.",
     cost:"n/a — not a direct-to-patient service.",
     logistics:"Not a walk-in provider; access is via sponsored trials.",
-    contact:"NeoCura Bio-Medical Technology, Beijing &mdash; corporate site (neocura.cn); partnered with Innovent Biologics.",
+    contact:"<b>NeoCura Bio-Medical Technology Co., Ltd.</b>, Beijing, China &mdash; corporate web neocura.cn; business / partnering enquiries via the website contact form. Not a patient-facing clinic; partnered with Innovent Biologics.",
     unver:"No GBM program or data identified; listed for completeness of the Chinese landscape."
    },
    {
@@ -1041,7 +1044,7 @@ const ZONES = [
     regulatory:"Chinese trial framework; a commercial sponsor behind the trials.",
     cost:"Trial context — not a listed self-pay price.",
     logistics:"Best pursued as the Section 1 trial rather than a private purchase.",
-    contact:"ZSky Biotech &mdash; zskybio.com &middot; Xiaomin Ma, xiaomin.ma@zskybio.com &middot; trial site: Beijing Tiantan Hospital.",
+    contact:"<b>ZSky Biotech Inc.</b> &mdash; web zskybio.com &middot; Study contact: Xiaomin Ma, Email xiaomin.ma@zskybio.com, Tel +86 518-82342973. Trial site: <b>Beijing Tiantan Hospital</b> (Capital Medical University), 119 South 4th Ring West Road, Fengtai District, Beijing 100070, China. Registries: <a href=\"https://clinicaltrials.gov/study/NCT07365280\" target=\"_blank\" rel=\"noopener\">NCT07365280</a> (newly dx), <a href=\"https://clinicaltrials.gov/study/NCT06253234\" target=\"_blank\" rel=\"noopener\">NCT06253234</a> (recurrent).",
     unver:"Primary listing is in Section 1. Whether it is sold privately outside the trials is unclear."
    },
    {
@@ -1059,7 +1062,7 @@ const ZONES = [
     regulatory:"Chinese trial framework.",
     cost:"n/a.",
     logistics:"Research institute, not a clinic.",
-    contact:"Shenzhen Geno-Immune Medical Institute &mdash; szgimi.org.",
+    contact:"<b>Shenzhen Geno-Immune Medical Institute</b>, Shenzhen, Guangdong, China &mdash; web szgimi.org; enquiries via the website. Research institute (Lung-Ji Chang), not a treating clinic. Registry <a href=\"https://clinicaltrials.gov/study/NCT03914768\" target=\"_blank\" rel=\"noopener\">NCT03914768</a>.",
     unver:"Minimal public information; included only to map the landscape."
    }
  ]},
@@ -1080,7 +1083,7 @@ const ZONES = [
     regulatory:"Operate outside FDA oversight; Mexican COFEPRIS registration status varies and is rarely detailed publicly.",
     cost:"~USD 45,000–60,000 for a standard 3-week programme (Hope4Cancer, Issels published ranges); a peptide/neoantigen line item is not itemised.",
     logistics:"Border-adjacent, English-speaking, no insurance billing pathway.",
-    contact:"immunitytherapycenter.com &middot; hope4cancer.com &middot; chipsahospital.org &middot; issels.com &mdash; Issels and Hope4Cancer are also on the main dashboard.",
+    contact:"<b>Immunity Therapy Center</b>, Blvd. Padre Kino #10133, Zona Urbana Rio, 22010 Tijuana, B.C., Mexico &mdash; immunitytherapycenter.com, Tel +1 619-929-3430, Email info@immunitytherapycenter.com. <b>Hope4Cancer</b> (Playas de Tijuana &amp; Cancún) &mdash; hope4cancer.com, Tel +1 619-669-6511. <b>CHIPSA Hospital</b>, Nubes 670, Playas de Tijuana, 22505 &mdash; chipsahospital.org, Tel +1 855-624-4772, Email info@chipsahospital.org. <b>Issels Immuno-Oncology</b> (Tijuana; Santa Barbara CA office) &mdash; issels.com, Tel +1 805-962-2126. Issels and Hope4Cancer are also on the main dashboard.",
     unver:"<b>Any &ldquo;neoantigen vaccine&rdquo; marketing from a Mexican integrative clinic should be treated as unverified</b> until they provide the sequencing report, the ranked neoepitope list, peptide Certificates of Analysis, GMP documentation, and GBM-specific (not all-comers) outcomes in writing. None of that was found in public materials."
    }
  ]},
@@ -1101,7 +1104,7 @@ const ZONES = [
     regulatory:"Brazil&rsquo;s ANVISA and other regional regulators would treat a personalized neoantigen vaccine as an investigational biologic; no approved product or advertised expanded-access pathway was found.",
     cost:"n/a.",
     logistics:"n/a. If pursuing the Brazilian trial once it opens, contact the University of São Paulo General Hospital neuro-oncology programme (see the Section 1 card for NCT06749925).",
-    contact:"University of São Paulo General Hospital / ICB-USP &mdash; PI José Alexandre Marzagão Barbuto (Section 1 entry NCT06749925). Universidad Nacional de Quilmes, Centro de Oncología Molecular y Traslacional (research only).",
+    contact:"<b>Hospital das Clínicas / ICB, Universidade de São Paulo</b> &mdash; Av. Prof. Lineu Prestes 1730, Cidade Universitária, São Paulo, SP 05508-000, Brazil &middot; Tel +55 11 3091-7375 &middot; Email jbarbuto@icb.usp.br (Prof. José Alexandre Marzagão Barbuto) &middot; registry <a href=\"https://clinicaltrials.gov/study/NCT06749925\" target=\"_blank\" rel=\"noopener\">NCT06749925</a> (Section 1). <b>Universidad Nacional de Quilmes</b>, Centro de Oncología Molecular y Traslacional, Bernal, Buenos Aires, Argentina &mdash; unq.edu.ar (preclinical research only).",
     unver:"Regional clinical-trial registries are less complete than ClinicalTrials.gov; a small hospital-based programme could exist without an English-language footprint. Nothing verifiable surfaced. If the user has a specific centre in mind, name it and it can be checked directly."
    }
  ]}
@@ -1228,8 +1231,8 @@ $("#providerZones").innerHTML=ZONES.map(z=>{
         <div class="tags">${tags}</div>
       </div>
       <div class="cost-badge"><span class="cbl">Est. cost</span> ${p.costShort||p.cost}</div>
+      <div class="contact-badge"><span class="cbl">Contact</span>${p.contact}</div>
       <div class="prov-grid">
-        <div><div class="k">Contact / website</div><div class="v">${p.contact}</div></div>
         <div><div class="k">What is manufactured</div><div class="v">${p.manufactured||p.offered}</div></div>
         <div><div class="k">Starting material</div><div class="v">${p.startingMaterial||"&mdash;"}</div></div>
         <div><div class="k">What is offered</div><div class="v">${p.offered}</div></div>
