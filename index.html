@@ -257,6 +257,25 @@
     <span class="chip"><b>Age</b>&nbsp;48</span>
     <span class="chip"><b>Surgery</b>&nbsp;1.2&nbsp;cm lesion, gross-total resection &mdash; <b>2&nbsp;weeks ago</b></span>
     <span class="chip"><b>Status</b>&nbsp;Newly diagnosed, no radiation or chemo yet</span>
+    <span class="chip"><b>NGS panel (11&nbsp;Sep&nbsp;2026)</b>&nbsp;TERT promoter mut. &middot; TP53 mut. &middot; PTEN loss &middot; TMB&nbsp;9.4 &middot; MSS</span>
+  </div>
+
+  <div class="disclaimer" style="border-left-color:var(--accent); margin-top:14px">
+    <b>New NGS panel result (11&nbsp;Sep&nbsp;2026)</b> &mdash; <span class="mono">TERT</span> promoter c.-124C&gt;T
+    (C228T), VAF 42.05% &middot; <span class="mono">TP53</span> p.G266R, VAF 87.78% &middot;
+    <span class="mono">PTEN</span> loss, 77% &middot; <b>TMB 9.4 mut/Mb</b> &middot; <b>MSI 3.39 (microsatellite-stable,
+    MSS)</b>. Read against this trial list: <b>no trial here gains or loses eligibility outright</b> &mdash; none of
+    the 16 trials gate on TP53, PTEN, or TMB, and only one gates on MSI. <b>BreakVax&rsquo;s dMMR/MSI-H/POLE-mutant
+    exclusion is now confirmed cleared</b> (this tumour is MSS) &mdash; its fit rating stays <b>Low</b> for its own
+    independent reasons (n=10, single site, steroid-restrictive, not yet open). TERT promoter mutation is expected in
+    ~80% of IDH-wildtype GBM and confirms the molecular diagnosis, but is not itself a drug target in any trial on this
+    US/immunotherapy-scoped list &mdash; it is directly relevant to the TERT-targeted peptide vaccine trial in the
+    <a href="neoantigen-peptide-atlas.html">companion atlas</a>. TMB 9.4 is well above the ~1&ndash;2 mut/Mb usual for
+    GBM but <b>just under</b> the 10 mut/Mb threshold used for tissue-agnostic pembrolizumab (FoundationOne CDx) and
+    for a high-TMB trial in the companion atlas &mdash; so it does not open either of those doors on its own; confirm
+    which assay produced this figure before relying on the exact cut-off. PTEN loss is associated with a more
+    immune-&ldquo;cold,&rdquo; T-cell-excluded tumour microenvironment in GBM and can blunt checkpoint-inhibitor
+    combinations &mdash; a headwind to flag for any vaccine-plus-checkpoint regimen below, not a disqualifier.
   </div>
 
   <div class="disclaimer" style="border-left-color:var(--accent); margin-top:14px">
@@ -684,7 +703,11 @@
   glioblastoma trials with Recruiting/Not-yet-recruiting status, cross-referenced against every trial already tracked
   on this page (matched, not-recruiting, MGMT-excluded, and recurrent-reference lists combined). One newly-diagnosed-
   eligible trial had been missed by the original keyword-cluster search (TGX-007, NCT07346144 — added to the matched
-  list above) and six recurrent-disease trials were added to the reference table below.</p>
+  list above) and six recurrent-disease trials were added to the reference table below. <b>Update, 11&nbsp;September
+  2026:</b> an NGS panel result (TERT promoter c.-124C&gt;T, TP53 p.G266R, PTEN loss 77%, TMB 9.4, MSI 3.39/MSS) was
+  checked against every trial&rsquo;s eligibility text on this page &mdash; none gate on TP53, PTEN, or TMB; only
+  BreakVax gates on MSI, and its dMMR/MSI-H/POLE exclusion is now confirmed cleared. MGMT promoter methylation status
+  is still not part of this NGS panel and remains unconfirmed &mdash; see the note above.</p>
   <p style="margin-top:12px"><b>Key sources.</b></p>
   <ul class="src">
     <li>ClinicalTrials.gov &mdash; each trial links to its own record (definitive for status, sites, eligibility).</li>
@@ -791,10 +814,10 @@ const TRIALS = [
   phase:"Phase 1/2", phaseRank:1.5, status:"Not yet recruiting", statusClass:"s-soon",
   design:"Single-arm, ~10 patients. BreakVax (per-patient peptide vaccine of tumour neoantigens + tumour-associated antigens) with low-dose subcutaneous ipilimumab, pembrolizumab (from cycle 2), temozolomide, losartan and aspirin. Mandatory on-treatment biopsy.",
   sponsor:"BreakBio Corp (with Miami Cancer Institute)", n:"10",
-  molec:"Histologically confirmed GBM; IDH / MGMT / EGFR not specified; excludes dMMR/MSI-H and POLE-mutant", molecKey:["none"],
+  molec:"Histologically confirmed GBM; IDH / MGMT / EGFR not specified; excludes dMMR/MSI-H and POLE-mutant — <b>cleared: 11 Sep 2026 NGS panel shows MSI 3.39 (microsatellite-stable)</b>", molecKey:["none"],
   tissueKey:"fresh-frozen", tissue:"Needs ~200 mg of tumour tissue from the original resection, AND a new on-treatment biopsy during the trial.",
   postOp:"Not tied to a specific post-op week; gated on the trial opening (~Sep 2026) and on-treatment biopsy logistics rather than a surgery-clock deadline.",
-  fit:"Low", fitWhy:"Very small (n=10), single site, not yet open, and unusually steroid-restrictive (no systemic steroids within 6 weeks, cannot require steroids). Checkpoint-heavy regimen despite checkpoint monotherapy having failed in newly diagnosed GBM. Worth tracking as it opens.",
+  fit:"Low", fitWhy:"Very small (n=10), single site, not yet open, and unusually steroid-restrictive (no systemic steroids within 6 weeks, cannot require steroids). Checkpoint-heavy regimen despite checkpoint monotherapy having failed in newly diagnosed GBM. The MSI-H/dMMR/POLE exclusion is now confirmed cleared (MSS on the 11 Sep 2026 panel), so molecular eligibility is otherwise open — worth tracking as it opens.",
   sites:"FL — Miami (Herbert Wertheim Cancer Institute / Miami Cancer Institute).",
   timing:"Opens ~Sep 2026. Needs ~200 mg tumour tissue; on-treatment biopsy required.",
   incl:["Age 18–71; histologically confirmed GBM with 200 mg tissue submitted","KPS ≥80; life expectancy &gt;6 months","No prior anti-PD-1 / PD-L1; no immunosuppression within 12 months"],

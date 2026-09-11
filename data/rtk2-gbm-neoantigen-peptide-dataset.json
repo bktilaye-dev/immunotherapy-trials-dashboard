@@ -55,12 +55,12 @@
       "status": "Recruiting",
       "sponsor": "Assistance Publique – Hôpitaux de Paris (PI A. Carpentier)",
       "enrollment_target": "35",
-      "molecular_hla_fit": "Histologically confirmed glioblastoma; IDH-mutant grade 4 astrocytoma excluded (so IDH-wildtype fits). Phase 1 requires HLA-A2 positive and PTPRZ1 expression in the tumour. Retrospective TERT-promoter and MGMT testing on archival tissue. Steroids must be <=10 mg/day prednisone-equivalent.",
+      "molecular_hla_fit": "Histologically confirmed glioblastoma; IDH-mutant grade 4 astrocytoma excluded (so IDH-wildtype fits). Phase 1 requires HLA-A2 positive and PTPRZ1 expression in the tumour. Retrospective TERT-promoter and MGMT testing on archival tissue — this tumour is confirmed TERT-promoter-mutant (c.-124C&gt;T, VAF 42.05%, 11 Sep 2026 panel), the reactivation this vaccine's hTERT target relies on; HLA-A2 and PTPRZ1 expression are still unknown. Steroids must be <=10 mg/day prednisone-equivalent.",
       "tissue_needed": "Standard archival tissue is sufficient for the required biomarker testing.",
       "timing_window": "Starts 28–45 days after chemoradiation completion — adjuvant window, no conflict with the Stupp protocol.",
       "manufacturing": "Off-the-shelf peptides against two glioma-associated antigens (PTPRZ1, TERT) — no per-patient synthesis; \"personalisation\" is by HLA type and antigen expression.",
       "fit": "Medium",
-      "fit_rationale": "Open now, adjuvant-window, and standard archival tissue is enough — practically the easiest European entry to screen for. Two gates: HLA-A2 positivity and PTPRZ1 tumour expression (Phase 1 cohort), and travel to Paris or Marseille. It targets shared antigens, not the patient's own mutations.",
+      "fit_rationale": "Open now, adjuvant-window, and standard archival tissue is enough — practically the easiest European entry to screen for. Confirmed TERT-promoter mutation is a positive biological signal for this specific mechanism. The two real gates — HLA-A2 positivity and PTPRZ1 tumour expression (Phase 1 cohort) — are still unknown, plus travel to Paris or Marseille. It targets shared antigens, not the patient's own mutations.",
       "evidence_score": 2,
       "evidence_note": "TERT is the target of the UCPVax telomerase-vaccine programme, which has phase 1/2 immunogenicity and some efficacy signal in other settings; this specific PTPRZ1/TERT construct is first-in-human in GBM.",
       "key_inclusion": [
@@ -177,12 +177,12 @@
       "status": "Recruiting",
       "sponsor": "Biogenea Pharmaceuticals Ltd., Thessaloniki",
       "enrollment_target": "29",
-      "molecular_hla_fit": "Registry inclusion text describes recurrent malignant glioma with prior surgery, radiotherapy and chemotherapy, a measurable lesion (RECIST), high mutation load (>10 TMB) and >=10 neoantigens, >=3 months post-op, no prior immunotherapy — despite the study title saying \"newly diagnosed\".",
+      "molecular_hla_fit": "Registry inclusion text describes recurrent malignant glioma with prior surgery, radiotherapy and chemotherapy, a measurable lesion (RECIST), high mutation load (>10 TMB) and >=10 neoantigens, >=3 months post-op, no prior immunotherapy — despite the study title saying \"newly diagnosed\". This tumour's actual TMB is 9.4 mut/Mb (11 Sep 2026 panel) — under the &gt;10 bar, confirming rather than just presuming a mismatch (assay-comparability caveat applies).",
       "tissue_needed": "Tumour tissue for sequencing and neoantigen identification.",
       "timing_window": "Tied to a maintenance-temozolomide cycle; not a fixed post-op window.",
       "manufacturing": "1–35 synthetic neoantigen peptides selected by a proprietary \"AI-QMMM\" pipeline, plus a large fixed panel of GBM-associated antigens (MAGE-1, HER-2, gp100, survivin, EphA2, IL13Rα2, others), with a rotating menu of adjuvants (poly-ICLC, cGAMP, GM-CSF, imiquimod, CpG, MPLA, saponins).",
       "fit": "Low",
-      "fit_rationale": "Serious mismatches for this case: the eligibility text is written for recurrent, measurable disease and demands a high mutational burden (>10 TMB, ≥10 neoantigens) that a treatment-naïve, fully-resected RTK II tumour is unlikely to meet; the title and criteria contradict each other; it is a single small-company site with a pharmacist PI and an unusually broad multi-adjuvant design. Worth noting, not pursuing without direct clarification.",
+      "fit_rationale": "Serious mismatches for this case: the eligibility text is written for recurrent, measurable disease and demands a high mutational burden (>10 TMB, ≥10 neoantigens) that this treatment-naïve, fully-resected RTK II tumour does not meet (actual TMB 9.4); the title and criteria contradict each other; it is a single small-company site with a pharmacist PI and an unusually broad multi-adjuvant design. Worth noting, not pursuing without direct clarification.",
       "evidence_score": 1,
       "evidence_note": "First-in-human; no efficacy data. Sponsor has limited clinical track record.",
       "key_inclusion": [
@@ -208,6 +208,47 @@
         "Single small-company site; first-in-human; broad unproven multi-adjuvant design."
       ],
       "registry_url": "https://clinicaltrials.gov/study/NCT07077616"
+    },
+    {
+      "nct": "NCT07762716",
+      "name": "BreakVax — personalized peptide vaccine (neoantigens + tumour-associated antigens) + dual checkpoint",
+      "format": "Personalized neoantigen peptide",
+      "region": "United States",
+      "country": "United States",
+      "phase": "Phase 1/2",
+      "status": "Not yet recruiting",
+      "sponsor": "BreakBio Corp (with Miami Cancer Institute)",
+      "enrollment_target": "10",
+      "molecular_hla_fit": "Histologically confirmed GBM; IDH / MGMT / EGFR not specified; excludes dMMR/MSI-H and POLE-mutant tumours — cleared: the 11 Sep 2026 NGS panel shows MSI 3.39 (microsatellite-stable).",
+      "tissue_needed": "Needs ~200 mg of tumour tissue from the original resection, AND a new on-treatment biopsy during the trial — the most tissue-demanding entry in this atlas.",
+      "timing_window": "Not tied to a specific post-op week; gated on the trial opening (~Sep 2026) and on-treatment biopsy logistics rather than a surgery-clock deadline.",
+      "manufacturing": "BreakVax: a per-patient peptide vaccine combining the patient's own tumour neoantigens with tumour-associated antigens, from ~200 mg of resection tissue plus a mandatory new on-treatment biopsy.",
+      "fit": "Low",
+      "fit_rationale": "Exactly this atlas's modality — a per-patient peptide vaccine of the tumour's own neoantigens plus shared antigens — and its MSI-H/dMMR/POLE exclusion is now confirmed cleared (this tumour is MSS). But it remains a small (n=10), single-site, not-yet-open trial with an unusually strict steroid exclusion (none within 6 weeks; cannot require steroid pre-medication) and a mandatory second, on-treatment biopsy. Also tracked on the main dashboard.",
+      "evidence_score": 1,
+      "evidence_note": "First-in-human; no efficacy data yet.",
+      "key_inclusion": [
+        "Age 18–71; histologically confirmed GBM with 200 mg tissue submitted",
+        "KPS ≥80; life expectancy >6 months",
+        "No prior anti-PD-1 / PD-L1; no immunosuppression within 12 months"
+      ],
+      "key_exclusion": [
+        "Any systemic or topical steroids within 6 weeks; cannot require steroid pre-medication",
+        "Autoimmune disease (limited exceptions)",
+        "Myocarditis / CHF / LVEF <50%; interstitial lung disease",
+        "Uncontrolled hypertension; coumarin anticoagulants; strong CYP3A4 modulators",
+        "Prior invasive cancer within 2 years; dMMR/MSI-H; POLE mutation"
+      ],
+      "primary_endpoint": "Overall survival (12 months); BreakVax manufacturing success; adverse events.",
+      "secondary_endpoints": "Change in tumour-infiltrating T cells; immune-related ORR / PFS / duration of response (iRANO / RANO); pseudoprogression rate.",
+      "contact": "Miami Cancer Institute / Herbert Wertheim Cancer Institute, Miami FL — PI Manmeet Ahluwalia (contact details not yet posted on the registry).",
+      "dates": "Estimated start Sep 2026 · primary completion Sep 2030",
+      "flags": [
+        "Not yet recruiting; single site; n=10.",
+        "Strict steroid exclusion — hard to meet if any steroid is needed for oedema.",
+        "Needs ~200 mg tumour tissue AND a fresh on-treatment biopsy."
+      ],
+      "registry_url": "https://clinicaltrials.gov/study/NCT07762716"
     }
   ],
   "section1_landmark_not_enrolling": [
@@ -363,7 +404,7 @@
       "location": "US 501(c)(3); administrative sites in Miami FL, Dallas TX, St Louis MO, Los Angeles & San Francisco CA. Expanded-access (JLF-100) treating site on the registry: Texas Oncology, Austin TX. Basket trial (JLF-200) sites incl. Miami Beach FL, Beverly Hills & San Francisco CA, New York NY, Bridgeton MO.",
       "contact_website": "Jaime Leandro Foundation for Therapeutic Cancer Vaccines (501(c)(3), USA). Web: jaimeleandrofoundation.org &middot; Email: info@jaimeleandrofoundation.org (William Hoos) &middot; Enrolment infrastructure: WideTrial (widetrial.com). Administrative sites: Miami FL, Dallas TX, St Louis MO, Los Angeles CA, San Francisco CA (per the foundation; no street addresses published - contact by email). Expanded-access (JLF-100 / NCT06963697) treating site on the registry: Texas Oncology - Central Austin, 6204 Balcones Dr, Austin, TX 78731 &middot; Tel +1 512-451-4411 &middot; PI Brian Vaillant, MD. Basket trial (JLF-200 / NCT05741242, enrolling by invitation) sites: Mount Sinai Comprehensive Cancer Center, Miami Beach, FL (this is Mount Sinai Medical Center Florida, not the New York Mount Sinai); Precision NextGen Oncology, Beverly Hills CA; Quest Clinical Research, San Francisco CA; Anna Gattani MD PC, New York NY; St Louis Cancer Care, Bridgeton MO. Registries: NCT06963697 &middot; NCT05741242.",
       "what_is_manufactured": "Personalized neoantigen synthetic long peptides (8-35 amino acids), a customised mix per patient based on the tumour's mutation profile, given with poly-ICLC adjuvant - the same class of product as NeoVax.",
-      "starting_material": "The patient's tumour + matched normal for exome/RNA sequencing and neoepitope prediction; blood for HLA typing.",
+      "starting_material": "The patient's tumour + matched normal for exome/RNA sequencing and neoepitope prediction; blood for HLA typing. This tumour's known TMB (9.4 mut/Mb) supports a workable neoepitope pool.",
       "what_is_offered": "An FDA expanded-access programme (individual + intermediate-size patient population; NCT06963697 / protocol JLF-100), run by a US non-profit whose stated mission is to make personalized cancer vaccines available to patients with limited or no options. It is not a clinical trial you enrol in for research - it is treatment access under 21 CFR 312.305, alongside the foundation's phase 1b/2 basket trial JLF-200 (NCT05741242).",
       "personalized": "Fully personalized - built from the patient's own tumour mutations.",
       "peptide_synthesis": "GMP synthetic long peptide manufacturing (contracted); a bioinformatics neoepitope pipeline (the foundation has published its ImmunoNX workflow).",
@@ -443,7 +484,7 @@
       "location": "Tübingen, Germany",
       "contact_website": "CeGaT GmbH / CeCaVa GmbH & Co. KG (Center for Cancer Vaccines; JV with B. Braun), Paul-Ehrlich-Straße 23, 72076 Tübingen, Germany. Web: cegat.com &middot; cecava.com &middot; Tel: +49 7071 565 44 55 &middot; Email: info@cegat.de &middot; Vaccine / expanded-access enquiries: Dr Saskia Biskup, Saskia.Biskup@humangenetik-tuebingen.de &middot; registry NCT05356312.",
       "what_is_manufactured": "GMP synthetic peptides spanning the patient's predicted neoepitopes, formulated with adjuvant - the \"printing\" step done with identity/purity/sterility release testing. ~12 weeks from diagnostics.",
-      "starting_material": "Tumour tissue (FFPE or fresh) + blood, for tumour-exome sequencing, HLA typing and neoantigen prediction (CancerNeo®).",
+      "starting_material": "Tumour tissue (FFPE or fresh) + blood, for tumour-exome sequencing, HLA typing and neoantigen prediction (CancerNeo®). This tumour's known TMB (9.4 mut/Mb, well above the ~1-2 usual for GBM) is a favourable feasibility signal - more candidate mutations to screen for HLA-binding neoepitopes than a typical GBM case.",
       "what_is_offered": "A fully personalized neoantigen synthetic-peptide vaccine. CeGaT's CancerNeo® runs tumour-exome + HLA typing + neoantigen prediction; cecava manufactures and administers the peptide vaccine. Manufacturing ~12 weeks after diagnostics.",
       "personalized": "Fully personalized — built from the patient's own tumour mutations.",
       "peptide_synthesis": "GMP peptide synthesis (in-house / contracted); this is the \"printing\" step done properly, with release testing.",

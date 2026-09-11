@@ -277,6 +277,37 @@
     <span class="chip"><b>Surgery</b>&nbsp;1.2&nbsp;cm lesion, gross-total resection</span>
     <span class="chip"><b>Status</b>&nbsp;Newly diagnosed, treatment-na&iuml;ve</span>
     <span class="chip"><b>MGMT</b>&nbsp;entries that require an <i>unmethylated</i> promoter (i.e. exclude a methylated tumour) have been removed per case direction</span>
+    <span class="chip"><b>NGS panel (11&nbsp;Sep&nbsp;2026)</b>&nbsp;TERT promoter mut. &middot; TP53 mut. &middot; PTEN loss &middot; TMB&nbsp;9.4 &middot; MSS</span>
+  </div>
+
+  <div class="disclaimer" style="border-left-color:var(--accent); margin-top:14px">
+    <b>New NGS panel result (11&nbsp;Sep&nbsp;2026)</b> &mdash; <span class="mono">TERT</span> promoter c.-124C&gt;T
+    (C228T), VAF 42.05% &middot; <span class="mono">TP53</span> p.G266R, VAF 87.78% &middot;
+    <span class="mono">PTEN</span> loss, 77% &middot; <b>TMB 9.4 mut/Mb</b> &middot; <b>MSI 3.39
+    (microsatellite-stable, MSS)</b>. What this changes here:
+    <ul style="margin:8px 0 0; padding-left:20px">
+      <li><b>Tamavaq&rsquo;s &ldquo;&gt;10 TMB&rdquo; requirement is now known, not just presumed, to be unmet</b>
+        (9.4 &lt; 10) &mdash; its <i>Low</i> fit stands, now with a real number instead of &ldquo;unlikely to meet.&rdquo;
+        (Assay-dependent: confirm this NGS panel is comparably calibrated to the panel the trial specifies before
+        treating 9.4 as final.)</li>
+      <li><b>The Paris PTPRZ1/TERT trial&rsquo;s biological rationale is strengthened</b>: this tumour is confirmed
+        TERT-promoter-mutant, the exact reactivation mechanism the hTERT-targeting vaccine arm relies on. HLA-A2
+        positivity and tumour PTPRZ1 expression &mdash; the trial&rsquo;s actual Phase&nbsp;1 gates &mdash; are still
+        unknown and unaffected by this panel.</li>
+      <li><b>BreakVax</b> (added below) excludes dMMR/MSI-H/POLE-mutant tumours &mdash; <b>cleared</b>: this tumour is
+        MSS.</li>
+      <li>TMB 9.4 is well above the ~1&ndash;2 mut/Mb usual for GBM &mdash; a genuinely favourable signal for
+        personalized-neoantigen-vaccine manufacturability (more candidate neoepitopes for CeGaT, the Jaime Leandro
+        Foundation, iNeo and similar programmes in Section&nbsp;2) &mdash; but it is <b>below</b> the 10 mut/Mb
+        threshold used for tissue-agnostic pembrolizumab (FoundationOne CDx) and for Tamavaq, so it does not newly
+        unlock either.</li>
+      <li>PTEN loss is linked to a more immune-&ldquo;cold,&rdquo; T-cell-excluded tumour microenvironment in GBM and
+        can blunt checkpoint-inhibitor combinations &mdash; a headwind for any vaccine-plus-checkpoint entry below
+        (NeoVax+pembrolizumab, ZSky+TMZ, etc.), not a disqualifier.</li>
+      <li>TP53 p.G266R is not targeted by anything in this atlas (it is a peptide/neoantigen-vaccine atlas; TP53-directed
+        approaches in GBM are gene-therapy platforms such as SGT-53, a different modality &mdash; out of scope here but
+        worth raising with the tumour board).</li>
+    </ul>
   </div>
 
   <div class="disclaimer" style="border-left-color:var(--accent); margin-top:14px">
@@ -339,11 +370,16 @@
   <div class="sec-head"><h2>How RTK II / IDH-wildtype changes the picture</h2></div>
   <div class="explainer">
     <ul>
-      <li><strong>Glioblastoma is a low-mutation tumour.</strong> Typically ~1&ndash;2 mutations/Mb and only ~30&ndash;50
-      coding mutations &mdash; few candidate neoantigens. Some patients simply cannot get a &ge;10-peptide vaccine
-      (the NeoVax feasibility bar). Exceptions with many more targets: constitutional mismatch-repair deficiency, a POLE
-      mutation, or (later) temozolomide-induced hypermutation at recurrence. Being treatment-na&iuml;ve now means no
-      TMZ-driven hypermutation &mdash; both a missing boost and a cleaner baseline.</li>
+      <li><strong>Glioblastoma is usually a low-mutation tumour &mdash; this one is better than average.</strong>
+      Typically ~1&ndash;2 mutations/Mb; this patient&rsquo;s 11&nbsp;Sep&nbsp;2026 NGS panel reports <b>TMB
+      9.4&nbsp;mut/Mb</b> and <b>MSS</b> (MSI 3.39 &mdash; not a mismatch-repair-deficiency hypermutator; the elevated
+      count is presumably intrinsic to this tumour or panel calibration, not MMR loss). That is a meaningfully larger
+      neoepitope pool than the GBM baseline &mdash; a favourable sign for personalized-vaccine manufacturability &mdash;
+      but still below the &ge;10&nbsp;mut/Mb bar some programmes use (e.g. Tamavaq in Section&nbsp;1, and the
+      tissue-agnostic pembrolizumab TMB-H threshold). Some patients with true hypermutation (constitutional
+      mismatch-repair deficiency, a POLE mutation, or later temozolomide-induced hypermutation at recurrence) get
+      far more targets than this; this patient is not in that group. Being treatment-na&iuml;ve now means no
+      TMZ-driven hypermutation boost yet &mdash; a cleaner baseline, not a ceiling.</li>
       <li><strong>RTK II is the EGFR family.</strong> EGFR amplification and often EGFRvIII &mdash; and EGFRvIII is a
       genuine <em>shared</em> tumour-specific antigen. But the EGFRvIII peptide vaccine <b>rindopepimut failed a phase&nbsp;3</b>
       (ACT&nbsp;IV): the tumour recurred EGFRvIII-negative. Worth testing EGFRvIII status; EGFRvIII CAR-T / bispecifics
@@ -355,7 +391,10 @@
       to lymphocyte recovery is part of most designs.</li>
       <li><strong>Checkpoint monotherapy has failed in newly-diagnosed GBM</strong> (CheckMate-498/-548). Vaccines are
       usually combined with a checkpoint inhibitor anyway, to counter the immunosuppressive microenvironment &mdash; the
-      combination is unproven for survival but mechanistically motivated.</li>
+      combination is unproven for survival but mechanistically motivated. <b>This tumour&rsquo;s confirmed PTEN loss
+      (77%)</b> is the expected chromosome-10 partner to RTK II&rsquo;s chromosome-7 gain, and PTEN loss is separately
+      linked to a more T-cell-excluded, PD-L1-high microenvironment in glioma &mdash; a specific reason a
+      vaccine-plus-checkpoint combination may face extra headwind in this tumour, not just GBM in general.</li>
       <li><strong>Methylation subclass &ldquo;RTK II&rdquo; is almost never an eligibility criterion.</strong> Matching keys
       on IDH-wildtype status, MGMT promoter methylation, EGFR/EGFRvIII, HLA type, mutational burden, and whether usable
       tumour tissue was banked.</li>
@@ -366,23 +405,26 @@
 <!-- ============ SUMMARY ============ -->
 <section id="summary">
   <div class="sec-head"><h2>At a glance</h2>
-  <p>Five institutional programmes are open or about to open somewhere in the world and are at least plausibly relevant to
+  <p>Six institutional programmes are open or about to open somewhere in the world and are at least plausibly relevant to
   a newly-diagnosed, fully-resected, IDH-wildtype patient &mdash; <b>US entries first</b>, then the rest. Entries that
   require an <b>MGMT-unmethylated</b> promoter (and so exclude a methylated tumour) have been removed per case direction
   &mdash; that took out the UF RNA-LP trial, the Washington University / Geneos GNOS-PV01 landmark, and the PEP-CMV and
-  UCPVax appendix entries. <b>Section&nbsp;2 (private providers) sits right below</b>, US-first; the completed / landmark
-  platforms this field is built on are at the <a href="#landmark">end of the page</a>. Buyable private providers are
-  concentrated in Germany, Japan and China. In the <b>United States</b>: no walk-in clinic sells this, but there is one
-  self-pay route outside a standard trial &mdash; the <b>Jaime Leandro Foundation</b>&rsquo;s FDA expanded-access
-  programme (~USD&nbsp;83k) &mdash; while <b>Dana-Farber / Mass General</b> and <b>Albert Einstein / Mount Sinai</b> run
-  genuine personalized-neoantigen programmes but <b>only as clinical trials</b> (NeoVax, currently not enrolling).</p></div>
+  UCPVax appendix entries. <b>BreakVax</b> (Miami) was added 11&nbsp;Sep&nbsp;2026 &mdash; it is exactly this atlas's
+  modality (a per-patient peptide vaccine of the tumour's own neoantigens) and had been missing; its MSI-H/dMMR/POLE
+  exclusion is now confirmed cleared by the new NGS panel. <b>Section&nbsp;2 (private providers) sits right below</b>,
+  US-first; the completed / landmark platforms this field is built on are at the <a href="#landmark">end of the
+  page</a>. Buyable private providers are concentrated in Germany, Japan and China. In the <b>United States</b>: no
+  walk-in clinic sells this, but there is one self-pay route outside a standard trial &mdash; the <b>Jaime Leandro
+  Foundation</b>&rsquo;s FDA expanded-access programme (~USD&nbsp;83k) &mdash; while <b>Dana-Farber / Mass General</b>
+  and <b>Albert Einstein / Mount Sinai</b> run genuine personalized-neoantigen programmes but <b>only as clinical
+  trials</b> (NeoVax, currently not enrolling).</p></div>
 
   <div class="tiles">
-    <div class="tile"><div class="n tnum">5</div><div class="l">Institutional trials open / about to open</div></div>
+    <div class="tile"><div class="n tnum">6</div><div class="l">Institutional trials open / about to open</div></div>
     <div class="tile"><div class="n tnum">4</div><div class="l">Landmark platforms, between trials</div></div>
     <div class="tile"><div class="n tnum">1</div><div class="l">Trial that explicitly requires IDH-wildtype (matches)</div></div>
     <div class="tile"><div class="n tnum">4</div><div class="l">Entries removed (MGMT-unmethylated-only)</div></div>
-    <div class="tile"><div class="n tnum">5</div><div class="l">Open trials needing international travel (all of them)</div></div>
+    <div class="tile"><div class="n tnum">5</div><div class="l">Open trials needing international travel (all but BreakVax)</div></div>
     <div class="tile"><div class="n tnum">3</div><div class="l">Private providers with any published GBM data</div></div>
   </div>
 
@@ -569,7 +611,15 @@
   primary CNS tumours</i>; UCSF (Okada) neoantigen glioma work is paediatric H3K27M / low-grade-glioma only. Still
   no US walk-in clinic and no South American provider selling a tumour-sequenced neoantigen vaccine; the one US
   self-pay route remains the Jaime Leandro Foundation&rsquo;s FDA expanded-access programme. The Washington
-  University / Geneos GNOS-PV01 DNA vaccine is excluded per case direction (MGMT-unmethylated GBM only).</p>
+  University / Geneos GNOS-PV01 DNA vaccine is excluded per case direction (MGMT-unmethylated GBM only). <b>Update,
+  11&nbsp;September&nbsp;2026:</b> a new NGS panel (TERT promoter c.-124C&gt;T VAF 42.05%, TP53 p.G266R VAF 87.78%,
+  PTEN loss 77%, TMB 9.4, MSI 3.39/MSS) was checked against every entry on this page. <b>BreakVax</b> (NCT07762716,
+  Miami) was added to Section&nbsp;1 &mdash; it is exactly this atlas&rsquo;s modality (a per-patient peptide vaccine
+  of the tumour&rsquo;s own neoantigens + tumour-associated antigens) and had been omitted by oversight; its
+  dMMR/MSI-H/POLE exclusion is now confirmed cleared. Tamavaq&rsquo;s &gt;10-TMB requirement is now confirmed unmet
+  (actual 9.4) rather than presumed. The Paris PTPRZ1/TERT trial&rsquo;s biological rationale is strengthened by the
+  confirmed TERT-promoter mutation (its actual gates, HLA-A2 and PTPRZ1 expression, are unaffected). No entry gates on
+  TP53 or PTEN.</p>
   <p style="margin-top:12px"><b>Key sources.</b></p>
   <ul class="src">
     <li>NeoVax GBM phase I &mdash; Keskin et al., <a href="https://pubmed.ncbi.nlm.nih.gov/30568305/" target="_blank" rel="noopener">Nature 2019</a> (neoantigen-specific intratumoural T cells; dexamethasone abrogated responses; no survival claim); updated <a href="https://ascopubs.org/doi/10.1200/JCO.2026.44.16_suppl.2006" target="_blank" rel="noopener">ASCO 2026</a> (Reardon et al. &mdash; immune activity at 1&nbsp;year; survival extended vs historical, uncontrolled). Trial NCT02287428, sites Dana-Farber + Massachusetts General.</li>
@@ -623,10 +673,10 @@ const TRIALS = [
   sponsor:"Assistance Publique – Hôpitaux de Paris (PI A. Carpentier)", n:"35",
   manuf:"Off-the-shelf peptides against two glioma-associated antigens (PTPRZ1, TERT) — no per-patient synthesis; &ldquo;personalisation&rdquo; is by HLA type and antigen expression.",
   design:"Single-arm, open-label. Priming at day 0, weeks 2/4/6; boost every 2 months until progression, toxicity, or 12 months. Immunisations begin 4 weeks after radiotherapy, during the 6-month adjuvant temozolomide phase.",
-  molec:"Histologically confirmed glioblastoma; IDH-mutant grade 4 astrocytoma excluded (so IDH-wildtype fits). <b>Phase 1 requires HLA-A2 positive and PTPRZ1 expression in the tumour.</b> Retrospective TERT-promoter and MGMT testing on archival tissue. Steroids must be &le;10 mg/day prednisone-equivalent.",
+  molec:"Histologically confirmed glioblastoma; IDH-mutant grade 4 astrocytoma excluded (so IDH-wildtype fits). <b>Phase 1 requires HLA-A2 positive and PTPRZ1 expression in the tumour.</b> Retrospective TERT-promoter and MGMT testing on archival tissue — <b>this tumour is confirmed TERT-promoter-mutant (c.-124C&gt;T, VAF 42.05%, 11 Sep 2026 panel)</b>, the reactivation this vaccine's hTERT target relies on; HLA-A2 and PTPRZ1 expression are still unknown. Steroids must be &le;10 mg/day prednisone-equivalent.",
   tissue:"Standard archival tissue is sufficient for the required biomarker testing.",
   window:"Starts 28–45 days after chemoradiation completion — adjuvant window, no conflict with the Stupp protocol.",
-  fit:"Medium", fitWhy:"Open now, adjuvant-window, and standard archival tissue is enough — practically the easiest European entry to screen for. Two gates: HLA-A2 positivity and PTPRZ1 tumour expression (Phase 1 cohort), and travel to Paris or Marseille. It targets shared antigens, not the patient's own mutations.",
+  fit:"Medium", fitWhy:"Open now, adjuvant-window, and standard archival tissue is enough — practically the easiest European entry to screen for. Confirmed TERT-promoter mutation is a positive biological signal for this specific mechanism. The two real gates — HLA-A2 positivity and PTPRZ1 tumour expression (Phase 1 cohort) — are still unknown, plus travel to Paris or Marseille. It targets shared antigens, not the patient's own mutations.",
   ev:{s:2,l:"TERT is the target of the UCPVax telomerase-vaccine programme, which has phase 1/2 immunogenicity and some efficacy signal in other settings; this specific PTPRZ1/TERT construct is first-in-human in GBM.",links:[["UCPVax telomerase vaccine (recurrent GBM, completed) NCT04280848","https://clinicaltrials.gov/study/NCT04280848"]]},
   incl:["Age 18–75; histologically confirmed glioblastoma","Concurrent radiotherapy (≥45 Gy) + temozolomide completed 28–45 days earlier","KPS ≥60%","Phase 1 only: HLA-A2 positive and PTPRZ1 tumour expression","Archival tumour available for TERT-promoter and MGMT testing"],
   excl:["IDH-mutant grade 4 astrocytoma","Extracranial metastatic or leptomeningeal disease","Steroids >10 mg/day prednisone-equivalent","Autoimmune disease (lupus, RA, IBD); systemic immunosuppression","Prior bevacizumab or VEGF antagonist; carmustine wafers"],
@@ -683,10 +733,10 @@ const TRIALS = [
   sponsor:"Biogenea Pharmaceuticals Ltd., Thessaloniki", n:"29",
   manuf:"1–35 synthetic neoantigen peptides selected by a proprietary &ldquo;AI-QMMM&rdquo; pipeline, plus a large fixed panel of GBM-associated antigens (MAGE-1, HER-2, gp100, survivin, EphA2, IL13Rα2, others), with a rotating menu of adjuvants (poly-ICLC, cGAMP, GM-CSF, imiquimod, CpG, MPLA, saponins).",
   design:"Single-arm, open-label, single-site. Seven vaccinations starting ~14 days before the first maintenance temozolomide cycle.",
-  molec:"Registry inclusion text describes <b>recurrent malignant glioma with prior surgery, radiotherapy and chemotherapy</b>, a measurable lesion (RECIST), <b>high mutation load (>10 TMB) and &ge;10 neoantigens</b>, &ge;3 months post-op, no prior immunotherapy — despite the study title saying &ldquo;newly diagnosed&rdquo;.",
+  molec:"Registry inclusion text describes <b>recurrent malignant glioma with prior surgery, radiotherapy and chemotherapy</b>, a measurable lesion (RECIST), <b>high mutation load (>10 TMB) and &ge;10 neoantigens</b>, &ge;3 months post-op, no prior immunotherapy — despite the study title saying &ldquo;newly diagnosed&rdquo;. <b>This tumour's actual TMB is 9.4 mut/Mb (11 Sep 2026 panel) — under the &gt;10 bar</b>, confirming rather than just presuming a mismatch (assay-comparability caveat applies).",
   tissue:"Tumour tissue for sequencing and neoantigen identification.",
   window:"Tied to a maintenance-temozolomide cycle; not a fixed post-op window.",
-  fit:"Low", fitWhy:"Serious mismatches for this case: the eligibility text is written for recurrent, measurable disease and demands a high mutational burden (>10 TMB, ≥10 neoantigens) that a treatment-naïve, fully-resected RTK II tumour is unlikely to meet; the title and criteria contradict each other; it is a single small-company site with a pharmacist PI and an unusually broad multi-adjuvant design. Worth noting, not pursuing without direct clarification.",
+  fit:"Low", fitWhy:"Serious mismatches for this case: the eligibility text is written for recurrent, measurable disease and demands a high mutational burden (>10 TMB, ≥10 neoantigens) that this treatment-naïve, fully-resected RTK II tumour does not meet (actual TMB 9.4); the title and criteria contradict each other; it is a single small-company site with a pharmacist PI and an unusually broad multi-adjuvant design. Worth noting, not pursuing without direct clarification.",
   ev:{s:1,l:"First-in-human; no efficacy data. Sponsor has limited clinical track record.",links:[]},
   incl:["Age ≥18; histologically confirmed glioma","Recurrent malignant glioma; prior surgery / radiotherapy / chemotherapy","High mutation load (>10 TMB); genetically unstable; ≥10 neoantigens","Measurable lesion per RECIST; KPS >60; estimated survival >3 months","No prior immunotherapy"],
   excl:["Prior immune checkpoint inhibitor or experimental immunotherapy","Active autoimmune disease requiring systemic treatment","Other malignancy within 5 years (minor exceptions)","Uncontrolled cardiovascular/metabolic disease; HIV; active hepatitis B/C","Organ transplant requiring immunosuppression"],
@@ -695,6 +745,26 @@ const TRIALS = [
   contact:"Ioannis G. Grigoriadis · +30 6936 592686 · biogeneadrug@gmail.com",
   dates:"Started Jul 2025 · primary completion Dec 2027",
   flags:["Eligibility text is recurrent-disease and high-TMB oriented — contradicts the &ldquo;newly diagnosed&rdquo; title. Clarify directly before considering.","Single small-company site; first-in-human; broad unproven multi-adjuvant design."]
+ },
+ {
+  id:"NCT07762716", name:"BreakVax — personalized peptide vaccine (neoantigens + tumour-associated antigens) + dual checkpoint",
+  fmt:"Personalized neoantigen peptide", region:"United States", country:"United States",
+  phase:"Phase 1/2", status:"Not yet recruiting", statusClass:"s-soon",
+  sponsor:"BreakBio Corp (with Miami Cancer Institute)", n:"10",
+  manuf:"BreakVax: a per-patient peptide vaccine combining the patient's own tumour neoantigens with tumour-associated antigens, from ~200 mg of resection tissue plus a mandatory new on-treatment biopsy.",
+  design:"Single-arm, ~10 patients. BreakVax with low-dose subcutaneous ipilimumab, pembrolizumab (from cycle 2), temozolomide, losartan and aspirin.",
+  molec:"Histologically confirmed GBM; IDH / MGMT / EGFR not specified; <b>excludes dMMR/MSI-H and POLE-mutant tumours — cleared: the 11 Sep 2026 NGS panel shows MSI 3.39 (microsatellite-stable)</b>.",
+  tissue:"Needs ~200 mg of tumour tissue from the original resection, <b>AND</b> a new on-treatment biopsy during the trial — the most tissue-demanding entry in this atlas.",
+  window:"Not tied to a specific post-op week; gated on the trial opening (~Sep 2026) and on-treatment biopsy logistics rather than a surgery-clock deadline.",
+  fit:"Low", fitWhy:"Exactly this atlas's modality — a per-patient peptide vaccine of the tumour's own neoantigens plus shared antigens — and its MSI-H/dMMR/POLE exclusion is now confirmed cleared (this tumour is MSS). But it remains a small (n=10), single-site, not-yet-open trial with an unusually strict steroid exclusion (none within 6 weeks; cannot require steroid pre-medication) and a mandatory second, on-treatment biopsy. Also tracked on the main dashboard.",
+  ev:{s:1,l:"First-in-human; no efficacy data yet.",links:[]},
+  incl:["Age 18–71; histologically confirmed GBM with 200 mg tissue submitted","KPS ≥80; life expectancy >6 months","No prior anti-PD-1 / PD-L1; no immunosuppression within 12 months"],
+  excl:["Any systemic or topical steroids within 6 weeks; cannot require steroid pre-medication","Autoimmune disease (limited exceptions)","Myocarditis / CHF / LVEF <50%; interstitial lung disease","Uncontrolled hypertension; coumarin anticoagulants; strong CYP3A4 modulators","Prior invasive cancer within 2 years; dMMR/MSI-H; POLE mutation"],
+  epPrimary:"Overall survival (12 months); BreakVax manufacturing success; adverse events.",
+  epSecondary:"Change in tumour-infiltrating T cells; immune-related ORR / PFS / duration of response (iRANO / RANO); pseudoprogression rate.",
+  contact:"Miami Cancer Institute / Herbert Wertheim Cancer Institute, Miami FL — PI Manmeet Ahluwalia (contact details not yet posted on the registry).",
+  dates:"Estimated start Sep 2026 · primary completion Sep 2030",
+  flags:["Not yet recruiting; single site; n=10.","Strict steroid exclusion — hard to meet if any steroid is needed for oedema.","Needs ~200 mg tumour tissue AND a fresh on-treatment biopsy."]
  }
 ];
 
@@ -808,7 +878,7 @@ const ZONES = [
     name:"Jaime Leandro Foundation (JLF) — expanded-access neoantigen synthetic long peptide vaccine", loc:"US 501(c)(3); administrative sites in Miami FL, Dallas TX, St Louis MO, Los Angeles &amp; San Francisco CA. Expanded-access (JLF-100) treating site on the registry: Texas Oncology, Austin TX. Basket trial (JLF-200) sites incl. Miami Beach FL, Beverly Hills &amp; San Francisco CA, New York NY, Bridgeton MO.", tags:["peptide","Neoantigen","Expanded access"],
     costShort:"≈ USD 83,000 for the vaccine series (self-pay cost recovery, reported)",
     manufactured:"Personalized neoantigen synthetic long peptides (8&ndash;35 amino acids), a customised mix per patient based on the tumour&rsquo;s mutation profile, given with poly-ICLC adjuvant &mdash; the same class of product as NeoVax.",
-    startingMaterial:"The patient&rsquo;s tumour + matched normal for exome/RNA sequencing and neoepitope prediction; blood for HLA typing.",
+    startingMaterial:"The patient&rsquo;s tumour + matched normal for exome/RNA sequencing and neoepitope prediction; blood for HLA typing. This tumour's known TMB (9.4 mut/Mb) supports a workable neoepitope pool.",
     offered:"An FDA <b>expanded-access</b> programme (individual + intermediate-size patient population; NCT06963697 / protocol JLF-100), run by a US non-profit whose stated mission is to make personalized cancer vaccines available to patients with limited or no options. It is <b>not a clinical trial you enrol in for research</b> &mdash; it is treatment access under 21 CFR 312.305, alongside the foundation&rsquo;s phase 1b/2 basket trial JLF-200 (NCT05741242).",
     personalization:"Fully personalized &mdash; built from the patient&rsquo;s own tumour mutations.",
     synthesis:"GMP synthetic long peptide manufacturing (contracted); a bioinformatics neoepitope pipeline (the foundation has published its ImmunoNX workflow).",
@@ -883,7 +953,7 @@ const ZONES = [
     name:"CeGaT GmbH / cecava GmbH", loc:"Tübingen, Germany", tags:["peptide","Neoantigen","Named-patient"],
     costShort:"≈ €52,000 total (€10k diagnostics + €39k vaccine + €3k monitoring)",
     manufactured:"GMP synthetic peptides spanning the patient&rsquo;s predicted neoepitopes, formulated with adjuvant &mdash; the &ldquo;printing&rdquo; step done with identity/purity/sterility release testing. ~12 weeks from diagnostics.",
-    startingMaterial:"Tumour tissue (FFPE or fresh) + blood, for tumour-exome sequencing, HLA typing and neoantigen prediction (CancerNeo®).",
+    startingMaterial:"Tumour tissue (FFPE or fresh) + blood, for tumour-exome sequencing, HLA typing and neoantigen prediction (CancerNeo®). This tumour's known TMB (9.4 mut/Mb, well above the ~1&ndash;2 usual for GBM) is a favourable feasibility signal &mdash; more candidate mutations to screen for HLA-binding neoepitopes than a typical GBM case.",
     insurance:"German statutory insurance rarely covers it; private German insurers sometimes reimburse partially, case by case. Not billed to non-German (e.g. US) insurance.",
     patientStory:"Named-patient accounts appear in UK press and fundraising coverage (e.g. Brain Tumour Research features); the provider does not host a testimonial page. Outcomes in those accounts are not independently verified.",
     offered:"A fully personalized neoantigen synthetic-peptide vaccine. CeGaT's CancerNeo® runs tumour-exome + HLA typing + neoantigen prediction; cecava manufactures and administers the peptide vaccine. Manufacturing ~12 weeks after diagnostics.",
