@@ -276,7 +276,7 @@
     <span class="chip"><b>Age</b>&nbsp;48</span>
     <span class="chip"><b>Surgery</b>&nbsp;1.2&nbsp;cm lesion, gross-total resection</span>
     <span class="chip"><b>Status</b>&nbsp;Newly diagnosed, treatment-na&iuml;ve</span>
-    <span class="chip"><b>MGMT</b>&nbsp;entries that require an <i>unmethylated</i> promoter (i.e. exclude a methylated tumour) have been removed per case direction</span>
+    <span class="chip"><span class="dot"></span><b>MGMT</b>&nbsp;methylated (confirmed 11&nbsp;Sep&nbsp;2026)</span>
     <span class="chip"><b>NGS panel (11&nbsp;Sep&nbsp;2026)</b>&nbsp;TERT promoter mut. &middot; TP53 mut. &middot; PTEN loss &middot; TMB&nbsp;9.4 &middot; MSS</span>
   </div>
 
@@ -285,6 +285,11 @@
     (C228T), VAF 42.05% &middot; <span class="mono">TP53</span> p.G266R, VAF 87.78% &middot;
     <span class="mono">PTEN</span> loss, 77% &middot; <b>TMB 9.4 mut/Mb</b> &middot; <b>MSI 3.39
     (microsatellite-stable, MSS)</b>. What this changes here:
+    <b>MGMT promoter status confirmed 11&nbsp;Sep&nbsp;2026: methylated.</b> This closes the last major biomarker gap
+    and confirms &mdash; rather than assumes &mdash; that the four entries removed earlier for requiring
+    MGMT-<i>unmethylated</i> status genuinely do not apply here. It is also the reason the <b>NeoVax</b> landmark
+    card below was substantially rewritten: NeoVax has outcome data broken out specifically for MGMT-methylated
+    patients, and this tumour is now confirmed to be exactly that population.
     <ul style="margin:8px 0 0; padding-left:20px">
       <li><b>Tamavaq&rsquo;s &ldquo;&gt;10 TMB&rdquo; requirement is now known, not just presumed, to be unmet</b>
         (9.4 &lt; 10) &mdash; its <i>Low</i> fit stands, now with a real number instead of &ldquo;unlikely to meet.&rdquo;
@@ -629,7 +634,7 @@
   TP53 or PTEN.</p>
   <p style="margin-top:12px"><b>Key sources.</b></p>
   <ul class="src">
-    <li>NeoVax GBM phase I &mdash; Keskin et al., <a href="https://pubmed.ncbi.nlm.nih.gov/30568305/" target="_blank" rel="noopener">Nature 2019</a> (neoantigen-specific intratumoural T cells; dexamethasone abrogated responses; no survival claim); updated <a href="https://ascopubs.org/doi/10.1200/JCO.2026.44.16_suppl.2006" target="_blank" rel="noopener">ASCO 2026</a> (Reardon et al. &mdash; immune activity at 1&nbsp;year; survival extended vs historical, uncontrolled). Trial NCT02287428, sites Dana-Farber + Massachusetts General.</li>
+    <li>NeoVax GBM phase I (n=39) &mdash; Keskin et al., <a href="https://pubmed.ncbi.nlm.nih.gov/30568305/" target="_blank" rel="noopener">Nature 2019</a> (neoantigen-specific intratumoural T cells; dexamethasone abrogated responses); updated <a href="https://ascopubs.org/doi/10.1200/JCO.2026.44.16_suppl.2006" target="_blank" rel="noopener">ASCO 2026 abstract</a> and <a href="https://www.cancernetwork.com/view/personalized-cancer-vaccine-pembrolizumab-feasible-effective-newly-diagnosed-gbm" target="_blank" rel="noopener">CancerNetwork coverage</a> (Reardon et al. &mdash; MGMT-methylated subgroup median OS 36.9 vs 25.3 months, matched institutional controls, uncontrolled). Trial NCT02287428, sites Dana-Farber + Massachusetts General.</li>
     <li>US expanded-access neoantigen synthetic long peptide vaccine &mdash; Jaime Leandro Foundation, <span class="mono">NCT06963697</span> (protocol JLF-100; basket trial JLF-200 = <span class="mono">NCT05741242</span>); cost (~USD&nbsp;83,000, WideTrial cost recovery) per <a href="https://www.statnews.com/2023/03/06/foundation-charges-cancer-patients-83000-for-unproven-but-promising-experimental-drug/" target="_blank" rel="noopener">STAT News 2023</a>.</li>
     <li>Personalized neoantigen DNA vaccine (GNOS-PV01, Geneos Therapeutics), phase 1 (GT-20) &mdash; <a href="https://www.nature.com/articles/s43018-026-01163-w" target="_blank" rel="noopener">Nature Cancer 2026</a>; <a href="https://siteman.wustl.edu/personalized-vaccine-shows-promise-against-aggressive-brain-cancer/" target="_blank" rel="noopener">Siteman / WashU summary</a>. <i>Enrols MGMT-unmethylated GBM only &mdash; removed from this atlas per case direction; cited for context.</i></li>
     <li>Personalized genomic (neoantigen) vaccine + Tumour Treating Fields, newly diagnosed GBM &mdash; <span class="mono">NCT03223103</span> (Hormigo, Albert Einstein / Mount Sinai; n=13; SNO CTIM abstracts). Mount Sinai PGV-001 multi-peptide neoantigen platform (Bhardwaj) &mdash; phase 1 <span class="mono">NCT02721043</span>; a newly-diagnosed-GBM PGV-001 trial is planned.</li>
@@ -781,21 +786,21 @@ const LANDMARK = [
   id:"NCT02287428", name:"NeoVax — personalized neoantigen peptide vaccine + radiotherapy + pembrolizumab",
   fmt:"Personalized neoantigen peptide", region:"United States", country:"United States",
   phase:"Phase 1", status:"Active, not recruiting", statusClass:"s-closed",
-  sponsor:"Dana-Farber Cancer Institute / Massachusetts General Hospital", n:"56",
+  sponsor:"Dana-Farber Cancer Institute / Massachusetts General Hospital", n:"39 enrolled (37 initiated NeoVax, 35 completed priming)",
   manuf:"Up to ~20 personal neoantigen synthetic long peptides + poly-ICLC; feasibility endpoint is generating ≥10 actionable peptides and giving the first dose within 12 weeks of surgery.",
-  design:"Open-label. Two populations under one protocol (Dana-Farber trial 14-362): newly diagnosed GBM (vaccine after radiotherapy, with pembrolizumab and temozolomide) and residual / progressive low-grade glioma (vaccine alone). Sites: Dana-Farber Cancer Institute and Massachusetts General Hospital, Boston.",
-  molec:"Newly diagnosed GBM (or residual/progressive low-grade glioma); MGMT status determined; excludes prior anti-PD-1.",
+  design:"Open-label. Two populations under one protocol (Dana-Farber trial 14-362): newly diagnosed GBM (vaccine after radiotherapy, with pembrolizumab and temozolomide) and residual / progressive low-grade glioma (vaccine alone). <b>MGMT-methylated patients receive standard temozolomide alongside NeoVax priming, with pembrolizumab added after priming completes</b> — the regimen this atlas's case (confirmed MGMT-methylated, 11 Sep 2026) would match. Sites: Dana-Farber Cancer Institute and Massachusetts General Hospital, Boston.",
+  molec:"Newly diagnosed GBM (or residual/progressive low-grade glioma); MGMT status determined (methylated and unmethylated both eligible, on different regimens); excludes prior anti-PD-1. <b>This case is confirmed MGMT-methylated.</b>",
   tissue:"Adequate tumour tissue for exome sequencing and neoantigen calling.",
   window:"First dose within 12 weeks of surgery, after radiotherapy.",
-  fit:"Closed", fitWhy:"Not enrolling. This is the reference platform — the version every peptide entry in this atlas is measured against — so it is here for its data and as the group most likely to open a successor. Ask the Dana-Farber Center for Neuro-Oncology what is next.",
-  ev:{s:2,l:"Keskin et al., Nature 2019 (n=8): 6/8 dexamethasone-free patients generated polyfunctional neoantigen-specific CD4+/CD8+ T cells that trafficked into the tumour; dexamethasone abrogated responses; no serious toxicity; no survival claim. Updated at ASCO 2026 (Reardon et al., abstract 2006): vaccine-stimulated anti-tumour immune activity still evident in some patients at 1 year, and survival extended vs historical observations for similar patients — uncontrolled, not a randomised comparison.",links:[["Keskin et al., Nature 2019","https://pubmed.ncbi.nlm.nih.gov/30568305/"],["Reardon et al., ASCO 2026 abstract","https://ascopubs.org/doi/10.1200/JCO.2026.44.16_suppl.2006"]]},
-  incl:["Newly diagnosed glioblastoma","MGMT methylation status determined","No prior anti-PD-1/PD-L1 therapy"],
+  fit:"Closed", fitWhy:"Not enrolling — but now the single most directly relevant data point in this atlas: this case's exact biomarker profile (MGMT-methylated, newly diagnosed GBM) is the specific subgroup with the strongest reported outcome (median OS 36.9 vs 25.3 months). This is the reference platform every peptide entry here is measured against, and the group most likely to open a successor. Ask the Dana-Farber Center for Neuro-Oncology what is next and whether compassionate/expanded access exists in the interim.",
+  ev:{s:3,l:"Keskin et al., Nature 2019 (n=8, immunology-only cohort): 6/8 dexamethasone-free patients generated polyfunctional neoantigen-specific CD4+/CD8+ T cells that trafficked into the tumour; dexamethasone abrogated responses. Updated at ASCO 2026 / CancerNetwork (Reardon et al., n=39 enrolled, 37 initiated, 35 completed priming): well tolerated, no serious vaccine-related adverse events; <b>MGMT-methylated subgroup median overall survival 36.9 months vs 25.3 months in propensity-matched institutional standard-of-care controls</b> — a single-arm signal vs a historical/matched comparator, not a randomised trial.",links:[["Keskin et al., Nature 2019","https://pubmed.ncbi.nlm.nih.gov/30568305/"],["Reardon et al., ASCO 2026 abstract","https://ascopubs.org/doi/10.1200/JCO.2026.44.16_suppl.2006"],["CancerNetwork coverage of the MGMT-methylated results","https://www.cancernetwork.com/view/personalized-cancer-vaccine-pembrolizumab-feasible-effective-newly-diagnosed-gbm"]]},
+  incl:["Newly diagnosed glioblastoma","MGMT methylation status determined (methylated or unmethylated)","No prior anti-PD-1/PD-L1 therapy"],
   excl:["Inability to generate ≥10 peptides (feasibility failure)","Systemic immunosuppression / active autoimmune disease","Dexamethasone dependence (blunts response)"],
   epPrimary:"Safety; feasibility (≥10 actionable peptides; dose within 12 weeks of surgery).",
-  epSecondary:"Immunogenicity; progression-free and overall survival (exploratory).",
-  contact:"Dana-Farber neuro-oncology / see ClinicalTrials.gov record.",
+  epSecondary:"Immunogenicity; progression-free and overall survival (exploratory) — now reported by MGMT status.",
+  contact:"Dana-Farber Center for Neuro-Oncology / see ClinicalTrials.gov record.",
   dates:"Started Nov 2014 · primary completion Feb 2027",
-  flags:["Not enrolling — listed for its data and as a successor watch-list."]
+  flags:["Not enrolling — listed for its data (now MGMT-methylated-specific) and as a successor watch-list."]
  },
  {
   id:"NCT02149225", name:"GAPVAC-101 — APVAC1 + APVAC2 fully personalized peptide vaccine",
@@ -946,7 +951,7 @@ const ZONES = [
     personalization:"Fully personalized neoantigen.",
     synthesis:"GMP peptide manufacturing within each academic programme.",
     combo:"Pembrolizumab (NeoVax); Tumour Treating Fields + temozolomide (Einstein / Mount Sinai).",
-    evidence:"NeoVax GBM: Keskin et al., Nature 2019 (neoantigen-specific intratumoural T cells; no survival claim); ASCO 2026 update (Reardon &mdash; activity still evident at 1 year, survival extended vs historical, uncontrolled). Einstein / Mount Sinai: SNO abstracts &mdash; well tolerated, robust epitope-specific T-cell responses; survival data immature.",
+    evidence:"NeoVax GBM (n=39): Keskin et al., Nature 2019 (neoantigen-specific intratumoural T cells); ASCO 2026 update (Reardon) &mdash; <b>MGMT-methylated subgroup median OS 36.9 months vs 25.3 months in matched institutional controls</b>, the exact biomarker match for this case, though single-arm/uncontrolled. Einstein / Mount Sinai: SNO abstracts &mdash; well tolerated, robust epitope-specific T-cell responses; survival data immature.",
     regulatory:"FDA IND; clinical trial only. No named-patient / expanded-access neoantigen vaccine is offered at these centres &mdash; for the US expanded-access route see the Jaime Leandro Foundation entry above.",
     cost:"Trial — no charge for the investigational product.",
     logistics:"Contact each centre&rsquo;s neuro-oncology programme about NeoVax / genomic-vaccine successor trials and timing.",

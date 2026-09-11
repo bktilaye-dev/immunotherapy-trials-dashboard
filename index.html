@@ -258,6 +258,7 @@
     <span class="chip"><b>Surgery</b>&nbsp;1.2&nbsp;cm lesion, gross-total resection &mdash; <b>2&nbsp;weeks ago</b></span>
     <span class="chip"><b>Status</b>&nbsp;Newly diagnosed, no radiation or chemo yet</span>
     <span class="chip"><b>NGS panel (11&nbsp;Sep&nbsp;2026)</b>&nbsp;TERT promoter mut. &middot; TP53 mut. &middot; PTEN loss &middot; TMB&nbsp;9.4 &middot; MSS</span>
+    <span class="chip"><span class="dot"></span><b>MGMT</b>&nbsp;methylated (confirmed 11&nbsp;Sep&nbsp;2026)</span>
   </div>
 
   <div class="disclaimer" style="border-left-color:var(--accent); margin-top:14px">
@@ -282,6 +283,13 @@
     confident). This replaces what this page had been assuming with an actual scored result, and it changes nothing
     about trial matching: as the RTK&nbsp;II explainer above already notes, methylation subclass is almost never an
     eligibility criterion itself &mdash; it confirms the case description, not new eligibility.
+    <b>MGMT promoter status confirmed (11&nbsp;Sep&nbsp;2026): methylated.</b> This is the last major biomarker gap
+    on this page closed. It confirms &mdash; rather than assumes &mdash; that the <a href="#mgmt-unmethylated">6
+    trials requiring MGMT-unmethylated status</a> are genuinely not options for this case, not just excluded by
+    request. It is also generally favourable: MGMT-methylated tumours respond better to temozolomide than
+    unmethylated ones. No trial in the main matched list below requires methylated status specifically, but the
+    <a href="neoantigen-peptide-atlas.html">companion atlas</a>&rsquo;s NeoVax entry reports outcome data broken out
+    specifically for MGMT-methylated patients &mdash; directly relevant now.
   </div>
 
   <div class="disclaimer" style="border-left-color:var(--accent); margin-top:14px">
@@ -454,11 +462,11 @@
 
 <!-- ============ MGMT-UNMETHYLATED (not applicable) ============ -->
 <section id="mgmt-unmethylated">
-  <div class="sec-head"><h2>MGMT-unmethylated required (not applicable for this case)</h2>
+  <div class="sec-head"><h2>MGMT-unmethylated required (confirmed not applicable)</h2>
   <p>Otherwise similar fit (adult, IDH-wildtype GBM, newly diagnosed, ≥1 US site), but every trial below requires
-  MGMT-promoter-<b>unmethylated</b> status specifically — excluded from the matched list above per case direction, not
-  deleted. Recruiting status per trial is noted individually below; treat all 6 as moot for this case regardless of
-  that status unless MGMT methylation status changes.</p></div>
+  MGMT-promoter-<b>unmethylated</b> status specifically. <b>MGMT status came back methylated on 11&nbsp;Sep&nbsp;2026</b>
+  &mdash; these 6 are now confirmed genuinely excluded, not just excluded pending confirmation as originally noted.
+  Kept here, not deleted, in case that ever needs rechecking (e.g. a different sample, or at recurrence).</p></div>
   <div id="mgmtList"></div>
 </section>
 
@@ -536,6 +544,12 @@
           <td>Fully personalized dual peptide vaccine (APVAC1 + APVAC2) selected per-patient from whole-exome sequencing + HLA-ligandome analysis, newly diagnosed GBM. Phase I feasibility, integrated into standard of care.</td>
           <td>16 patients enrolled; median PFS 14.2 months and OS 29 months from diagnosis in the 15 who received &ge;1 vaccination. Proof-of-concept for personalized-antigen vaccination.</td>
           <td>The DKFZ/Heidelberg group that defined the RTK II methylation classification also ran this trial &mdash; directly relevant lineage, but it closed after a small Phase I cohort; no larger confirmatory trial has followed.</td>
+        </tr>
+        <tr>
+          <td><b>NeoVax</b> + radiotherapy + pembrolizumab<br><span class="mono">NCT02287428</span><br><span class="muted" style="font-size:.8rem">Dana-Farber &amp; Massachusetts General, Boston MA</span></td>
+          <td>Personalized neoantigen synthetic-long-peptide vaccine (up to ~20 peptides + poly-ICLC), newly diagnosed GBM. Phase 1, 39 enrolled (37 initiated, 35 completed priming).</td>
+          <td><b>MGMT-methylated subgroup: median OS 36.9 months</b> vs 25.3 months in propensity-matched institutional standard-of-care controls (ASCO 2026). Well tolerated, no serious vaccine-related adverse events. Methylated patients received standard temozolomide + NeoVax priming, with pembrolizumab added after priming.</td>
+          <td><b>Directly relevant now that this case is confirmed MGMT-methylated</b> (11&nbsp;Sep&nbsp;2026) &mdash; this is the most specific outcome data in this whole page for this exact biomarker combination. Not itself open (active, not recruiting) and not a personalized-peptide-vaccine program this US/immunotherapy dashboard otherwise tracks &mdash; full detail in the <a href="neoantigen-peptide-atlas.html">companion atlas</a>. Ask Dana-Farber Center for Neuro-Oncology about a successor trial.</td>
         </tr>
         <tr>
           <td><b>N&sup2;M&sup2; / NOA-20</b><br><span class="mono">NCT03158389</span><br><span class="muted" style="font-size:.8rem">13 German NOA sites, led by University Hospital Heidelberg</span></td>
@@ -703,8 +717,8 @@
   48-year-old, 2&nbsp;weeks post-op: the 6 trials requiring MGMT-unmethylated status have been moved to their own
   section near the bottom of this page at the requester&rsquo;s direction, and a tissue/specimen requirement and a
   surgery-timing note were added to every
-  remaining trial. <b>If MGMT methylation status is confirmed, add it to the case snapshot above</b> &mdash; it is the
-  reason these 6 were excluded and is worth stating explicitly rather than leaving implicit. A full re-scrub of the
+  remaining trial. <b>MGMT methylation status came back methylated (11&nbsp;Sep&nbsp;2026)</b> and has been added to
+  the case snapshot above, confirming those 6 exclusions were correct rather than provisional. A full re-scrub of the
   ClinicalTrials.gov v2 API against the same case criteria on <b>5&nbsp;September 2026</b> checked all 195 US-site
   glioblastoma trials with Recruiting/Not-yet-recruiting status, cross-referenced against every trial already tracked
   on this page (matched, not-recruiting, MGMT-excluded, and recurrent-reference lists combined). One newly-diagnosed-
@@ -722,6 +736,7 @@
     <li>SurVaxM SURVIVE interim &mdash; <a href="https://www.cancernetwork.com/view/phase-2b-trial-for-cancer-vaccine-in-newly-diagnosed-glioblastoma-will-continue" target="_blank" rel="noopener">CancerNetwork</a>; phase 2a &mdash; <a href="https://ascopubs.org/doi/10.1200/JCO.22.00996" target="_blank" rel="noopener">JCO 2022</a>.</li>
     <li>CheckMate-498 / -548 (checkpoint inhibitors, newly diagnosed GBM) &mdash; <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11674442/" target="_blank" rel="noopener">systematic review</a>.</li>
     <li>GBM AGILE update &mdash; <a href="https://ascopubs.org/doi/10.1200/JCO.2025.43.16_suppl.TPS2100" target="_blank" rel="noopener">ASCO 2025</a>.</li>
+    <li>NeoVax + radiotherapy + pembrolizumab, MGMT-methylated newly diagnosed GBM &mdash; <a href="https://ascopubs.org/doi/10.1200/JCO.2026.44.16_suppl.2006" target="_blank" rel="noopener">ASCO 2026 abstract</a>; <a href="https://www.cancernetwork.com/view/personalized-cancer-vaccine-pembrolizumab-feasible-effective-newly-diagnosed-gbm" target="_blank" rel="noopener">CancerNetwork coverage</a>.</li>
     <li>National Brain Tumor Society, new brain-tumour trials 2025&ndash;26 &mdash; <a href="https://braintumor.org/news/new-brain-tumor-clinical-trials-july-2025-june-2026/" target="_blank" rel="noopener">roundup</a>.</li>
   </ul>
   <p style="margin-top:14px">Generated with Claude Code. Not affiliated with any sponsor or institution named above.</p>

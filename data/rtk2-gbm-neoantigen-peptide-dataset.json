@@ -260,9 +260,9 @@
       "phase": "Phase 1",
       "status": "Active, not recruiting",
       "sponsor": "Dana-Farber Cancer Institute / Massachusetts General Hospital",
-      "evidence_score": 2,
-      "evidence_note": "Keskin et al., Nature 2019 (n=8): 6/8 dexamethasone-free patients generated polyfunctional neoantigen-specific CD4+/CD8+ T cells that trafficked into the tumour; dexamethasone abrogated responses; no serious toxicity; no survival claim. Updated at ASCO 2026 (Reardon et al., abstract 2006): vaccine-stimulated anti-tumour immune activity still evident in some patients at 1 year, and survival extended vs historical observations for similar patients — uncontrolled, not a randomised comparison.",
-      "why_listed": "Not enrolling. This is the reference platform — the version every peptide entry in this atlas is measured against — so it is here for its data and as the group most likely to open a successor. Ask the Dana-Farber Center for Neuro-Oncology what is next.",
+      "evidence_score": 3,
+      "evidence_note": "Keskin et al., Nature 2019 (n=8, immunology-only cohort): 6/8 dexamethasone-free patients generated polyfunctional neoantigen-specific CD4+/CD8+ T cells that trafficked into the tumour; dexamethasone abrogated responses. Updated at ASCO 2026 / CancerNetwork (Reardon et al., n=39 enrolled, 37 initiated, 35 completed priming): well tolerated, no serious vaccine-related adverse events; MGMT-methylated subgroup median overall survival 36.9 months vs 25.3 months in propensity-matched institutional standard-of-care controls — a single-arm signal vs a historical/matched comparator, not a randomised trial.",
+      "why_listed": "Not enrolling — but now the single most directly relevant data point in this atlas: this case's exact biomarker profile (MGMT-methylated, newly diagnosed GBM) is the specific subgroup with the strongest reported outcome (median OS 36.9 vs 25.3 months). This is the reference platform every peptide entry here is measured against, and the group most likely to open a successor. Ask the Dana-Farber Center for Neuro-Oncology what is next and whether compassionate/expanded access exists in the interim.",
       "registry_url": "https://clinicaltrials.gov/study/NCT02287428"
     },
     {
@@ -473,7 +473,7 @@
       "cost_headline": "Trial — no charge for the investigational product",
       "est_cost": "Trial — no charge for the investigational product.",
       "insurance": "Trial - the investigational product is provided at no cost; standard-of-care items are billed as usual.",
-      "evidence": "NeoVax GBM: Keskin et al., Nature 2019 (neoantigen-specific intratumoural T cells; no survival claim); ASCO 2026 update (Reardon - activity still evident at 1 year, survival extended vs historical, uncontrolled). Einstein / Mount Sinai: SNO abstracts - well tolerated, robust epitope-specific T-cell responses; survival data immature.",
+      "evidence": "NeoVax GBM (n=39): Keskin et al., Nature 2019 (neoantigen-specific intratumoural T cells); ASCO 2026 update (Reardon) - MGMT-methylated subgroup median OS 36.9 months vs 25.3 months in matched institutional controls, the exact biomarker match for this case, though single-arm/uncontrolled. Einstein / Mount Sinai: SNO abstracts - well tolerated, robust epitope-specific T-cell responses; survival data immature.",
       "patient_story": "No clinic testimonials; see the published / presented trial reports (Keskin, Nature 2019; Reardon, ASCO 2026; Hormigo, SNO CTIM abstracts).",
       "logistics": "Contact each centre's neuro-oncology programme about NeoVax / genomic-vaccine successor trials and timing.",
       "what_is_unverified": "Nothing to purchase here. The point of this row is that the US centres' neoantigen GBM work is trial-only and currently between studies - watch for a NeoVax or genomic-vaccine successor."
