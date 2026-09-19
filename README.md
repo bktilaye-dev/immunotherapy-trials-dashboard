@@ -53,6 +53,56 @@ Two sections, as requested:
   mentions in the literature, published trial results, and clinic/company/regulator sources for the private
   providers. Not medical advice; not an endorsement of any provider.
 
+## Treatment-Optimization Atlas — `treatment-optimization-atlas.html`
+
+**An interactive, toggleable decision timeline** for the same patient, now that the actual plan has firmed up:
+standard chemoradiation starting **28 September 2026 (Day 0)**, a **Duke University immunotherapy trial** under
+Dr. Henry Friedman afterward, and the **CeGaT GmbH / cecava GmbH** personalized neoantigen vaccine (documented in
+the companion Neoantigen atlas above, cross-referenced rather than repeated here) as supportive treatment.
+
+30 catalog items — 3 fixed standard-of-care entries plus 27 toggleable ones spanning the Duke trial, the CeGaT
+vaccine, immune/NK-cell support, marrow/immune recovery, repurposed and investigational drugs (including OKN-007
+trial access and pharmacologic-dose IV vitamin C), a steroid-sparing strategy, lifestyle adjuncts, and every
+explicitly-requested weak-evidence item (ivermectin, fenbendazole, low-dose naltrexone) — are laid out on a
+phase-by-phase timeline from Day 0. Every non-fixed item can be switched on or off, and a live, fully transparent
+**optimization score** updates immediately, including warnings when active choices conflict (e.g. an oral
+antioxidant supplement switched on during concurrent radiotherapy) and notes when they reinforce each other (e.g.
+a steroid-sparing strategy paired with the immunotherapy trial). The page opens on a literature-informed
+**"optimal preset"** and lets you experiment freely from there — nothing is sent anywhere; every toggle and
+estimated date lives only in your browser's local storage.
+
+- **Data:** `data/rtk2-gbm-treatment-optimization-dataset.csv` and `data/rtk2-gbm-treatment-optimization-dataset.json`.
+- Built from published literature and clinical-trial records gathered 18 September 2026 (University of Iowa
+  pharmacologic-ascorbate trials, the Care Oncology Protocol's METRICS cohort, the disulfiram/copper and CQ/HCQ
+  randomised trials, the ERGO2 ketogenic-diet trial, and more — each item links its sources). Not medical advice;
+  the score is an illustrative literature-alignment heuristic, not a survival or outcome prediction.
+
+### Optimization score
+
+Each of 11 categories has a fixed weight (summing to 100), split evenly across every item assigned to it. An
+active item's contribution is scaled by its evidence grade, and interactions between active items add or subtract
+points directly, surfaced as warnings (conflicts, timing cautions) or synergies:
+
+| Category | Weight |
+|---|---|
+| Standard of care (fixed) | 20 |
+| Immunotherapy trial access | 18 |
+| Personalized vaccine (supportive) | 8 |
+| Immune / NK-cell support | 10 |
+| Marrow & immune recovery | 9 |
+| Repurposed / investigational drugs | 12 |
+| OKN-007 trial access | 5 |
+| Steroid management | 8 |
+| Anecdotal / weak evidence | 3 |
+| Antioxidant supplements (timing caution) | 2 |
+| Lifestyle & metabolic | 5 |
+
+Evidence grade → contribution factor follows this dashboard's existing 1–5 evidence-score convention (5/5 = ×1.00
+down to 1/5 = ×0.25), with a null score (protocol not yet confirmed, e.g. the Duke trial) at ×0.40 and a
+⚠ caution flag (a trial of that specific approach was negative, or no human data exists at all for something with
+real risk, e.g. disulfiram+copper, fenbendazole) at ×−0.30. **This score is not a prediction for this patient** —
+it is a transparent way to see how a chosen combination stacks up against the literature gathered here.
+
 ## Not medical advice
 
 This is an information aid compiled from public registry records and published literature. It may contain

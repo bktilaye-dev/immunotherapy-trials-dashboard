@@ -1,0 +1,924 @@
+{
+  "title": "Treatment-Optimization Atlas",
+  "generated": "18 Sep 2026",
+  "case": "GBM, IDH-wildtype, methylation class RTK II, MGMT methylated, 48yo, 1.2cm GTR",
+  "day0": "28 Sep 2026",
+  "category_weights": {
+    "standard-of-care": 20,
+    "immunotherapy-trial": 18,
+    "personalized-vaccine": 8,
+    "immune-nk-support": 10,
+    "marrow-recovery": 9,
+    "repurposed-investigational": 12,
+    "okn007-trial-access": 5,
+    "steroid-management": 8,
+    "weak-evidence": 3,
+    "general-caution-antioxidant": 2,
+    "lifestyle": 5
+  },
+  "count": 30,
+  "catalog": [
+    {
+      "id": "gtr-resection",
+      "name": "Gross-total resection (completed)",
+      "category": "historical",
+      "phase": "pre-treatment",
+      "timing": {
+        "label": "Completed ~2 weeks before Day 0 (mid-September 2026)"
+      },
+      "fixed": true,
+      "default_on": true,
+      "evidence": {
+        "s": 5,
+        "l": "Standard neurosurgical care; gross-total resection is associated with longer survival than subtotal resection.",
+        "caution": false
+      },
+      "mechanism": "Maximal safe removal of the tumor reduces disease burden and improves how well residual disease responds to chemoradiation.",
+      "interactions": [],
+      "source_notes": [],
+      "discuss_with_care_team": "Already completed &mdash; shown for timeline context only, not a live decision."
+    },
+    {
+      "id": "sc-chemort",
+      "name": "Concurrent chemoradiation &mdash; temozolomide + radiotherapy (Stupp protocol)",
+      "category": "standard-of-care",
+      "phase": "concurrent-chemort",
+      "timing": {
+        "label": "Day 0&ndash;~42 &middot; 28 Sep&ndash;~9 Nov 2026 (6 weeks, daily radiotherapy + low-dose daily temozolomide)"
+      },
+      "fixed": true,
+      "default_on": true,
+      "evidence": {
+        "s": 5,
+        "l": "Positive randomised phase 3 trial (Stupp protocol) &mdash; the backbone of glioblastoma standard of care.",
+        "caution": false
+      },
+      "mechanism": "Daily radiotherapy DNA-damages tumor cells; concurrent low-dose temozolomide radiosensitizes and adds independent cytotoxicity.",
+      "interactions": [
+        {
+          "with": "oral-vitamin-c",
+          "type": "conflicts",
+          "modifier": -6,
+          "note": "General oncology guidance is to avoid oral antioxidant supplements during radiotherapy &mdash; they may blunt the oxidative-damage mechanism radiation relies on."
+        },
+        {
+          "with": "curcumin",
+          "type": "timing-caution",
+          "modifier": -3,
+          "note": "Same general antioxidant-during-radiotherapy caution; GBM-specific data also show no clinical radiosensitization benefit from curcumin."
+        },
+        {
+          "with": "egcg-green-tea",
+          "type": "timing-caution",
+          "modifier": -3,
+          "note": "General antioxidant-during-radiotherapy caution; limited GBM-specific human data either way."
+        },
+        {
+          "with": "resveratrol",
+          "type": "timing-caution",
+          "modifier": -3,
+          "note": "General antioxidant-during-radiotherapy caution; evidence in GBM is preclinical only."
+        },
+        {
+          "with": "iv-vitamin-c",
+          "type": "synergistic",
+          "modifier": 4,
+          "note": "Pharmacologic-dose IV ascorbate is studied specifically as a radiosensitizer added to concurrent chemoradiation &mdash; the opposite mechanism from oral antioxidant vitamin C."
+        }
+      ],
+      "source_notes": [],
+      "discuss_with_care_team": "Fixed standard of care set by the treating radiation and neuro-oncology teams &mdash; not a toggle."
+    },
+    {
+      "id": "sc-adjuvant-tmz",
+      "name": "Adjuvant temozolomide (maintenance cycles)",
+      "category": "standard-of-care",
+      "phase": "adjuvant-tmz",
+      "timing": {
+        "label": "~Day 42&ndash;230 &middot; ~Nov 2026&ndash;~May 2027, 6 cycles of 5/28-day dosing (exact schedule set by the treating team)"
+      },
+      "fixed": true,
+      "default_on": true,
+      "evidence": {
+        "s": 5,
+        "l": "Positive randomised phase 3 trial &mdash; same Stupp protocol backbone.",
+        "caution": false
+      },
+      "mechanism": "Monthly pulsed alkylating chemotherapy continues to target residual/microscopic tumor cells after the concurrent phase ends.",
+      "interactions": [],
+      "source_notes": [],
+      "discuss_with_care_team": "Fixed standard of care &mdash; not a toggle."
+    },
+    {
+      "id": "duke-immunotherapy-trial",
+      "name": "Duke University immunotherapy trial (Dr. Henry Friedman) &mdash; protocol TBD",
+      "category": "immunotherapy-trial",
+      "phase": "post-adjuvant",
+      "timing": {
+        "editable": true,
+        "note": "Typically opens 4&ndash;6 weeks after chemoradiation ends, once recovery labs clear &mdash; exact protocol, NCT ID, and start date are pending confirmation from the Duke Preston Robert Tisch Brain Tumor Center team."
+      },
+      "fixed": false,
+      "default_on": true,
+      "evidence": {
+        "s": null,
+        "l": "Depends on the specific protocol/arm assigned &mdash; not yet confirmed.",
+        "caution": false
+      },
+      "mechanism": "Institutional immunotherapy program at Duke; the specific agent/mechanism is not yet known from the information available here.",
+      "interactions": [
+        {
+          "with": "steroid-sparing",
+          "type": "synergistic",
+          "modifier": 5,
+          "note": "Immunotherapy generally works better at the lowest effective dexamethasone dose &mdash; high cumulative steroid exposure is independently associated with worse outcomes in glioblastoma."
+        },
+        {
+          "with": "cegat-vaccine",
+          "type": "note-only",
+          "modifier": 1,
+          "note": "Discuss sequencing between the two immune-directed treatments with both teams &mdash; relative timing can matter for immune response."
+        }
+      ],
+      "source_notes": [],
+      "access_pathway": "Already admitted to this program per the treating team &mdash; update the estimate below once the exact protocol and start date are confirmed.",
+      "discuss_with_care_team": "Confirm the exact protocol name, NCT ID (if applicable), and start date with the Duke team."
+    },
+    {
+      "id": "cegat-vaccine",
+      "name": "CeGaT GmbH / cecava GmbH personalized neoantigen vaccine (supportive)",
+      "category": "personalized-vaccine",
+      "phase": "post-adjuvant",
+      "timing": {
+        "editable": true,
+        "note": "Diagnostics (tumor exome + HLA typing) can begin any time tissue/blood is sent; manufacturing takes roughly 12 weeks, so administration typically lands in the post-adjuvant/maintenance window."
+      },
+      "fixed": false,
+      "default_on": true,
+      "evidence": {
+        "s": 2,
+        "l": "Real-world case series (173 GBM patients, Nature Communications 2024) via Germany's individueller Heilversuch pathway &mdash; not a randomised trial.",
+        "caution": false
+      },
+      "mechanism": "Tumor-exome sequencing + HLA typing predicts patient-specific neoantigens; cecava manufactures and administers a personalized synthetic-peptide vaccine against them.",
+      "interactions": [
+        {
+          "with": "steroid-sparing",
+          "type": "synergistic",
+          "modifier": 2,
+          "note": "Same rationale as for the Duke trial &mdash; lower steroid burden supports the immune response the vaccine is trying to generate."
+        }
+      ],
+      "source_notes": [
+        [
+          "Real-world CeGaT/cecava GBM peptide-vaccine series &mdash; Nature Communications 2024",
+          "https://www.nature.com/articles/s41467-024-51315-8"
+        ],
+        [
+          "CeGaT CancerNeo expanded-access registry listing (NCT05356312)",
+          "https://clinicaltrials.gov/study/NCT05356312"
+        ]
+      ],
+      "discuss_with_care_team": "Already discussed with Dr. Friedman as supportive treatment; full provider/cost/logistics detail lives on the companion Neoantigen &amp; Personalized Peptide Vaccine Atlas &mdash; cross-referenced, not repeated here."
+    },
+    {
+      "id": "vitamin-d-correction",
+      "name": "Correct vitamin D to a normal serum level",
+      "category": "immune-nk-support",
+      "phase": "anytime",
+      "timing": {
+        "label": "Start now &mdash; check 25-OH vitamin D level and correct any deficiency, continue throughout treatment"
+      },
+      "fixed": false,
+      "default_on": true,
+      "evidence": {
+        "s": 2,
+        "l": "Observational: GBM patients with pre-treatment 25-OH-D above 30 ng/mL had substantially longer survival than deficient patients; a small phase 2 trial of a vitamin D analog reported tumor regression in some patients.",
+        "caution": false
+      },
+      "mechanism": "Vitamin D has documented anti-proliferative and immune-modulating activity in glioblastoma cell and animal models; deficiency is common and easily correctable.",
+      "interactions": [],
+      "source_notes": [
+        [
+          "Vitamin D levels and glioblastoma survival",
+          "https://www.redjournal.org/article/S0360-3016(17)31520-1/fulltext"
+        ],
+        [
+          "Anti-tumor mechanisms of vitamin D in glioblastoma (review)",
+          "https://www.nature.com/articles/s41374-021-00673-8"
+        ]
+      ],
+      "discuss_with_care_team": "Ask for a baseline 25-OH vitamin D level and a correction dose from the treating team or primary care &mdash; inexpensive and low-risk to check."
+    },
+    {
+      "id": "mushroom-beta-glucan",
+      "name": "Medicinal-mushroom beta-glucan / AHCC extract",
+      "category": "immune-nk-support",
+      "phase": "anytime",
+      "timing": {
+        "label": "Anytime, ideally away from chemotherapy infusion/dosing days &mdash; ask the pharmacy team about timing"
+      },
+      "fixed": false,
+      "default_on": true,
+      "evidence": {
+        "s": 1,
+        "l": "Mechanistic + NK-cell-activation data and RCTs in other cancers; no glioblastoma-specific clinical trial data.",
+        "caution": false
+      },
+      "mechanism": "Beta-glucans (Trametes versicolor/PSK, AHCC, Ganoderma, etc.) engage Dectin-1 and other innate-immune receptors, activating macrophages, dendritic cells, and NK cells.",
+      "interactions": [],
+      "source_notes": [
+        [
+          "Beta-glucans and NK cell cytotoxicity (mechanistic review)",
+          "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6700253/"
+        ],
+        [
+          "AHCC effects on NK and T cells &mdash; review of human/animal studies",
+          "https://onlinelibrary.wiley.com/doi/10.1155/2019/3758576"
+        ]
+      ],
+      "discuss_with_care_team": "Generally well tolerated, but confirm no interaction with the specific chemotherapy/immunotherapy regimen and mention it to the pharmacy team."
+    },
+    {
+      "id": "selenium-zinc",
+      "name": "Correct selenium / zinc deficiency (immune micronutrients)",
+      "category": "immune-nk-support",
+      "phase": "anytime",
+      "timing": {
+        "label": "Check levels; supplement only if deficient &mdash; ongoing throughout treatment"
+      },
+      "fixed": false,
+      "default_on": true,
+      "evidence": {
+        "s": 1,
+        "l": "Both are required cofactors for normal immune-cell function; evidence supports correcting deficiency rather than high-dose supplementation in non-deficient patients.",
+        "caution": false
+      },
+      "mechanism": "Selenium and zinc are cofactors for antioxidant enzymes and normal lymphocyte/NK-cell function &mdash; relevant given chemo/radiation-driven immune suppression.",
+      "interactions": [],
+      "source_notes": [],
+      "discuss_with_care_team": "Ask for baseline levels; over-supplementation without a documented deficiency has its own risks (e.g. zinc excess impairing copper status, selenium toxicity at high doses)."
+    },
+    {
+      "id": "omega-3-epa-dha",
+      "name": "Omega-3 fatty acids (EPA/DHA, fish oil)",
+      "category": "immune-nk-support",
+      "phase": "anytime",
+      "timing": {
+        "label": "Anytime; some evidence supports use concurrently with temozolomide specifically"
+      },
+      "fixed": false,
+      "default_on": true,
+      "evidence": {
+        "s": 1,
+        "l": "Preclinical: EPA/DHA enhance temozolomide's cytotoxic effect in glioblastoma cell models; broad anti-inflammatory mechanism; no glioblastoma-specific clinical trial yet.",
+        "caution": false
+      },
+      "mechanism": "EPA/DHA reduce pro-inflammatory signaling (TNF-alpha, PGE2) and increase reactive-oxygen-species-driven cell death when combined with temozolomide in cell models.",
+      "interactions": [],
+      "source_notes": [
+        [
+          "EPA/DHA enhance temozolomide effects in glioblastoma cells",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC12469626/"
+        ]
+      ],
+      "discuss_with_care_team": "High-dose fish oil has a mild anticoagulant effect &mdash; flag it before any surgical procedure or if on other blood thinners."
+    },
+    {
+      "id": "lymphocyte-monitoring",
+      "name": "Scheduled CBC + lymphocyte-count monitoring through chemoradiation",
+      "category": "marrow-recovery",
+      "phase": "concurrent-chemort",
+      "timing": {
+        "label": "Baseline before Day 0, then regularly through chemoradiation and the following 2 months"
+      },
+      "fixed": false,
+      "default_on": true,
+      "evidence": {
+        "s": 3,
+        "l": "Treatment-related lymphopenia is well documented in ~40% of newly diagnosed glioblastoma patients and is independently associated with worse survival.",
+        "caution": false
+      },
+      "mechanism": "Radiotherapy irradiates circulating lymphocytes and cumulative dexamethasone dose worsens lymphopenia; tracking the nadir lets the team adjust steroid dosing before immunotherapy starts.",
+      "interactions": [
+        {
+          "with": "steroid-sparing",
+          "type": "synergistic",
+          "modifier": 2,
+          "note": "Monitoring data is what makes an informed steroid-taper decision possible in the first place."
+        }
+      ],
+      "source_notes": [
+        [
+          "Cumulative dexamethasone dose and lymphopenia in glioblastoma",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC7595853/"
+        ],
+        [
+          "Corticosteroid exposure, lymphopenia, and survival",
+          "https://link.springer.com/article/10.1007/s11060-019-03146-7"
+        ]
+      ],
+      "discuss_with_care_team": "Ask the radiation oncology team whether lymphocyte-sparing planning techniques are being used, and request the CD4 count specifically before Duke trial screening."
+    },
+    {
+      "id": "nutritional-protein-support",
+      "name": "Adequate calorie/protein intake support (dietitian-guided)",
+      "category": "marrow-recovery",
+      "phase": "anytime",
+      "timing": {
+        "label": "Ongoing throughout treatment, especially during the concurrent chemoradiation phase"
+      },
+      "fixed": false,
+      "default_on": true,
+      "evidence": {
+        "s": 2,
+        "l": "General oncology nutrition evidence: adequate protein intake supports hematopoietic and immune recovery after myelosuppressive treatment.",
+        "caution": false
+      },
+      "mechanism": "Marrow and lymphocyte recovery after chemotherapy/radiation is protein- and calorie-dependent; treatment-related appetite loss and steroid use both raise under-nutrition risk.",
+      "interactions": [],
+      "source_notes": [],
+      "discuss_with_care_team": "Ask for a referral to an oncology dietitian, especially once dexamethasone or temozolomide affects appetite."
+    },
+    {
+      "id": "growth-factor-support",
+      "name": "Growth-factor support for treatment-related cytopenias (if needed)",
+      "category": "marrow-recovery",
+      "phase": "adjuvant-tmz",
+      "timing": {
+        "label": "As needed, per bloodwork during adjuvant TMZ cycles"
+      },
+      "fixed": false,
+      "default_on": false,
+      "evidence": {
+        "s": 3,
+        "l": "Standard supportive-care practice for chemotherapy-induced cytopenias when clinically indicated.",
+        "caution": false
+      },
+      "mechanism": "Prescription growth factors can be used if bloodwork during adjuvant cycles shows clinically significant cytopenia, supporting recovery between cycles.",
+      "interactions": [],
+      "source_notes": [],
+      "discuss_with_care_team": "A physician-directed decision made from bloodwork, not something to pre-decide &mdash; included so it isn't forgotten as a live option."
+    },
+    {
+      "id": "care-onc-metformin",
+      "name": "Metformin (repurposed, Care Oncology Protocol)",
+      "category": "repurposed-investigational",
+      "phase": "adjuvant-tmz",
+      "timing": {
+        "label": "Physician-prescribed, typically starting once renal function is confirmed adequate"
+      },
+      "fixed": false,
+      "default_on": true,
+      "evidence": {
+        "s": 2,
+        "l": "Retrospective real-world cohort (METRICS) reported a survival association when added to standard of care; not randomised, and single-source reporting raises reporting/survivorship-bias concerns.",
+        "caution": false
+      },
+      "mechanism": "AMPK activation and mTOR-pathway inhibition are proposed to target glioblastoma's metabolic vulnerabilities and improve chemosensitivity.",
+      "interactions": [
+        {
+          "with": "care-onc-atorvastatin",
+          "type": "synergistic",
+          "modifier": 1,
+          "note": "Studied together as part of the same four-drug repurposed cluster."
+        }
+      ],
+      "source_notes": [
+        [
+          "Ethical/efficient off-label evidence generation in glioblastoma (Care Oncology case study)",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC6610246/"
+        ],
+        [
+          "METRICS real-world study (NCT02201381)",
+          "https://clinicaltrials.gov/study/NCT02201381"
+        ]
+      ],
+      "discuss_with_care_team": "Requires a prescription and periodic renal-function monitoring; not self-initiated. Ask whether the team is willing to prescribe the full four-drug protocol or just individual components."
+    },
+    {
+      "id": "care-onc-atorvastatin",
+      "name": "Atorvastatin (repurposed, Care Oncology Protocol)",
+      "category": "repurposed-investigational",
+      "phase": "adjuvant-tmz",
+      "timing": {
+        "label": "Physician-prescribed"
+      },
+      "fixed": false,
+      "default_on": true,
+      "evidence": {
+        "s": 2,
+        "l": "Same retrospective METRICS cohort signal as the rest of the four-drug cluster; not independently isolated.",
+        "caution": false
+      },
+      "mechanism": "Statins have proposed anti-glioma effects via disrupting cancer-cell membrane cholesterol and signaling.",
+      "interactions": [],
+      "source_notes": [
+        [
+          "Care Oncology Protocol overview",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC6610246/"
+        ]
+      ],
+      "discuss_with_care_team": "Check for interaction with any other lipid-affecting medication and baseline liver enzymes (also monitored for TMZ and mebendazole)."
+    },
+    {
+      "id": "care-onc-doxycycline",
+      "name": "Doxycycline (repurposed, Care Oncology Protocol)",
+      "category": "repurposed-investigational",
+      "phase": "adjuvant-tmz",
+      "timing": {
+        "label": "Physician-prescribed"
+      },
+      "fixed": false,
+      "default_on": true,
+      "evidence": {
+        "s": 2,
+        "l": "Same retrospective METRICS cohort signal as the rest of the four-drug cluster.",
+        "caution": false
+      },
+      "mechanism": "Proposed to inhibit mitochondrial biogenesis and matrix metalloproteinases relevant to cancer-cell invasion and stem-like cell populations.",
+      "interactions": [
+        {
+          "with": "care-onc-mebendazole",
+          "type": "synergistic",
+          "modifier": 1,
+          "note": "Studied together as part of the same four-drug repurposed cluster."
+        }
+      ],
+      "source_notes": [],
+      "discuss_with_care_team": "Photosensitivity and GI side effects are the main things to flag; confirm no interaction with anti-seizure medication if applicable."
+    },
+    {
+      "id": "care-onc-mebendazole",
+      "name": "Mebendazole (repurposed anthelmintic &mdash; distinct from fenbendazole)",
+      "category": "repurposed-investigational",
+      "phase": "adjuvant-tmz",
+      "timing": {
+        "label": "Physician-prescribed, high-dose oral regimen studied alongside monthly temozolomide"
+      },
+      "fixed": false,
+      "default_on": true,
+      "evidence": {
+        "s": 2,
+        "l": "Actual phase 1 human trial in newly diagnosed high-grade glioma (with temozolomide) showed it is tolerable, with reversible liver-enzyme elevation as the main side effect; two preclinical models showed a survival benefit.",
+        "caution": false
+      },
+      "mechanism": "A microtubule (tubulin) inhibitor with preclinical anti-glioma activity; human-approved and has actual phase 1 safety data in this exact clinical setting, unlike fenbendazole.",
+      "interactions": [
+        {
+          "with": "fenbendazole",
+          "type": "note-only",
+          "modifier": 0,
+          "note": "Mebendazole is the human-tested, oncology-studied relative of fenbendazole &mdash; the two are not interchangeable, and mebendazole has far more supporting evidence."
+        }
+      ],
+      "source_notes": [
+        [
+          "Phase 1 trial: mebendazole + temozolomide in newly diagnosed high-grade glioma",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC7817892/"
+        ]
+      ],
+      "discuss_with_care_team": "Requires a prescription (high-dose regimens are compounded) and liver-function monitoring alongside temozolomide."
+    },
+    {
+      "id": "disulfiram-copper",
+      "name": "Disulfiram + copper gluconate (repurposed, ALDH inhibitor)",
+      "category": "repurposed-investigational",
+      "phase": "adjuvant-tmz",
+      "timing": {
+        "label": "Physician-prescribed, if pursued"
+      },
+      "fixed": false,
+      "default_on": false,
+      "evidence": {
+        "s": 1,
+        "l": "A randomised phase II/III trial in recurrent glioblastoma found NO survival benefit and significantly MORE grade 3+ toxicity versus chemotherapy alone.",
+        "caution": true
+      },
+      "mechanism": "Disulfiram/copper inhibits aldehyde dehydrogenase (ALDH), a pathway implicated in glioma stem-like cells &mdash; a plausible mechanism that did not translate into clinical benefit in the trial that tested it.",
+      "interactions": [],
+      "source_notes": [
+        [
+          "Randomised trial of disulfiram + copper in recurrent glioblastoma &mdash; no survival benefit, more toxicity",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC10066460/"
+        ]
+      ],
+      "discuss_with_care_team": "The best available randomised evidence for this specific combination was negative &mdash; worth discussing explicitly with the oncology team before pursuing it, not just checking it off as promising research."
+    },
+    {
+      "id": "cq-hcq-autophagy",
+      "name": "Chloroquine or hydroxychloroquine (autophagy inhibition, trial-supervised only)",
+      "category": "repurposed-investigational",
+      "phase": "concurrent-chemort",
+      "timing": {
+        "label": "Only studied under a trial protocol, concurrently with radiotherapy + temozolomide, at defined maximum-tolerated doses"
+      },
+      "fixed": false,
+      "default_on": false,
+      "evidence": {
+        "s": 1,
+        "l": "Early-phase trials established a maximum tolerated dose (chloroquine 200mg/day, hydroxychloroquine 600mg/day) added to chemoradiation; autophagy inhibition was not consistently achieved and no clear survival benefit has been shown yet.",
+        "caution": false
+      },
+      "mechanism": "Chloroquine/hydroxychloroquine block late-stage autophagy, which preclinical models suggest sensitizes glioblastoma to radiotherapy by reducing tumor hypoxia &mdash; not yet confirmed to improve survival in humans.",
+      "interactions": [
+        {
+          "with": "sc-chemort",
+          "type": "requires",
+          "modifier": 0,
+          "note": "Only studied under trial supervision at defined doses concurrently with chemoradiation &mdash; not established for unsupervised use."
+        }
+      ],
+      "source_notes": [
+        [
+          "Phase I/II hydroxychloroquine + chemoradiation trial",
+          "https://pubmed.ncbi.nlm.nih.gov/24991840/"
+        ],
+        [
+          "CHLOROBRAIN phase IB chloroquine trial",
+          "https://www.annalsofoncology.org/article/S0923-7534(19)58647-1/fulltext"
+        ]
+      ],
+      "discuss_with_care_team": "Ask whether a CQ/HCQ combination trial is open and enrolling &mdash; not something to source and dose independently given the narrow, trial-defined dosing window."
+    },
+    {
+      "id": "iv-vitamin-c",
+      "name": "High-dose IV vitamin C (pharmacologic ascorbate)",
+      "category": "repurposed-investigational",
+      "phase": "concurrent-chemort",
+      "timing": {
+        "label": "Given by infusion, concurrently with radiotherapy and temozolomide, per the studied protocol"
+      },
+      "fixed": false,
+      "default_on": false,
+      "evidence": {
+        "s": 3,
+        "l": "Phase 1 and phase 2 trials (University of Iowa) combining pharmacologic-dose IV ascorbate with concurrent chemoradiation reported a median overall survival advantage versus a historical control (~19.6 vs ~14.6 months) in an uncontrolled, single-arm design.",
+        "caution": false
+      },
+      "mechanism": "At pharmacologic IV doses &mdash; not achievable orally &mdash; ascorbate acts as a pro-oxidant, generating hydrogen peroxide selectively in tumor tissue, the opposite mechanism from oral antioxidant vitamin C use.",
+      "interactions": [
+        {
+          "with": "oral-vitamin-c",
+          "type": "note-only",
+          "modifier": 0,
+          "note": "Not interchangeable with oral vitamin C &mdash; different route, dose, and opposite mechanism."
+        }
+      ],
+      "source_notes": [
+        [
+          "First-in-human phase 1 trial: pharmacologic ascorbate + chemoradiation for newly diagnosed GBM",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC6858950/"
+        ],
+        [
+          "Follow-up phase 2 results narrative",
+          "https://medicineiowa.org/spring-2025/c-believe"
+        ]
+      ],
+      "access_pathway": "Requires an infusion center, G6PD-deficiency screening before starting (high-dose ascorbate can cause hemolysis in G6PD deficiency), and coordination with the radiation oncology schedule.",
+      "discuss_with_care_team": "Ask whether the treating center offers this or can refer to a center running the protocol; this is an investigational regimen, not an over-the-counter supplement, and needs G6PD screening first."
+    },
+    {
+      "id": "okn-007-trial",
+      "name": "OKN-007 trial enrollment inquiry (investigational nitrone radiosensitizer)",
+      "category": "okn007-trial-access",
+      "phase": "concurrent-chemort",
+      "timing": {
+        "label": "If an open combination arm exists, dosing would run alongside temozolomide/radiotherapy per the trial protocol"
+      },
+      "fixed": false,
+      "default_on": false,
+      "evidence": {
+        "s": 2,
+        "l": "Completed phase 1b in recurrent glioma; a phase 2 trial combining OKN-007 with temozolomide (and, in some settings, radiotherapy) is active for newly diagnosed and recurrent glioblastoma &mdash; efficacy not yet established.",
+        "caution": false
+      },
+      "mechanism": "A nitrone compound that increases temozolomide sensitivity and has shown reduced proliferation/angiogenesis and increased apoptosis in glioblastoma models.",
+      "interactions": [
+        {
+          "with": "sc-chemort",
+          "type": "requires",
+          "modifier": 0,
+          "note": "OKN-007 combination trials pair it specifically with concurrent TMZ/radiotherapy under trial supervision."
+        }
+      ],
+      "source_notes": [
+        [
+          "Phase 1b trial of OKN-007 in recurrent malignant glioma",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC7650506/"
+        ],
+        [
+          "Phase 1b trial record (NCT01672463)",
+          "https://clinicaltrials.gov/study/NCT01672463"
+        ]
+      ],
+      "access_pathway": "Trial-inquiry only &mdash; not an over-the-counter or off-label prescribable agent. Ask the Duke team or search for an open OKN-007 combination trial for newly diagnosed glioblastoma.",
+      "discuss_with_care_team": "Worth explicitly asking Dr. Friedman's team whether an OKN-007 combination trial is open and whether it could be layered onto &mdash; or would conflict with &mdash; the Duke immunotherapy trial enrollment."
+    },
+    {
+      "id": "steroid-sparing",
+      "name": "Steroid-sparing strategy (lowest effective dexamethasone dose)",
+      "category": "steroid-management",
+      "phase": "anytime",
+      "timing": {
+        "label": "From Day 0 onward &mdash; reassessed at every visit"
+      },
+      "fixed": false,
+      "default_on": true,
+      "evidence": {
+        "s": 3,
+        "l": "Well-documented association between cumulative corticosteroid dose and both worse survival and blunted immunotherapy response in glioblastoma.",
+        "caution": false
+      },
+      "mechanism": "Dexamethasone is lymphotoxic and broadly immunosuppressive; using the lowest dose that controls symptoms preserves the immune activity the Duke trial and CeGaT vaccine both depend on.",
+      "interactions": [],
+      "source_notes": [
+        [
+          "Dexamethasone and immunologic interference in glioblastoma",
+          "https://www.nature.com/articles/bjc2015317"
+        ],
+        [
+          "Corticosteroid exposure, lymphopenia, and survival",
+          "https://link.springer.com/article/10.1007/s11060-019-03146-7"
+        ]
+      ],
+      "discuss_with_care_team": "Steroid tapering must be managed by the treating neuro-oncology team based on symptoms and imaging &mdash; never self-adjusted, but worth raising explicitly ahead of immunotherapy enrollment."
+    },
+    {
+      "id": "ivermectin",
+      "name": "Ivermectin",
+      "category": "weak-evidence",
+      "phase": "anytime",
+      "timing": {
+        "label": "N/A &mdash; included because it was specifically asked about"
+      },
+      "fixed": false,
+      "default_on": false,
+      "evidence": {
+        "s": 0,
+        "l": "Preclinical/in-vitro signal only (PAK1 pathway, rat glioma models); no completed human glioblastoma trial.",
+        "caution": true
+      },
+      "mechanism": "Proposed multi-target anticancer activity via PAK1 kinase inhibition in preclinical models; mechanism is not established in human glioblastoma.",
+      "interactions": [
+        {
+          "with": "sc-chemort",
+          "type": "timing-caution",
+          "modifier": -2,
+          "note": "Ivermectin is metabolized via CYP3A4, the same pathway as dexamethasone and some anti-seizure medications &mdash; real interaction-risk potential with no human GBM efficacy data to weigh against it."
+        }
+      ],
+      "source_notes": [
+        [
+          "Ivermectin nanosystems and glioma suppression (preclinical)",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC12264859/"
+        ],
+        [
+          "Ivermectin and cancer &mdash; evidence summary",
+          "https://cancerchoices.org/therapy/ivermectin/"
+        ]
+      ],
+      "discuss_with_care_team": "No human glioblastoma efficacy data exists. If pursued anyway, this must go through the prescribing physician given real CYP3A4 drug-interaction and seizure-threshold considerations."
+    },
+    {
+      "id": "fenbendazole",
+      "name": "Fenbendazole (veterinary anthelmintic)",
+      "category": "weak-evidence",
+      "phase": "anytime",
+      "timing": {
+        "label": "N/A &mdash; included because it was specifically asked about"
+      },
+      "fixed": false,
+      "default_on": false,
+      "evidence": {
+        "s": 0,
+        "l": "No completed or published human clinical trial for any cancer, including glioblastoma &mdash; evidence is preclinical cell/mouse data plus a widely circulated single-patient anecdote (not glioblastoma).",
+        "caution": true
+      },
+      "mechanism": "A benzimidazole anthelmintic in the same drug class as mebendazole; researchers who tested this class in glioma models chose to advance mebendazole (human-approved, better pharmacology) into clinical trials rather than fenbendazole.",
+      "interactions": [
+        {
+          "with": "care-onc-mebendazole",
+          "type": "note-only",
+          "modifier": 0,
+          "note": "Distinct from, and far weaker evidence than, its human-approved cousin mebendazole &mdash; not interchangeable."
+        },
+        {
+          "with": "sc-adjuvant-tmz",
+          "type": "timing-caution",
+          "modifier": -2,
+          "note": "Benzimidazoles are hepatically metabolized; monitor liver function alongside temozolomide if used."
+        }
+      ],
+      "source_notes": [
+        [
+          "No human trials of fenbendazole for cancer &mdash; evidence summary",
+          "https://cancerchoices.org/therapy/mebendazole-or-fenbendazole/evidence-regarding-mebendazole-or-fenbendazole-and-cancer/"
+        ]
+      ],
+      "discuss_with_care_team": "Not approved or studied in humans for cancer. If pursued anyway, tell the oncology team so liver function can be monitored alongside temozolomide, and consider mebendazole instead, which has actual human trial data in this exact setting."
+    },
+    {
+      "id": "ldn",
+      "name": "Low-dose naltrexone (LDN)",
+      "category": "weak-evidence",
+      "phase": "anytime",
+      "timing": {
+        "label": "If used, typically taken nightly, starting alongside chemoradiation"
+      },
+      "fixed": false,
+      "default_on": false,
+      "evidence": {
+        "s": 2,
+        "l": "A placebo-controlled, double-blind randomised trial in high-grade glioma (n=110) tested LDN 4.5mg during chemoradiation; it assessed quality-of-life and fatigue endpoints, not a direct tumor-response/survival endpoint.",
+        "caution": false
+      },
+      "mechanism": "Proposed to block the opioid growth-factor receptor axis, with a compensatory increase in opioid growth factor thought to have an antiproliferative effect; also proposed immune-modulating effects.",
+      "interactions": [],
+      "source_notes": [
+        [
+          "Randomised placebo-controlled trial of low-dose naltrexone in high-grade glioma",
+          "https://pubmed.ncbi.nlm.nih.gov/35001215/"
+        ]
+      ],
+      "discuss_with_care_team": "Has more human randomised-trial data than ivermectin or fenbendazole, but that trial measured quality of life/fatigue, not tumor control &mdash; be precise about what was and wasn't shown when discussing it with the care team."
+    },
+    {
+      "id": "oral-vitamin-c",
+      "name": "Oral vitamin C (standard antioxidant-dose)",
+      "category": "general-caution-antioxidant",
+      "phase": "concurrent-chemort",
+      "timing": {
+        "label": "General oncology guidance: avoid or pause during radiotherapy specifically"
+      },
+      "fixed": false,
+      "default_on": false,
+      "evidence": {
+        "s": 1,
+        "l": "General radiation-oncology guidance advises against antioxidant supplementation during radiotherapy; oral doses do not reach the pharmacologic, pro-oxidant range used in the IV ascorbate trials.",
+        "caution": true
+      },
+      "mechanism": "At achievable oral doses, vitamin C acts as an antioxidant, which may blunt radiotherapy's reactive-oxygen-species-dependent tumor-killing mechanism &mdash; a fundamentally different situation from pharmacologic IV dosing.",
+      "interactions": [
+        {
+          "with": "sc-chemort",
+          "type": "conflicts",
+          "modifier": -6,
+          "note": "Timing conflict with concurrent radiotherapy specifically, per general oncology guidance on antioxidants during radiation."
+        }
+      ],
+      "source_notes": [
+        [
+          "Antioxidant supplementation and radiotherapy &mdash; systematic review",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC12279893/"
+        ],
+        [
+          "Supplement use during radiation therapy &mdash; patient guidance",
+          "https://www.oncolink.org/cancer-treatment/radiation/support/supplement-use-during-radiation-therapy"
+        ]
+      ],
+      "discuss_with_care_team": "If wanted for other reasons, time it away from the radiotherapy window and confirm with the radiation oncology team &mdash; or consider the pharmacologic IV-ascorbate protocol instead, which is a different thing entirely."
+    },
+    {
+      "id": "curcumin",
+      "name": "Curcumin",
+      "category": "general-caution-antioxidant",
+      "phase": "anytime",
+      "timing": {
+        "label": "Antioxidant-during-radiotherapy caution applies during the concurrent-chemoRT phase"
+      },
+      "fixed": false,
+      "default_on": false,
+      "evidence": {
+        "s": 0,
+        "l": "A dedicated review found no clinical or biological rationale for curcumin as a glioblastoma radiosensitizer &mdash; achievable brain/tumor concentrations are too low to have an effect, despite promising animal-model data.",
+        "caution": true
+      },
+      "mechanism": "Proposed anti-inflammatory and radiosensitizing effects seen in preclinical models do not translate at clinically achievable, blood-brain-barrier-limited concentrations in humans.",
+      "interactions": [
+        {
+          "with": "sc-chemort",
+          "type": "timing-caution",
+          "modifier": -3,
+          "note": "General antioxidant-during-radiotherapy caution, compounded by a lack of any demonstrated benefit specific to glioblastoma."
+        }
+      ],
+      "source_notes": [
+        [
+          "Radiation and curcumin in human glioma &mdash; experimental and clinical review",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC7817587/"
+        ]
+      ],
+      "discuss_with_care_team": "The specific radiosensitizer rationale for glioblastoma doesn't hold up in the literature &mdash; if used, treat it as a general wellness supplement, not a treatment-effectiveness lever, and time it away from the radiotherapy window."
+    },
+    {
+      "id": "egcg-green-tea",
+      "name": "EGCG / green tea extract",
+      "category": "general-caution-antioxidant",
+      "phase": "anytime",
+      "timing": {
+        "label": "Antioxidant-during-radiotherapy caution applies during the concurrent-chemoRT phase"
+      },
+      "fixed": false,
+      "default_on": false,
+      "evidence": {
+        "s": 1,
+        "l": "General antioxidant/anti-inflammatory mechanistic interest; limited glioblastoma-specific human data.",
+        "caution": true
+      },
+      "mechanism": "A polyphenol antioxidant with anti-inflammatory and, in preclinical models, some anti-angiogenic activity &mdash; human GBM-specific evidence is limited.",
+      "interactions": [
+        {
+          "with": "sc-chemort",
+          "type": "timing-caution",
+          "modifier": -3,
+          "note": "General antioxidant-during-radiotherapy caution."
+        }
+      ],
+      "source_notes": [
+        [
+          "Antioxidant supplementation and radiotherapy &mdash; systematic review",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC12279893/"
+        ]
+      ],
+      "discuss_with_care_team": "Time away from the radiotherapy window if used; high-dose green tea extract also has rare hepatotoxicity case reports worth mentioning to the care team."
+    },
+    {
+      "id": "resveratrol",
+      "name": "Resveratrol",
+      "category": "general-caution-antioxidant",
+      "phase": "anytime",
+      "timing": {
+        "label": "Antioxidant-during-radiotherapy caution applies during the concurrent-chemoRT phase"
+      },
+      "fixed": false,
+      "default_on": false,
+      "evidence": {
+        "s": 0,
+        "l": "Preclinical antioxidant/anti-inflammatory interest only; no glioblastoma-specific human trial data and poor oral bioavailability.",
+        "caution": true
+      },
+      "mechanism": "An antioxidant polyphenol with preclinical anti-glioma signals in cell/animal models; human bioavailability and brain penetration are both limiting factors.",
+      "interactions": [
+        {
+          "with": "sc-chemort",
+          "type": "timing-caution",
+          "modifier": -3,
+          "note": "General antioxidant-during-radiotherapy caution."
+        }
+      ],
+      "source_notes": [],
+      "discuss_with_care_team": "Weakest human evidence of this antioxidant group; time away from the radiotherapy window if used at all."
+    },
+    {
+      "id": "ketogenic-metabolic-therapy",
+      "name": "Ketogenic diet / calorie-restricted metabolic therapy",
+      "category": "lifestyle",
+      "phase": "anytime",
+      "timing": {
+        "label": "If pursued, typically dietitian-supervised, starting after the acute post-op/chemoradiation period"
+      },
+      "fixed": false,
+      "default_on": false,
+      "evidence": {
+        "s": 1,
+        "l": "The randomised ERGO2 trial (ketogenic diet + intermittent fasting added to re-irradiation for recurrent glioma) did NOT meet its primary progression-free-survival endpoint, though it was feasible and safe.",
+        "caution": true
+      },
+      "mechanism": "Proposed to exploit glioblastoma's reliance on glycolysis by lowering serum glucose and raising ketone bodies; the one randomised trial to test this directly in glioma did not show a survival benefit.",
+      "interactions": [],
+      "source_notes": [
+        [
+          "ERGO2 randomised trial: ketogenic diet + fasting with re-irradiation for glioma",
+          "https://www.sciencedirect.com/science/article/abs/pii/S0360301620313080"
+        ]
+      ],
+      "discuss_with_care_team": "Weight loss and reduced calorie intake during active treatment carries its own risks &mdash; needs dietitian supervision, especially alongside dexamethasone (which raises blood glucose and works against ketosis)."
+    },
+    {
+      "id": "structured-exercise",
+      "name": "Structured aerobic + resistance exercise program",
+      "category": "lifestyle",
+      "phase": "anytime",
+      "timing": {
+        "label": "Start as tolerated, ideally supervised, continuing through chemoradiation and beyond"
+      },
+      "fixed": false,
+      "default_on": true,
+      "evidence": {
+        "s": 2,
+        "l": "Growing evidence (feasibility/safety trials, small RCTs) that supervised exercise during chemoradiation improves quality of life, fatigue, and cardiorespiratory fitness in high-grade glioma; mechanistic rationale for immune benefit is well supported, direct survival-benefit trials are still pending.",
+        "caution": false
+      },
+      "mechanism": "Exercise activates NK and T-cell immune surveillance, reduces inflammation, and may improve blood-brain-barrier drug penetration &mdash; alongside well-established quality-of-life and fatigue benefits during treatment.",
+      "interactions": [],
+      "source_notes": [
+        [
+          "Supervised aerobic/resistance exercise during chemoradiation for glioblastoma",
+          "https://academic.oup.com/nop/article/10/3/261/7025443"
+        ]
+      ],
+      "discuss_with_care_team": "Ask for a referral to a cancer-rehabilitation or physical-therapy program experienced with brain-tumor patients, especially given any post-surgical or steroid-related physical limitations."
+    }
+  ]
+}
