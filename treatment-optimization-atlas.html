@@ -224,6 +224,26 @@
   .checklist label:hover{background:var(--surface-2)}
   .checklist input{margin-top:3px; accent-color:var(--accent); flex:none}
 
+  /* ---- flow chart ---- */
+  .flowScroll{overflow-x:auto; padding-bottom:10px; margin-top:6px}
+  .flowRow{display:flex; align-items:stretch; width:max-content; min-width:100%}
+  .flowNode{
+    flex:none; width:240px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    box-shadow:var(--shadow); padding:14px 16px; display:flex; flex-direction:column;
+  }
+  .flowNode.emptyPhase{opacity:.55}
+  .flowNodeHead{font-family:"Spectral",serif; font-weight:600; font-size:.98rem; color:var(--ink)}
+  .flowNodeDate{font-size:.74rem; color:var(--ink-muted); margin-top:3px; line-height:1.4}
+  .flowChips{margin-top:11px; display:flex; flex-direction:column; gap:6px}
+  .flowChip{
+    font-size:.78rem; line-height:1.35; padding:6px 9px; border-radius:7px;
+    background:var(--surface-2); color:var(--ink-2); border-left:3px solid var(--accent);
+  }
+  .flowChip.fixed{border-left-color:var(--ink-muted)}
+  .flowChip.empty{color:var(--ink-muted); font-style:italic; border-left-color:var(--border); background:none}
+  .flowArrow{flex:none; display:flex; align-items:center; justify-content:center; width:34px; color:var(--ink-muted); font-size:1.4rem}
+  @media (max-width:640px){ .flowNode{width:200px} }
+
   footer{margin-top:56px; padding-top:20px; border-top:1px solid var(--border); font-size:.83rem; color:var(--ink-muted)}
   footer a{color:var(--accent-ink)}
   .src{font-size:.82rem; color:var(--ink-2)}
@@ -323,15 +343,16 @@
 
 <!-- ============ SUMMARY ============ -->
 <section id="summary">
-  <div class="sec-head"><h2>30 decisions across 5 phases</h2>
+  <div class="sec-head"><h2 id="summaryHeading">Decisions across 5 phases</h2>
   <p>3 are fixed standard-of-care (always included). The rest &mdash; the Duke trial and CeGaT vaccine, immune/NK
-  support, marrow-recovery, repurposed drugs, a steroid-sparing strategy, and every explicitly-requested
-  weak-evidence item &mdash; are toggleable. The score updates live as you switch items on or off.</p></div>
+  support, marrow-recovery, repurposed drugs, a steroid-sparing strategy, every explicitly-requested weak-evidence
+  item, the recruiting/soon trials pulled from the two companion dashboards, and the named private stem/immune-cell
+  clinics &mdash; are toggleable. The score updates live as you switch items on or off.</p></div>
   <div class="tiles">
-    <div class="tile"><div class="n tnum">30</div><div class="l">Total catalog items</div></div>
-    <div class="tile"><div class="n tnum">3</div><div class="l">Fixed standard-of-care items</div></div>
-    <div class="tile"><div class="n tnum">17</div><div class="l">On in the optimal preset</div></div>
-    <div class="tile"><div class="n tnum">11</div><div class="l">Categories scored</div></div>
+    <div class="tile"><div class="n tnum" id="tileTotal">&mdash;</div><div class="l">Total catalog items</div></div>
+    <div class="tile"><div class="n tnum" id="tileFixed">&mdash;</div><div class="l">Fixed standard-of-care items</div></div>
+    <div class="tile"><div class="n tnum" id="tileOptimal">&mdash;</div><div class="l">On in the optimal preset</div></div>
+    <div class="tile"><div class="n tnum" id="tileCats">&mdash;</div><div class="l">Categories scored</div></div>
     <div class="tile"><div class="n tnum">5</div><div class="l">Timeline phases</div></div>
   </div>
 </section>
@@ -407,7 +428,18 @@
       &mdash; don't assume the team already knows they're being considered.</label>
     <label><input type="checkbox">Ask whether an OKN-007 combination trial arm is open and whether it could be
       layered onto, or would conflict with, the Duke trial enrollment.</label>
+    <label><input type="checkbox">If any private stem/immune-cell clinic (Issels, a "Hope Clinic," or similar) is
+      still being considered, get its exact protocol and any published outcome data in writing before the next
+      appointment, and bring it to the treating team.</label>
   </div>
+</section>
+
+<!-- ============ FLOW CHART ============ -->
+<section id="flowchart-section">
+  <div class="sec-head"><h2>Regimen flow, chosen items only</h2>
+  <p>A left-to-right view of just what's currently switched on above, grouped by phase with dates. Updates live as
+  you toggle items &mdash; scroll horizontally on a narrow screen.</p></div>
+  <div id="flowchartRoot"></div>
 </section>
 
 <footer>
@@ -425,9 +457,10 @@ const $ = s => document.querySelector(s);
 
 const CATEGORY_WEIGHTS = {
   "standard-of-care":20, "immunotherapy-trial":18, "personalized-vaccine":8,
-  "immune-nk-support":10, "marrow-recovery":9, "repurposed-investigational":12,
-  "okn007-trial-access":5, "steroid-management":8, "weak-evidence":3,
-  "general-caution-antioxidant":2, "lifestyle":5
+  "immune-nk-support":9, "marrow-recovery":8, "repurposed-investigational":10,
+  "okn007-trial-access":5, "steroid-management":8, "weak-evidence":2,
+  "general-caution-antioxidant":1, "lifestyle":4, "alternative-trial-options":4,
+  "private-cellular-therapy":3
 };
 const CATEGORY_LABELS = {
   "historical":"Historical / already done",
@@ -441,15 +474,24 @@ const CATEGORY_LABELS = {
   "steroid-management":"Steroid management",
   "weak-evidence":"Anecdotal / weak evidence",
   "general-caution-antioxidant":"Antioxidant supplements (timing caution)",
-  "lifestyle":"Lifestyle &amp; metabolic"
+  "lifestyle":"Lifestyle &amp; metabolic",
+  "alternative-trial-options":"Other trial options (companion dashboards)",
+  "private-cellular-therapy":"Private stem/immune-cell clinics"
 };
 const PHASE_ORDER = ["pre-treatment","concurrent-chemort","adjuvant-tmz","post-adjuvant","anytime"];
 const PHASE_LABELS = {
-  "pre-treatment":{h:"Pre-treatment", sub:"Already completed"},
+  "pre-treatment":{h:"Pre-treatment", sub:"Already completed, or a closing window before Day 0"},
   "concurrent-chemort":{h:"Phase 1 &middot; Concurrent chemoradiation", sub:"Day 0&ndash;~42 &middot; 28 Sep&ndash;~9 Nov 2026"},
   "adjuvant-tmz":{h:"Phase 2 &middot; Adjuvant temozolomide", sub:"~Day 42&ndash;230 &middot; ~Nov 2026&ndash;~May 2027, 6 cycles"},
   "post-adjuvant":{h:"Phase 3 &middot; Immunotherapy &amp; supportive vaccine", sub:"Duke trial + CeGaT vaccine &mdash; estimated dates, editable"},
   "anytime":{h:"Ongoing &mdash; anytime, alongside any phase", sub:"Immune/NK support, marrow recovery, steroid strategy, lifestyle, and the flagged items"}
+};
+const PHASE_SHORT = {
+  "pre-treatment":"Pre-treatment",
+  "concurrent-chemort":"Concurrent chemoRT",
+  "adjuvant-tmz":"Adjuvant TMZ",
+  "post-adjuvant":"Immunotherapy + vaccine",
+  "anytime":"Ongoing (all phases)"
 };
 
 const CATALOG = [
@@ -720,7 +762,183 @@ const CATALOG = [
   evidence:{s:2,l:"Growing evidence (feasibility/safety trials, small RCTs) that supervised exercise during chemoradiation improves quality of life, fatigue, and cardiorespiratory fitness in high-grade glioma; mechanistic rationale for immune benefit is well supported, direct survival-benefit trials are still pending.",caution:false},
   mechanism:"Exercise activates NK and T-cell immune surveillance, reduces inflammation, and may improve blood-brain-barrier drug penetration &mdash; alongside well-established quality-of-life and fatigue benefits during treatment.",
   interactions:[], source_notes:[["Supervised aerobic/resistance exercise during chemoradiation for glioblastoma","https://academic.oup.com/nop/article/10/3/261/7025443"]],
-  discuss_with_care_team:"Ask for a referral to a cancer-rehabilitation or physical-therapy program experienced with brain-tumor patients, especially given any post-surgical or steroid-related physical limitations." }
+  discuss_with_care_team:"Ask for a referral to a cancer-rehabilitation or physical-therapy program experienced with brain-tumor patients, especially given any post-surgical or steroid-related physical limitations." },
+
+{ id:"issels-clinic", name:"Issels Medical Center &mdash; autologous dendritic-cell + NK-cell \"non-specific immunotherapy\"", category:"private-cellular-therapy", phase:"anytime",
+  timing:{label:"3-week program, can be scheduled anytime; typically pursued in parallel with or after standard care"}, fixed:false, default_on:false,
+  evidence:{s:0,l:"No published randomised or controlled trial data for glioblastoma; the broader Issels treatment approach has been named a &ldquo;Dubious Treatment&rdquo; by Quackwatch and evaluated as ineffective by the American Cancer Society; not approved by any US or UK medical society.",caution:true},
+  mechanism:"Markets a personalized, autologous (&ldquo;non-specific&rdquo;) immunotherapy program combining dendritic-cell and NK-cell infusions intended to broadly rebuild immune function against cancer; the general mechanism has not been validated in controlled trials.",
+  interactions:[], source_notes:[["Issels treatment &mdash; background and independent evaluation","https://en.wikipedia.org/wiki/Issels_treatment"],["Issels Immuno-Oncology program overview (clinic site)","https://issels.com/treatment-summary/cancer-cell-therapies.html"]],
+  access_pathway:"Santa Barbara, California (main program) + a Mexico facility near San Diego for the cell-therapy component. Roughly $49,800 for the 3-week program, self-pay.",
+  discuss_with_care_team:"This is the most heavily criticized item in this entire catalog by mainstream oncology sources &mdash; not just unproven but specifically flagged as ineffective/dubious by watchdog and major cancer-society evaluations. If still considering it, bring the exact protocol to Dr. Friedman's team and ask directly whether anything in it could interact with or delay chemoradiation, the Duke trial, or CeGaT." },
+
+{ id:"muse-stem-cell-clinics", name:"MUSE / mesenchymal stem-cell therapy (private clinics, incl. clinics referred to as \"Hope Clinic\")", category:"private-cellular-therapy", phase:"anytime",
+  timing:{label:"Varies by clinic; not tied to a specific phase of the current treatment plan"}, fixed:false, default_on:false,
+  evidence:{s:0,l:"MUSE (multilineage-differentiating stress-enduring) cells are a real, actively-researched stem-cell type with human trials underway for stroke, ARDS, and neurologic injury, and a published preclinical approach using engineered MUSE cells as gene-therapy carriers for glioma &mdash; but no completed human glioblastoma outcome trial exists, and no specific glioblastoma protocol, cost, or evidence for a clinic named \"Hope Clinic\" could be independently verified from available sources.",caution:true},
+  mechanism:"MUSE cells are endogenous pluripotent-like stem cells with documented migratory activity toward damaged/tumor tissue; the research use in glioma so far is as an engineered delivery vehicle for a therapeutic gene (e.g. HSV-tk), not as a standalone anti-tumor treatment with demonstrated human efficacy.",
+  interactions:[], source_notes:[["Genetically engineered MUSE cells as cellular vehicles against malignant gliomas (preclinical)","https://pubmed.ncbi.nlm.nih.gov/28748212/"],["MUSE cells &mdash; review of biology and current clinical trial landscape","https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10340735/"]],
+  access_pathway:"Get the exact clinic name, protocol, cell source/type, and any published outcome data directly in writing before evaluating this further &mdash; \"stem cell therapy\" and \"MUSE cell therapy\" are marketed by a wide range of clinics with very different products and evidence behind them.",
+  discuss_with_care_team:"Ask specifically: is this autologous or donor-derived, what cell type exactly (MUSE vs. generic mesenchymal stem cells are not the same thing), and has it been tested in any glioblastoma patient with published outcomes. No generic \"stem cell clinic\" claim should be taken at face value without that documentation." },
+
+{ id:"alt-doc1021", name:"DOC1021 (dubodencel) dendritic-cell vaccine &mdash; NCT06805305", category:"alternative-trial-options", phase:"pre-treatment",
+  timing:{label:"Entry window is \"after surgery, before chemoradiation\" &mdash; closes around Day 0 (28 Sep 2026)"}, fixed:false, default_on:false,
+  evidence:{s:2,l:"Randomised phase 2, many US sites, built for exactly this newly-diagnosed/resected population &mdash; outcomes not yet mature.",caution:false},
+  mechanism:"Dendritic-cell vaccine, randomised phase 2, built for newly diagnosed, IDH-wildtype, near-complete-resection, treatment-na&iuml;ve patients.",
+  interactions:[{with:"duke-immunotherapy-trial",type:"note-only",modifier:0,note:"Trial protocols are almost always mutually exclusive with concurrent enrollment in another interventional trial &mdash; pursuing this would replace, not add to, the Duke plan, and this window is closing fast."}],
+  source_notes:[["Full trial detail on the RTK II Glioblastoma Trial Finder","index.html#c-NCT06805305"],["ClinicalTrials.gov record","https://clinicaltrials.gov/study/NCT06805305"]],
+  discuss_with_care_team:"Rated a High fit on the companion trial finder, but needs a fresh tumor specimen from the resection &mdash; confirm tissue was banked, and act fast if interested." },
+
+{ id:"alt-avgbm1", name:"AV-GBM-1 tumour-initiating-cell dendritic-cell vaccine &mdash; NCT05100641", category:"alternative-trial-options", phase:"pre-treatment",
+  timing:{label:"Entry window is \"after surgery, before chemoradiation\" &mdash; closes around Day 0 (28 Sep 2026)"}, fixed:false, default_on:false,
+  evidence:{s:2,l:"Blinded, placebo-controlled phase 3 with encouraging phase 2 data; not yet recruiting.",caution:false},
+  mechanism:"Dendritic-cell vaccine targeting tumor-initiating cells; phase 3, placebo-controlled.",
+  interactions:[{with:"duke-immunotherapy-trial",type:"note-only",modifier:0,note:"Trial protocols are almost always mutually exclusive with concurrent enrollment in another interventional trial."}],
+  source_notes:[["Full trial detail on the RTK II Glioblastoma Trial Finder","index.html#c-NCT05100641"],["ClinicalTrials.gov record","https://clinicaltrials.gov/study/NCT05100641"]],
+  discuss_with_care_team:"Requires a viable tumor cell line grown from surgical tissue &mdash; confirm fresh tissue availability, and it is not yet open for enrollment." },
+
+{ id:"alt-gbmagile", name:"GBM AGILE adaptive platform trial &mdash; NCT03970447", category:"alternative-trial-options", phase:"pre-treatment",
+  timing:{label:"Entry window is \"after surgery, before chemoradiation\" &mdash; closes around Day 0 (28 Sep 2026)"}, fixed:false, default_on:false,
+  evidence:{s:2,l:"Broadest single access route, ~30+ US sites, randomises to a novel agent plus a proper control &mdash; but the specific arm assigned may not be an immunotherapy or EGFR-targeted agent.",caution:false},
+  mechanism:"Adaptive platform trial; one screening routes to whichever arm is currently open at a nearby site.",
+  interactions:[{with:"duke-immunotherapy-trial",type:"note-only",modifier:0,note:"Trial protocols are almost always mutually exclusive with concurrent enrollment in another interventional trial."}],
+  source_notes:[["Full trial detail on the RTK II Glioblastoma Trial Finder","index.html#c-NCT03970447"],["ClinicalTrials.gov record","https://clinicaltrials.gov/study/NCT03970447"]],
+  discuss_with_care_team:"Ask which arms are open at the nearest site before assuming this delivers anything comparable to the Duke trial." },
+
+{ id:"alt-pnoc020", name:"RNA-lipid-particle (mRNA) vaccine &mdash; PNOC020 &mdash; NCT04573140", category:"alternative-trial-options", phase:"pre-treatment",
+  timing:{label:"Entry window is \"after surgery, before chemoradiation\" &mdash; closes around Day 0 (28 Sep 2026)"}, fixed:false, default_on:false,
+  evidence:{s:1,l:"Good conceptual fit if MGMT is unmethylated (this case is methylated) and tumor mRNA can be made from banked tissue. Single site (UF Gainesville), age &ge;21.",caution:false},
+  mechanism:"Personalized mRNA vaccine manufactured from the patient's own tumor RNA.",
+  interactions:[{with:"duke-immunotherapy-trial",type:"note-only",modifier:0,note:"Trial protocols are almost always mutually exclusive with concurrent enrollment in another interventional trial."}],
+  source_notes:[["Full trial detail on the RTK II Glioblastoma Trial Finder","index.html#c-NCT04573140"],["ClinicalTrials.gov record","https://clinicaltrials.gov/study/NCT04573140"]],
+  discuss_with_care_team:"MGMT-methylated status weakens the original rationale cited for this trial; window closes at Day 0 if pursued instead of the current plan." },
+
+{ id:"alt-egfrbats", name:"EGFR bispecific-armed T cells (EGFR BATs) + focused ultrasound &mdash; NCT07343986", category:"alternative-trial-options", phase:"pre-treatment",
+  timing:{label:"Entry window is \"after surgery, before chemoradiation\" &mdash; closes around Day 0 (28 Sep 2026)"}, fixed:false, default_on:false,
+  evidence:{s:1,l:"Fit if MGMT is unmethylated (this case is methylated) and EGFR staining is at least 1+ (likely in RTK II). First-in-human, single site, small (n=12).",caution:false},
+  mechanism:"Autologous T cells armed with an EGFR bispecific antibody, combined with focused-ultrasound blood-brain-barrier opening.",
+  interactions:[{with:"duke-immunotherapy-trial",type:"note-only",modifier:0,note:"Trial protocols are almost always mutually exclusive with concurrent enrollment in another interventional trial."}],
+  source_notes:[["Full trial detail on the RTK II Glioblastoma Trial Finder","index.html#c-NCT07343986"],["ClinicalTrials.gov record","https://clinicaltrials.gov/study/NCT07343986"]],
+  discuss_with_care_team:"First-in-human &mdash; ask specifically about the safety data collected so far; MGMT-methylated status weakens the fit." },
+
+{ id:"alt-bvax", name:"Bvax &mdash; autologous B-cell vaccination + chemoradiation &mdash; NCT07422896", category:"alternative-trial-options", phase:"pre-treatment",
+  timing:{label:"Entry window is \"after surgery, before chemoradiation\" &mdash; closes around Day 0 (28 Sep 2026)"}, fixed:false, default_on:false,
+  evidence:{s:1,l:"Mechanistically novel, open to newly diagnosed disease with standard chemoradiation; single site, and requires &ge;1.5g fresh-frozen tumor tissue unlikely to be available retrospectively.",caution:false},
+  mechanism:"Autologous B-cell vaccination combined with standard chemoradiation.",
+  interactions:[{with:"duke-immunotherapy-trial",type:"note-only",modifier:0,note:"Trial protocols are almost always mutually exclusive with concurrent enrollment in another interventional trial."}],
+  source_notes:[["Full trial detail on the RTK II Glioblastoma Trial Finder","index.html#c-NCT07422896"],["ClinicalTrials.gov record","https://clinicaltrials.gov/study/NCT07422896"]],
+  discuss_with_care_team:"Requires fresh-frozen tissue specifically banked at surgery &mdash; confirm with the surgical/pathology team whether this exists." },
+
+{ id:"alt-wsd0922", name:"WSD0922-FU &plusmn; adjuvant temozolomide, randomised &mdash; NCT07708961", category:"alternative-trial-options", phase:"post-adjuvant",
+  timing:{label:"Entry window is \"with or after chemoradiation\" &mdash; same general timing as the Duke trial"}, fixed:false, default_on:false,
+  evidence:{s:2,l:"Strong fit only if the tumor carries a pathogenic EGFR mutation or EGFRvIII &mdash; RTK II tumors are often EGFR-amplified without a point mutation, which this trial excludes.",caution:false},
+  mechanism:"Randomised EGFR-targeted small-molecule/antibody trial, enrolls with or after chemoradiation.",
+  interactions:[{with:"duke-immunotherapy-trial",type:"note-only",modifier:0,note:"Trial protocols are almost always mutually exclusive with concurrent enrollment in another interventional trial &mdash; this would compete directly with the Duke trial for the same timing window."}],
+  source_notes:[["Full trial detail on the RTK II Glioblastoma Trial Finder","index.html#c-NCT07708961"],["ClinicalTrials.gov record","https://clinicaltrials.gov/study/NCT07708961"]],
+  discuss_with_care_team:"Confirm the exact EGFR finding (amplification vs. point mutation vs. EGFRvIII) before assuming eligibility." },
+
+{ id:"alt-abbv637-eras801", name:"ABBV-637/ABBV-155 + ERAS-801 (EGFR ADC + EGFR TKI) &mdash; NCT06934889", category:"alternative-trial-options", phase:"post-adjuvant",
+  timing:{label:"Entry window is \"with or after chemoradiation\" &mdash; same general timing as the Duke trial"}, fixed:false, default_on:false,
+  evidence:{s:1,l:"One of the few newly-diagnosed trials enrolling on EGFR amplification alone (the classic RTK II lesion); early-phase, dose-finding/toxicity-focused, and the prior EGFR antibody-drug conjugate failed to improve survival in this population.",caution:false},
+  mechanism:"Combination EGFR antibody-drug conjugate + EGFR tyrosine-kinase inhibitor.",
+  interactions:[{with:"duke-immunotherapy-trial",type:"note-only",modifier:0,note:"Trial protocols are almost always mutually exclusive with concurrent enrollment in another interventional trial."}],
+  source_notes:[["Full trial detail on the RTK II Glioblastoma Trial Finder","index.html#c-NCT06934889"],["ClinicalTrials.gov record","https://clinicaltrials.gov/study/NCT06934889"]],
+  discuss_with_care_team:"Ask about EGFR amplification status specifically; this is early-phase and dose-finding, not yet an efficacy readout." },
+
+{ id:"alt-brite", name:"BRiTE &mdash; EGFRvIII&times;CD3 bispecific T-cell engager &mdash; NCT04903795", category:"alternative-trial-options", phase:"post-adjuvant",
+  timing:{label:"Entry window is \"with or after chemoradiation\" &mdash; same general timing as the Duke trial"}, fixed:false, default_on:false,
+  evidence:{s:1,l:"Fit only if EGFRvIII-positive; single site, small early-phase study.",caution:false},
+  mechanism:"Bispecific T-cell engager targeting EGFRvIII, designed to address antigen-escape limits of prior EGFRvIII-directed therapies.",
+  interactions:[{with:"duke-immunotherapy-trial",type:"note-only",modifier:0,note:"Trial protocols are almost always mutually exclusive with concurrent enrollment in another interventional trial."}],
+  source_notes:[["Full trial detail on the RTK II Glioblastoma Trial Finder","index.html#c-NCT04903795"],["ClinicalTrials.gov record","https://clinicaltrials.gov/study/NCT04903795"]],
+  discuss_with_care_team:"Requires confirmed EGFRvIII positivity &mdash; ask whether this was specifically tested." },
+
+{ id:"alt-silevertinib-randomized", name:"Silevertinib (BDTX-1535) + temozolomide, randomised &mdash; NCT07326566", category:"alternative-trial-options", phase:"post-adjuvant",
+  timing:{label:"Entry window is \"with or after chemoradiation\" &mdash; same general timing as the Duke trial"}, fixed:false, default_on:false,
+  evidence:{s:2,l:"One of the strongest fits in the companion dashboard if EGFRvIII-positive and MGMT-unmethylated &mdash; randomised, ~28 US sites. This tumor is MGMT-methylated, which weakens the rationale.",caution:false},
+  mechanism:"Randomised EGFR-targeted small-molecule trial for MGMT-unmethylated, EGFRvIII-positive disease.",
+  interactions:[{with:"duke-immunotherapy-trial",type:"note-only",modifier:0,note:"Trial protocols are almost always mutually exclusive with concurrent enrollment in another interventional trial."}],
+  source_notes:[["Full trial detail on the RTK II Glioblastoma Trial Finder","index.html#c-NCT07326566"],["ClinicalTrials.gov record","https://clinicaltrials.gov/study/NCT07326566"]],
+  discuss_with_care_team:"MGMT came back methylated on this case, the opposite of the profile this trial targets &mdash; likely not a fit despite the strong general RTK II rating." },
+
+{ id:"alt-intraarterial-cetuximab", name:"Super-selective intra-arterial cetuximab + BBB disruption &mdash; NCT02861898", category:"alternative-trial-options", phase:"anytime",
+  timing:{label:"\"Procedure-based / flexible\" entry &mdash; not tied to a specific phase"}, fixed:false, default_on:false,
+  evidence:{s:1,l:"Relevant if EGFR-overexpressing/amplified; single site, open since 2016 with slow accrual. Systemic cetuximab has not worked in GBM &mdash; intra-arterial delivery past the blood-brain barrier is the specific hypothesis being tested.",caution:false},
+  mechanism:"Intra-arterial drug delivery with blood-brain-barrier disruption to bypass systemic cetuximab's poor brain penetration.",
+  interactions:[{with:"duke-immunotherapy-trial",type:"note-only",modifier:0,note:"Trial protocols are almost always mutually exclusive with concurrent enrollment in another interventional trial."}],
+  source_notes:[["Full trial detail on the RTK II Glioblastoma Trial Finder","index.html#c-NCT02861898"],["ClinicalTrials.gov record","https://clinicaltrials.gov/study/NCT02861898"]],
+  discuss_with_care_team:"Procedure-based, not a simple infusion &mdash; ask what the intra-arterial procedure itself involves." },
+
+{ id:"alt-sonocloud9", name:"Checkpoint blockade + SonoCloud-9 ultrasound BBB opening &mdash; NCT05864534", category:"alternative-trial-options", phase:"post-adjuvant",
+  timing:{label:"Entry window is \"with or after chemoradiation\" &mdash; same general timing as the Duke trial"}, fixed:false, default_on:false,
+  evidence:{s:1,l:"Reasonable fit if MGMT is unmethylated (this case is methylated) and a resection cavity/residual tumor exists for the ultrasound field to cover. Single site.",caution:false},
+  mechanism:"Implanted ultrasound device transiently opens the blood-brain barrier to increase checkpoint-inhibitor drug levels in the brain.",
+  interactions:[{with:"duke-immunotherapy-trial",type:"note-only",modifier:0,note:"Trial protocols are almost always mutually exclusive with concurrent enrollment in another interventional trial."}],
+  source_notes:[["Full trial detail on the RTK II Glioblastoma Trial Finder","index.html#c-NCT05864534"],["ClinicalTrials.gov record","https://clinicaltrials.gov/study/NCT05864534"]],
+  discuss_with_care_team:"Requires an implanted device and a covered resection cavity &mdash; ask whether a gross-total resection leaves enough target for the ultrasound field." },
+
+{ id:"alt-carv3team", name:"CARv3-TEAM-E EGFRvIII CAR-T (INCIPIENT) &mdash; NCT05660369", category:"alternative-trial-options", phase:"post-adjuvant",
+  timing:{label:"Entry window is \"with or after chemoradiation\" &mdash; same general timing as the Duke trial"}, fixed:false, default_on:false,
+  evidence:{s:1,l:"Possible fit only if EGFRvIII-positive and MGMT-unmethylated (this case is methylated). The newly-diagnosed arm opens only after the recurrent-disease arms clear safety, and primary completion is Sep 2026 &mdash; it may close soon.",caution:false},
+  mechanism:"CAR-T cell therapy targeting EGFRvIII, engineered to also secrete a bispecific T-cell engager.",
+  interactions:[{with:"duke-immunotherapy-trial",type:"note-only",modifier:0,note:"Trial protocols are almost always mutually exclusive with concurrent enrollment in another interventional trial."}],
+  source_notes:[["Full trial detail on the RTK II Glioblastoma Trial Finder","index.html#c-NCT05660369"],["ClinicalTrials.gov record","https://clinicaltrials.gov/study/NCT05660369"]],
+  discuss_with_care_team:"Single site, narrow window &mdash; worth calling promptly to check whether the newly-diagnosed arm is still open at all." },
+
+{ id:"alt-d2c7", name:"D2C7 immunotoxin + anti-CD40 (2141-V11) &mdash; NCT05734560", category:"alternative-trial-options", phase:"post-adjuvant",
+  timing:{label:"Entry window is \"with or after chemoradiation\" &mdash; same general timing as the Duke trial"}, fixed:false, default_on:false,
+  evidence:{s:1,l:"Fit if MGMT is unmethylated (this case is methylated) and residual tumor &le;3cm remains that a catheter can reach &mdash; a truly complete resection may not qualify.",caution:false},
+  mechanism:"Convection-enhanced delivery of an EGFR-targeted immunotoxin plus a CD40 agonist antibody.",
+  interactions:[{with:"duke-immunotherapy-trial",type:"note-only",modifier:0,note:"Trial protocols are almost always mutually exclusive with concurrent enrollment in another interventional trial."}],
+  source_notes:[["Full trial detail on the RTK II Glioblastoma Trial Finder","index.html#c-NCT05734560"],["ClinicalTrials.gov record","https://clinicaltrials.gov/study/NCT05734560"]],
+  discuss_with_care_team:"Requires residual disease reachable by catheter &mdash; likely not applicable after a genuinely complete resection." },
+
+{ id:"alt-zsneo-dc11", name:"ZSNeo-DC1.1 &mdash; neoantigen-pulsed dendritic-cell vaccine + TMZ &mdash; NCT07365280", category:"alternative-trial-options", phase:"adjuvant-tmz",
+  timing:{label:"Vaccinates in the adjuvant window; not yet open (planned Jan 2026 start)"}, fixed:false, default_on:false,
+  evidence:{s:1,l:"Best molecular match on paper (requires IDH-wildtype), randomised with a proper control, vaccinates in the adjuvant window. Not yet open; likely China-only sites.",caution:false},
+  mechanism:"Neoantigen-pulsed dendritic-cell vaccine given alongside adjuvant temozolomide.",
+  interactions:[{with:"duke-immunotherapy-trial",type:"note-only",modifier:0,note:"Trial protocols are almost always mutually exclusive with concurrent enrollment in another interventional trial."}],
+  source_notes:[["Full trial detail on the Neoantigen &amp; Personalized Peptide Vaccine Atlas","neoantigen-peptide-atlas.html#c-NCT07365280"],["ClinicalTrials.gov record","https://clinicaltrials.gov/study/NCT07365280"]],
+  discuss_with_care_team:"International enrollment and tissue logistics would be the hard part if this opens &mdash; ask whether any non-China sites are planned." },
+
+{ id:"alt-ptprz1-tert", name:"PTPRZ1 / TERT peptide vaccine, adjuvant to chemoradiation &mdash; NCT06622434", category:"alternative-trial-options", phase:"adjuvant-tmz",
+  timing:{label:"Open now, adjuvant-window"}, fixed:false, default_on:false,
+  evidence:{s:1,l:"Open now, adjuvant-window, standard archival tissue is enough. Confirmed TERT-promoter mutation on this case is a positive biological signal for this specific mechanism. HLA-A2 status and PTPRZ1 tumor expression are still unknown gates.",caution:false},
+  mechanism:"Shared-antigen peptide vaccine targeting PTPRZ1 and TERT, given adjuvant to chemoradiation.",
+  interactions:[{with:"duke-immunotherapy-trial",type:"note-only",modifier:0,note:"Trial protocols are almost always mutually exclusive with concurrent enrollment in another interventional trial."}],
+  source_notes:[["Full trial detail on the Neoantigen &amp; Personalized Peptide Vaccine Atlas","neoantigen-peptide-atlas.html#c-NCT06622434"],["ClinicalTrials.gov record","https://clinicaltrials.gov/study/NCT06622434"]],
+  discuss_with_care_team:"Practically the easiest European option to screen for (archival tissue only) &mdash; Paris or Marseille site, so travel is the main logistical question. Ask about HLA-A2 typing." },
+
+{ id:"alt-italian-dc-homogenate", name:"Autologous DC loaded with autologous tumour homogenate &mdash; NCT04523688", category:"alternative-trial-options", phase:"adjuvant-tmz",
+  timing:{label:"Recruiting per registry, but verify &mdash; listed primary-completion date has passed"}, fixed:false, default_on:false,
+  evidence:{s:1,l:"Resection and steroid criteria fit well; open to any IDH/MGMT status. Single Italian centre, small, and the registry's listed primary-completion date has passed &mdash; verify it is still enrolling.",caution:false},
+  mechanism:"Whole-tumor-lysate dendritic-cell vaccine (not neoantigen-defined specifically).",
+  interactions:[{with:"duke-immunotherapy-trial",type:"note-only",modifier:0,note:"Trial protocols are almost always mutually exclusive with concurrent enrollment in another interventional trial."}],
+  source_notes:[["Full trial detail on the Neoantigen &amp; Personalized Peptide Vaccine Atlas","neoantigen-peptide-atlas.html#c-NCT04523688"],["ClinicalTrials.gov record","https://clinicaltrials.gov/study/NCT04523688"]],
+  discuss_with_care_team:"Confirm current enrollment status directly before counting on this &mdash; the listed completion date has already passed." },
+
+{ id:"alt-brazilian-hybrid", name:"Hybrid allogeneic-DC &times; autologous tumour-cell fusion vaccine &plusmn; pembrolizumab &mdash; NCT06749925", category:"alternative-trial-options", phase:"post-adjuvant",
+  timing:{label:"Not yet open"}, fixed:false, default_on:false,
+  evidence:{s:2,l:"A properly controlled, blinded phase 3 &mdash; the most rigorous design among the neoantigen-atlas trials &mdash; open to any IDH/MGMT status with no age cap. Not yet open; needs a living tumor cell culture, often unavailable after a small completed resection unless specifically arranged.",caution:false},
+  mechanism:"Fusion vaccine combining allogeneic dendritic cells with the patient's own tumor cells, &plusmn; pembrolizumab.",
+  interactions:[{with:"duke-immunotherapy-trial",type:"note-only",modifier:0,note:"Trial protocols are almost always mutually exclusive with concurrent enrollment in another interventional trial."}],
+  source_notes:[["Full trial detail on the Neoantigen &amp; Personalized Peptide Vaccine Atlas","neoantigen-peptide-atlas.html#c-NCT06749925"],["ClinicalTrials.gov record","https://clinicaltrials.gov/study/NCT06749925"]],
+  discuss_with_care_team:"Ask specifically whether a living tumor-cell culture was (or still could be) established from the resection &mdash; this is the hard logistical gate." },
+
+{ id:"alt-tamavaq", name:"Tamavaq &mdash; AI-designed personalized neoantigen + tumour-antigen peptide vaccine &mdash; NCT07077616", category:"alternative-trial-options", phase:"post-adjuvant",
+  timing:{label:"Recruiting, but eligibility text targets recurrent disease"}, fixed:false, default_on:false,
+  evidence:{s:1,l:"Eligibility text is written for recurrent, measurable disease with a high mutational burden (>10 TMB, &ge;10 neoantigens) that this treatment-na&iuml;ve, fully-resected, TMB-9.4 tumor does not meet. Single small-company site.",caution:true},
+  mechanism:"AI-designed personalized peptide vaccine combining neoantigens and shared tumor antigens.",
+  interactions:[{with:"duke-immunotherapy-trial",type:"note-only",modifier:0,note:"Trial protocols are almost always mutually exclusive with concurrent enrollment in another interventional trial."}],
+  source_notes:[["Full trial detail on the Neoantigen &amp; Personalized Peptide Vaccine Atlas","neoantigen-peptide-atlas.html#c-NCT07077616"],["ClinicalTrials.gov record","https://clinicaltrials.gov/study/NCT07077616"]],
+  discuss_with_care_team:"Rated a poor fit for this specific case on the companion atlas &mdash; worth noting, not pursuing, without direct clarification from the trial team about the newly-diagnosed eligibility criteria." },
+
+{ id:"alt-breakvax", name:"BreakVax &mdash; personalized peptide vaccine + dual checkpoint + temozolomide &mdash; NCT07762716", category:"alternative-trial-options", phase:"post-adjuvant",
+  timing:{label:"Not yet open"}, fixed:false, default_on:false,
+  evidence:{s:1,l:"Exactly this atlas's modality &mdash; a per-patient peptide vaccine of the tumor's own neoantigens plus shared antigens &mdash; and its MSI-H/dMMR/POLE exclusion is confirmed cleared (this tumor is MSS). But small (n=10), single-site, not yet open, with an unusually strict steroid exclusion (none within 6 weeks).",caution:false},
+  mechanism:"Personalized peptide vaccine (neoantigens + tumor-associated antigens) plus dual checkpoint blockade and temozolomide.",
+  interactions:[{with:"duke-immunotherapy-trial",type:"note-only",modifier:0,note:"Trial protocols are almost always mutually exclusive with concurrent enrollment in another interventional trial."},{with:"steroid-sparing",type:"synergistic",modifier:1,note:"This trial's strict steroid exclusion (none within 6 weeks pre-enrollment) is directly supported by an active steroid-sparing strategy."}],
+  source_notes:[["Full trial detail on the Neoantigen &amp; Personalized Peptide Vaccine Atlas","neoantigen-peptide-atlas.html#c-NCT07762716"],["ClinicalTrials.gov record","https://clinicaltrials.gov/study/NCT07762716"]],
+  discuss_with_care_team:"The strict steroid-exclusion window would need to be planned around carefully if pursued &mdash; flag this explicitly with the treating team given the steroid-sparing strategy already in this plan." }
 ];
 
 const BY_ID = {}; CATALOG.forEach(t=>BY_ID[t.id]=t);
@@ -920,12 +1138,46 @@ function renderScore(){
   $("#synList").innerHTML = r.synergies.length
     ? r.synergies.map(s=>`<li><b>${s.a}</b> + <b>${s.b}</b> (+${s.modifier}) &mdash; ${s.note}</li>`).join("")
     : `<li>No active synergies right now.</li>`;
+
+  renderFlowchart();
 }
 
 function renderWeightTable(){
   $("#weightTableBody").innerHTML = Object.keys(CATEGORY_WEIGHTS).map(c=>
     `<tr><td>${CATEGORY_LABELS[c]}</td><td class="tnum">${CATEGORY_WEIGHTS[c]}</td><td>${ITEM_COUNTS[c]||0}</td></tr>`
   ).join("") + `<tr><td class="muted">Historical (not scored)</td><td class="tnum muted">0</td><td>${ITEM_COUNTS["historical"]||0}</td></tr>`;
+}
+
+function renderSummaryTiles(){
+  $("#tileTotal").textContent = CATALOG.length;
+  $("#tileFixed").textContent = fixedIds().length;
+  $("#tileOptimal").textContent = defaultOptimalIds().length;
+  $("#tileCats").textContent = Object.keys(CATEGORY_WEIGHTS).length;
+  $("#summaryHeading").textContent = `${CATALOG.length} decisions across 5 phases`;
+}
+
+function shortLabel(t){
+  return t.name.length > 46 ? t.name.slice(0,44).replace(/\s+\S*$/,"") + "…" : t.name;
+}
+
+function renderFlowchart(){
+  const el = $("#flowchartRoot");
+  if(!el) return;
+  const groups = PHASE_ORDER.map(ph=>({
+    ph, items: CATALOG.filter(t=>t.phase===ph && activeIds.has(t.id))
+  }));
+  const nodesHtml = groups.map((g,i)=>{
+    const chips = g.items.length
+      ? g.items.map(t=>`<div class="flowChip${t.fixed?' fixed':''}" title="${t.name.replace(/"/g,'&quot;')}">${shortLabel(t)}</div>`).join("")
+      : `<div class="flowChip empty">Nothing selected</div>`;
+    const node = `<div class="flowNode${g.items.length?'':' emptyPhase'}">
+        <div class="flowNodeHead">${PHASE_SHORT[g.ph]}</div>
+        <div class="flowNodeDate">${PHASE_LABELS[g.ph].sub}</div>
+        <div class="flowChips">${chips}</div>
+      </div>`;
+    return i < groups.length-1 ? node + `<div class="flowArrow" aria-hidden="true">&rarr;</div>` : node;
+  }).join("");
+  el.innerHTML = `<div class="flowScroll"><div class="flowRow">${nodesHtml}</div></div>`;
 }
 
 $("#presetOptimalBtn").addEventListener("click", ()=>{ applyPreset("optimal"); renderTimeline(); renderScore(); });
@@ -951,6 +1203,7 @@ tb.addEventListener("click",()=>{
 try{const sv=localStorage.getItem("rtk2-theme"); if(sv) document.documentElement.setAttribute("data-theme",sv);}catch(e){}
 
 loadState();
+renderSummaryTiles();
 renderWeightTable();
 renderTimeline();
 renderScore();
